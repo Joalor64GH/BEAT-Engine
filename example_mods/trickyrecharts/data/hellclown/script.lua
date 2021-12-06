@@ -2,10 +2,11 @@
 --Tricky mod credits will be put here temporarily until in-game credits can be modified within Lua
 --Tricky Mod Developers: Banbuds, Rosebud, KadeDev, CVal, YingYang48, JADS, Moro
 --Special Thanks: Tom Fulp, Krinkels, GWebDev, Tsuraran
+local allowCutscene = false
 local allowCountdown = false
 function onStartCountdown()
     -- Block the first countdown and start cutscene
-    if not allowCountdown and isStoryMode and not seenCutscene then
+    if not allowCountdown and allowCutscene and not seenCutscene then
         startVideo('HellClownIntro')
 	    allowCountdown = true;
         return Function_Stop;

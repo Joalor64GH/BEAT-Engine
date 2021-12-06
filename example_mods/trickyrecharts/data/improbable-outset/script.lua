@@ -1,11 +1,9 @@
 --Last Edited 10/12/21 by SaturnSpades
---Tricky mod credits will be put here temporarily until in-game credits can be modified within Lua
---Tricky Mod Developers: Banbuds, Rosebud, KadeDev, CVal, YingYang48, JADS, Moro
---Special Thanks: Tom Fulp, Krinkels, GWebDev, Tsuraran
 local allowCountdown = false
+local allowCutscene = false
 function onStartCountdown()
     -- Block the first countdown and start cutscene
-    if not allowCountdown and isStoryMode and not seenCutscene then
+    if not allowCountdown and allowCutscene and not seenCutscene then
         setProperty('inCutscene', true)
         setProperty('dad.alpha', 0)
         setProperty('gf.alpha', 0)
@@ -507,7 +505,7 @@ function onGameOver()
 	return Function_Continue;
 end
 
-function onGameOverConfirm(retry)
+function onGameOverConfirm()
 	-- Called when you Press Enter/Esc on Game Over
 	-- If you've pressed Esc, value "retry" will be false
     setProperty('boyfriend.curCharacter', 'signDeath')

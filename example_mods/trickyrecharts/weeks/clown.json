@@ -16,7 +16,7 @@
 	],
 	"songs": [
 		[
-			"Improbable-outest",
+			"Improbable-outset",
 			"trickymask",
 			[
 				146,
@@ -41,8 +41,44 @@
 				113,
 				253
 			]
+		],
+		[
+			"Expurgation",
+			"extricky",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Genocide",
+			"tricky",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Endless",
+			"tricky",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Clownchrome",
+			"extricky",
+			[
+				146,
+				113,
+				253
+			]
 		]
 	],
-	"hideStoryMode": false,
+	"hideStoryMode": true,
 	"weekName": "Clown"
 }

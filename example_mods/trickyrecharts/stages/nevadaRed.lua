@@ -1,7 +1,4 @@
 --Last Edited 10/12/21 by SaturnSpades
---Tricky mod credits will be put here temporarily until in-game credits can be modified within Lua
---Tricky Mod Developers: Banbuds, Rosebud, KadeDev, CVal, YingYang48, JADS, Moro
---Special Thanks: Tom Fulp, Krinkels, GWebDev, Tsuraran
 function onCreate()
 	--Create Background sprites
 	makeLuaSprite('red', '', -1200, -650);
@@ -10,11 +7,6 @@ function onCreate()
 	
 	makeLuaSprite('island_but_red', 'island_but_red', -3400, -800);
 	scaleLuaSprite('island_but_red', 2, 2);
-
-	-- sprites that only load if Low Quality is turned off
-	if not lowQuality then
-		--Low Quality mode not yet implemented
-	end
 
 	addLuaSprite('red', false);
 	addLuaSprite('island_but_red', false);

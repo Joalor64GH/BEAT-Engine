@@ -2126,10 +2126,45 @@ class PlayState extends MusicBeatState
 
 	function changeMania(newValue:Int)
 	{
+		//funny dissapear transitions
+		//while new strums appear
+		if (isStoryMode)
+		{
+			for (i in 0...playerStrums.members.length) {
+				var oldStrum:FlxSprite = playerStrums.members[i].clone();
+				oldStrum.x = playerStrums.members[i].x;
+				oldStrum.y = playerStrums.members[i].y;
+				oldStrum.alpha = playerStrums.members[i].alpha;
+				oldStrum.scrollFactor.set();
+				oldStrum.cameras = [camHUD];
+				oldStrum.setGraphicSize(Std.int(oldStrum.width * Note.NoteData.getScale(mania)));
+				oldStrum.updateHitbox();
+				add(oldStrum);
+	
+				FlxTween.tween(oldStrum, {alpha: 0}, 1, {onComplete: function(_) {
+					remove(oldStrum);
+				}});
+			}
+	
+			for (i in 0...opponentStrums.members.length) {
+				var oldStrum:FlxSprite = opponentStrums.members[i].clone();
+				oldStrum.x = opponentStrums.members[i].x;
+				oldStrum.y = opponentStrums.members[i].y;
+				oldStrum.alpha = opponentStrums.members[i].alpha;
+				oldStrum.scrollFactor.set();
+				oldStrum.cameras = [camHUD];
+				oldStrum.setGraphicSize(Std.int(oldStrum.width * Note.NoteData.getScale(mania)));
+				oldStrum.updateHitbox();
+				add(oldStrum);
+	
+				FlxTween.tween(oldStrum, {alpha: 0}, 1, {onComplete: function(_) {
+					remove(oldStrum);
+				}});
+			}
+		}
+		
 		mania = newValue;
 
-		for (i in 0...playerStrums.members.length) FlxTween.tween(playerStrums.members[i], {alpha: 0}, 1);
-		for (i in 0...opponentStrums.members.length) FlxTween.tween(opponentStrums.members[i], {alpha: 0}, 1);
 		playerStrums.clear();
 		opponentStrums.clear();
 		strumLineNotes.clear();
@@ -2655,16 +2690,11 @@ class PlayState extends MusicBeatState
 						daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
 						if (daNote.isSustainNote && !ClientPrefs.keSustains) {
 							//Jesus fuck this took me so much mother fucking time AAAAAAAAAA
-							/* no.
 							if (daNote.animation.curAnim.name.endsWith('tail')) {
 								daNote.y += 10.5 * (fakeCrochet / 400) * 1.5 * roundedSpeed + (46 * (roundedSpeed - 1));
 								daNote.y -= 46 * (1 - (fakeCrochet / 600)) * roundedSpeed;
-								if(PlayState.isPixelStage) {
-									daNote.y += 8;
-								} else {
-									daNote.y -= 19;
-								}
-							}*/
+								daNote.y -= 19;
+							}
 							daNote.y += (strumHeight / 2) - (60.5 * (roundedSpeed - 1));
 							daNote.y += (27.5 * ((SONG.bpm / 100) - 1) * (roundedSpeed - 1)) * Note.NoteData.getScale(mania);
 

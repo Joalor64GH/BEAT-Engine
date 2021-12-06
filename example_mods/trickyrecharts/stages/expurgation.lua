@@ -1,7 +1,4 @@
 --Last Edited 10/12/21 by SaturnSpades
---Tricky mod credits will be put here temporarily until in-game credits can be modified within Lua
---Tricky Mod Developers: Banbuds, Rosebud, KadeDev, CVal, YingYang48, JADS, Moro
---Special Thanks: Tom Fulp, Krinkels, GWebDev, Tsuraran
 function onCreate()
 	--Create Background sprites
 	makeLuaSprite('bg', 'bg', -1200, -650);
