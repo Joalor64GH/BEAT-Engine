@@ -4066,6 +4066,9 @@ class PlayState extends MusicBeatState
 				combo += 1;
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
+
+				//var ms:Float = note.strumTime - Conductor.songPosition;
+				//trace(ms);
 			}
 			health += note.hitHealth * healthGain;
 

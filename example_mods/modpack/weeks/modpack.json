@@ -2,63 +2,57 @@
 	"storyName": "Modpack week",
 	"hideFreeplay": false,
 	"weekBackground": "",
+	"weekBefore": "tutorial",
 	"freeplayColor": [
 		146,
 		113,
 		253
 	],
-	"weekBefore": "tutorial",
 	"startUnlocked": true,
-	"hideStoryMode": true,
-	"weekCharacters": [
-		"",
-		"bf",
-		"gf"
-	],
 	"songs": [
 		[
 			"final destination",
 			"them",
 			[
-				97,
-				209,
-				249
+				235,
+				215,
+				0
 			]
 		],
 		[
 			"Improbable-outset",
 			"trickymask",
 			[
-				146,
-				113,
-				253
+				95,
+				115,
+				0
 			]
 		],
 		[
 			"Madness",
 			"tricky",
 			[
-				146,
-				113,
-				253
+				15,
+				75,
+				0
 			]
 		],
 		[
 			"Hellclown",
 			"helltricky",
 			[
-				146,
-				113,
-				253
+				235,
+				235,
+				233
 			]
 		],
 		[
 			"Expurgation",
 			"extricky",
 			[
-				146,
-				113,
-				253
+				255,
+				73,
+				73
 			]
 		],
 		[
@@ -71,6 +65,15 @@
 			]
 		],
 		[
+			"triple trouble",
+			"fleetway",
+			[
+				255,
+				215,
+				0
+			]
+		],
+		[
 			"chaos",
 			"fleetway",
 			[
@@ -78,7 +81,40 @@
 				215,
 				0
 			]
+		],
+		[
+			"safety lullaby",
+			"hypno",
+			[
+				215,
+				195,
+				0
+			]
+		],
+		[
+			"left unchecked",
+			"hypno2",
+			[
+				215,
+				195,
+				0
+			]
+		],
+		[
+			"missingno",
+			"missingno",
+			[
+				255,
+				255,
+				200
+			]
 		]
+	],
+	"hideStoryMode": true,
+	"weekCharacters": [
+		"",
+		"bf",
+		"gf"
 	],
 	"weekName": "sponge"
 }

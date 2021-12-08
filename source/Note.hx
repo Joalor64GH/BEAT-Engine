@@ -224,8 +224,8 @@ class Note extends FlxSprite
 		var blahblah:String = arraySkin.join('/');
 		frames = Paths.getSparrowAtlas(blahblah);
 
-		defaultWidth = width;
-		defaultHeight = height;
+		defaultWidth = 157;
+		defaultHeight = 154;
 
 		loadNoteAnims();
 		antialiasing = ClientPrefs.globalAntialiasing;
