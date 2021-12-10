@@ -311,6 +311,7 @@ class StoryMenuState extends MusicBeatState
 	var lastImagePath:String;
 	function changeDifficulty(change:Int = 0):Void
 	{
+		#if GLITCHES
 		curDifficulty += change;
 
 		if (curDifficulty < 0)
@@ -347,6 +348,7 @@ class StoryMenuState extends MusicBeatState
 
 		#if !switch
 		intendedScore = Highscore.getWeekScore(WeekData.weeksList[curWeek], curDifficulty);
+		#end
 		#end
 	}
 
