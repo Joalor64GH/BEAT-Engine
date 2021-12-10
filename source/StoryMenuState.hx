@@ -6,7 +6,7 @@ import Discord.DiscordClient;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
-import flixel.addons.transition.FlxTransitionableState;
+//import flixel.addons.transition.FlxTransitionableState; tfw type not found
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxGroup;
@@ -311,7 +311,6 @@ class StoryMenuState extends MusicBeatState
 	var lastImagePath:String;
 	function changeDifficulty(change:Int = 0):Void
 	{
-		#if GLITCHES
 		curDifficulty += change;
 
 		if (curDifficulty < 0)
@@ -348,7 +347,6 @@ class StoryMenuState extends MusicBeatState
 
 		#if !switch
 		intendedScore = Highscore.getWeekScore(WeekData.weeksList[curWeek], curDifficulty);
-		#end
 		#end
 	}
 

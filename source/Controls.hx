@@ -173,6 +173,37 @@ enum abstract Action(String) to String from String
 	var NINE9 = 'nine9';
 	var NINE9_P = 'nine9-press';
 	var NINE9_R = 'nine9-release';
+
+	var TEN1 = 'ten1';
+	var TEN1_P = 'ten1-press';
+	var TEN1_R = 'ten1-release';
+	var TEN2 = 'ten2';
+	var TEN2_P = 'ten2-press';
+	var TEN2_R = 'ten2-release';
+	var TEN3 = 'ten3';
+	var TEN3_P = 'ten3-press';
+	var TEN3_R = 'ten3-release';
+	var TEN4 = 'ten4';
+	var TEN4_P = 'ten4-press';
+	var TEN4_R = 'ten4-release';
+	var TEN5 = 'ten5';
+	var TEN5_P = 'ten5-press';
+	var TEN5_R = 'ten5-release';
+	var TEN6 = 'ten6';
+	var TEN6_P = 'ten6-press';
+	var TEN6_R = 'ten6-release';
+	var TEN7 = 'ten7';
+	var TEN7_P = 'ten7-press';
+	var TEN7_R = 'ten7-release';
+	var TEN8 = 'ten8';
+	var TEN8_P = 'ten8-press';
+	var TEN8_R = 'ten8-release';
+	var TEN9 = 'ten9';
+	var TEN9_P = 'ten9-press';
+	var TEN9_R = 'ten9-release';
+	var TEN10 = 'ten10';
+	var TEN10_P = 'ten10-press';
+	var TEN10_R = 'ten10-release';
 }
 #else
 @:enum
@@ -337,6 +368,37 @@ abstract Action(String) to String from String
 	var NINE9 = 'nine9';
 	var NINE9_P = 'nine9-press';
 	var NINE9_R = 'nine9-release';
+
+	var TEN1 = 'ten1';
+	var TEN1_P = 'ten1-press';
+	var TEN1_R = 'ten1-release';
+	var TEN2 = 'ten2';
+	var TEN2_P = 'ten2-press';
+	var TEN2_R = 'ten2-release';
+	var TEN3 = 'ten3';
+	var TEN3_P = 'ten3-press';
+	var TEN3_R = 'ten3-release';
+	var TEN4 = 'ten4';
+	var TEN4_P = 'ten4-press';
+	var TEN4_R = 'ten4-release';
+	var TEN5 = 'ten5';
+	var TEN5_P = 'ten5-press';
+	var TEN5_R = 'ten5-release';
+	var TEN6 = 'ten6';
+	var TEN6_P = 'ten6-press';
+	var TEN6_R = 'ten6-release';
+	var TEN7 = 'ten7';
+	var TEN7_P = 'ten7-press';
+	var TEN7_R = 'ten7-release';
+	var TEN8 = 'ten8';
+	var TEN8_P = 'ten8-press';
+	var TEN8_R = 'ten8-release';
+	var TEN9 = 'ten9';
+	var TEN9_P = 'ten9-press';
+	var TEN9_R = 'ten9-release';
+	var TEN10 = 'ten10';
+	var TEN10_P = 'ten10-press';
+	var TEN10_R = 'ten10-release';
 }
 #end
 
@@ -414,6 +476,17 @@ enum Control
 	NINE7;
 	NINE8;
 	NINE9;
+
+	TEN1;
+	TEN2;
+	TEN3;
+	TEN4;
+	TEN5;
+	TEN6;
+	TEN7;
+	TEN8;
+	TEN9;
+	TEN10;
 }
 
 enum KeyboardScheme
@@ -1919,26 +1992,7 @@ class Controls extends FlxActionSet
 			Control.NOTE_LEFT => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT, RIGHT_STICK_DIGITAL_LEFT, X],
 			Control.NOTE_RIGHT => [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT, RIGHT_STICK_DIGITAL_RIGHT, B],
 			Control.PAUSE => [START],
-			Control.RESET => [8],
-
-			/*
-			Control.A1 => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT],
-			Control.A2 => [DPAD_UP, LEFT_STICK_DIGITAL_UP],
-			Control.A3 => [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT],
-			Control.A4 => [LEFT_STICK_CLICK, RIGHT_STICK_CLICK],
-			Control.A5 => [X, RIGHT_STICK_DIGITAL_LEFT],
-			Control.A6 => [A, RIGHT_STICK_DIGITAL_DOWN],
-			Control.A7 => [B, RIGHT_STICK_DIGITAL_RIGHT],
-
-			Control.B1 => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT],
-			Control.B2 => [DPAD_DOWN, LEFT_STICK_DIGITAL_DOWN],
-			Control.B3 => [DPAD_UP, LEFT_STICK_DIGITAL_UP],
-			Control.B4 => [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT],
-			Control.B5 => [LEFT_STICK_CLICK, RIGHT_STICK_CLICK],
-			Control.B6 => [X, RIGHT_STICK_DIGITAL_LEFT],
-			Control.B7 => [A, RIGHT_STICK_DIGITAL_DOWN],
-			Control.B8 => [B, RIGHT_STICK_DIGITAL_UP],
-			Control.B9 => [Y, RIGHT_STICK_DIGITAL_RIGHT]*/
+			Control.RESET => [8]
 		]);
 		#else
 		addGamepadLiteral(id, [
@@ -1954,25 +2008,7 @@ class Controls extends FlxActionSet
 			Control.NOTE_LEFT => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT, RIGHT_STICK_DIGITAL_LEFT, Y],
 			Control.NOTE_RIGHT => [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT, RIGHT_STICK_DIGITAL_RIGHT, A],
 			Control.PAUSE => [START],
-			Control.RESET => [8],
-
-			Control.A1 => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT],
-			Control.A2 => [DPAD_UP, LEFT_STICK_DIGITAL_UP],
-			Control.A3 => [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT],
-			Control.A4 => [LEFT_STICK_CLICK, RIGHT_STICK_CLICK],
-			Control.A5 => [Y, RIGHT_STICK_DIGITAL_LEFT],
-			Control.A6 => [B, RIGHT_STICK_DIGITAL_DOWN],
-			Control.A7 => [A, RIGHT_STICK_DIGITAL_RIGHT]
-
-			Control.B1 => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT],
-			Control.B2 => [DPAD_DOWN, LEFT_STICK_DIGITAL_DOWN],
-			Control.B3 => [DPAD_UP, LEFT_STICK_DIGITAL_UP],
-			Control.B4 => [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT],
-			Control.B5 => [LEFT_STICK_CLICK, RIGHT_STICK_CLICK],
-			Control.B6 => [Y, RIGHT_STICK_DIGITAL_LEFT],
-			Control.B7 => [B, RIGHT_STICK_DIGITAL_DOWN],
-			Control.B8 => [A, RIGHT_STICK_DIGITAL_UP],
-			Control.B9 => [X, RIGHT_STICK_DIGITAL_RIGHT]
+			Control.RESET => [8]
 		]);
 		#end
 	}
