@@ -297,78 +297,10 @@ class PlayState extends MusicBeatState
 		debugKeysChart = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 		debugKeysCharacter = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_2'));
 
-		/*	ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_left')),
-			ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_down')),
-			ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_up')),		swag reference
-			ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_right'))*/
-		keysArray = [
-			[
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_one1'))
-			],
-			[
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_two1')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_two2'))
-			],
-			[
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_three1')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_three2')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_three3'))
-			],
-			[
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_left')),	//SWAGGER SOULS??
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_down')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_up')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_right'))
-			],
-			[
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_five1')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_five2')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_five3')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_five4')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_five5'))
-			],
-			[
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_six1')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_six2')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_six3')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_six4')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_six5')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_six6'))
-			],
-			[
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_seven1')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_seven2')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_seven3')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_seven4')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_seven5')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_seven6')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_seven7'))
-			],
-			[
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_eight1')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_eight2')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_eight3')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_eight4')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_eight5')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_eight6')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_eight7')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_eight8'))
-			],
-			[
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_nine1')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_nine2')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_nine3')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_nine4')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_nine5')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_nine6')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_nine7')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_nine8')),
-				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_nine9'))
-			]
-		];
+		keysArray = Keybinds.fill();
 
 		// For the "Just the Two of Us" achievement
-		for (i in 0...keysArray.length)
+		for (i in 0...keysArray[mania].length)
 		{
 			keysPressed.push(false);
 		}
@@ -3845,6 +3777,13 @@ class PlayState extends MusicBeatState
 	}
 
 	// Hold notes
+	// Explained by Shadow Mario:
+	/**
+	 * Handle for hold note logic
+	 * and controller logic.
+	 * 
+	 * Does zoro even have support for controller?? wtf
+	 */
 	private function keyShit():Void
 	{
 		var one = [controls.ONE1];
@@ -3861,7 +3800,7 @@ class PlayState extends MusicBeatState
 		var right = controls.NOTE_RIGHT;
 		var down = controls.NOTE_DOWN;
 		var left = controls.NOTE_LEFT;
-		var controlHoldArray:Array<Bool> = [];
+		var controlHoldArray:Array<Bool> = [false];
 
 		switch (mania) {
 			case 0: controlHoldArray = one;
@@ -3875,16 +3814,58 @@ class PlayState extends MusicBeatState
 			case 8: controlHoldArray = nin;
 		}
 		
-		// TO DO: Find a better way to handle controller inputs, this should work for now
-		if(ClientPrefs.controllerMode)
+		// TO DO: Find a better way to handle controller inputs, this should work for now -Shadow Mario
+		if(ClientPrefs.controllerMode)	//controller input
 		{
-			var controlArray:Array<Bool> = [controls.NOTE_LEFT_P, controls.NOTE_DOWN_P, controls.NOTE_UP_P, controls.NOTE_RIGHT_P];
-			if(controlArray.contains(true))
+			//looks like i need these again... shit
+			var oneP = [controls.ONE1_P];
+			var oneR = [controls.ONE1_R];
+			var twoP = [controls.TWO1_P, controls.TWO2_P];
+			var twoR = [controls.TWO1_R, controls.TWO2_R];
+			var thrP = [controls.THREE1_P, controls.THREE2_P, controls.THREE3_P];
+			var thrR = [controls.THREE1_R, controls.THREE2_R, controls.THREE3_R];
+			var fivP = [controls.FIVE1_P, controls.FIVE2_P, controls.FIVE3_P, controls.FIVE4_P, controls.FIVE5_P];
+			var fivR = [controls.FIVE1_R, controls.FIVE2_R, controls.FIVE3_R, controls.FIVE4_R, controls.FIVE5_R];
+			var sixP = [controls.SIX1_P, controls.SIX2_P, controls.SIX3_P, controls.SIX4_P, controls.SIX5_P, controls.SIX6_P];
+			var sixR = [controls.SIX1_R, controls.SIX2_R, controls.SIX3_R, controls.SIX4_R, controls.SIX5_R, controls.SIX6_R];
+			var sevP = [controls.SEVEN1_P, controls.SEVEN2_P, controls.SEVEN3_P, controls.SEVEN4_P, controls.SEVEN5_P, controls.SEVEN6_P, controls.SEVEN7_P];
+			var sevR = [controls.SEVEN1_R, controls.SEVEN2_R, controls.SEVEN3_R, controls.SEVEN4_R, controls.SEVEN5_R, controls.SEVEN6_R, controls.SEVEN7_R];
+			var eigP = [controls.EIGHT1_P, controls.EIGHT2_P, controls.EIGHT3_P, controls.EIGHT4_P, controls.EIGHT5_P, controls.EIGHT6_P, controls.EIGHT7_P, controls.EIGHT8_P];
+			var eigR = [controls.EIGHT1_R, controls.EIGHT2_R, controls.EIGHT3_R, controls.EIGHT4_R, controls.EIGHT5_R, controls.EIGHT6_R, controls.EIGHT7_R, controls.EIGHT8_R];
+			var ninP = [controls.NINE1_P, controls.NINE2_P, controls.NINE3_P, controls.NINE4_P, controls.NINE5_P, controls.NINE6_P, controls.NINE7_P, controls.NINE8_P, controls.NINE9_P];
+			var ninR = [controls.NINE1_R, controls.NINE2_R, controls.NINE3_R, controls.NINE4_R, controls.NINE5_R, controls.NINE6_R, controls.NINE7_R, controls.NINE8_R, controls.NINE9_R];
+
+			//controller shits
+			var controllerPressArray:Array<Bool> = [false];
+			var controllerRelesArray:Array<Bool> = [false];
+
+			switch (mania) {
+				case 0:	controllerPressArray = oneP; controllerRelesArray = oneR;
+				case 1: controllerPressArray = twoP; controllerRelesArray = twoR;
+				case 2: controllerPressArray = thrP; controllerRelesArray = thrR;
+				case 3: controllerPressArray = [controls.NOTE_LEFT_P, controls.NOTE_DOWN_P, controls.NOTE_UP_P, controls.NOTE_RIGHT_P]; controllerRelesArray = [controls.NOTE_LEFT_R, controls.NOTE_DOWN_R, controls.NOTE_UP_R, controls.NOTE_RIGHT_R];
+				case 4: controllerPressArray = fivP; controllerRelesArray = fivR;
+				case 5:	controllerPressArray = sixP; controllerRelesArray = sixR;
+				case 6: controllerPressArray = sevP; controllerRelesArray = sevR;
+				case 7: controllerPressArray = eigP; controllerRelesArray = eigR;
+				case 8: controllerPressArray = ninP; controllerRelesArray = ninR;
+			}
+
+			if(controllerPressArray.contains(true))
 			{
-				for (i in 0...controlArray.length)
+				for (i in 0...controllerPressArray.length)
 				{
-					if(controlArray[i])
-						onKeyPress(new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, true, -1, keysArray[i][0]));
+					if(controllerPressArray[i])
+						onKeyPress(new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, true, -1, keysArray[mania][i][0]));
+				}
+			}
+
+			if(controllerRelesArray.contains(true))
+			{
+				for (i in 0...controllerRelesArray.length)
+				{
+					if(controllerRelesArray[i])
+						onKeyRelease(new KeyboardEvent(KeyboardEvent.KEY_UP, true, true, -1, keysArray[mania][i][0]));
 				}
 			}
 		}
@@ -3912,20 +3893,6 @@ class PlayState extends MusicBeatState
 			} else if (boyfriend.holdTimer > Conductor.stepCrochet * 0.001 * boyfriend.singDuration && boyfriend.animation.curAnim.name.startsWith('sing')
 			&& !boyfriend.animation.curAnim.name.endsWith('miss'))
 				boyfriend.dance();
-		}
-
-		// TO DO: Find a better way to handle controller inputs, this should work for now
-		if(ClientPrefs.controllerMode)
-		{
-			var controlArray:Array<Bool> = [controls.NOTE_LEFT_R, controls.NOTE_DOWN_R, controls.NOTE_UP_R, controls.NOTE_RIGHT_R];
-			if(controlArray.contains(true))
-			{
-				for (i in 0...controlArray.length)
-				{
-					if(controlArray[i])
-						onKeyRelease(new KeyboardEvent(KeyboardEvent.KEY_UP, true, true, -1, keysArray[i][0]));
-				}
-			}
 		}
 	}
 
