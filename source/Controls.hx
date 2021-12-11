@@ -477,16 +477,16 @@ enum Control
 	NINE8;
 	NINE9;
 
-	TEN1;
-	TEN2;
-	TEN3;
-	TEN4;
-	TEN5;
-	TEN6;
-	TEN7;
-	TEN8;
-	TEN9;
-	TEN10;
+	//TEN1;
+	//TEN2;
+	//TEN3;
+	//TEN4;
+	//TEN5;
+	//TEN6;
+	//TEN7;
+	//TEN8;
+	//TEN9;
+	//TEN10;
 }
 
 enum KeyboardScheme
