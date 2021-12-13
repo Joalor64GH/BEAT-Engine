@@ -15,6 +15,15 @@ class StrumNote extends FlxSprite
 	public var mania:Int = 1;
 
 	private var player:Int;
+	
+	public var texture(default, set):String = null;
+	private function set_texture(value:String):String {
+		if(texture != value) {
+			texture = value;
+			reloadNote();
+		}
+		return value;
+	}
 
 	public function new(x:Float, y:Float, leData:Int, player:Int) {
 		colorSwap = new ColorSwap();
@@ -30,6 +39,15 @@ class StrumNote extends FlxSprite
 		var skin:String = 'NOTE_assets';
 		if(PlayState.isPixelStage) skin = 'PIXEL_' + skin;
 		if(PlayState.SONG.arrowSkin != null && PlayState.SONG.arrowSkin.length > 1) skin = PlayState.SONG.arrowSkin;
+		texture = skin; //Load texture and anims
+
+		scrollFactor.set();
+	}
+
+	public function reloadNote()
+	{
+		var lastAnim:String = null;
+		if(animation.curAnim != null) lastAnim = animation.curAnim.name;
 
 		frames = Paths.getSparrowAtlas(skin);
 
@@ -42,7 +60,11 @@ class StrumNote extends FlxSprite
 		animation.addByPrefix('confirm', pres + ' confirm', 24, false);
 
 		updateHitbox();
-		scrollFactor.set();
+
+		if(lastAnim != null)
+		{
+			playAnim(lastAnim, true);
+		}
 	}
 
 	public function postAddedToGroup() {
