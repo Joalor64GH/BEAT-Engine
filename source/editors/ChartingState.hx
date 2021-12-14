@@ -2671,6 +2671,8 @@ class ChartingState extends MusicBeatState
 			arrowSkin: _song.arrowSkin,
 			splashSkin: _song.splashSkin,
 
+			mania: _song.mania,
+
 			player1: _song.player1,
 			player2: _song.player2,
 			player3: null,
