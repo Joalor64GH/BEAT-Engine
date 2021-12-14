@@ -15,6 +15,8 @@ class StrumNote extends FlxSprite
 	public var mania:Int = 1;
 
 	private var player:Int;
+
+	private var skinThing:Array<String> = ['static', 'pressed'];
 	
 	public var texture(default, set):String = null;
 	private function set_texture(value:String):String {
@@ -35,6 +37,8 @@ class StrumNote extends FlxSprite
 
 		var stat:String = Note.NoteData.getAnimation(Note.NoteData.getKeyMap(PlayState.mania, leData, 1), 0);
 		var pres:String = Note.NoteData.getLetter(Note.NoteData.getKeyMap(PlayState.mania, leData, 0));
+		skinThing[0] = stat;
+		skinThing[1] = pres;
 
 		var skin:String = 'NOTE_assets';
 		if(PlayState.isPixelStage) skin = 'PIXEL_' + skin;
@@ -49,15 +53,15 @@ class StrumNote extends FlxSprite
 		var lastAnim:String = null;
 		if(animation.curAnim != null) lastAnim = animation.curAnim.name;
 
-		frames = Paths.getSparrowAtlas(skin);
+		frames = Paths.getSparrowAtlas(texture);
 
 		antialiasing = ClientPrefs.globalAntialiasing;
 
 		setGraphicSize(Std.int(width * Note.NoteData.getScale(PlayState.mania)));
 
-		animation.addByPrefix('static', 'arrow' + stat);
-		animation.addByPrefix('pressed', pres + ' press', 24, false);
-		animation.addByPrefix('confirm', pres + ' confirm', 24, false);
+		animation.addByPrefix('static', 'arrow' + skinThing[0]);
+		animation.addByPrefix('pressed', skinThing[1] + ' press', 24, false);
+		animation.addByPrefix('confirm', skinThing[1] + ' confirm', 24, false);
 
 		updateHitbox();
 
@@ -71,20 +75,15 @@ class StrumNote extends FlxSprite
 		playAnim('static');
 		switch (PlayState.mania)
 		{
-			case 0:
-				x += width * noteData;
-				x += 150;
-			case 1:
-				x += width * noteData;
-				x += 89;
-			case 2:
+			case 0 | 1 | 2:
 				x += width * noteData;
 			case 3:
 				x += (Note.swagWidth * noteData);
-				x += 20;
 			default:
 				x += ((width - Note.NoteData.getLessXStrumNote(PlayState.mania)) * noteData);
 		}
+
+		x += Note.NoteData.getXtraX(PlayState.mania);
 	
 		//trace((width * Note.NoteData.getScale(PlayState.SONG.mania)) * noteData);
 		x += 50;

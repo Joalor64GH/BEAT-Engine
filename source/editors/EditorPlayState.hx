@@ -734,7 +734,7 @@ class EditorPlayState extends MusicBeatState
 				controlArray = ninP;
 				controlReleaseArray = ninR;
 				controlHoldArray = nin;
-		var controlHoldArray:Array<Bool> = [left, down, up, right];
+		}
 		
 		// TO DO: Find a better way to handle controller inputs, this should work for now
 		if(ClientPrefs.controllerMode)

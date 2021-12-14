@@ -414,6 +414,12 @@ class NoteData
 		return lessX[mania];
 	}
 
+	public static function getXtraX(mania:Int) {
+		var xtra:Array<Int> = [150, 89, 0, 0, 0, 0, 0, 0, 0];
+
+		return xtra[mania];
+	}
+
 	public static function getMiddleScrollSeparator(mania:Int) {
 		var separator:Array<Int> = [0, 0, 1, 1, 2, 2, 2, 3, 3];
 
