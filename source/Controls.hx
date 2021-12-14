@@ -477,16 +477,16 @@ enum Control
 	NINE8;
 	NINE9;
 
-	//TEN1;
-	//TEN2;
-	//TEN3;
-	//TEN4;
-	//TEN5;
-	//TEN6;
-	//TEN7;
-	//TEN8;
-	//TEN9;
-	//TEN10;
+	TEN1;
+	TEN2;
+	TEN3;
+	TEN4;
+	TEN5;
+	TEN6;
+	TEN7;
+	TEN8;
+	TEN9;
+	TEN10;
 }
 
 enum KeyboardScheme
@@ -672,6 +672,37 @@ class Controls extends FlxActionSet
 	var _nin9 = new FlxActionDigital(Action.NINE9);
 	var _nin9P = new FlxActionDigital(Action.NINE9_P);
 	var _nin9R = new FlxActionDigital(Action.NINE9_R);
+
+	var _ten1 = new FlxActionDigital(Action.TEN1);
+	var _ten1P = new FlxActionDigital(Action.TEN1_P);
+	var _ten1R = new FlxActionDigital(Action.TEN1_R);
+	var _ten2 = new FlxActionDigital(Action.TEN2);
+	var _ten2P = new FlxActionDigital(Action.TEN2_P);
+	var _ten2R = new FlxActionDigital(Action.TEN2_R);
+	var _ten3 = new FlxActionDigital(Action.TEN3);
+	var _ten3P = new FlxActionDigital(Action.TEN3_P);
+	var _ten3R = new FlxActionDigital(Action.TEN3_R);
+	var _ten4 = new FlxActionDigital(Action.TEN4);
+	var _ten4P = new FlxActionDigital(Action.TEN4_P);
+	var _ten4R = new FlxActionDigital(Action.TEN4_R);
+	var _ten5 = new FlxActionDigital(Action.TEN5);
+	var _ten5P = new FlxActionDigital(Action.TEN5_P);
+	var _ten5R = new FlxActionDigital(Action.TEN5_R);
+	var _ten6 = new FlxActionDigital(Action.TEN6);
+	var _ten6P = new FlxActionDigital(Action.TEN6_P);
+	var _ten6R = new FlxActionDigital(Action.TEN6_R);
+	var _ten7 = new FlxActionDigital(Action.TEN7);
+	var _ten7P = new FlxActionDigital(Action.TEN7_P);
+	var _ten7R = new FlxActionDigital(Action.TEN7_R);
+	var _ten8 = new FlxActionDigital(Action.TEN8);
+	var _ten8P = new FlxActionDigital(Action.TEN8_P);
+	var _ten8R = new FlxActionDigital(Action.TEN8_R);
+	var _ten9 = new FlxActionDigital(Action.TEN9);
+	var _ten9P = new FlxActionDigital(Action.TEN9_P);
+	var _ten9R = new FlxActionDigital(Action.TEN9_R);
+	var _ten10 = new FlxActionDigital(Action.TEN10);
+	var _ten10P = new FlxActionDigital(Action.TEN10_P);
+	var _ten10R = new FlxActionDigital(Action.TEN10_R);
 
 	#if (haxe >= "4.0.0")
 	var byName:Map<String, FlxActionDigital> = [];
@@ -1229,6 +1260,17 @@ class Controls extends FlxActionSet
 			case NINE7: _nin7;
 			case NINE8: _nin8;
 			case NINE9: _nin9;
+
+			case TEN1: _ten1;
+			case TEN2: _ten2;
+			case TEN3: _ten3;
+			case TEN4: _ten4;
+			case TEN5: _ten5;
+			case TEN6: _ten6;
+			case TEN7: _ten7;
+			case TEN8: _ten8;
+			case TEN9: _ten9;
+			case TEN10: _ten10;
 		}
 	}
 
@@ -1382,6 +1424,27 @@ class Controls extends FlxActionSet
 				func(_nin8, PRESSED); func(_nin8P, JUST_PRESSED); func(_nin8R, JUST_RELEASED);
 			case NINE9:
 				func(_nin9, PRESSED); func(_nin9P, JUST_PRESSED); func(_nin9R, JUST_RELEASED);
+
+			case TEN1:
+				func(_ten1, PRESSED); func(_ten1P, JUST_PRESSED); func(_ten1R, JUST_RELEASED);
+			case TEN2:
+				func(_ten2, PRESSED); func(_ten2P, JUST_PRESSED); func(_ten2R, JUST_RELEASED);
+			case TEN3:
+				func(_ten3, PRESSED); func(_ten3P, JUST_PRESSED); func(_ten3R, JUST_RELEASED);
+			case TEN4:
+				func(_ten4, PRESSED); func(_ten4P, JUST_PRESSED); func(_ten4R, JUST_RELEASED);
+			case TEN5:
+				func(_ten5, PRESSED); func(_ten5P, JUST_PRESSED); func(_ten5R, JUST_RELEASED);	
+			case TEN6:
+				func(_ten6, PRESSED); func(_ten6P, JUST_PRESSED); func(_ten6R, JUST_RELEASED);
+			case TEN7:
+				func(_ten7, PRESSED); func(_ten7P, JUST_PRESSED); func(_ten7R, JUST_RELEASED);
+			case TEN8:
+				func(_ten8, PRESSED); func(_ten8P, JUST_PRESSED); func(_ten8R, JUST_RELEASED);
+			case TEN9:
+				func(_ten9, PRESSED); func(_ten9P, JUST_PRESSED); func(_ten9R, JUST_RELEASED);
+			case TEN10:
+				func(_ten10, PRESSED); func(_ten10P, JUST_PRESSED); func(_ten10R, JUST_RELEASED);
 		}
 	}
 
@@ -1536,7 +1599,7 @@ class Controls extends FlxActionSet
 		#if (haxe >= "4.0.0")
 		switch (scheme)
 		{
-			case Solo:
+			case Solo |	Duo(true) | Duo(false):	//too much spam
 				inline bindKeys(Control.UI_UP, keysMap.get('ui_up'));
 				inline bindKeys(Control.UI_DOWN, keysMap.get('ui_down'));
 				inline bindKeys(Control.UI_LEFT, keysMap.get('ui_left'));
@@ -1599,130 +1662,17 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.NINE7, keysMap.get('note_nine7'));
 				inline bindKeys(Control.NINE8, keysMap.get('note_nine8'));
 				inline bindKeys(Control.NINE9, keysMap.get('note_nine9'));
-			case Duo(true):
-				inline bindKeys(Control.UI_UP, [W]);
-				inline bindKeys(Control.UI_DOWN, [S]);
-				inline bindKeys(Control.UI_LEFT, [A]);
-				inline bindKeys(Control.UI_RIGHT, [D]);
-				inline bindKeys(Control.NOTE_UP, [W]);
-				inline bindKeys(Control.NOTE_DOWN, [S]);
-				inline bindKeys(Control.NOTE_LEFT, [A]);
-				inline bindKeys(Control.NOTE_RIGHT, [D]);
-				inline bindKeys(Control.ACCEPT, [G, Z]);
-				inline bindKeys(Control.BACK, [H, X]);
-				inline bindKeys(Control.PAUSE, [ONE]);
-				inline bindKeys(Control.RESET, [R]);
 
-				inline bindKeys(Control.ONE1, [SPACE]);
-
-				inline bindKeys(Control.TWO1, [D]);
-				inline bindKeys(Control.TWO2, [K]);
-				
-				inline bindKeys(Control.THREE1, [D]);
-				inline bindKeys(Control.THREE2, [SPACE]);
-				inline bindKeys(Control.THREE3, [K]);
-
-				inline bindKeys(Control.FIVE1, [D]);
-				inline bindKeys(Control.FIVE2, [F]);
-				inline bindKeys(Control.FIVE3, [SPACE]);
-				inline bindKeys(Control.FIVE4, [J]);
-				inline bindKeys(Control.FIVE5, [K]);
-
-				inline bindKeys(Control.SIX1, [S]);
-				inline bindKeys(Control.SIX2, [D]);
-				inline bindKeys(Control.SIX3, [F]);
-				inline bindKeys(Control.SIX4, [J]);
-				inline bindKeys(Control.SIX5, [K]);
-				inline bindKeys(Control.SIX6, [L]);
-
-				inline bindKeys(Control.SEVEN1, [S]);
-				inline bindKeys(Control.SEVEN2, [D]);
-				inline bindKeys(Control.SEVEN3, [F]);
-				inline bindKeys(Control.SEVEN4, [SPACE]);
-				inline bindKeys(Control.SEVEN5, [J]);
-				inline bindKeys(Control.SEVEN6, [K]);
-				inline bindKeys(Control.SEVEN7, [L]);
-
-				inline bindKeys(Control.EIGHT1, [A]);
-				inline bindKeys(Control.EIGHT2, [S]);
-				inline bindKeys(Control.EIGHT3, [D]);
-				inline bindKeys(Control.EIGHT4, [F]);
-				inline bindKeys(Control.EIGHT5, [H]);
-				inline bindKeys(Control.EIGHT6, [J]);
-				inline bindKeys(Control.EIGHT7, [K]);
-				inline bindKeys(Control.EIGHT8, [L]);
-
-				inline bindKeys(Control.NINE1, [A]);
-				inline bindKeys(Control.NINE2, [S]);
-				inline bindKeys(Control.NINE3, [D]);
-				inline bindKeys(Control.NINE4, [F]);
-				inline bindKeys(Control.NINE5, [SPACE]);
-				inline bindKeys(Control.NINE6, [H]);
-				inline bindKeys(Control.NINE7, [J]);
-				inline bindKeys(Control.NINE8, [K]);
-				inline bindKeys(Control.NINE9, [L]);
-			case Duo(false):
-				inline bindKeys(Control.UI_UP, [FlxKey.UP]);
-				inline bindKeys(Control.UI_DOWN, [FlxKey.DOWN]);
-				inline bindKeys(Control.UI_LEFT, [FlxKey.LEFT]);
-				inline bindKeys(Control.UI_RIGHT, [FlxKey.RIGHT]);
-				inline bindKeys(Control.NOTE_UP, [FlxKey.UP]);
-				inline bindKeys(Control.NOTE_DOWN, [FlxKey.DOWN]);
-				inline bindKeys(Control.NOTE_LEFT, [FlxKey.LEFT]);
-				inline bindKeys(Control.NOTE_RIGHT, [FlxKey.RIGHT]);
-				inline bindKeys(Control.ACCEPT, [O]);
-				inline bindKeys(Control.BACK, [P]);
-				inline bindKeys(Control.PAUSE, [ENTER]);
-				inline bindKeys(Control.RESET, [BACKSPACE]);
-				
-				inline bindKeys(Control.ONE1, [SPACE]);
-
-				inline bindKeys(Control.TWO1, [D]);
-				inline bindKeys(Control.TWO2, [K]);
-				
-				inline bindKeys(Control.THREE1, [D]);
-				inline bindKeys(Control.THREE2, [SPACE]);
-				inline bindKeys(Control.THREE3, [K]);
-
-				inline bindKeys(Control.FIVE1, [D]);
-				inline bindKeys(Control.FIVE2, [F]);
-				inline bindKeys(Control.FIVE3, [SPACE]);
-				inline bindKeys(Control.FIVE4, [J]);
-				inline bindKeys(Control.FIVE5, [K]);
-
-				inline bindKeys(Control.SIX1, [S]);
-				inline bindKeys(Control.SIX2, [D]);
-				inline bindKeys(Control.SIX3, [F]);
-				inline bindKeys(Control.SIX4, [J]);
-				inline bindKeys(Control.SIX5, [K]);
-				inline bindKeys(Control.SIX6, [L]);
-
-				inline bindKeys(Control.SEVEN1, [S]);
-				inline bindKeys(Control.SEVEN2, [D]);
-				inline bindKeys(Control.SEVEN3, [F]);
-				inline bindKeys(Control.SEVEN4, [SPACE]);
-				inline bindKeys(Control.SEVEN5, [J]);
-				inline bindKeys(Control.SEVEN6, [K]);
-				inline bindKeys(Control.SEVEN7, [L]);
-
-				inline bindKeys(Control.EIGHT1, [A]);
-				inline bindKeys(Control.EIGHT2, [S]);
-				inline bindKeys(Control.EIGHT3, [D]);
-				inline bindKeys(Control.EIGHT4, [F]);
-				inline bindKeys(Control.EIGHT5, [H]);
-				inline bindKeys(Control.EIGHT6, [J]);
-				inline bindKeys(Control.EIGHT7, [K]);
-				inline bindKeys(Control.EIGHT8, [L]);
-
-				inline bindKeys(Control.NINE1, [A]);
-				inline bindKeys(Control.NINE2, [S]);
-				inline bindKeys(Control.NINE3, [D]);
-				inline bindKeys(Control.NINE4, [F]);
-				inline bindKeys(Control.NINE5, [SPACE]);
-				inline bindKeys(Control.NINE6, [H]);
-				inline bindKeys(Control.NINE7, [J]);
-				inline bindKeys(Control.NINE8, [K]);
-				inline bindKeys(Control.NINE9, [L]);
+				inline bindKeys(Control.TEN1, keysMap.get('note_ten1'));
+				inline bindKeys(Control.TEN2, keysMap.get('note_ten2'));
+				inline bindKeys(Control.TEN3, keysMap.get('note_ten3'));
+				inline bindKeys(Control.TEN4, keysMap.get('note_ten4'));
+				inline bindKeys(Control.TEN5, keysMap.get('note_ten5'));
+				inline bindKeys(Control.TEN6, keysMap.get('note_ten6'));
+				inline bindKeys(Control.TEN7, keysMap.get('note_ten7'));
+				inline bindKeys(Control.TEN8, keysMap.get('note_ten8'));
+				inline bindKeys(Control.TEN9, keysMap.get('note_ten9'));
+				inline bindKeys(Control.TEN10, keysMap.get('note_ten10'));
 			case None: // nothing
 			case Custom: // nothing
 		}
@@ -1742,179 +1692,6 @@ class Controls extends FlxActionSet
 				bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 				bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
 				bindKeys(Control.RESET, [R]);
-
-				bindKeys(Control.ONE1, [SPACE]);
-
-				bindKeys(Control.TWO1, [D]);
-				bindKeys(Control.TWO2, [K]);
-				
-				bindKeys(Control.THREE1, [D]);
-				bindKeys(Control.THREE2, [SPACE]);
-				bindKeys(Control.THREE3, [K]);
-
-				bindKeys(Control.FIVE1, [D]);
-				bindKeys(Control.FIVE2, [F]);
-				bindKeys(Control.FIVE3, [SPACE]);
-				bindKeys(Control.FIVE4, [J]);
-				bindKeys(Control.FIVE5, [K]);
-
-				bindKeys(Control.SIX1, [S]);
-				bindKeys(Control.SIX2, [D]);
-				bindKeys(Control.SIX3, [F]);
-				bindKeys(Control.SIX4, [J]);
-				bindKeys(Control.SIX5, [K]);
-				bindKeys(Control.SIX6, [L]);
-
-				bindKeys(Control.SEVEN1, [S]);
-				bindKeys(Control.SEVEN2, [D]);
-				bindKeys(Control.SEVEN3, [F]);
-				bindKeys(Control.SEVEN4, [SPACE]);
-				bindKeys(Control.SEVEN5, [J]);
-				bindKeys(Control.SEVEN6, [K]);
-				bindKeys(Control.SEVEN7, [L]);
-
-				bindKeys(Control.EIGHT1, [A]);
-				bindKeys(Control.EIGHT2, [S]);
-				bindKeys(Control.EIGHT3, [D]);
-				bindKeys(Control.EIGHT4, [F]);
-				bindKeys(Control.EIGHT5, [H]);
-				bindKeys(Control.EIGHT6, [J]);
-				bindKeys(Control.EIGHT7, [K]);
-				bindKeys(Control.EIGHT8, [L]);
-
-				bindKeys(Control.NINE1, [A]);
-				bindKeys(Control.NINE2, [S]);
-				bindKeys(Control.NINE3, [D]);
-				bindKeys(Control.NINE4, [F]);
-				bindKeys(Control.NINE5, [SPACE]);
-				bindKeys(Control.NINE6, [H]);
-				bindKeys(Control.NINE7, [J]);
-				bindKeys(Control.NINE8, [K]);
-				bindKeys(Control.NINE9, [L]);
-			case Duo(true):
-				bindKeys(Control.UI_UP, [W]);
-				bindKeys(Control.UI_DOWN, [S]);
-				bindKeys(Control.UI_LEFT, [A]);
-				bindKeys(Control.UI_RIGHT, [D]);
-				bindKeys(Control.NOTE_UP, [W]);
-				bindKeys(Control.NOTE_DOWN, [S]);
-				bindKeys(Control.NOTE_LEFT, [A]);
-				bindKeys(Control.NOTE_RIGHT, [D]);
-				bindKeys(Control.ACCEPT, [G, Z]);
-				bindKeys(Control.BACK, [H, X]);
-				bindKeys(Control.PAUSE, [ONE]);
-				bindKeys(Control.RESET, [R]);
-
-				bindKeys(Control.ONE1, [SPACE]);
-
-				bindKeys(Control.TWO1, [D]);
-				bindKeys(Control.TWO2, [K]);
-				
-				bindKeys(Control.THREE1, [D]);
-				bindKeys(Control.THREE2, [SPACE]);
-				bindKeys(Control.THREE3, [K]);
-
-				bindKeys(Control.FIVE1, [D]);
-				bindKeys(Control.FIVE2, [F]);
-				bindKeys(Control.FIVE3, [SPACE]);
-				bindKeys(Control.FIVE4, [J]);
-				bindKeys(Control.FIVE5, [K]);
-
-				bindKeys(Control.SIX1, [S]);
-				bindKeys(Control.SIX2, [D]);
-				bindKeys(Control.SIX3, [F]);
-				bindKeys(Control.SIX4, [J]);
-				bindKeys(Control.SIX5, [K]);
-				bindKeys(Control.SIX6, [L]);
-
-				bindKeys(Control.SEVEN1, [S]);
-				bindKeys(Control.SEVEN2, [D]);
-				bindKeys(Control.SEVEN3, [F]);
-				bindKeys(Control.SEVEN4, [SPACE]);
-				bindKeys(Control.SEVEN5, [J]);
-				bindKeys(Control.SEVEN6, [K]);
-				bindKeys(Control.SEVEN7, [L]);
-
-				bindKeys(Control.EIGHT1, [A]);
-				bindKeys(Control.EIGHT2, [S]);
-				bindKeys(Control.EIGHT3, [D]);
-				bindKeys(Control.EIGHT4, [F]);
-				bindKeys(Control.EIGHT5, [H]);
-				bindKeys(Control.EIGHT6, [J]);
-				bindKeys(Control.EIGHT7, [K]);
-				bindKeys(Control.EIGHT8, [L]);
-
-				bindKeys(Control.NINE1, [A]);
-				bindKeys(Control.NINE2, [S]);
-				bindKeys(Control.NINE3, [D]);
-				bindKeys(Control.NINE4, [F]);
-				bindKeys(Control.NINE5, [SPACE]);
-				bindKeys(Control.NINE6, [H]);
-				bindKeys(Control.NINE7, [J]);
-				bindKeys(Control.NINE8, [K]);
-				bindKeys(Control.NINE9, [L]);
-			case Duo(false):
-				bindKeys(Control.UI_UP, [FlxKey.UP]);
-				bindKeys(Control.UI_DOWN, [FlxKey.DOWN]);
-				bindKeys(Control.UI_LEFT, [FlxKey.LEFT]);
-				bindKeys(Control.UI_RIGHT, [FlxKey.RIGHT]);
-				bindKeys(Control.NOTE_UP, [FlxKey.UP]);
-				bindKeys(Control.NOTE_DOWN, [FlxKey.DOWN]);
-				bindKeys(Control.NOTE_LEFT, [FlxKey.LEFT]);
-				bindKeys(Control.NOTE_RIGHT, [FlxKey.RIGHT]);
-				bindKeys(Control.ACCEPT, [O]);
-				bindKeys(Control.BACK, [P]);
-				bindKeys(Control.PAUSE, [ENTER]);
-				bindKeys(Control.RESET, [BACKSPACE]);
-
-				bindKeys(Control.ONE1, [SPACE]);
-
-				bindKeys(Control.TWO1, [D]);
-				bindKeys(Control.TWO2, [K]);
-				
-				bindKeys(Control.THREE1, [D]);
-				bindKeys(Control.THREE2, [SPACE]);
-				bindKeys(Control.THREE3, [K]);
-
-				bindKeys(Control.FIVE1, [D]);
-				bindKeys(Control.FIVE2, [F]);
-				bindKeys(Control.FIVE3, [SPACE]);
-				bindKeys(Control.FIVE4, [J]);
-				bindKeys(Control.FIVE5, [K]);
-
-				bindKeys(Control.SIX1, [S]);
-				bindKeys(Control.SIX2, [D]);
-				bindKeys(Control.SIX3, [F]);
-				bindKeys(Control.SIX4, [J]);
-				bindKeys(Control.SIX5, [K]);
-				bindKeys(Control.SIX6, [L]);
-
-				bindKeys(Control.SEVEN1, [S]);
-				bindKeys(Control.SEVEN2, [D]);
-				bindKeys(Control.SEVEN3, [F]);
-				bindKeys(Control.SEVEN4, [SPACE]);
-				bindKeys(Control.SEVEN5, [J]);
-				bindKeys(Control.SEVEN6, [K]);
-				bindKeys(Control.SEVEN7, [L]);
-
-				bindKeys(Control.EIGHT1, [A]);
-				bindKeys(Control.EIGHT2, [S]);
-				bindKeys(Control.EIGHT3, [D]);
-				bindKeys(Control.EIGHT4, [F]);
-				bindKeys(Control.EIGHT5, [H]);
-				bindKeys(Control.EIGHT6, [J]);
-				bindKeys(Control.EIGHT7, [K]);
-				bindKeys(Control.EIGHT8, [L]);
-
-				bindKeys(Control.NINE1, [A]);
-				bindKeys(Control.NINE2, [S]);
-				bindKeys(Control.NINE3, [D]);
-				bindKeys(Control.NINE4, [F]);
-				bindKeys(Control.NINE5, [SPACE]);
-				bindKeys(Control.NINE6, [H]);
-				bindKeys(Control.NINE7, [J]);
-				bindKeys(Control.NINE8, [K]);
-				bindKeys(Control.NINE9, [L]);
 			case None: // nothing
 			case Custom: // nothing
 		}

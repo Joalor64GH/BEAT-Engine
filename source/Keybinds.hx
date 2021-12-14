@@ -65,6 +65,18 @@ class Keybinds
 				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_nine7')),
 				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_nine8')),
 				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_nine9'))
+			],
+			[
+				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_ten1')),
+				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_ten2')),
+				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_ten3')),
+				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_ten4')),
+				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_ten5')),
+				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_ten6')),
+				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_ten7')),
+				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_ten8')),
+				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_ten9')),
+				ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_ten10'))
 			]
 		];
     }

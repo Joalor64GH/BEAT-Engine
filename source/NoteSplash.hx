@@ -65,6 +65,7 @@ class NoteSplash extends FlxSprite
 			animation.addByPrefix('note6-' + i, 'note splash G ' + i, 24, false);
 			animation.addByPrefix('note7-' + i, 'note splash H ' + i, 24, false);
 			animation.addByPrefix('note8-' + i, 'note splash I ' + i, 24, false);
+			animation.addByPrefix('note9-' + i, 'note splash E ' + i, 24, false);
 		}
 	}
 

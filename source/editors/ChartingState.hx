@@ -579,7 +579,7 @@ class ChartingState extends MusicBeatState
 		noteSkinInputText = new FlxUIInputText(player2DropDown.x, player2DropDown.y + 50, 150, skin, 8);
 		blockPressWhileTypingOn.push(noteSkinInputText);
 
-		var stepperMania:FlxUINumericStepper = new FlxUINumericStepper(100, stepperSpeed.y, 1, 3, 0, 8, 1);
+		var stepperMania:FlxUINumericStepper = new FlxUINumericStepper(100, stepperSpeed.y, 1, 3, 0, 9, 1);
 		stepperMania.value = _song.mania;
 		stepperMania.name = 'mania';
 	
@@ -1906,6 +1906,8 @@ class ChartingState extends MusicBeatState
 		#end
 	}
 	function reloadGridLayer() {
+		GRID_SIZE = Note.NoteData.getGridSize(_song.mania);
+
 		PlayState.mania = _song.mania;
 
 		gridLayer.clear();
@@ -1937,20 +1939,20 @@ class ChartingState extends MusicBeatState
 		strumLine = new FlxSprite(0, 50).makeGraphic(Std.int(GRID_SIZE + GRID_SIZE * Note.NoteData.getAmmo(_song.mania) * 2), 4);
 		add(strumLine);
 
-		updateGrid();
-
 		if (strumLineNotes != null)
-		{
-			strumLineNotes.clear();
-			for (i in 0...(Note.NoteData.getAmmo(_song.mania) * 2)){
-				var note:StrumNote = new StrumNote(GRID_SIZE * (i+1), strumLine.y, i % Note.NoteData.getAmmo(_song.mania), 0);
-				note.setGraphicSize(GRID_SIZE, GRID_SIZE);
-				note.updateHitbox();
-				note.playAnim('static', true);
-				strumLineNotes.add(note);
-				note.scrollFactor.set(1, 1);
+			{
+				strumLineNotes.clear();
+				for (i in 0...(Note.NoteData.getAmmo(_song.mania) * 2)){
+					var note:StrumNote = new StrumNote(GRID_SIZE * (i+1), strumLine.y, i % Note.NoteData.getAmmo(_song.mania), 0);
+					note.setGraphicSize(GRID_SIZE, GRID_SIZE);
+					note.updateHitbox();
+					note.playAnim('static', true);
+					strumLineNotes.add(note);
+					note.scrollFactor.set(1, 1);
+				}
 			}
-		}
+
+		updateGrid();
 	}
 
 	var waveformPrinted:Bool = true;
