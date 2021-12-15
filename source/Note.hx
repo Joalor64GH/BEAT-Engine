@@ -345,19 +345,59 @@ class Note extends FlxSprite
 class NoteData
 {
     public static var keyMaps:Map<Int, Array<Dynamic>> = [
-        0       =>      [[4], [4]],
-        1       =>      [[0, 3], [0, 3]],
-        2       =>      [[0, 4, 3], [0, 4, 3]],
-        3       =>      [[0, 1, 2, 3], [0, 1, 2, 3]],
-        4       =>      [[0, 1, 4, 2, 3], [0, 1, 4, 2, 3]],
-        5       =>      [[0, 2, 3, 5, 1, 8], [0, 2, 3, 0, 1, 3]],
-        6       =>      [[0, 2, 3, 4, 5, 1, 8], [0, 2, 3, 4, 0, 1, 3]],
-        7       =>      [[0, 1, 2, 3, 5, 6, 7, 8], [0, 1, 2, 3, 0, 1, 2, 3]],
-        8       =>      [[0, 1, 2, 3, 4, 5, 6, 7, 8], [0, 1, 2, 3, 4, 0, 1, 2, 3]],
+        0       =>      [
+							[4],
+							[4]
+						],
+
+        1       =>      [
+							[0, 3], 
+							[0, 3]
+						],
+
+        2       =>      [
+							[0, 4, 3], 
+							[0, 4, 3]
+						],
+
+        3       =>      [
+							[0, 1, 2, 3], 
+							[0, 1, 2, 3]
+						],
+
+        4       =>      [
+							[0, 1, 4, 2, 3], 
+							[0, 1, 4, 2, 3]
+						],
+
+        5       =>      [	
+							[0, 2, 3, 5, 1, 8], 
+							[0, 2, 3, 0, 1, 3]
+						],
+
+        6       =>      [
+							[0, 2, 3, 4, 5, 1, 8], 
+							[0, 2, 3, 4, 0, 1, 3]
+						],
+
+        7       =>      [
+							[0, 1, 2, 3, 5, 6, 7, 8], 
+							[0, 1, 2, 3, 0, 1, 2, 3]
+						],
+
+        8       =>      [
+							[0, 1, 2, 3, 4, 5, 6, 7, 8], 
+							[0, 1, 2, 3, 4, 0, 1, 2, 3]
+						],
 
 		9		=>		[
 							[0, 1, 2, 3, 4, 4, 5, 6, 7, 8],
 							[0, 1, 2, 3, 4, 4, 0, 1, 2, 3]
+						],
+
+		10		=>		[
+							[0, 1, 2, 3, 6, 4, 7, 0, 1, 2, 3],
+							[0, 1, 2, 3, 1, 4, 2, 0, 1, 2, 3]
 						]
     ];
 
@@ -368,7 +408,7 @@ class NoteData
 
     public static function getAmmo(mania:Int)
     {
-        var ammo:Array<Int> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        var ammo:Array<Int> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 		return ammo[mania];
     }
@@ -396,43 +436,43 @@ class NoteData
 	}
 
 	public static function getScale(mania:Int) {
-		var scales:Array<Float> = [0.9, 0.85, 0.8, 0.7, 0.66, 0.6, 0.55, 0.50, 0.46, 0.39];
+		var scales:Array<Float> = [0.9, 0.85, 0.8, 0.7, 0.66, 0.6, 0.55, 0.50, 0.46, 0.39, 0.29];
 
 		return scales[mania];
 	}
 
 	public static function getSwagWidth(mania:Int) {
-		var swidths:Array<Float> = [141, 124, 116, 108, 102, 93, 85, 77, 71, 60];
+		var swidths:Array<Float> = [141, 124, 116, 108, 102, 93, 85, 77, 71, 60, 49];
 
 		return swidths[mania];
 	}
 
 	public static function getRestPosition(mania:Int) {
-		var posRest:Array<Int> = [0, 0, 0, 0, 25, 32, 46, 52, 60, 40];
+		var posRest:Array<Int> = [0, 0, 0, 0, 25, 32, 46, 52, 60, 40, 30];
 
 		return posRest[mania];
 	}
 
 	public static function getLessXStrumNote(mania:Int) {
-	var lessX:Array<Int> = [0, 0, 0, 0, 0, 8, 7, 8, 8, 7];
+	var lessX:Array<Int> = [0, 0, 0, 0, 0, 8, 7, 8, 8, 7, 6];
 
 		return lessX[mania];
 	}
 
 	public static function getXtraX(mania:Int) {
-		var xtra:Array<Int> = [150, 89, 0, 0, 0, 0, 0, 0, 0, 0];
+		var xtra:Array<Int> = [150, 89, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 		return xtra[mania];
 	}
 
 	public static function getMiddleScrollSeparator(mania:Int) {
-		var separator:Array<Int> = [0, 0, 1, 1, 2, 2, 2, 3, 3, 4];
+		var separator:Array<Int> = [0, 0, 1, 1, 2, 2, 2, 3, 3, 4, 4];
 
 		return separator[mania];
 	}
 
 	public static function getGridSize(mania:Int) {
-		var gridSizes:Array<Int> = [40, 40, 40, 40, 40, 40, 40, 40, 40, 35];
+		var gridSizes:Array<Int> = [40, 40, 40, 40, 40, 40, 40, 40, 40, 35, 30];
 
 		return gridSizes[mania];
 	}
@@ -448,7 +488,8 @@ class NoteData
 			[10, 10],
 			[10, 10],
 			[10, 10],
-			[10, 20]
+			[10, 20],
+			[10, 10]
 		];
 
 		return offsets[mania][animNum];
