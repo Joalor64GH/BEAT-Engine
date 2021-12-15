@@ -1647,7 +1647,8 @@ class ChartingState extends MusicBeatState
 				[false],	//All that contain false is me who couldnt think of keybinds for these. seriously, all of these are actually pretty hard to think for.
 				[false],	//If you have an idea for these pls make a pr.
 				[false],
-				[false]
+				[false],
+				[false]		//SOY ESTUPIDO AJAJJAJA
 			];
 
 			if(controlArray[_song.mania].contains(true))
@@ -1743,7 +1744,8 @@ class ChartingState extends MusicBeatState
 						[false],
 						[false],
 						[false],
-						[false]
+						[false],
+						[false]		// xd - mi amigo
 					];
 
 					if(controlArray[_song.mania].contains(true))
@@ -1909,6 +1911,11 @@ class ChartingState extends MusicBeatState
 		GRID_SIZE = Note.NoteData.getGridSize(_song.mania);
 
 		PlayState.mania = _song.mania;
+
+		if (dummyArrow != null){
+			dummyArrow.setGraphicSize(GRID_SIZE, GRID_SIZE);
+			dummyArrow.updateHitbox();	
+		}
 
 		gridLayer.clear();
 		gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE + GRID_SIZE * Note.NoteData.getAmmo(_song.mania) * 2, Std.int(GRID_SIZE * 32 * curZoom));
