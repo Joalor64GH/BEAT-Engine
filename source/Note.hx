@@ -408,7 +408,7 @@ class NoteData
 	}
 
 	public static function getRestPosition(mania:Int) {
-		var posRest:Array<Int> = [0, 0, 0, 0, 25, 32, 46, 52, 60, 65];
+		var posRest:Array<Int> = [0, 0, 0, 0, 25, 32, 46, 52, 60, 40];
 
 		return posRest[mania];
 	}
@@ -435,5 +435,22 @@ class NoteData
 		var gridSizes:Array<Int> = [40, 40, 40, 40, 40, 40, 40, 40, 40, 35];
 
 		return gridSizes[mania];
+	}
+
+	public static function getNoteSplashOffset(mania:Int, animNum:Int) {
+		var offsets:Array<Dynamic> = [
+			[20, 10],
+			[10, 10],
+			[10, 10],
+			[10, 10],
+			[10, 10],
+			[10, 10],
+			[10, 10],
+			[10, 10],
+			[10, 10],
+			[10, 20]
+		];
+
+		return offsets[mania][animNum];
 	}
 }

@@ -335,7 +335,7 @@ class PlayState extends MusicBeatState
 		persistentDraw = true;
 
 		mania = SONG.mania;
-		if (mania < 0 || mania > 8)
+		if (mania < 0 || mania > 9)
 			mania = 0;
 
 		if (SONG == null)
@@ -3071,7 +3071,7 @@ class PlayState extends MusicBeatState
 				var newMania:Int = 0;
 
 				newMania = Std.parseInt(value1);
-				if(Math.isNaN(newMania) && newMania < 0 && newMania > 8)
+				if(Math.isNaN(newMania) && newMania < 0 && newMania > 9)
 					newMania = 0;
 
 				changeMania(newMania);
@@ -3792,6 +3792,7 @@ class PlayState extends MusicBeatState
 		var sev = [controls.SEVEN1, controls.SEVEN2, controls.SEVEN3, controls.SEVEN4, controls.SEVEN5, controls.SEVEN6, controls.SEVEN7];
 		var eig = [controls.EIGHT1, controls.EIGHT2, controls.EIGHT3, controls.EIGHT4, controls.EIGHT5, controls.EIGHT6, controls.EIGHT7, controls.EIGHT8];
 		var nin = [controls.NINE1, controls.NINE2, controls.NINE3, controls.NINE4, controls.NINE5, controls.NINE6, controls.NINE7, controls.NINE8, controls.NINE9];
+		var ten = [controls.TEN1, controls.TEN2, controls.TEN3, controls.TEN4, controls.TEN5, controls.TEN6, controls.TEN7, controls.TEN8, controls.TEN9, controls.TEN10];
 
 		// HOLDING
 		var up = controls.NOTE_UP;
@@ -3810,6 +3811,7 @@ class PlayState extends MusicBeatState
 			case 6: controlHoldArray = sev;
 			case 7: controlHoldArray = eig;
 			case 8: controlHoldArray = nin;
+			case 9: controlHoldArray = ten;
 		}
 		
 		// TO DO: Find a better way to handle controller inputs, this should work for now -Shadow Mario
@@ -3832,6 +3834,8 @@ class PlayState extends MusicBeatState
 			var eigR = [controls.EIGHT1_R, controls.EIGHT2_R, controls.EIGHT3_R, controls.EIGHT4_R, controls.EIGHT5_R, controls.EIGHT6_R, controls.EIGHT7_R, controls.EIGHT8_R];
 			var ninP = [controls.NINE1_P, controls.NINE2_P, controls.NINE3_P, controls.NINE4_P, controls.NINE5_P, controls.NINE6_P, controls.NINE7_P, controls.NINE8_P, controls.NINE9_P];
 			var ninR = [controls.NINE1_R, controls.NINE2_R, controls.NINE3_R, controls.NINE4_R, controls.NINE5_R, controls.NINE6_R, controls.NINE7_R, controls.NINE8_R, controls.NINE9_R];
+			var tenP = [controls.TEN1_P, controls.TEN2_P, controls.TEN3_P, controls.TEN4_P, controls.TEN5_P, controls.TEN6_P, controls.TEN7_P, controls.TEN8_P, controls.TEN9_P, controls.TEN10_P];
+			var tenR = [controls.TEN1_R, controls.TEN2_R, controls.TEN3_R, controls.TEN4_R, controls.TEN5_R, controls.TEN6_R, controls.TEN7_R, controls.TEN8_R, controls.TEN9_R, controls.TEN10_R];
 
 			//controller shits
 			var controllerPressArray:Array<Bool> = [false];
@@ -3847,6 +3851,7 @@ class PlayState extends MusicBeatState
 				case 6: controllerPressArray = sevP; controllerRelesArray = sevR;
 				case 7: controllerPressArray = eigP; controllerRelesArray = eigR;
 				case 8: controllerPressArray = ninP; controllerRelesArray = ninR;
+				case 9: controllerPressArray = tenP; controllerRelesArray = tenR;
 			}
 
 			if(controllerPressArray.contains(true))

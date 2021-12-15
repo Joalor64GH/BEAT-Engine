@@ -983,6 +983,37 @@ class Controls extends FlxActionSet
 	public var NINE9(get, never):Bool; inline function get_NINE9() {return _nin9.check();}
 	public var NINE9_P(get, never):Bool; inline function get_NINE9_P() {return _nin9P.check();}
 	public var NINE9_R(get, never):Bool; inline function get_NINE9_R() {return _nin9R.check();}
+
+	public var TEN1(get, never):Bool; inline function get_TEN1() {return _ten1.check();}
+	public var TEN1_P(get, never):Bool; inline function get_TEN1_P() {return _ten1P.check();}
+	public var TEN1_R(get, never):Bool; inline function get_TEN1_R() {return _ten1R.check();}
+	public var TEN2(get, never):Bool; inline function get_TEN2() {return _ten2.check();}
+	public var TEN2_P(get, never):Bool; inline function get_TEN2_P() {return _ten2P.check();}
+	public var TEN2_R(get, never):Bool; inline function get_TEN2_R() {return _ten2R.check();}
+	public var TEN3(get, never):Bool; inline function get_TEN3() {return _ten3.check();}
+	public var TEN3_P(get, never):Bool; inline function get_TEN3_P() {return _ten3P.check();}
+	public var TEN3_R(get, never):Bool; inline function get_TEN3_R() {return _ten3R.check();}
+	public var TEN4(get, never):Bool; inline function get_TEN4() {return _ten4.check();}
+	public var TEN4_P(get, never):Bool; inline function get_TEN4_P() {return _ten4P.check();}
+	public var TEN4_R(get, never):Bool; inline function get_TEN4_R() {return _ten4R.check();}
+	public var TEN5(get, never):Bool; inline function get_TEN5() {return _ten5.check();}
+	public var TEN5_P(get, never):Bool; inline function get_TEN5_P() {return _ten5P.check();}
+	public var TEN5_R(get, never):Bool; inline function get_TEN5_R() {return _ten5R.check();}
+	public var TEN6(get, never):Bool; inline function get_TEN6() {return _ten6.check();}
+	public var TEN6_P(get, never):Bool; inline function get_TEN6_P() {return _ten6P.check();}
+	public var TEN6_R(get, never):Bool; inline function get_TEN6_R() {return _ten6R.check();}
+	public var TEN7(get, never):Bool; inline function get_TEN7() {return _ten7.check();}
+	public var TEN7_P(get, never):Bool; inline function get_TEN7_P() {return _ten7P.check();}
+	public var TEN7_R(get, never):Bool; inline function get_TEN7_R() {return _ten7R.check();}
+	public var TEN8(get, never):Bool; inline function get_TEN8() {return _ten8.check();}
+	public var TEN8_P(get, never):Bool; inline function get_TEN8_P() {return _ten8P.check();}
+	public var TEN8_R(get, never):Bool; inline function get_TEN8_R() {return _ten8R.check();}
+	public var TEN9(get, never):Bool; inline function get_TEN9() {return _ten9.check();}
+	public var TEN9_P(get, never):Bool; inline function get_TEN9_P() {return _ten9P.check();}
+	public var TEN9_R(get, never):Bool; inline function get_TEN9_R() {return _ten9R.check();}
+	public var TEN10(get, never):Bool; inline function get_TEN10() {return _ten10.check();}
+	public var TEN10_P(get, never):Bool; inline function get_TEN10_P() {return _ten10P.check();}
+	public var TEN10_R(get, never):Bool; inline function get_TEN10_R() {return _ten10R.check();}
 	
 	#if (haxe >= "4.0.0")
 	public function new(name, scheme = None)
@@ -1066,6 +1097,17 @@ class Controls extends FlxActionSet
 		add(_nin7); add(_nin7P); add(_nin7R);
 		add(_nin8); add(_nin8P); add(_nin8R);
 		add(_nin9); add(_nin9P); add(_nin9R);
+
+		add(_ten1); add(_ten1P); add(_ten1R);
+		add(_ten2); add(_ten2P); add(_ten2R);
+		add(_ten3); add(_ten3P); add(_ten3R);
+		add(_ten4); add(_ten4P); add(_ten4R);
+		add(_ten5); add(_ten5P); add(_ten5R);
+		add(_ten6); add(_ten6P); add(_ten6R);
+		add(_ten7); add(_ten7P); add(_ten7R);
+		add(_ten8); add(_ten8P); add(_ten8R);
+		add(_ten9); add(_ten9P); add(_ten9R);
+		add(_ten10); add(_ten10P); add(_ten10R);
 		
 		for (action in digitalActions)
 			byName[action.name] = action;
@@ -1154,6 +1196,17 @@ class Controls extends FlxActionSet
 		add(_nin7); add(_nin7P); add(_nin7R);
 		add(_nin8); add(_nin8P); add(_nin8R);
 		add(_nin9); add(_nin9P); add(_nin9R);
+
+		add(_ten1); add(_ten1P); add(_ten1R);
+		add(_ten2); add(_ten2P); add(_ten2R);
+		add(_ten3); add(_ten3P); add(_ten3R);
+		add(_ten4); add(_ten4P); add(_ten4R);
+		add(_ten5); add(_ten5P); add(_ten5R);
+		add(_ten6); add(_ten6P); add(_ten6R);
+		add(_ten7); add(_ten7P); add(_ten7R);
+		add(_ten8); add(_ten8P); add(_ten8R);
+		add(_ten9); add(_ten9P); add(_ten9R);
+		add(_ten10); add(_ten10P); add(_ten10R);
 		
 		for (action in digitalActions)
 			byName[action.name] = action;
