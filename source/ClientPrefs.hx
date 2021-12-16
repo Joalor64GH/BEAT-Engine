@@ -115,6 +115,18 @@ class ClientPrefs {
 		'note_ten8'     => [J, NONE],
 		'note_ten9'		=> [K, NONE],
 		'note_ten10'	=> [L, NONE],
+
+		'note_elev1'	=> [A, NONE],
+		'note_elev2'	=> [S, NONE],
+		'note_elev3'	=> [D, NONE],
+		'note_elev4'	=> [F, NONE],
+		'note_elev5'	=> [G, NONE],
+		'note_elev6'	=> [SPACE, NONE],
+		'note_elev7'	=> [H, NONE],
+		'note_elev8'    => [J, NONE],
+		'note_elev9'	=> [K, NONE],
+		'note_elev10'	=> [L, NONE],
+		'note_elev11'	=> [PERIOD, NONE],
 		
 		'ui_left'		=> [A, LEFT],
 		'ui_down'		=> [S, DOWN],

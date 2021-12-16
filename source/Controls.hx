@@ -204,6 +204,40 @@ enum abstract Action(String) to String from String
 	var TEN10 = 'ten10';
 	var TEN10_P = 'ten10-press';
 	var TEN10_R = 'ten10-release';
+
+	var ELEV1 = 'elev1';
+	var ELEV1_P = 'elev1-press';
+	var ELEV1_R = 'elev1-release';
+	var ELEV2 = 'elev2';
+	var ELEV2_P = 'elev2-press';
+	var ELEV2_R = 'elev2-release';
+	var ELEV3 = 'elev3';
+	var ELEV3_P = 'elev3-press';
+	var ELEV3_R = 'elev3-release';
+	var ELEV4 = 'elev4';
+	var ELEV4_P = 'elev4-press';
+	var ELEV4_R = 'elev4-release';
+	var ELEV5 = 'elev5';
+	var ELEV5_P = 'elev5-press';
+	var ELEV5_R = 'elev5-release';
+	var ELEV6 = 'elev6';
+	var ELEV6_P = 'elev6-press';
+	var ELEV6_R = 'elev6-release';
+	var ELEV7 = 'elev7';
+	var ELEV7_P = 'elev7-press';
+	var ELEV7_R = 'elev7-release';
+	var ELEV8 = 'elev8';
+	var ELEV8_P = 'elev8-press';
+	var ELEV8_R = 'elev8-release';
+	var ELEV9 = 'elev9';
+	var ELEV9_P = 'elev9-press';
+	var ELEV9_R = 'elev9-release';
+	var ELEV10 = 'elev10';
+	var ELEV10_P = 'elev10-press';
+	var ELEV10_R = 'elev10-release';
+	var ELEV11 = 'elev11';
+	var ELEV11_P = 'elev11-press';
+	var ELEV11_R = 'elev11-release';
 }
 #else
 @:enum
@@ -399,6 +433,40 @@ abstract Action(String) to String from String
 	var TEN10 = 'ten10';
 	var TEN10_P = 'ten10-press';
 	var TEN10_R = 'ten10-release';
+	
+	var ELEV1 = 'elev1';
+	var ELEV1_P = 'elev1-press';
+	var ELEV1_R = 'elev1-release';
+	var ELEV2 = 'elev2';
+	var ELEV2_P = 'elev2-press';
+	var ELEV2_R = 'elev2-release';
+	var ELEV3 = 'elev3';
+	var ELEV3_P = 'elev3-press';
+	var ELEV3_R = 'elev3-release';
+	var ELEV4 = 'elev4';
+	var ELEV4_P = 'elev4-press';
+	var ELEV4_R = 'elev4-release';
+	var ELEV5 = 'elev5';
+	var ELEV5_P = 'elev5-press';
+	var ELEV5_R = 'elev5-release';
+	var ELEV6 = 'elev6';
+	var ELEV6_P = 'elev6-press';
+	var ELEV6_R = 'elev6-release';
+	var ELEV7 = 'elev7';
+	var ELEV7_P = 'elev7-press';
+	var ELEV7_R = 'elev7-release';
+	var ELEV8 = 'elev8';
+	var ELEV8_P = 'elev8-press';
+	var ELEV8_R = 'elev8-release';
+	var ELEV9 = 'elev9';
+	var ELEV9_P = 'elev9-press';
+	var ELEV9_R = 'elev9-release';
+	var ELEV10 = 'elev10';
+	var ELEV10_P = 'elev10-press';
+	var ELEV10_R = 'elev10-release';
+	var ELEV11 = 'elev11';
+	var ELEV11_P = 'elev11-press';
+	var ELEV11_R = 'elev11-release';
 }
 #end
 
@@ -487,6 +555,18 @@ enum Control
 	TEN8;
 	TEN9;
 	TEN10;
+
+	ELEV1;
+	ELEV2;
+	ELEV3;
+	ELEV4;
+	ELEV5;
+	ELEV6;
+	ELEV7;
+	ELEV8;
+	ELEV9;
+	ELEV10;
+	ELEV11;
 }
 
 enum KeyboardScheme
@@ -703,6 +783,40 @@ class Controls extends FlxActionSet
 	var _ten10 = new FlxActionDigital(Action.TEN10);
 	var _ten10P = new FlxActionDigital(Action.TEN10_P);
 	var _ten10R = new FlxActionDigital(Action.TEN10_R);
+
+	var _elev1 = new FlxActionDigital(Action.ELEV1);
+	var _elev1P = new FlxActionDigital(Action.ELEV1_P);
+	var _elev1R = new FlxActionDigital(Action.ELEV1_R);
+	var _elev2 = new FlxActionDigital(Action.ELEV2);
+	var _elev2P = new FlxActionDigital(Action.ELEV2_P);
+	var _elev2R = new FlxActionDigital(Action.ELEV2_R);
+	var _elev3 = new FlxActionDigital(Action.ELEV3);
+	var _elev3P = new FlxActionDigital(Action.ELEV3_P);
+	var _elev3R = new FlxActionDigital(Action.ELEV3_R);
+	var _elev4 = new FlxActionDigital(Action.ELEV4);
+	var _elev4P = new FlxActionDigital(Action.ELEV4_P);
+	var _elev4R = new FlxActionDigital(Action.ELEV4_R);
+	var _elev5 = new FlxActionDigital(Action.ELEV5);
+	var _elev5P = new FlxActionDigital(Action.ELEV5_P);
+	var _elev5R = new FlxActionDigital(Action.ELEV5_R);
+	var _elev6 = new FlxActionDigital(Action.ELEV6);
+	var _elev6P = new FlxActionDigital(Action.ELEV6_P);
+	var _elev6R = new FlxActionDigital(Action.ELEV6_R);
+	var _elev7 = new FlxActionDigital(Action.ELEV7);
+	var _elev7P = new FlxActionDigital(Action.ELEV7_P);
+	var _elev7R = new FlxActionDigital(Action.ELEV7_R);
+	var _elev8 = new FlxActionDigital(Action.ELEV8);
+	var _elev8P = new FlxActionDigital(Action.ELEV8_P);
+	var _elev8R = new FlxActionDigital(Action.ELEV8_R);
+	var _elev9 = new FlxActionDigital(Action.ELEV9);
+	var _elev9P = new FlxActionDigital(Action.ELEV9_P);
+	var _elev9R = new FlxActionDigital(Action.ELEV9_R);
+	var _elev10 = new FlxActionDigital(Action.ELEV10);
+	var _elev10P = new FlxActionDigital(Action.ELEV10_P);
+	var _elev10R = new FlxActionDigital(Action.ELEV10_R);
+	var _elev11 = new FlxActionDigital(Action.ELEV11);
+	var _elev11P = new FlxActionDigital(Action.ELEV11_P);
+	var _elev11R = new FlxActionDigital(Action.ELEV11_R);
 
 	#if (haxe >= "4.0.0")
 	var byName:Map<String, FlxActionDigital> = [];
@@ -1014,6 +1128,40 @@ class Controls extends FlxActionSet
 	public var TEN10(get, never):Bool; inline function get_TEN10() {return _ten10.check();}
 	public var TEN10_P(get, never):Bool; inline function get_TEN10_P() {return _ten10P.check();}
 	public var TEN10_R(get, never):Bool; inline function get_TEN10_R() {return _ten10R.check();}
+
+	public var ELEV1(get, never):Bool; inline function get_ELEV1() {return _elev1.check();}
+	public var ELEV1_P(get, never):Bool; inline function get_ELEV1_P() {return _elev1P.check();}
+	public var ELEV1_R(get, never):Bool; inline function get_ELEV1_R() {return _elev1R.check();}
+	public var ELEV2(get, never):Bool; inline function get_ELEV2() {return _elev2.check();}
+	public var ELEV2_P(get, never):Bool; inline function get_ELEV2_P() {return _elev2P.check();}
+	public var ELEV2_R(get, never):Bool; inline function get_ELEV2_R() {return _elev2R.check();}
+	public var ELEV3(get, never):Bool; inline function get_ELEV3() {return _elev3.check();}
+	public var ELEV3_P(get, never):Bool; inline function get_ELEV3_P() {return _elev3P.check();}
+	public var ELEV3_R(get, never):Bool; inline function get_ELEV3_R() {return _elev3R.check();}
+	public var ELEV4(get, never):Bool; inline function get_ELEV4() {return _elev4.check();}
+	public var ELEV4_P(get, never):Bool; inline function get_ELEV4_P() {return _elev4P.check();}
+	public var ELEV4_R(get, never):Bool; inline function get_ELEV4_R() {return _elev4R.check();}
+	public var ELEV5(get, never):Bool; inline function get_ELEV5() {return _elev5.check();}
+	public var ELEV5_P(get, never):Bool; inline function get_ELEV5_P() {return _elev5P.check();}
+	public var ELEV5_R(get, never):Bool; inline function get_ELEV5_R() {return _elev5R.check();}
+	public var ELEV6(get, never):Bool; inline function get_ELEV6() {return _elev6.check();}
+	public var ELEV6_P(get, never):Bool; inline function get_ELEV6_P() {return _elev6P.check();}
+	public var ELEV6_R(get, never):Bool; inline function get_ELEV6_R() {return _elev6R.check();}
+	public var ELEV7(get, never):Bool; inline function get_ELEV7() {return _elev7.check();}
+	public var ELEV7_P(get, never):Bool; inline function get_ELEV7_P() {return _elev7P.check();}
+	public var ELEV7_R(get, never):Bool; inline function get_ELEV7_R() {return _elev7R.check();}
+	public var ELEV8(get, never):Bool; inline function get_ELEV8() {return _elev8.check();}
+	public var ELEV8_P(get, never):Bool; inline function get_ELEV8_P() {return _elev8P.check();}
+	public var ELEV8_R(get, never):Bool; inline function get_ELEV8_R() {return _elev8R.check();}
+	public var ELEV9(get, never):Bool; inline function get_ELEV9() {return _elev9.check();}
+	public var ELEV9_P(get, never):Bool; inline function get_ELEV9_P() {return _elev9P.check();}
+	public var ELEV9_R(get, never):Bool; inline function get_ELEV9_R() {return _elev9R.check();}
+	public var ELEV10(get, never):Bool; inline function get_ELEV10() {return _elev10.check();}
+	public var ELEV10_P(get, never):Bool; inline function get_ELEV10_P() {return _elev10P.check();}
+	public var ELEV10_R(get, never):Bool; inline function get_ELEV10_R() {return _elev10R.check();}
+	public var ELEV11(get, never):Bool; inline function get_ELEV11() {return _elev11.check();}
+	public var ELEV11_P(get, never):Bool; inline function get_ELEV11_P() {return _elev11P.check();}
+	public var ELEV11_R(get, never):Bool; inline function get_ELEV11_R() {return _elev11R.check();}
 	
 	#if (haxe >= "4.0.0")
 	public function new(name, scheme = None)
@@ -1108,6 +1256,18 @@ class Controls extends FlxActionSet
 		add(_ten8); add(_ten8P); add(_ten8R);
 		add(_ten9); add(_ten9P); add(_ten9R);
 		add(_ten10); add(_ten10P); add(_ten10R);
+
+		add(_elev1); add(_elev1P); add(_elev1R);
+		add(_elev2); add(_elev2P); add(_elev2R);
+		add(_elev3); add(_elev3P); add(_elev3R);
+		add(_elev4); add(_elev4P); add(_elev4R);
+		add(_elev5); add(_elev5P); add(_elev5R);
+		add(_elev6); add(_elev6P); add(_elev6R);
+		add(_elev7); add(_elev7P); add(_elev7R);
+		add(_elev8); add(_elev8P); add(_elev8R);
+		add(_elev9); add(_elev9P); add(_elev9R);
+		add(_elev10); add(_elev10P); add(_elev10R);
+		add(_elev11); add(_elev11P); add(_elev11R);
 		
 		for (action in digitalActions)
 			byName[action.name] = action;
@@ -1207,6 +1367,18 @@ class Controls extends FlxActionSet
 		add(_ten8); add(_ten8P); add(_ten8R);
 		add(_ten9); add(_ten9P); add(_ten9R);
 		add(_ten10); add(_ten10P); add(_ten10R);
+
+		add(_elev1); add(_elev1P); add(_elev1R);
+		add(_elev2); add(_elev2P); add(_elev2R);
+		add(_elev3); add(_elev3P); add(_elev3R);
+		add(_elev4); add(_elev4P); add(_elev4R);
+		add(_elev5); add(_elev5P); add(_elev5R);
+		add(_elev6); add(_elev6P); add(_elev6R);
+		add(_elev7); add(_elev7P); add(_elev7R);
+		add(_elev8); add(_elev8P); add(_elev8R);
+		add(_elev9); add(_elev9P); add(_elev9R);
+		add(_elev10); add(_elev10P); add(_elev10R);
+		add(_elev11); add(_elev11P); add(_elev11R);
 		
 		for (action in digitalActions)
 			byName[action.name] = action;
@@ -1324,6 +1496,18 @@ class Controls extends FlxActionSet
 			case TEN8: _ten8;
 			case TEN9: _ten9;
 			case TEN10: _ten10;
+
+			case ELEV1: _elev1;
+			case ELEV2: _elev2;
+			case ELEV3: _elev3;
+			case ELEV4: _elev4;
+			case ELEV5: _elev5;
+			case ELEV6: _elev6;
+			case ELEV7: _elev7;
+			case ELEV8: _elev8;
+			case ELEV9: _elev9;
+			case ELEV10: _elev10;
+			case ELEV11: _elev11;
 		}
 	}
 
@@ -1498,6 +1682,29 @@ class Controls extends FlxActionSet
 				func(_ten9, PRESSED); func(_ten9P, JUST_PRESSED); func(_ten9R, JUST_RELEASED);
 			case TEN10:
 				func(_ten10, PRESSED); func(_ten10P, JUST_PRESSED); func(_ten10R, JUST_RELEASED);
+
+			case ELEV1:
+				func(_elev1, PRESSED); func(_elev1P, JUST_PRESSED); func(_elev1R, JUST_RELEASED);
+			case ELEV2:
+				func(_elev2, PRESSED); func(_elev2P, JUST_PRESSED); func(_elev2R, JUST_RELEASED);
+			case ELEV3:
+				func(_elev3, PRESSED); func(_elev3P, JUST_PRESSED); func(_elev3R, JUST_RELEASED);
+			case ELEV4:
+				func(_elev4, PRESSED); func(_elev4P, JUST_PRESSED); func(_elev4R, JUST_RELEASED);
+			case ELEV5:
+				func(_elev5, PRESSED); func(_elev5P, JUST_PRESSED); func(_elev5R, JUST_RELEASED);	
+			case ELEV6:
+				func(_elev6, PRESSED); func(_elev6P, JUST_PRESSED); func(_elev6R, JUST_RELEASED);
+			case ELEV7:
+				func(_elev7, PRESSED); func(_elev7P, JUST_PRESSED); func(_elev7R, JUST_RELEASED);
+			case ELEV8:
+				func(_elev8, PRESSED); func(_elev8P, JUST_PRESSED); func(_elev8R, JUST_RELEASED);
+			case ELEV9:
+				func(_elev9, PRESSED); func(_elev9P, JUST_PRESSED); func(_elev9R, JUST_RELEASED);
+			case ELEV10:
+				func(_elev10, PRESSED); func(_elev10P, JUST_PRESSED); func(_elev10R, JUST_RELEASED);
+			case ELEV11:
+				func(_elev11, PRESSED); func(_elev11P, JUST_PRESSED); func(_elev11R, JUST_RELEASED);
 		}
 	}
 
@@ -1726,6 +1933,18 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.TEN8, keysMap.get('note_ten8'));
 				inline bindKeys(Control.TEN9, keysMap.get('note_ten9'));
 				inline bindKeys(Control.TEN10, keysMap.get('note_ten10'));
+
+				inline bindKeys(Control.ELEV1, keysMap.get('note_elev1'));
+				inline bindKeys(Control.ELEV2, keysMap.get('note_elev2'));
+				inline bindKeys(Control.ELEV3, keysMap.get('note_elev3'));
+				inline bindKeys(Control.ELEV4, keysMap.get('note_elev4'));
+				inline bindKeys(Control.ELEV5, keysMap.get('note_elev5'));
+				inline bindKeys(Control.ELEV6, keysMap.get('note_elev6'));
+				inline bindKeys(Control.ELEV7, keysMap.get('note_elev7'));
+				inline bindKeys(Control.ELEV8, keysMap.get('note_elev8'));
+				inline bindKeys(Control.ELEV9, keysMap.get('note_elev9'));
+				inline bindKeys(Control.ELEV10, keysMap.get('note_elev10'));
+				inline bindKeys(Control.ELEV10, keysMap.get('note_elev10'));
 			case None: // nothing
 			case Custom: // nothing
 		}
