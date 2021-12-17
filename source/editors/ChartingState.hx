@@ -93,6 +93,7 @@ class ChartingState extends MusicBeatState
 
 	var UI_box:FlxUITabMenu;
 
+	public static var goToPlayState:Bool = false;
 	/**
 	 * Array of notes showing when each section STARTS in STEPS
 	 * Usually rounded up??
@@ -1452,6 +1453,12 @@ class ChartingState extends MusicBeatState
 						{
 							selectNote(note);
 						}
+						else if (FlxG.keys.pressed.ALT)
+						{
+							selectNote(note);
+							curSelectedNote[3] = noteTypeIntMap.get(currentType);
+							updateGrid();
+						}
 						else
 						{
 							//trace('tryin to delete note...');
@@ -1539,6 +1546,16 @@ class ChartingState extends MusicBeatState
 				{
 					changeNoteSustain(-Conductor.stepCrochet);
 				}
+			}
+			
+			
+			if (FlxG.keys.justPressed.BACKSPACE) {
+				//if(onMasterEditor) {
+					MusicBeatState.switchState(new editors.MasterEditorMenu());
+					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				//}
+				FlxG.mouse.visible = false;
+				return;
 			}
 
 			/*
@@ -1764,6 +1781,7 @@ class ChartingState extends MusicBeatState
 								if(curSelectedNote[1] == 1) curSelectedNote[2] += datime - curSelectedNote[2] - Conductor.stepCrochet;
 						}
 						updateGrid();
+						updateNoteUI();
 					}
 				}
 			}
@@ -1836,8 +1854,10 @@ class ChartingState extends MusicBeatState
 				note.alpha = 0.4;
 				if(note.strumTime > lastConductorPos && FlxG.sound.music.playing && note.noteData > -1) {
 					var data:Int = note.noteData % Note.NoteData.getAmmo(_song.mania);
-					strumLineNotes.members[data].playAnim('confirm', true);
-					strumLineNotes.members[data].resetAnim = (note.sustainLength / 1000) + 0.15;
+					var noteDataToCheck:Int = note.noteData;
+					if(noteDataToCheck > -1 && note.mustPress != _song.notes[curSection].mustHitSection) noteDataToCheck += Note.NoteData.getAmmo(_song.mania);
+						strumLineNotes.members[noteDataToCheck].playAnim('confirm', true);
+						strumLineNotes.members[noteDataToCheck].resetAnim = (note.sustainLength / 1000) + 0.15;
 					if(!playedSound[data]) {
 						if((playSoundBf.checked && note.mustPress) || (playSoundDad.checked && !note.mustPress)){
 							var soundToPlay = 'ChartingTick';
