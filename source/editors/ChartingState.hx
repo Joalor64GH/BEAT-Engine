@@ -588,6 +588,7 @@ class ChartingState extends MusicBeatState
 		var stepperMania:FlxUINumericStepper = new FlxUINumericStepper(100, stepperSpeed.y, 1, 3, 0, 9, 1);
 		stepperMania.value = _song.mania;
 		stepperMania.name = 'mania';
+		blockPressWhileTypingOnStepper.push(stepperMania);
 	
 		noteSplashesInputText = new FlxUIInputText(noteSkinInputText.x, noteSkinInputText.y + 35, 150, _song.splashSkin, 8);
 		blockPressWhileTypingOn.push(noteSplashesInputText);
