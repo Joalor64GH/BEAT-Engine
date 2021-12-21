@@ -230,28 +230,6 @@ class PlayState extends MusicBeatState
 	public static var seenCutscene:Bool = false;
 	public static var deathCounter:Int = 0;
 
-	//week 7 related stuff
-	var tankRolling:FlxSprite;
-	var tankClouds:FlxSprite;
-	var tankSky:FlxSprite;
-	var tankmout:FlxSprite;
-	var tankmouwt:FlxSprite;
-	var tancuk:FlxSprite;
-	var smokeLeft:FlxSprite;
-	var smokeRight:FlxSprite;
-	var tanjcuk:FlxSprite;
-	var tankmouthh:FlxSprite;
-	var tankbop0:FlxSprite;
-	var tank1:FlxSprite;
-	var tank2:FlxSprite;
-	var tank3:FlxSprite;
-	var tank4:FlxSprite;
-	var tank5:FlxSprite;
-	var tankSpeed:Float = FlxG.random.float(5, 7);
-	var tankAngle:Float = FlxG.random.float(-90, 45);
-	var tankX:Int = 400;
-	//end (wow thats a lot)
-
 	public var defaultCamZoom:Float = 1.05;
 
 	// how big to stretch the pixel art assets
@@ -4273,18 +4251,6 @@ class PlayState extends MusicBeatState
 		if(lastBeatHit >= curBeat) {
 			//trace('BEAT HIT: ' + curBeat + ', LAST HIT: ' + lastBeatHit);
 			return;
-		}
-
-		if (curStage == 'tank') {
-			if (curBeat % 2 == 0) {
-				tanjcuk.animation.play('dancey');
-				tankbop0.animation.play('danceya');
-				tank1.animation.play('dietz');
-				tank2.animation.play('idle');
-				tank3.animation.play('idle');
-				tank4.animation.play('idle');
-				tank5.animation.play('idle');
-			}
 		}
 
 		if (generatedMusic)
