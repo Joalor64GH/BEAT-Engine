@@ -967,15 +967,6 @@ class PlayState extends MusicBeatState
 		FlxG.fixedTimestep = false;
 		moveCameraSection(0);
 
-		if (ClientPrefs.sonicExeShaders)
-			{
-				var funny:shaders.SonicExe;
-				funny = new shaders.SonicExe();
-
-				camGame.setFilters([new ShaderFilter(funny)]);
-				camHUD.setFilters([new ShaderFilter(funny)]);
-			}
-
 		healthBarBG = new AttachedSprite('healthBar');
 		healthBarBG.y = FlxG.height * 0.89;
 		healthBarBG.screenCenter(X);
@@ -3543,7 +3534,9 @@ class PlayState extends MusicBeatState
 							sortedNotesList.push(daNote);
 							//notesDatas.push(daNote.noteData);
 						}
-						canMiss = true;
+						if (!ClientPrefs.noAntimash) {	//shut up
+							canMiss = true;
+						}
 					}
 				});
 				sortedNotesList.sort((a, b) -> Std.int(a.strumTime - b.strumTime));

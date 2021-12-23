@@ -41,7 +41,7 @@ class ClientPrefs {
 
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var keSustains:Bool = false; //i was bored, okay?
-	public static var sonicExeShaders:Bool = false;
+	public static var noAntimash:Bool = false;
 	public static var ratingOffset:Int = 0;
 	public static var sickWindow:Int = 45;
 	public static var goodWindow:Int = 90;
@@ -176,7 +176,7 @@ class ClientPrefs {
 		FlxG.save.data.comboOffset = comboOffset;
 		FlxG.save.data.achievementsMap = Achievements.achievementsMap;
 		FlxG.save.data.henchmenDeath = Achievements.henchmenDeath;
-		FlxG.save.data.sonicExeShaders = sonicExeShaders;
+		FlxG.save.data.noAntimash = noAntimash;
 		FlxG.save.data.ratingOffset = ratingOffset;
 		FlxG.save.data.sickWindow = sickWindow;
 		FlxG.save.data.goodWindow = goodWindow;
@@ -307,9 +307,9 @@ class ClientPrefs {
 			FlxG.sound.muted = FlxG.save.data.mute;
 		}
 
-		if (FlxG.save.data.sonicExeShaders != null)
+		if (FlxG.save.data.noAntimash != null)
 			{
-				sonicExeShaders = FlxG.save.data.sonicExeShaders;
+				noAntimash = FlxG.save.data.noAntimash;
 			}
 
 		var save:FlxSave = new FlxSave();
