@@ -3623,14 +3623,6 @@ class PlayState extends MusicBeatState
 		return -1;
 	}
 
-	// Hold notes
-	// Explained by Shadow Mario:
-	/**
-	 * Handle for hold note logic
-	 * and controller logic.
-	 * 
-	 * Does zoro even have support for controller?? wtf
-	 */
 	private function keyShit():Void
 	{
 		var one = [controls.ONE1];
