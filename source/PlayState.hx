@@ -2462,7 +2462,7 @@ class PlayState extends MusicBeatState
 				if(daNote.copyAlpha) {
 					daNote.alpha = strumAlpha;
 				}
-				if(daNote.copyY) {
+				if(daNote.copyY) {	// cock
 					if (ClientPrefs.downScroll) {
 						daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
 						if (daNote.isSustainNote && !ClientPrefs.keSustains) {
@@ -2470,7 +2470,11 @@ class PlayState extends MusicBeatState
 							if (daNote.animation.curAnim.name.endsWith('tail')) {
 								daNote.y += 10.5 * (fakeCrochet / 400) * 1.5 * roundedSpeed + (46 * (roundedSpeed - 1));
 								daNote.y -= 46 * (1 - (fakeCrochet / 600)) * roundedSpeed;
-								daNote.y -= 19;
+								if(PlayState.isPixelStage) {
+									daNote.y += 8;
+								} else {
+									daNote.y -= 19;
+								}
 							}
 							daNote.y += (strumHeight / 2) - (60.5 * (roundedSpeed - 1));
 							daNote.y += (27.5 * ((SONG.bpm / 100) - 1) * (roundedSpeed - 1)) * Note.NoteData.getScale(mania);
