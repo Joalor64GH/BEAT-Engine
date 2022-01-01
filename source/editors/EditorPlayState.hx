@@ -153,11 +153,9 @@ class EditorPlayState extends MusicBeatState
 		FlxG.mouse.visible = false;
 
 		//sayGo();
-		if(!ClientPrefs.controllerMode)
-		{
-			FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
-			FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
-		}
+		FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
+		FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
+
 		super.create();
 	}
 
@@ -540,7 +538,7 @@ class EditorPlayState extends MusicBeatState
 		var key:Int = getKeyFromEvent(eventKey);
 		//trace('Pressed: ' + eventKey);
 
-		if (key > -1 && (FlxG.keys.checkStatus(eventKey, JUST_PRESSED) || ClientPrefs.controllerMode))
+		if (key > -1 && FlxG.keys.checkStatus(eventKey, JUST_PRESSED))
 		{
 			if(generatedMusic)
 			{
@@ -643,112 +641,28 @@ class EditorPlayState extends MusicBeatState
 		return -1;
 	}
 
-	private function keyShit():Void
+	private function keysArePressed():Bool
 	{
-		// HOLDING
-		var up = controls.NOTE_UP;
-		var right = controls.NOTE_RIGHT;
-		var down = controls.NOTE_DOWN;
-		var left = controls.NOTE_LEFT;
-
-		var upP = controls.NOTE_UP_P;
-		var rightP = controls.NOTE_RIGHT_P;
-		var downP = controls.NOTE_DOWN_P;
-		var leftP = controls.NOTE_LEFT_P;
-
-		var upR = controls.NOTE_UP_R;
-		var rightR = controls.NOTE_RIGHT_R;
-		var downR = controls.NOTE_DOWN_R;
-		var leftR = controls.NOTE_LEFT_R;
-
-		var one = [controls.ONE1];
-		var oneP = [controls.ONE1_P];
-		var oneR = [controls.ONE1_R];
-				
-		var two = [controls.TWO1, controls.TWO2];
-		var twoP = [controls.TWO1_P, controls.TWO2_P];
-		var twoR = [controls.TWO1_R, controls.TWO2_R];
-	
-		var thr = [controls.THREE1, controls.THREE2, controls.THREE3];
-		var thrP = [controls.THREE1_P, controls.THREE2_P, controls.THREE3_P];
-		var thrR = [controls.THREE1_R, controls.THREE2_R, controls.THREE3_R];
-	
-		var fiv = [controls.FIVE1, controls.FIVE2, controls.FIVE3, controls.FIVE4, controls.FIVE5];
-		var fivP = [controls.FIVE1_P, controls.FIVE2_P, controls.FIVE3_P, controls.FIVE4_P, controls.FIVE5_P];
-		var fivR = [controls.FIVE1_R, controls.FIVE2_R, controls.FIVE3_R, controls.FIVE4_R, controls.FIVE5_R];
-	
-		var six = [controls.SIX1, controls.SIX2, controls.SIX3, controls.SIX4, controls.SIX5, controls.SIX6];
-		var sixP = [controls.SIX1_P, controls.SIX2_P, controls.SIX3_P, controls.SIX4_P, controls.SIX5_P, controls.SIX6_P];
-		var sixR = [controls.SIX1_R, controls.SIX2_R, controls.SIX3_R, controls.SIX4_R, controls.SIX5_R, controls.SIX6_R];
-	
-		var sev = [controls.SEVEN1, controls.SEVEN2, controls.SEVEN3, controls.SEVEN4, controls.SEVEN5, controls.SEVEN6, controls.SEVEN7];
-		var sevP = [controls.SEVEN1_P, controls.SEVEN2_P, controls.SEVEN3_P, controls.SEVEN4_P, controls.SEVEN5_P, controls.SEVEN6_P, controls.SEVEN7_P];
-		var sevR = [controls.SEVEN1_R, controls.SEVEN2_R, controls.SEVEN3_R, controls.SEVEN4_R, controls.SEVEN5_R, controls.SEVEN6_R, controls.SEVEN7_R];
-	
-		var eig = [controls.EIGHT1, controls.EIGHT2, controls.EIGHT3, controls.EIGHT4, controls.EIGHT5, controls.EIGHT6, controls.EIGHT7, controls.EIGHT8];
-		var eigP = [controls.EIGHT1_P, controls.EIGHT2_P, controls.EIGHT3_P, controls.EIGHT4_P, controls.EIGHT5_P, controls.EIGHT6_P, controls.EIGHT7_P, controls.EIGHT8_P];
-		var eigR = [controls.EIGHT1_R, controls.EIGHT2_R, controls.EIGHT3_R, controls.EIGHT4_R, controls.EIGHT5_R, controls.EIGHT6_R, controls.EIGHT7_R, controls.EIGHT8_R];
-	
-		var nin = [controls.NINE1, controls.NINE2, controls.NINE3, controls.NINE4, controls.NINE5, controls.NINE6, controls.NINE7, controls.NINE8, controls.NINE9];
-		var ninP = [controls.NINE1_P, controls.NINE2_P, controls.NINE3_P, controls.NINE4_P, controls.NINE5_P, controls.NINE6_P, controls.NINE7_P, controls.NINE8_P, controls.NINE9_P];
-		var ninR = [controls.NINE1_R, controls.NINE2_R, controls.NINE3_R, controls.NINE4_R, controls.NINE5_R, controls.NINE6_R, controls.NINE7_R, controls.NINE8_R, controls.NINE9_R];
-
-		var controlArray:Array<Bool> = [];
-		var controlReleaseArray:Array<Bool> = [];
-		var controlHoldArray:Array<Bool> = [];
-
-		switch (songMania) {
-			case 0:		//1 key
-				controlArray = oneP;
-				controlReleaseArray = oneR;
-				controlHoldArray = one;
-			case 1:		//2 keys
-				controlArray = twoP;
-				controlReleaseArray = twoR;
-				controlHoldArray = two;
-			case 2:		//3 keys
-				controlArray = thrP;
-				controlReleaseArray = thrR;
-				controlHoldArray = thr;
-			case 3: 	//4 keys
-				controlArray = [leftP, downP, upP, rightP];
-				controlReleaseArray = [leftR, downR, upR, rightR];
-				controlHoldArray = [left, down, up, right];
-			case 4:		//5 keys
-				controlArray = fivP;
-				controlReleaseArray = fivR;
-				controlHoldArray = fiv;
-			case 5:		//6 keys
-				controlArray = sixP;
-				controlReleaseArray = sixR;
-				controlHoldArray = six;
-			case 6:		//7 keys
-				controlArray = sevP;
-				controlReleaseArray = sevR;
-				controlHoldArray = sev;
-			case 7:		//8 keys
-				controlArray = eigP;
-				controlReleaseArray = eigR;
-				controlHoldArray = eig;
-			case 8:		//9 keys
-				controlArray = ninP;
-				controlReleaseArray = ninR;
-				controlHoldArray = nin;
-		}
-		
-		// TO DO: Find a better way to handle controller inputs, this should work for now
-		if(ClientPrefs.controllerMode)
-		{
-			if(controlArray.contains(true))
-			{
-				for (i in 0...controlArray.length)
-				{
-					if(controlArray[i])
-						onKeyPress(new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, true, -1, keysArray[songMania][i][0]));
-				}
+		for (i in 0...keysArray[songMania].length) {
+			for (j in 0...keysArray[songMania][i].length) {
+				if (FlxG.keys.checkStatus(keysArray[songMania][i][j], PRESSED)) return true;
 			}
 		}
 
+		return false;
+	}
+
+	private function dataKeyIsPressed(data:Int):Bool
+	{
+		for (i in 0...keysArray[songMania][data].length) {
+			if (FlxG.keys.checkStatus(keysArray[songMania][data][i], PRESSED)) return true;
+		}
+
+		return false;
+	}
+
+	private function keyShit():Void
+	{
 		// FlxG.watch.addQuick('asdfa', upP);
 		if (generatedMusic)
 		{
@@ -756,24 +670,13 @@ class EditorPlayState extends MusicBeatState
 			notes.forEachAlive(function(daNote:Note)
 			{
 				// hold note functions
-				if (daNote.isSustainNote && controlHoldArray[daNote.noteData] && daNote.canBeHit 
-				&& daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit) {
+				if (daNote.isSustainNote && dataKeyIsPressed(daNote.noteData)
+				&& daNote.canBeHit && daNote.mustPress && !daNote.tooLate 
+				&& !daNote.wasGoodHit) {
 					goodNoteHit(daNote);
 				}
 			});
-		}
 
-		// TO DO: Find a better way to handle controller inputs, this should work for now
-		if(ClientPrefs.controllerMode)
-		{
-			if(controlReleaseArray.contains(true))
-			{
-				for (i in 0...controlReleaseArray.length)
-				{
-					if(controlReleaseArray[i])
-						onKeyRelease(new KeyboardEvent(KeyboardEvent.KEY_UP, true, true, -1, keysArray[songMania][i][0]));
-				}
-			}
 		}
 	}
 
@@ -1097,11 +1000,8 @@ class EditorPlayState extends MusicBeatState
 		vocals.stop();
 		vocals.destroy();
 
-		if(!ClientPrefs.controllerMode)
-		{
-			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
-			FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
-		}
+		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
+		FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
 		super.destroy();
 	}
 }

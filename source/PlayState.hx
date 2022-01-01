@@ -1146,11 +1146,8 @@ class PlayState extends MusicBeatState
 		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
 		#end
 
-		if(!ClientPrefs.controllerMode)
-		{
-			FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
-			FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
-		}
+		FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
+		FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
 
 		Conductor.safeZoneOffset = (ClientPrefs.safeFrames / 60) * 1000;
 		callOnLuas('onCreatePost', []);
@@ -3525,7 +3522,7 @@ class PlayState extends MusicBeatState
 		var key:Int = getKeyFromEvent(eventKey);
 		//trace('Pressed: ' + eventKey);
 
-		if (!cpuControlled && !paused && key > -1 && (FlxG.keys.checkStatus(eventKey, JUST_PRESSED) || ClientPrefs.controllerMode))
+		if (!cpuControlled && !paused && key > -1 && FlxG.keys.checkStatus(eventKey, JUST_PRESSED))
 		{
 			if(!boyfriend.stunned && generatedMusic && !endingSong)
 			{
@@ -3639,97 +3636,28 @@ class PlayState extends MusicBeatState
 		return -1;
 	}
 
+	private function keysArePressed():Bool
+	{
+		for (i in 0...keysArray[mania].length) {
+			for (j in 0...keysArray[mania][i].length) {
+				if (FlxG.keys.checkStatus(keysArray[mania][i][j], PRESSED)) return true;
+			}
+		}
+
+		return false;
+	}
+
+	private function dataKeyIsPressed(data:Int):Bool
+	{
+		for (i in 0...keysArray[mania][data].length) {
+			if (FlxG.keys.checkStatus(keysArray[mania][data][i], PRESSED)) return true;
+		}
+
+		return false;
+	}
+
 	private function keyShit():Void
 	{
-		var one = [controls.ONE1];
-		var two = [controls.TWO1, controls.TWO2];
-		var thr = [controls.THREE1, controls.THREE2, controls.THREE3];
-		var fiv = [controls.FIVE1, controls.FIVE2, controls.FIVE3, controls.FIVE4, controls.FIVE5];
-		var six = [controls.SIX1, controls.SIX2, controls.SIX3, controls.SIX4, controls.SIX5, controls.SIX6];
-		var sev = [controls.SEVEN1, controls.SEVEN2, controls.SEVEN3, controls.SEVEN4, controls.SEVEN5, controls.SEVEN6, controls.SEVEN7];
-		var eig = [controls.EIGHT1, controls.EIGHT2, controls.EIGHT3, controls.EIGHT4, controls.EIGHT5, controls.EIGHT6, controls.EIGHT7, controls.EIGHT8];
-		var nin = [controls.NINE1, controls.NINE2, controls.NINE3, controls.NINE4, controls.NINE5, controls.NINE6, controls.NINE7, controls.NINE8, controls.NINE9];
-		var ten = [controls.TEN1, controls.TEN2, controls.TEN3, controls.TEN4, controls.TEN5, controls.TEN6, controls.TEN7, controls.TEN8, controls.TEN9, controls.TEN10];
-
-		// HOLDING
-		var up = controls.NOTE_UP;
-		var right = controls.NOTE_RIGHT;
-		var down = controls.NOTE_DOWN;
-		var left = controls.NOTE_LEFT;
-		var controlHoldArray:Array<Bool> = [false];
-
-		switch (mania) {
-			case 0: controlHoldArray = one;
-			case 1: controlHoldArray = two;
-			case 2: controlHoldArray = thr;
-			case 3: controlHoldArray = [left, down, up, right];
-			case 4: controlHoldArray = fiv;
-			case 5:	controlHoldArray = six;
-			case 6: controlHoldArray = sev;
-			case 7: controlHoldArray = eig;
-			case 8: controlHoldArray = nin;
-			case 9: controlHoldArray = ten;
-		}
-		
-		// TO DO: Find a better way to handle controller inputs, this should work for now -Shadow Mario
-		if(ClientPrefs.controllerMode)	//controller input
-		{
-			//looks like i need these again... shit
-			var oneP = [controls.ONE1_P];
-			var oneR = [controls.ONE1_R];
-			var twoP = [controls.TWO1_P, controls.TWO2_P];
-			var twoR = [controls.TWO1_R, controls.TWO2_R];
-			var thrP = [controls.THREE1_P, controls.THREE2_P, controls.THREE3_P];
-			var thrR = [controls.THREE1_R, controls.THREE2_R, controls.THREE3_R];
-			var fivP = [controls.FIVE1_P, controls.FIVE2_P, controls.FIVE3_P, controls.FIVE4_P, controls.FIVE5_P];
-			var fivR = [controls.FIVE1_R, controls.FIVE2_R, controls.FIVE3_R, controls.FIVE4_R, controls.FIVE5_R];
-			var sixP = [controls.SIX1_P, controls.SIX2_P, controls.SIX3_P, controls.SIX4_P, controls.SIX5_P, controls.SIX6_P];
-			var sixR = [controls.SIX1_R, controls.SIX2_R, controls.SIX3_R, controls.SIX4_R, controls.SIX5_R, controls.SIX6_R];
-			var sevP = [controls.SEVEN1_P, controls.SEVEN2_P, controls.SEVEN3_P, controls.SEVEN4_P, controls.SEVEN5_P, controls.SEVEN6_P, controls.SEVEN7_P];
-			var sevR = [controls.SEVEN1_R, controls.SEVEN2_R, controls.SEVEN3_R, controls.SEVEN4_R, controls.SEVEN5_R, controls.SEVEN6_R, controls.SEVEN7_R];
-			var eigP = [controls.EIGHT1_P, controls.EIGHT2_P, controls.EIGHT3_P, controls.EIGHT4_P, controls.EIGHT5_P, controls.EIGHT6_P, controls.EIGHT7_P, controls.EIGHT8_P];
-			var eigR = [controls.EIGHT1_R, controls.EIGHT2_R, controls.EIGHT3_R, controls.EIGHT4_R, controls.EIGHT5_R, controls.EIGHT6_R, controls.EIGHT7_R, controls.EIGHT8_R];
-			var ninP = [controls.NINE1_P, controls.NINE2_P, controls.NINE3_P, controls.NINE4_P, controls.NINE5_P, controls.NINE6_P, controls.NINE7_P, controls.NINE8_P, controls.NINE9_P];
-			var ninR = [controls.NINE1_R, controls.NINE2_R, controls.NINE3_R, controls.NINE4_R, controls.NINE5_R, controls.NINE6_R, controls.NINE7_R, controls.NINE8_R, controls.NINE9_R];
-			var tenP = [controls.TEN1_P, controls.TEN2_P, controls.TEN3_P, controls.TEN4_P, controls.TEN5_P, controls.TEN6_P, controls.TEN7_P, controls.TEN8_P, controls.TEN9_P, controls.TEN10_P];
-			var tenR = [controls.TEN1_R, controls.TEN2_R, controls.TEN3_R, controls.TEN4_R, controls.TEN5_R, controls.TEN6_R, controls.TEN7_R, controls.TEN8_R, controls.TEN9_R, controls.TEN10_R];
-
-			//controller shits
-			var controllerPressArray:Array<Bool> = [false];
-			var controllerRelesArray:Array<Bool> = [false];
-
-			switch (mania) {
-				case 0:	controllerPressArray = oneP; controllerRelesArray = oneR;
-				case 1: controllerPressArray = twoP; controllerRelesArray = twoR;
-				case 2: controllerPressArray = thrP; controllerRelesArray = thrR;
-				case 3: controllerPressArray = [controls.NOTE_LEFT_P, controls.NOTE_DOWN_P, controls.NOTE_UP_P, controls.NOTE_RIGHT_P]; controllerRelesArray = [controls.NOTE_LEFT_R, controls.NOTE_DOWN_R, controls.NOTE_UP_R, controls.NOTE_RIGHT_R];
-				case 4: controllerPressArray = fivP; controllerRelesArray = fivR;
-				case 5:	controllerPressArray = sixP; controllerRelesArray = sixR;
-				case 6: controllerPressArray = sevP; controllerRelesArray = sevR;
-				case 7: controllerPressArray = eigP; controllerRelesArray = eigR;
-				case 8: controllerPressArray = ninP; controllerRelesArray = ninR;
-				case 9: controllerPressArray = tenP; controllerRelesArray = tenR;
-			}
-
-			if(controllerPressArray.contains(true))
-			{
-				for (i in 0...controllerPressArray.length)
-				{
-					if(controllerPressArray[i])
-						onKeyPress(new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, true, -1, keysArray[mania][i][0]));
-				}
-			}
-
-			if(controllerRelesArray.contains(true))
-			{
-				for (i in 0...controllerRelesArray.length)
-				{
-					if(controllerRelesArray[i])
-						onKeyRelease(new KeyboardEvent(KeyboardEvent.KEY_UP, true, true, -1, keysArray[mania][i][0]));
-				}
-			}
-		}
-
 		// FlxG.watch.addQuick('asdfa', upP);
 		if (!boyfriend.stunned && generatedMusic)
 		{
@@ -3737,13 +3665,14 @@ class PlayState extends MusicBeatState
 			notes.forEachAlive(function(daNote:Note)
 			{
 				// hold note functions
-				if (daNote.isSustainNote && controlHoldArray[daNote.noteData] && daNote.canBeHit 
-				&& daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit) {
+				if (daNote.isSustainNote && dataKeyIsPressed(daNote.noteData)
+				&& daNote.canBeHit && daNote.mustPress && !daNote.tooLate 
+				&& !daNote.wasGoodHit) {
 					goodNoteHit(daNote);
 				}
 			});
 
-			if (controlHoldArray.contains(true) && !endingSong) {
+			if (keysArePressed() && !endingSong) {
 				#if ACHIEVEMENTS_ALLOWED
 				var achieve:String = checkForAchievement(['oversinging']);
 				if (achieve != null) {
@@ -4202,11 +4131,9 @@ class PlayState extends MusicBeatState
 		}
 		luaArray = [];
 
-		if(!ClientPrefs.controllerMode)
-		{
-			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
-			FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
-		}
+		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
+		FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
+
 		super.destroy();
 	}
 
