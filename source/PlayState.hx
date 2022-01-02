@@ -1753,7 +1753,10 @@ class PlayState extends MusicBeatState
 				unspawnNotes.push(swagNote);
 
 				var floorSus:Int = Math.floor(susLength);
+
+				var type = 0;
 				if(floorSus > 0) {
+					if (ClientPrefs.inputSystem == 'Kade Engine') swagNote.isParent = true;
 					for (susNote in 0...floorSus+1)
 					{
 						oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
@@ -1776,6 +1779,13 @@ class PlayState extends MusicBeatState
 							{ //Up and Right
 								sustainNote.x += FlxG.width / 2 + 25;
 							}
+						}
+
+						if (ClientPrefs.inputSystem == 'Kade Engine') {	//if fireable ever plays this
+							sustainNote.parent = swagNote;
+							swagNote.childs.push(sustainNote);
+							sustainNote.spotInLine = type;
+							type++;
 						}
 					}
 				}
@@ -2520,6 +2530,17 @@ class PlayState extends MusicBeatState
 						}
 					} else if(daNote.strumTime <= Conductor.songPosition || (daNote.isSustainNote && daNote.canBeHit && daNote.mustPress)) {
 						goodNoteHit(daNote);
+					}
+				}
+
+				if (daNote.isParent && daNote.tooLate && !daNote.isSustainNote)
+				{
+					health -= 0.15; // give a health punishment for failing a LN
+					trace("hold fell over at the start");
+					for (i in daNote.childs)
+					{
+						i.alpha = 0.3;
+						i.susActive = false;
 					}
 				}
 
@@ -3517,6 +3538,7 @@ class PlayState extends MusicBeatState
 		});
 	}
 
+	var closestNotes:Array<Note> = [];
 	private function onKeyPress(event:KeyboardEvent):Void
 	{
 		var eventKey:FlxKey = event.keyCode;
@@ -3525,70 +3547,136 @@ class PlayState extends MusicBeatState
 
 		if (!cpuControlled && !paused && key > -1 && FlxG.keys.checkStatus(eventKey, JUST_PRESSED))
 		{
-			if(!boyfriend.stunned && generatedMusic && !endingSong)
-			{
-				//more accurate hit time for the ratings?
-				var lastTime:Float = Conductor.songPosition;
-				Conductor.songPosition = FlxG.sound.music.time;
-
-				var canMiss:Bool = !ClientPrefs.ghostTapping;
-
-				// heavily based on my own code LOL if it aint broke dont fix it
-				var pressNotes:Array<Note> = [];
-				//var notesDatas:Array<Int> = [];
-				var notesStopped:Bool = false;
-
-				var sortedNotesList:Array<Note> = [];
-				notes.forEachAlive(function(daNote:Note)
-				{
-					if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit && !daNote.isSustainNote)
+			switch (ClientPrefs.inputSystem) {
+				case 'Native':
+					if(!boyfriend.stunned && generatedMusic && !endingSong)
 					{
-						if(daNote.noteData == key)
+						//more accurate hit time for the ratings?
+						var lastTime:Float = Conductor.songPosition;
+						Conductor.songPosition = FlxG.sound.music.time;
+		
+						var canMiss:Bool = !ClientPrefs.ghostTapping;
+		
+						// heavily based on my own code LOL if it aint broke dont fix it
+						var pressNotes:Array<Note> = [];
+						//var notesDatas:Array<Int> = [];
+						var notesStopped:Bool = false;
+		
+						var sortedNotesList:Array<Note> = [];
+						notes.forEachAlive(function(daNote:Note)
 						{
-							sortedNotesList.push(daNote);
-							//notesDatas.push(daNote.noteData);
+							if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit && !daNote.isSustainNote)
+							{
+								if(daNote.noteData == key)
+								{
+									sortedNotesList.push(daNote);
+									//notesDatas.push(daNote.noteData);
+								}
+								if (!ClientPrefs.noAntimash) {	//shut up
+									canMiss = true;
+								}
+							}
+						});
+						sortedNotesList.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
+		
+						if (sortedNotesList.length > 0) {
+							for (epicNote in sortedNotesList)
+							{
+								for (doubleNote in pressNotes) {
+									if (Math.abs(doubleNote.strumTime - epicNote.strumTime) < 1) {
+										doubleNote.kill();
+										notes.remove(doubleNote, true);
+										doubleNote.destroy();
+									} else
+										notesStopped = true;
+								}
+									
+								// eee jack detection before was not super good
+								if (!notesStopped) {
+									goodNoteHit(epicNote);
+									pressNotes.push(epicNote);
+								}
+		
+							}
 						}
-						if (!ClientPrefs.noAntimash) {	//shut up
-							canMiss = true;
+						else if (canMiss) {
+							noteMissPress(key);
+							callOnLuas('noteMissPress', [key]);
 						}
+		
+						// I dunno what you need this for but here you go
+						//									- Shubs
+		
+						// Shubs, this is for the "Just the Two of Us" achievement lol
+						//									- Shadow Mario
+						keysPressed[key] = true;
+		
+						//more accurate hit time for the ratings? part 2 (Now that the calculations are done, go back to the time it was before for not causing a note stutter)
+						Conductor.songPosition = lastTime;
 					}
-				});
-				sortedNotesList.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
+				case 'Kade Engine':	// 1.8 input btw
+					var canMiss:Bool = !ClientPrefs.ghostTapping;
 
-				if (sortedNotesList.length > 0) {
-					for (epicNote in sortedNotesList)
+					if (keysPressed[key]) 
 					{
-						for (doubleNote in pressNotes) {
-							if (Math.abs(doubleNote.strumTime - epicNote.strumTime) < 1) {
-								doubleNote.kill();
-								notes.remove(doubleNote, true);
-								doubleNote.destroy();
-							} else
-								notesStopped = true;
-						}
-							
-						// eee jack detection before was not super good
-						if (!notesStopped) {
-							goodNoteHit(epicNote);
-							pressNotes.push(epicNote);
-						}
-
+						trace('bro this key already held');
+						return;
 					}
-				}
-				else if (canMiss) {
-					noteMissPress(key);
-					callOnLuas('noteMissPress', [key]);
-				}
 
-				// I dunno what you need this for but here you go
-				//									- Shubs
 
-				// Shubs, this is for the "Just the Two of Us" achievement lol
-				//									- Shadow Mario
-				keysPressed[key] = true;
+					keysPressed[key] = true;
 
-				//more accurate hit time for the ratings? part 2 (Now that the calculations are done, go back to the time it was before for not causing a note stutter)
-				Conductor.songPosition = lastTime;
+					closestNotes = [];
+
+					notes.forEachAlive(function(daNote:Note)
+					{
+						if (daNote.canBeHit && daNote.mustPress && !daNote.wasGoodHit)
+							closestNotes.push(daNote);
+					}); // Collect notes that can be hit
+				
+					closestNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
+			
+					var dataNotes = [];
+					for (i in closestNotes)
+						if (i.noteData == key && !i.isSustainNote)
+							dataNotes.push(i);
+
+					if (dataNotes.length != 0)
+					{
+						var coolNote = null;
+			
+						for (i in dataNotes)
+						{
+							coolNote = i;
+							break;
+						}
+			
+						if (dataNotes.length > 1) // stacked notes or really close ones
+						{
+							for (i in 0...dataNotes.length)
+							{
+								if (i == 0) // skip the first note
+									continue;
+			
+								var note = dataNotes[i];
+			
+								if (!note.isSustainNote && ((note.strumTime - coolNote.strumTime) < 2) && note.noteData == key)
+								{
+									trace('found a stacked/really close note ' + (note.strumTime - coolNote.strumTime));
+									// just fuckin remove it since it's a stacked note and shouldn't be there
+									note.kill();
+									notes.remove(note, true);
+									note.destroy();
+								}
+							}
+						}
+			
+						goodNoteHit(coolNote);
+					} else if (canMiss && generatedMusic) {
+						noteMissPress(key);
+						callOnLuas('noteMissPress', [key]);
+						health -= 0.20; //kade is evillll
+					}
 			}
 
 			var spr:StrumNote = playerStrums.members[key];
@@ -3614,6 +3702,8 @@ class PlayState extends MusicBeatState
 				spr.playAnim('static');
 				spr.resetAnim = 0;
 			}
+
+			if (ClientPrefs.inputSystem == 'Kade Engine') keysPressed[key] = false;
 			callOnLuas('onKeyRelease', [key]);
 		}
 		//trace('released: ' + controlArray);
@@ -3666,10 +3756,18 @@ class PlayState extends MusicBeatState
 			notes.forEachAlive(function(daNote:Note)
 			{
 				// hold note functions
-				if (daNote.isSustainNote && dataKeyIsPressed(daNote.noteData)
-				&& daNote.canBeHit && daNote.mustPress && !daNote.tooLate 
-				&& !daNote.wasGoodHit) {
-					goodNoteHit(daNote);
+				switch(ClientPrefs.inputSystem) {
+					case 'Native':
+						if (daNote.isSustainNote && dataKeyIsPressed(daNote.noteData)
+						&& daNote.canBeHit && daNote.mustPress && !daNote.tooLate 
+						&& !daNote.wasGoodHit) {
+							goodNoteHit(daNote);
+						}
+					case 'Kade Engine':
+						if (daNote.isSustainNote && dataKeyIsPressed(daNote.noteData)
+						&& daNote.canBeHit && daNote.mustPress && daNote.susActive) {
+							goodNoteHit(daNote);
+						}
 				}
 			});
 

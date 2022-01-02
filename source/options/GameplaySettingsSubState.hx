@@ -64,6 +64,14 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		addOption(option); //now shut up before i put you in my basement
 		// PD: i dont have a basement
 
+		var option:Option = new Option('Input System', 
+			"The input system you wish to use.",
+			'inputSystem',
+			'string',
+			"Native",
+			["Native", "Kade Engine"/*, "Andromeda Engine"*/]);
+		addOption(option);
+
 		var option:Option = new Option('Disable Reset Button',
 			"If checked, pressing Reset won't do anything.",
 			'noReset',
