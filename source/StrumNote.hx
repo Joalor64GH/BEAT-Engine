@@ -41,7 +41,7 @@ class StrumNote extends FlxSprite
 		skinThing[1] = pres;
 
 		var skin:String = 'NOTE_assets';
-		if(PlayState.isPixelStage) skin = 'PIXEL_' + skin;
+		//if(PlayState.isPixelStage) skin = 'PIXEL_' + skin;
 		if(PlayState.SONG.arrowSkin != null && PlayState.SONG.arrowSkin.length > 1) skin = PlayState.SONG.arrowSkin;
 		texture = skin; //Load texture and anims
 
@@ -53,15 +53,51 @@ class StrumNote extends FlxSprite
 		var lastAnim:String = null;
 		if(animation.curAnim != null) lastAnim = animation.curAnim.name;
 
-		frames = Paths.getSparrowAtlas(texture);
+		if(PlayState.isPixelStage)
+			{
+				loadGraphic(Paths.image('pixelUI/' + texture));
+				width = width / 18;
+				height = height / 5;
+				antialiasing = false;
+				loadGraphic(Paths.image('pixelUI/' + texture), true, Math.floor(width), Math.floor(height));
+				var COCKFRAMES_STATIC:Array<Dynamic> = [	//cock
+					[4], [0, 3], [0, 4, 3], [0, 1, 2, 3],
+					[0, 1, 4, 2, 3], [0, 2, 3, 5, 1, 8], [0, 2, 3, 4, 5, 1, 8],
+					[0, 1, 2, 3, 5, 6, 7, 8], [0, 1, 2, 3, 4, 5, 6, 7, 8],
+					[0, 1, 2, 3, 4, 9, 5, 6, 7, 8]
+				];
 
-		antialiasing = ClientPrefs.globalAntialiasing;
+				var COCKFRAMES_PRESS_FRAMES:Array<Dynamic> = [	//its confusing
+					[22], [18, 21], [18, 22, 21], [18, 19, 20, 21],
+					[18, 19, 22, 20, 21], [18, 20, 21, 23, 19, 26],
+					[18, 20, 21, 22, 23, 19, 26], [18, 19, 20, 21, 23, 24, 25, 26],
+					[18, 19, 20, 21, 22, 23, 24, 25, 26], [18, 19, 20, 21, 22, 31, 23, 24, 25, 26],
+				];
 
-		setGraphicSize(Std.int(width * Note.NoteData.getScale(PlayState.mania)));
+				var COCKFRAMES:Array<Int> = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+				var startpress:Array<Int> = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+				var endpress:Array<Int> = [18, 19, 20, 21, 22, 23, 24, 25, 26];
+				var startconf:Array<Int> = [27, 28, 29, 30, 31, 32, 33, 34, 35];
+				var endconf:Array<Int> = [36, 37, 38, 39, 40, 41, 42, 43, 44];
+				setGraphicSize(Std.int(width * PlayState.daPixelZoom * Note.NoteData.getPixelSize(PlayState.mania)));
+				updateHitbox();
+				antialiasing = false;
+				animation.add('static', [COCKFRAMES_STATIC[PlayState.mania][noteData]]);
+				animation.add('pressed', [Std.int(COCKFRAMES_PRESS_FRAMES[PlayState.mania][noteData]), Std.int((COCKFRAMES_PRESS_FRAMES[PlayState.mania][noteData] + 18))], 12, false);
+				animation.add('confirm', [Std.int((COCKFRAMES_PRESS_FRAMES[PlayState.mania][noteData] + 36)), Std.int((COCKFRAMES_PRESS_FRAMES[PlayState.mania][noteData] + 54))], 24, false);
+			}
+		else
+			{
+				frames = Paths.getSparrowAtlas(texture);
 
-		animation.addByPrefix('static', 'arrow' + skinThing[0]);
-		animation.addByPrefix('pressed', skinThing[1] + ' press', 24, false);
-		animation.addByPrefix('confirm', skinThing[1] + ' confirm', 24, false);
+				antialiasing = ClientPrefs.globalAntialiasing;
+
+				setGraphicSize(Std.int(width * Note.NoteData.getScale(PlayState.mania)));
+		
+				animation.addByPrefix('static', 'arrow' + skinThing[0]);
+				animation.addByPrefix('pressed', skinThing[1] + ' press', 24, false);
+				animation.addByPrefix('confirm', skinThing[1] + ' confirm', 24, false);
+			}
 
 		updateHitbox();
 
