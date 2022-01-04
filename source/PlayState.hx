@@ -117,7 +117,7 @@ class PlayState extends MusicBeatState
 	public var boyfriendGroup:FlxSpriteGroup;
 	public var dadGroup:FlxSpriteGroup;
 	public var gfGroup:FlxSpriteGroup;
-
+	public var shaderUpdates:Array<Float->Void> = [];
 	public static var curStage:String = '';
 	public static var isPixelStage:Bool = false;
 	public static var SONG:SwagSong = null;
@@ -664,7 +664,6 @@ class PlayState extends MusicBeatState
 					var waveEffectBG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 3, 2);
 					var waveEffectFG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 5, 2);
 				}*/
-
 				var posX = 400;
 				var posY = 200;
 				if(!ClientPrefs.lowQuality) {
@@ -1305,13 +1304,26 @@ class PlayState extends MusicBeatState
 					  newCamEffects.push(new ShaderFilter(i.shader));
 					}
 					camOther.setFilters(newCamEffects);
-			default:
+			case 'camgame' | 'game':
 					camGameShaders.push(effect);
 					var newCamEffects:Array<BitmapFilter>=[]; // IT SHUTS HAXE UP IDK WHY BUT WHATEVER IDK WHY I CANT JUST ARRAY<SHADERFILTER>
 					for(i in camGameShaders){
 					  newCamEffects.push(new ShaderFilter(i.shader));
 					}
 					camGame.setFilters(newCamEffects);
+			default:
+				if(modchartSprites.exists(cam)) {
+					Reflect.setProperty(modchartSprites.get(cam),"shader",effect.shader);
+				} else if(modchartTexts.exists(cam)) {
+					Reflect.setProperty(modchartTexts.get(cam),"shader",effect.shader);
+				} else {
+					var OBJ = Reflect.getProperty(PlayState.instance,cam);
+					Reflect.setProperty(OBJ,"shader", effect.shader);
+				}
+			
+			
+				
+				
 		}
 	  
 	  
@@ -1996,6 +2008,7 @@ class PlayState extends MusicBeatState
 			if (player < 1 && ClientPrefs.middleScroll) targetAlpha = 0.35;
 
 			var babyArrow:StrumNote = new StrumNote(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, strumLine.y, i, player);
+			babyArrow.downScroll = ClientPrefs.downScroll;
 			if (!isStoryMode)
 			{
 				babyArrow.y -= 10;
@@ -2547,22 +2560,28 @@ class PlayState extends MusicBeatState
 				var strumAngle:Float = 0;
 				var strumAlpha:Float = 0;
 				var strumHeight:Float = 0;
+				var strumDirection:Float = 0;
+				var strumScroll:Bool = false;
 				if(daNote.mustPress) {
 					if (playerStrums.members[daNote.noteData] == null) daNote.noteData = mania;	//crash prevention ig?
 
 					strumX = playerStrums.members[daNote.noteData].x;
 					strumY = playerStrums.members[daNote.noteData].y;
 					strumAngle = playerStrums.members[daNote.noteData].angle;
+					strumDirection = playerStrums.members[daNote.noteData].direction;
 					strumAlpha = playerStrums.members[daNote.noteData].alpha;
 					strumHeight = playerStrums.members[daNote.noteData].height;
+					strumScroll = playerStrums.members[daNote.noteData].downScroll;
 				} else {
 					if (opponentStrums.members[daNote.noteData] == null) daNote.noteData = mania;
 
 					strumX = opponentStrums.members[daNote.noteData].x;
 					strumY = opponentStrums.members[daNote.noteData].y;
 					strumAngle = opponentStrums.members[daNote.noteData].angle;
+					strumDirection = opponentStrums.members[daNote.noteData].direction;
 					strumAlpha = opponentStrums.members[daNote.noteData].alpha;
 					strumHeight = opponentStrums.members[daNote.noteData].height;
+					strumScroll = opponentStrums.members[daNote.noteData].downScroll;
 				}
 
 				strumX += daNote.offsetX;
@@ -2571,18 +2590,27 @@ class PlayState extends MusicBeatState
 				strumAlpha *= daNote.multAlpha;
 				var center:Float = strumY + strumHeight / 2;
 
-				if(daNote.copyX) {
-					daNote.x = strumX;
-				}
+				//if(daNote.copyX) {
+				//	daNote.x = strumX;
+				//}
 				if(daNote.copyAngle) {
 					daNote.angle = strumAngle;
 				}
 				if(daNote.copyAlpha) {
 					daNote.alpha = strumAlpha;
 				}
-				if(daNote.copyY) {	// cock
-					if (ClientPrefs.downScroll) {
-						daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+				if(daNote.copyY) {
+					if (strumScroll) {
+						//daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+						daNote.distance = (0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+						
+					var angleDir = strumDirection * Math.PI / 180;
+					daNote.x = strumX + Math.cos(angleDir) * daNote.distance;
+					daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
+					if (daNote.isSustainNote){
+						daNote.angle = strumDirection-90;
+					}
+					
 						if (daNote.isSustainNote && !ClientPrefs.keSustains) {
 							//Jesus fuck this took me so much mother fucking time AAAAAAAAAA
 							if (daNote.animation.curAnim.name.endsWith('tail')) {
@@ -2611,8 +2639,16 @@ class PlayState extends MusicBeatState
 							}
 						}
 					} else {
-						daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+						//daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
 
+						daNote.distance = (-0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+						
+					var angleDir = strumDirection * Math.PI / 180;
+					daNote.x = strumX + Math.cos(angleDir) * daNote.distance;
+					daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
+					if (daNote.isSustainNote){
+						daNote.angle = strumDirection-90;
+					}
 						if(!ClientPrefs.keSustains)
 						{
 							if(daNote.mustPress || !daNote.ignoreNote)
@@ -2661,8 +2697,8 @@ class PlayState extends MusicBeatState
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * songSpeed));
 
-				var doKill:Bool = daNote.y < -daNote.height;
-				if(ClientPrefs.downScroll) doKill = daNote.y > FlxG.height;
+				var doKill:Bool = Conductor.songPosition > daNote.strumTime + ClientPrefs.badWindow + 30;//daNote.y < -daNote.height;
+				//if(strumScroll) doKill = //daNote.y > FlxG.height;
 
 				if(ClientPrefs.keSustains && daNote.isSustainNote && daNote.wasGoodHit) doKill = true;
 
@@ -2738,7 +2774,11 @@ class PlayState extends MusicBeatState
 		setOnLuas('cameraX', camFollowPos.x);
 		setOnLuas('cameraY', camFollowPos.y);
 		setOnLuas('botPlay', cpuControlled);
+		
 		callOnLuas('onUpdatePost', [elapsed]);
+		for (i in shaderUpdates){
+			i(elapsed);
+		}
 	}
 
 	function openChartEditor()
