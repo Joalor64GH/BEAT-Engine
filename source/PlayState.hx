@@ -3831,6 +3831,50 @@ class PlayState extends MusicBeatState
 						callOnLuas('noteMissPress', [key]);
 						health -= 0.20; //kade is evillll
 					}
+				case 'ZoroForce EK':
+					var hittableNotes = [];
+					var closestNotes = [];
+
+					notes.forEachAlive(function(daNote:Note)
+					{
+						if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate 
+						&& !daNote.wasGoodHit && !daNote.isSustainNote) {
+							closestNotes.push(daNote);
+						}
+					});
+					closestNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
+
+					for(i in closestNotes)
+						if (i.noteData == key)
+							hittableNotes.push(i);
+
+					if (hittableNotes.length != 0)
+					{
+						var daNote = null;
+
+						for (i in hittableNotes) {
+								daNote = i;
+								break;
+							}
+
+						if (daNote == null)
+							return;
+
+						if (hittableNotes.length > 1)
+						{
+							for (shitNote in hittableNotes)
+							{
+								if (shitNote.strumTime == daNote.strumTime)
+									goodNoteHit(shitNote);
+								else if ((!shitNote.isSustainNote && (shitNote.strumTime - daNote.strumTime) < 15))
+									goodNoteHit(shitNote);
+							}
+
+						}
+						goodNoteHit(daNote);
+					}
+					else if (!ClientPrefs.ghostTapping && generatedMusic)
+						noteMissPress(key);
 			}
 
 			var spr:StrumNote = playerStrums.members[key];
@@ -3911,7 +3955,7 @@ class PlayState extends MusicBeatState
 			{
 				// hold note functions
 				switch(ClientPrefs.inputSystem) {
-					case 'Native':
+					case 'Native' | 'ZoroForce EK':
 						if (daNote.isSustainNote && dataKeyIsPressed(daNote.noteData)
 						&& daNote.canBeHit && daNote.mustPress && !daNote.tooLate 
 						&& !daNote.wasGoodHit) {
