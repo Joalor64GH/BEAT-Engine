@@ -367,7 +367,8 @@ class Note extends FlxSprite
 		if (isSustainNote) 
 			scale.y = 1;
 		reloadNote(texture);
-		offsetX = width / 2;
+		if (isSustainNote)
+			offsetX = width / 2;
 		if (!isSustainNote)
 		{
 			var animToPlay:String = '';
