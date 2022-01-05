@@ -2047,7 +2047,7 @@ class PlayState extends MusicBeatState
 	{
 		//funny dissapear transitions
 		//while new strums appear
-		if (isStoryMode)
+		if (!isStoryMode)
 		{
 			for (i in 0...playerStrums.members.length) {
 				var oldStrum:FlxSprite = playerStrums.members[i].clone();

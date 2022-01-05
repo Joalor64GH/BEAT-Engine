@@ -39,7 +39,7 @@ class Note extends FlxSprite
 	public static var maxMania:Int = 9;
 
 	public static var keysShit:Map<Int, Map<String, Dynamic>> = [
-		0 => ["letters" => ["E"], "anims" => ["UP"], "strumAnims" => ["UP"], "pixelAnimIndex" => [4]],
+		0 => ["letters" => ["E"], "anims" => ["UP"], "strumAnims" => ["SPACE"], "pixelAnimIndex" => [4]],
 		1 => ["letters" => ["A", "D"], "anims" => ["LEFT", "RIGHT"], "strumAnims" => ["LEFT", "RIGHT"], "pixelAnimIndex" => [0, 3]],
 		2 => ["letters" => ["A", "E", "D"], "anims" => ["LEFT", "UP", "RIGHT"], "strumAnims" => ["LEFT", "SPACE", "RIGHT"], "pixelAnimIndex" => [0, 4, 3]],
 		3 => ["letters" => ["A", "B", "C", "D"], "anims" => ["LEFT", "DOWN", "UP", "RIGHT"], "strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT"], "pixelAnimIndex" => [0, 1, 2, 3]],
@@ -364,8 +364,10 @@ class Note extends FlxSprite
 
 	public function applyManiaChange()
 	{
-		if (PlayState.isPixelStage) loadPixelNoteAnims();
-		else loadNoteAnims();
+		if (isSustainNote) 
+			scale.y = 1;
+		reloadNote(texture);
+		offsetX = width / 2;
 		if (!isSustainNote)
 		{
 			var animToPlay:String = '';
