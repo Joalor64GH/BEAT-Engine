@@ -44,12 +44,12 @@ class NoteSplash extends FlxSprite
 		colorSwap.saturation = satColor;
 		colorSwap.brightness = brtColor;
 
-		var offsets:Array<Int> = [Note.NoteData.getNoteSplashOffset(PlayState.mania, 0), Note.NoteData.getNoteSplashOffset(PlayState.mania, 1)];
+		var offsets:Array<Int> = [Note.offsets[PlayState.mania][0], Note.offsets[PlayState.mania][1]];
 
 		offset.set(offsets[0], offsets[1]);
 
 		var animNum:Int = FlxG.random.int(1, 2);
-		animation.play('note' + Note.NoteData.getKeyMap(PlayState.mania, note, 0) + '-' + animNum, true);
+		animation.play('note' + Note.keysShit.get(PlayState.mania).get('pixelAnimIndex')[note] + '-' + animNum, true);
 		if(animation.curAnim != null)animation.curAnim.frameRate = 24 + FlxG.random.int(-2, 2);
 	}
 

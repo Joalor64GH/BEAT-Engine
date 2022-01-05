@@ -36,8 +36,8 @@ class StrumNote extends FlxSprite
 		this.noteData = leData;
 		super(x, y);
 
-		var stat:String = Note.NoteData.getAnimation(Note.NoteData.getKeyMap(PlayState.mania, leData, 1), 0);
-		var pres:String = Note.NoteData.getLetter(Note.NoteData.getKeyMap(PlayState.mania, leData, 0));
+		var stat:String = Note.keysShit.get(PlayState.mania).get('strumAnims')[leData];
+		var pres:String = Note.keysShit.get(PlayState.mania).get('letters')[leData];
 		skinThing[0] = stat;
 		skinThing[1] = pres;
 
@@ -75,7 +75,7 @@ class StrumNote extends FlxSprite
 					[18, 19, 20, 21, 22, 23, 24, 25, 26], [18, 19, 20, 21, 22, 31, 23, 24, 25, 26],
 				];
 
-				setGraphicSize(Std.int(width * PlayState.daPixelZoom * Note.NoteData.getPixelSize(PlayState.mania)));
+				setGraphicSize(Std.int(width * PlayState.daPixelZoom * Note.pixelScales[PlayState.mania]));
 				updateHitbox();
 				antialiasing = false;
 				animation.add('static', [COCKFRAMES_STATIC[PlayState.mania][noteData]]);
@@ -88,7 +88,7 @@ class StrumNote extends FlxSprite
 
 				antialiasing = ClientPrefs.globalAntialiasing;
 
-				setGraphicSize(Std.int(width * Note.NoteData.getScale(PlayState.mania)));
+				setGraphicSize(Std.int(width * Note.scales[PlayState.mania]));
 		
 				animation.addByPrefix('static', 'arrow' + skinThing[0]);
 				animation.addByPrefix('pressed', skinThing[1] + ' press', 24, false);
@@ -107,27 +107,17 @@ class StrumNote extends FlxSprite
 		playAnim('static');
 		switch (PlayState.mania)
 		{
-			case 0 | 1 | 2:
-				x += width * noteData;
-			case 3:
-				x += (Note.swagWidth * noteData);
-			default:
-				x += ((width - Note.NoteData.getLessXStrumNote(PlayState.mania)) * noteData);
+			case 0 | 1 | 2: x += width * noteData;
+			case 3: x += (Note.swagWidth * noteData);
+			default: x += ((width - Note.lessX[PlayState.mania]) * noteData);
 		}
 
-		x += Note.NoteData.getXtraX(PlayState.mania);
+		x += Note.xtra[PlayState.mania];
 	
-		//trace((width * Note.NoteData.getScale(PlayState.SONG.mania)) * noteData);
 		x += 50;
 		x += ((FlxG.width / 2) * player);
 		ID = noteData;
-		
-		//trace(width);
-	
-		x -= Note.NoteData.getRestPosition(PlayState.mania);
-	
-		//if (PlayState.mania == 8 || PlayState.mania == 7 || PlayState.mania == 6)
-		//	x -= 25;
+		x -= Note.posRest[mania];
 	}
 
 	override function update(elapsed:Float) {
@@ -156,9 +146,9 @@ class StrumNote extends FlxSprite
 			colorSwap.saturation = 0;
 			colorSwap.brightness = 0;
 		} else {
-			colorSwap.hue = ClientPrefs.arrowHSV[Note.NoteData.getKeyMap(PlayState.mania, noteData, 0) % Note.NoteData.getAmmo(PlayState.mania)][0] / 360;
-			colorSwap.saturation = ClientPrefs.arrowHSV[Note.NoteData.getKeyMap(PlayState.mania, noteData, 0) % Note.NoteData.getAmmo(PlayState.mania)][1] / 100;
-			colorSwap.brightness = ClientPrefs.arrowHSV[Note.NoteData.getKeyMap(PlayState.mania, noteData, 0) % Note.NoteData.getAmmo(PlayState.mania)][2] / 100;
+			colorSwap.hue = ClientPrefs.arrowHSV[Std.int(Note.keysShit.get(mania).get('pixelAnimIndex')[noteData] % Note.ammo[mania])][0] / 360;
+			colorSwap.saturation = ClientPrefs.arrowHSV[Std.int(Note.keysShit.get(mania).get('pixelAnimIndex')[noteData] % Note.ammo[mania])][1] / 100;
+			colorSwap.brightness = ClientPrefs.arrowHSV[Std.int(Note.keysShit.get(mania).get('pixelAnimIndex')[noteData] % Note.ammo[mania])][2] / 100;
 
 			if(animation.curAnim.name == 'confirm' && !PlayState.isPixelStage) {
 				centerOrigin();

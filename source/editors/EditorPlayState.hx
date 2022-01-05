@@ -212,11 +212,11 @@ class EditorPlayState extends MusicBeatState
 				if(songNotes[1] > -1) { //Real notes
 					var daStrumTime:Float = songNotes[0];
 					if(daStrumTime >= startPos) {
-						var daNoteData:Int = Std.int(songNotes[1] % Note.NoteData.getAmmo(songMania));
+						var daNoteData:Int = Std.int(songNotes[1] % Note.ammo[songMania]);
 
 						var gottaHitNote:Bool = section.mustHitSection;
 
-						if (songNotes[1] > (Note.NoteData.getAmmo(songMania) - 1))
+						if (songNotes[1] > (Note.ammo[songMania] - 1))
 						{
 							gottaHitNote = !section.mustHitSection;
 						}
@@ -394,7 +394,7 @@ class EditorPlayState extends MusicBeatState
 								daNote.y -= 19;
 							}
 							daNote.y += (strumHeight / 2) - (60.5 * (roundedSpeed - 1));
-							daNote.y += (27.5 * ((PlayState.SONG.bpm / 100) - 1) * (roundedSpeed - 1)) * Note.NoteData.getScale(songMania);
+							daNote.y += (27.5 * ((PlayState.SONG.bpm / 100) - 1) * (roundedSpeed - 1)) * Note.scales[songMania];
 
 							if(daNote.mustPress || !daNote.ignoreNote)
 							{
@@ -919,7 +919,7 @@ class EditorPlayState extends MusicBeatState
 
 	private function generateStaticArrows(player:Int):Void
 	{
-		for (i in 0...Note.NoteData.getAmmo(songMania))
+		for (i in 0...Note.ammo[songMania])
 		{
 			// FlxG.log.add(i);
 			var targetAlpha:Float = 1;
@@ -980,9 +980,9 @@ class EditorPlayState extends MusicBeatState
 		var skin:String = 'noteSplashes';
 		if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) skin = PlayState.SONG.splashSkin;
 		
-		var hue:Float = ClientPrefs.arrowHSV[Note.NoteData.getKeyMap(songMania, data, 0) % Note.NoteData.getAmmo(songMania)][0] / 360;
-		var sat:Float = ClientPrefs.arrowHSV[Note.NoteData.getKeyMap(songMania, data, 0) % Note.NoteData.getAmmo(songMania)][1] / 100;
-		var brt:Float = ClientPrefs.arrowHSV[Note.NoteData.getKeyMap(songMania, data, 0) % Note.NoteData.getAmmo(songMania)][2] / 100;
+		var hue:Float = ClientPrefs.arrowHSV[Std.int(Note.keysShit.get(songMania).get('pixelAnimIndex')[data] % Note.ammo[songMania])][0] / 360;
+		var sat:Float = ClientPrefs.arrowHSV[Std.int(Note.keysShit.get(songMania).get('pixelAnimIndex')[data] % Note.ammo[songMania])][1] / 100;
+		var brt:Float = ClientPrefs.arrowHSV[Std.int(Note.keysShit.get(songMania).get('pixelAnimIndex')[data] % Note.ammo[songMania])][2] / 100;
 		if(note != null) {
 			skin = note.noteSplashTexture;
 			hue = note.noteSplashHue;

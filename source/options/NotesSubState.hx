@@ -72,7 +72,7 @@ class NotesSubState extends MusicBeatSubstate
 
 			var note:FlxSprite = new FlxSprite(posX, yPos);
 			note.frames = Paths.getSparrowAtlas('NOTE_assets');
-			var animation:String = Note.NoteData.getLetter(i) + '0';
+			var animation:String = Note.keysShit.get(Note.maxMania).get('letters')[i] + '0';
 			note.animation.addByPrefix('idle', animation);
 			note.animation.play('idle');
 			note.antialiasing = ClientPrefs.globalAntialiasing;
