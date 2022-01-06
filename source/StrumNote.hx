@@ -61,26 +61,15 @@ class StrumNote extends FlxSprite
 				height = height / 5;
 				antialiasing = false;
 				loadGraphic(Paths.image('pixelUI/' + texture), true, Math.floor(width), Math.floor(height));
-				var COCKFRAMES_STATIC:Array<Dynamic> = [	//cock
-					[4], [0, 3], [0, 4, 3], [0, 1, 2, 3],
-					[0, 1, 4, 2, 3], [0, 2, 3, 5, 1, 8], [0, 2, 3, 4, 5, 1, 8],
-					[0, 1, 2, 3, 5, 6, 7, 8], [0, 1, 2, 3, 4, 5, 6, 7, 8],
-					[0, 1, 2, 3, 4, 9, 5, 6, 7, 8]
-				];
-
-				var COCKFRAMES_PRESS_FRAMES:Array<Dynamic> = [	//its confusing
-					[22], [18, 21], [18, 22, 21], [18, 19, 20, 21],
-					[18, 19, 22, 20, 21], [18, 20, 21, 23, 19, 26],
-					[18, 20, 21, 22, 23, 19, 26], [18, 19, 20, 21, 23, 24, 25, 26],
-					[18, 19, 20, 21, 22, 23, 24, 25, 26], [18, 19, 20, 21, 22, 31, 23, 24, 25, 26],
-				];
+				var daFrames:Array<Int> = Note.keysShit.get(PlayState.mania).get('pixelAnimIndex');
 
 				setGraphicSize(Std.int(width * PlayState.daPixelZoom * Note.pixelScales[PlayState.mania]));
 				updateHitbox();
 				antialiasing = false;
-				animation.add('static', [COCKFRAMES_STATIC[PlayState.mania][noteData]]);
-				animation.add('pressed', [Std.int(COCKFRAMES_PRESS_FRAMES[PlayState.mania][noteData]), Std.int((COCKFRAMES_PRESS_FRAMES[PlayState.mania][noteData] + 18))], 12, false);
-				animation.add('confirm', [Std.int((COCKFRAMES_PRESS_FRAMES[PlayState.mania][noteData] + 36)), Std.int((COCKFRAMES_PRESS_FRAMES[PlayState.mania][noteData] + 54))], 24, false);
+				animation.add('static', [daFrames[noteData]]);
+				animation.add('pressed', [daFrames[noteData] + 18, daFrames[noteData] + 36], 12, false);
+				animation.add('confirm', [daFrames[noteData] + 54, daFrames[noteData] + 72], 24, false);
+				//i used calculator
 			}
 		else
 			{

@@ -33,10 +33,13 @@ class Note extends FlxSprite
 		[10, 10],
 		[10, 10],
 		[10, 20],
+		[10, 10],
 		[10, 10]
 	];
 
-	public static var maxMania:Int = 9;
+	public static var minMania:Int = 0;
+	public static var maxMania:Int = 10;
+	public static var defaultMania:Int = 3;
 
 	public static var keysShit:Map<Int, Map<String, Dynamic>> = [
 		0 => ["letters" => ["E"], "anims" => ["UP"], "strumAnims" => ["SPACE"], "pixelAnimIndex" => [4]],
@@ -60,14 +63,17 @@ class Note extends FlxSprite
 			 "strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT", "SPACE", "LEFT", "DOWN", "UP", "RIGHT"], "pixelAnimIndex" => [0, 1, 2, 3, 4, 5, 6, 7, 8]],
 
 		9 => ["letters" => ["A", "B", "C", "D", "E", "N", "F", "G", "H", "I"], "anims" => ["LEFT", "DOWN", "UP", "RIGHT", "UP", "UP", "LEFT", "DOWN", "UP", "RIGHT"],
-			 "strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT", "SPACE", "CIRCLE", "LEFT", "DOWN", "UP", "RIGHT"], "pixelAnimIndex" => [0, 1, 2, 3, 4, 13, 5, 6, 7, 8]]
+			 "strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT", "SPACE", "CIRCLE", "LEFT", "DOWN", "UP", "RIGHT"], "pixelAnimIndex" => [0, 1, 2, 3, 4, 13, 5, 6, 7, 8]],
+
+		10=> ["letters" => ["A", "B", "C", "D", "J", "N", "M", "F", "G", "H", "I"], "anims" => ["LEFT", "DOWN", "UP", "RIGHT", "LEFT", "UP", "RIGHT", "LEFT", "DOWN", "UP", "RIGHT"],
+			 "strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT", "CIRCLE", "CIRCLE", "CIRCLE", "LEFT", "DOWN", "UP", "RIGHT"], "pixelAnimIndex" => [0, 1, 2, 3, 9, 13, 12, 5, 6, 7, 8]]
 	];
 
 	public static var ammo:Array<Int> = [
-		1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+		1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 	];
 
-	public static var pixelScales:Array<Float> = [1.2, 1.15, 1.1, 1, 0.9, 0.83, 0.8, 0.74, 0.7, 0.6];
+	public static var pixelScales:Array<Float> = [1.2, 1.15, 1.1, 1, 0.9, 0.83, 0.8, 0.74, 0.7, 0.6, 0.5];
 
 	public var strumTime:Float = 0;
 

@@ -218,7 +218,7 @@ class ChartingState extends MusicBeatState
 				speed: 1,
 				stage: 'stage',
 				validScore: false,
-				mania: 3
+				mania: Note.defaultMania
 			};
 			addSection();
 			PlayState.SONG = _song;
@@ -582,7 +582,7 @@ class ChartingState extends MusicBeatState
 		noteSkinInputText = new FlxUIInputText(player2DropDown.x, player2DropDown.y + 50, 150, skin, 8);
 		blockPressWhileTypingOn.push(noteSkinInputText);
 
-		var stepperMania:FlxUINumericStepper = new FlxUINumericStepper(100, stepperSpeed.y, 1, 3, 0, 9, 1);
+		var stepperMania:FlxUINumericStepper = new FlxUINumericStepper(100, stepperSpeed.y, 1, 3, Note.minMania, Note.maxMania, 1);
 		stepperMania.value = _song.mania;
 		stepperMania.name = 'mania';
 		blockPressWhileTypingOnStepper.push(stepperMania);

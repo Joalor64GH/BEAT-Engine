@@ -9,7 +9,7 @@ class NoteSplash extends FlxSprite
 	private var idleAnim:String;
 	private var textureLoaded:String = null;
 
-	var sc:Array<Float> = [1.3, 1.2, 1.1, 1, 1, 0.9, 0.8, 0.7, 0.6, 0.5];
+	var sc:Array<Float> = [1.3, 1.2, 1.1, 1, 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
 
 	public function new(x:Float = 0, y:Float = 0, ?note:Int = 0) {
 		super(x, y);

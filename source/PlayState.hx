@@ -331,8 +331,8 @@ class PlayState extends MusicBeatState
 		persistentDraw = true;
 
 		mania = SONG.mania;
-		if (mania < 0 || mania > 9)
-			mania = 0;
+		if (mania < Note.minMania || mania > Note.maxMania)
+			mania = Note.defaultMania;
 
 		if (SONG == null)
 			SONG = Song.loadFromJson('tutorial');
