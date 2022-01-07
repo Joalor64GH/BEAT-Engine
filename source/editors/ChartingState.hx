@@ -1697,7 +1697,8 @@ class ChartingState extends MusicBeatState
 				[false],	//If you have an idea for these pls make a pr.
 				[false],
 				[false],
-				[false]		//SOY ESTUPIDO AJAJJAJA
+				[false],		//SOY ESTUPIDO AJAJJAJA
+				[false] //soy stupido (x2)
 			];
 
 			if(controlArray[_song.mania].contains(true))
@@ -1799,7 +1800,8 @@ class ChartingState extends MusicBeatState
 						[false],
 						[false],
 						[false],
-						[false]		// xd - mi amigo
+						[false],//g
+						[false]
 					];
 
 					if(controlArray[_song.mania].contains(true))
