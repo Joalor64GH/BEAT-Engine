@@ -60,6 +60,9 @@ class ClientPrefs {
 	public static var badWindow:Int = 135;
 	public static var safeFrames:Float = 10;
 
+	//Added by Beat Engine
+	public static var showWatermarks:Bool = false;
+
 	//Every key has two binds, add your key bind down here and then add your control on options/ControlsSubState.hx and Controls.hx
 	public static var keyBinds:Map<String, Array<FlxKey>> = [
 		//Key Bind, Name for ControlsSubState
@@ -203,6 +206,8 @@ class ClientPrefs {
 		FlxG.save.data.inputSystem = inputSystem;
 		FlxG.save.data.controllerMode = controllerMode;
 		FlxG.save.data.screenRes = screenRes;
+		//Added by Beat Engine
+		FlxG.save.data.showWatermarks = showWatermarks;
 	
 		FlxG.save.flush();
 
@@ -316,6 +321,11 @@ class ClientPrefs {
 			{
 				gameplaySettings.set(name, value);
 			}
+		}
+
+		//Added by Beat Engine
+		if(FlxG.save.data.showWatermarks != null) {
+			showWatermarks = FlxG.save.data.showWatermarks;
 		}
 		
 		// flixel automatically saves your volume!

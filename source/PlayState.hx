@@ -245,6 +245,8 @@ class PlayState extends MusicBeatState
 
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
+	var beWatermark:FlxText;
+	var peWatermark:FlxText;
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
@@ -1232,6 +1234,22 @@ class PlayState extends MusicBeatState
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
+
+		//Watermarks at the upper left corner, this is for BEAT! Engine
+		beWatermark = new FlxText(0, FlxG.height - 44, 0, "BEAT! Engine: v" + MainMenuState.beatEngineVersion, 16);
+		beWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		beWatermark.scrollFactor.set();
+		if(ClientPrefs.showWatermarks == false)
+		beWatermark = new FlxText(0, FlxG.height - 44, 0, "");
+		add(beWatermark);
+
+		//And this is for Psych Engine
+		peWatermark = new FlxText(0, FlxG.height - 24, 0, "Psych Engine: v" + MainMenuState.psychEngineVersion, 16);
+		peWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		peWatermark.scrollFactor.set();
+		if(ClientPrefs.showWatermarks == false)
+		peWatermark = new FlxText(0, FlxG.height - 24, 0, "");
+		add(peWatermark);
 
 		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
