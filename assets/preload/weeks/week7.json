@@ -1,0 +1,22 @@
+{
+	"songs": [
+		["Ugh", "tankman", [255, 120, 191]],
+		["Guns", "tankman", [255, 120, 191]],
+		["Stress", "tankman", [255, 120, 191]]
+	],
+
+	"weekCharacters": [
+		"Tankman Menu BLACK",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "tank",
+
+	"storyName": "Tankman",
+	"weekBefore": "week6",
+	"weekName": "week 7",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}
