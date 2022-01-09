@@ -61,7 +61,7 @@ class ClientPrefs {
 	public static var safeFrames:Float = 10;
 
 	//Added by Beat Engine
-	public static var showWatermarks:Bool = false;
+	public static var showWatermarks:Bool = true;
 
 	//Every key has two binds, add your key bind down here and then add your control on options/ControlsSubState.hx and Controls.hx
 	public static var keyBinds:Map<String, Array<FlxKey>> = [
