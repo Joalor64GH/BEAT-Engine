@@ -62,10 +62,6 @@ class MainMenuState extends MusicBeatState
 
 	var logoBl:FlxSprite;
 
-	var sus:FlxSprite;
-
-	var purpleshadow:FlxSprite;
-
 	var noname:Bool = false;
 
 	override function create()
@@ -181,13 +177,6 @@ class MainMenuState extends MusicBeatState
 		versionShit.screenCenter(X);
 		add(versionShit);
 
-		sus = new FlxSprite().loadGraphic(Paths.image('Menusus'));
-		sus.scrollFactor.set();
-		sus.updateHitbox();
-		sus.screenCenter();
-		sus.antialiasing = ClientPrefs.globalAntialiasing;
-		add(sus);
-
 		icon = new HealthIcon('bf');
 		icon.setGraphicSize(Std.int(icon.width * 2));
 		icon.x = 80;
@@ -269,7 +258,6 @@ class MainMenuState extends MusicBeatState
 				FlxTween.tween(bg, {alpha: 0}, 0.8, {ease: FlxEase.expoIn});
 				FlxTween.tween(bgdiferent, {alpha: 0}, 0.8, {ease: FlxEase.expoIn});
 				FlxTween.tween(logoBl, {alpha: 0, x: logoBl.x - 100, y: logoBl.y - 100}, 0.5, {ease: FlxEase.quadOut});
-				FlxTween.tween(sus, {x: -20, y: 20}, 0.5, {ease: FlxEase.quadOut});
 				FlxTween.tween(icon, {x: icon.x - 20, y: icon.y + 20}, 0.5, {ease: FlxEase.quadOut});
 			}
 
@@ -290,8 +278,6 @@ class MainMenuState extends MusicBeatState
 					FlxTween.tween(bg, {alpha: 0}, 0.8, {ease: FlxEase.expoIn});
 					FlxTween.tween(bgdiferent, {alpha: 0}, 0.8, {ease: FlxEase.expoIn});
 					FlxTween.tween(logoBl, {alpha: 0, x: logoBl.x - 20, y: logoBl.y - 20}, 0.8, {ease: FlxEase.quadOut});
-					FlxTween.tween(purpleshadow, {x: 0, alpha: 1}, 0.8, {ease: FlxEase.quadOut});
-					FlxTween.tween(sus, {x: -10, y: 10}, 0.8, {ease: FlxEase.quadOut});
 					FlxTween.tween(icon, {x: icon.x - 10, y: icon.y + 10}, 0.8, {ease: FlxEase.quadOut});
 
 					menuItems.forEach(function(spr:FlxSprite)
