@@ -321,6 +321,7 @@ class PlayState extends MusicBeatState
 	override public function create()
 	{
 		Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
 
 		// for lua
 		instance = this;
@@ -1236,13 +1237,11 @@ class PlayState extends MusicBeatState
 		iconP1.y = healthBar.y - 75;
 		iconP1.visible = !ClientPrefs.hideHud;
 		iconP1.alpha = ClientPrefs.healthBarAlpha;
-		add(iconP1);
 
 		iconP2 = new HealthIcon(dad.healthIcon, false);
 		iconP2.y = healthBar.y - 75;
 		iconP2.visible = !ClientPrefs.hideHud;
 		iconP2.alpha = ClientPrefs.healthBarAlpha;
-		add(iconP2);
 		reloadHealthBarColors();
 
 		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
@@ -1251,6 +1250,8 @@ class PlayState extends MusicBeatState
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
+		add(iconP1);
+		add(iconP2);
 
 		// Watermarks at the upper left corner, this is for BEAT! Engine
 		beWatermark = new FlxText(0, FlxG.height - 44, 0, "BEAT! Engine: v" + MainMenuState.beatEngineVersion, 16);
@@ -2632,13 +2633,13 @@ class PlayState extends MusicBeatState
 		if (cpuControlled && !alreadyChanged)
 		{
 			botplayTxt.color = FlxColor.RED;
-			scoreTxt.color = FlxColor.RED;
+			scoreTxt.visible = false;
 			alreadyChanged = true;
 		}
 		else if (!cpuControlled && alreadyChanged)
 		{
 			botplayTxt.color = FlxColor.WHITE;
-			scoreTxt.color = FlxColor.WHITE;
+			scoreTxt.visible = true;
 			switch (FlxG.random.int(1, 4))
 			{
 				case 1:
@@ -2812,14 +2813,14 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		if (ratingName == '?')
-		{
-			scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Rating: ' + ratingName;
-		}
+			scoreTxt.text = 'Score: ' + songScore + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' [' + 'Unrated' + ']'
+				+ ' // Combo Breaks: ' + songMisses + ' // Rank: ?';
 		else
-		{
-			scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Rating: ' + ratingName + ' ('
-				+ Highscore.floorDecimal(ratingPercent * 100, 2) + '%)' + ' - ' + ratingFC; // peeps wanted no integer rating
-		}
+			scoreTxt.text = 'Score: ' + songScore + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' [' + ratingFC + ']'
+				+ ' // Combo Breaks: ' + songMisses + ' // Rank: ' + ratingName;
+		if (songMisses > 1)
+			scoreTxt.text = 'Score: ' + songScore + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' // Combo Breaks: ' + songMisses
+				+ ' // Rank: ' + ratingName;
 
 		if (botplayTxt.visible)
 		{

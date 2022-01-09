@@ -1,6 +1,5 @@
 package;
 
-import hscript.Checker;
 import flixel.util.FlxTimer;
 import flixel.util.FlxGradient;
 #if desktop
@@ -11,15 +10,12 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxCamera;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.effects.FlxFlicker;
-import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.math.FlxMath;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
-import lime.app.Application;
 import Achievements;
 import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
@@ -106,7 +102,7 @@ class MainMenuState extends MusicBeatState
 		add(camFollow);
 		add(camFollowPos);
 
-		bgdiferent = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
+		bgdiferent = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
 		bgdiferent.scrollFactor.set(0, yScroll);
 		bgdiferent.setGraphicSize(Std.int(bg.width * 1.175));
 		bgdiferent.updateHitbox();
@@ -116,13 +112,16 @@ class MainMenuState extends MusicBeatState
 		bgdiferent.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bgdiferent);
 
-		gradientBar = FlxGradient.createGradientFlxSprite(Math.round(FlxG.width), 512, [0x00ff0000, 0x55AE59E4, 0xAA19ECFF], 1, 90, true);
-		gradientBar.y = FlxG.height - gradientBar.height;
-		add(gradientBar);
-		gradientBar.scrollFactor.set(0, 0);
+		if (!ClientPrefs.lowQuality)
+		{
+			gradientBar = FlxGradient.createGradientFlxSprite(Math.round(FlxG.width), 512, [0x00ff0000, 0x55AE59E4, 0xAA19ECFF], 1, 90, true);
+			gradientBar.y = FlxG.height - gradientBar.height;
+			add(gradientBar);
+			gradientBar.scrollFactor.set(0, 0);
 
-		add(checker);
-		checker.scrollFactor.set(0, 0.07);
+			add(checker);
+			checker.scrollFactor.set(0, 0.07);
+		}
 
 		// magenta.scrollFactor.set();
 
@@ -163,21 +162,25 @@ class MainMenuState extends MusicBeatState
 			menuItem.updateHitbox();
 		}
 
-		logoBl = new FlxSprite(-100, -100);
+		if (!ClientPrefs.lowQuality)
+		{
+			logoBl = new FlxSprite(-100, -100);
 
-		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
-		logoBl.scrollFactor.set();
-		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
-		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
-		logoBl.setGraphicSize(Std.int(logoBl.width * 0.4));
-		logoBl.animation.play('bump');
-		logoBl.alpha = 0;
-		logoBl.angle = -4;
-		logoBl.updateHitbox();
-		add(logoBl);
-		FlxTween.tween(logoBl, {y: logoBl.y + 100, x: logoBl.x + 100, alpha: 1}, 1.4, {ease: FlxEase.expoInOut});
+			logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
+			logoBl.scrollFactor.set();
+			logoBl.antialiasing = ClientPrefs.globalAntialiasing;
+			logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
+			logoBl.setGraphicSize(Std.int(logoBl.width * 0.4));
+			logoBl.animation.play('bump');
+			logoBl.alpha = 0;
+			logoBl.angle = -4;
+			logoBl.updateHitbox();
+			add(logoBl);
+			FlxTween.tween(logoBl, {y: logoBl.y + 100, x: logoBl.x + 100, alpha: 1}, 1.4, {ease: FlxEase.expoInOut});
+		}
 
-		FlxG.camera.follow(camFollowPos, null, 1);
+		if (!ClientPrefs.lowQuality)
+			FlxG.camera.follow(camFollowPos, null, 1);
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "BEAT! Engine v" + beatEngineVersion, 12);
 		versionShit.scrollFactor.set();
@@ -195,51 +198,54 @@ class MainMenuState extends MusicBeatState
 		versionShitFriday.screenCenter(X);
 		add(versionShitFriday);
 
-		iconBG = new FlxSprite().loadGraphic(Paths.image('iconshitlol'));
-		iconBG.scrollFactor.set();
-		iconBG.updateHitbox();
-		iconBG.screenCenter();
-		iconBG.antialiasing = ClientPrefs.globalAntialiasing;
-		add(iconBG);
-
-		switch (FlxG.random.int(1, 5))
+		if (!ClientPrefs.lowQuality)
 		{
-			case 1:
-				icon = new HealthIcon('bf');
-				icon.setGraphicSize(Std.int(icon.width * 2));
-				iconBG.color = FlxColor.CYAN;
-			case 2:
-				icon = new HealthIcon('gf');
-				icon.setGraphicSize(Std.int(icon.width * 2));
-				iconBG.color = FlxColor.RED;
-			case 3:
-				icon = new HealthIcon('dad');
-				icon.setGraphicSize(Std.int(icon.width * 1.7));
-				iconBG.color = FlxColor.PURPLE;
-			case 4:
-				icon = new HealthIcon('mom');
-				icon.setGraphicSize(Std.int(icon.width * 1.8));
-				iconBG.color = FlxColor.PURPLE;
-			case 5:
-				icon = new HealthIcon('spooky');
-				icon.setGraphicSize(Std.int(icon.width * 2));
-				switch (FlxG.random.int(1, 2))
-				{
-					case 1:
-						iconBG.color = FlxColor.ORANGE;
-					case 2:
-						iconBG.color = FlxColor.WHITE;
-				}
-		} // YES, I WILL PUT THE HAXE COLORS INSTEAD THE NORMAL ONES
+			iconBG = new FlxSprite().loadGraphic(Paths.image('iconshitlol'));
+			iconBG.scrollFactor.set();
+			iconBG.updateHitbox();
+			iconBG.screenCenter();
+			iconBG.antialiasing = ClientPrefs.globalAntialiasing;
+			add(iconBG);
 
-		// icon = new HealthIcon('bf');
-		// icon.setGraphicSize(Std.int(icon.width * 2));
-		icon.antialiasing = ClientPrefs.globalAntialiasing;
-		icon.x = 80;
-		icon.y = 550;
-		icon.scrollFactor.set();
-		icon.updateHitbox();
-		add(icon);
+			switch (FlxG.random.int(1, 5))
+			{
+				case 1:
+					icon = new HealthIcon('bf');
+					icon.setGraphicSize(Std.int(icon.width * 2));
+					iconBG.color = FlxColor.CYAN;
+				case 2:
+					icon = new HealthIcon('gf');
+					icon.setGraphicSize(Std.int(icon.width * 2));
+					iconBG.color = FlxColor.RED;
+				case 3:
+					icon = new HealthIcon('dad');
+					icon.setGraphicSize(Std.int(icon.width * 1.7));
+					iconBG.color = FlxColor.PURPLE;
+				case 4:
+					icon = new HealthIcon('mom');
+					icon.setGraphicSize(Std.int(icon.width * 1.8));
+					iconBG.color = FlxColor.PURPLE;
+				case 5:
+					icon = new HealthIcon('spooky');
+					icon.setGraphicSize(Std.int(icon.width * 2));
+					switch (FlxG.random.int(1, 2))
+					{
+						case 1:
+							iconBG.color = FlxColor.ORANGE;
+						case 2:
+							iconBG.color = FlxColor.WHITE;
+					}
+			} // YES, I WILL PUT THE HAXE COLORS INSTEAD THE NORMAL ONES
+
+			// icon = new HealthIcon('bf');
+			// icon.setGraphicSize(Std.int(icon.width * 2));
+			icon.antialiasing = ClientPrefs.globalAntialiasing;
+			icon.x = 80;
+			icon.y = 550;
+			icon.scrollFactor.set();
+			icon.updateHitbox();
+			add(icon);
+		}
 
 		// NG.core.calls.event.logEvent('swag').send();
 
@@ -313,8 +319,11 @@ class MainMenuState extends MusicBeatState
 				FlxTween.tween(bgdiferent, {angle: 45}, 0.8, {ease: FlxEase.expoIn});
 				FlxTween.tween(bg, {alpha: 0}, 0.8, {ease: FlxEase.expoIn});
 				FlxTween.tween(bgdiferent, {alpha: 0}, 0.8, {ease: FlxEase.expoIn});
-				FlxTween.tween(logoBl, {alpha: 0, x: logoBl.x - 100, y: logoBl.y - 100}, 0.5, {ease: FlxEase.quadOut});
-				FlxTween.tween(icon, {x: icon.x - 20, y: icon.y + 20}, 0.5, {ease: FlxEase.quadOut});
+				if (!ClientPrefs.lowQuality)
+				{
+					FlxTween.tween(logoBl, {alpha: 0, x: logoBl.x - 100, y: logoBl.y - 100}, 0.5, {ease: FlxEase.quadOut});
+					FlxTween.tween(icon, {x: icon.x - 20, y: icon.y + 20}, 0.5, {ease: FlxEase.quadOut});
+				}
 			}
 
 			if (controls.ACCEPT)
@@ -331,9 +340,12 @@ class MainMenuState extends MusicBeatState
 					FlxTween.tween(FlxG.camera, {zoom: 5}, 0.8, {ease: FlxEase.expoIn});
 					FlxTween.tween(bg, {angle: 45}, 0.8, {ease: FlxEase.expoIn});
 					FlxTween.tween(bgdiferent, {angle: 45}, 0.8, {ease: FlxEase.expoIn});
-					FlxTween.tween(checker, {angle: 45}, 0.8, {ease: FlxEase.expoIn});
-					FlxTween.tween(logoBl, {alpha: 0, x: logoBl.x - 20, y: logoBl.y - 20}, 0.8, {ease: FlxEase.quadOut});
-					FlxTween.tween(icon, {x: icon.x - 10, y: icon.y + 10}, 0.8, {ease: FlxEase.quadOut});
+					if (!ClientPrefs.lowQuality)
+					{
+						FlxTween.tween(checker, {angle: 45}, 0.8, {ease: FlxEase.expoIn});
+						FlxTween.tween(logoBl, {alpha: 0, x: logoBl.x - 20, y: logoBl.y - 20}, 0.8, {ease: FlxEase.quadOut});
+						FlxTween.tween(icon, {x: icon.x - 10, y: icon.y + 10}, 0.8, {ease: FlxEase.quadOut});
+					}
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)
 					{
 						hideit(0.6);
@@ -383,13 +395,16 @@ class MainMenuState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 
-		new FlxTimer().start(0.01, function(tmr:FlxTimer)
+		if (!ClientPrefs.lowQuality)
 		{
-			if (logoBl.angle == -4)
-				FlxTween.angle(logoBl, logoBl.angle, 4, 4, {ease: FlxEase.quartInOut});
-			if (logoBl.angle == 4)
-				FlxTween.angle(logoBl, logoBl.angle, -4, 4, {ease: FlxEase.quartInOut});
-		}, 0);
+			new FlxTimer().start(0.01, function(tmr:FlxTimer)
+			{
+				if (logoBl.angle == -4)
+					FlxTween.angle(logoBl, logoBl.angle, 4, 4, {ease: FlxEase.quartInOut});
+				if (logoBl.angle == 4)
+					FlxTween.angle(logoBl, logoBl.angle, -4, 4, {ease: FlxEase.quartInOut});
+			}, 0);
+		}
 
 		if (!selectedSomethin)
 		{
@@ -432,8 +447,11 @@ class MainMenuState extends MusicBeatState
 		});
 		FlxTween.tween(bg, {alpha: 0}, time, {ease: FlxEase.expoIn});
 		FlxTween.tween(bgdiferent, {alpha: 0}, time, {ease: FlxEase.expoIn});
-		FlxTween.tween(checker, {alpha: 0}, time, {ease: FlxEase.expoIn});
-		FlxTween.tween(gradientBar, {alpha: 0}, time, {ease: FlxEase.expoIn});
+		if (!ClientPrefs.lowQuality)
+		{
+			FlxTween.tween(checker, {alpha: 0}, time, {ease: FlxEase.expoIn});
+			FlxTween.tween(gradientBar, {alpha: 0}, time, {ease: FlxEase.expoIn});
+		}
 	}
 
 	function changeItem(huh:Int = 0)
