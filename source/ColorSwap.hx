@@ -3,25 +3,29 @@ package;
 import flixel.FlxG;
 import flixel.system.FlxAssets.FlxShader;
 
-class ColorSwap {
+class ColorSwap
+{
 	public var shader(default, null):ColorSwapShader = new ColorSwapShader();
 	public var hue(default, set):Float = 0;
 	public var saturation(default, set):Float = 0;
 	public var brightness(default, set):Float = 0;
 
-	private function set_hue(value:Float) {
+	private function set_hue(value:Float)
+	{
 		hue = value;
 		shader.uTime.value[0] = hue;
 		return hue;
 	}
 
-	private function set_saturation(value:Float) {
+	private function set_saturation(value:Float)
+	{
 		saturation = value;
 		shader.uTime.value[1] = saturation;
 		return saturation;
 	}
 
-	private function set_brightness(value:Float) {
+	private function set_brightness(value:Float)
+	{
 		brightness = value;
 		shader.uTime.value[2] = brightness;
 		return brightness;
@@ -34,7 +38,8 @@ class ColorSwap {
 	}
 }
 
-class ColorSwapShader extends FlxShader {
+class ColorSwapShader extends FlxShader
+{
 	@:glFragmentSource('
 		varying float openfl_Alphav;
 		varying vec4 openfl_ColorMultiplierv;
@@ -160,9 +165,9 @@ class ColorSwapShader extends FlxShader {
 			else
 			{
 				float a = flixel_texture2D(bitmap, vec2(openfl_TextureCoordv + offset, openfl_TextureCoordv.y)).a +
-						  flixel_texture2D(bitmap, vec2(openfl_TextureCoordv, openfl_TextureCoordv.y - offset)).a +
-						  flixel_texture2D(bitmap, vec2(openfl_TextureCoordv - offset, openfl_TextureCoordv.y)).a +
-						  flixel_texture2D(bitmap, vec2(openfl_TextureCoordv, openfl_TextureCoordv.y + offset)).a;
+						flixel_texture2D(bitmap, vec2(openfl_TextureCoordv, openfl_TextureCoordv.y - offset)).a +
+						flixel_texture2D(bitmap, vec2(openfl_TextureCoordv - offset, openfl_TextureCoordv.y)).a +
+						flixel_texture2D(bitmap, vec2(openfl_TextureCoordv, openfl_TextureCoordv.y + offset)).a;
 				if (color.a < 1.0 && a > 0.0)
 					gl_FragColor = vec4(0.0, 0.0, 0.0, 0.8);
 				else
@@ -209,7 +214,6 @@ class ColorSwapShader extends FlxShader {
 				openfl_ColorMultiplierv = colorMultiplier;
 			}
 		}')
-
 	public function new()
 	{
 		super();

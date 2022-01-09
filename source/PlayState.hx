@@ -344,6 +344,11 @@ class PlayState extends MusicBeatState
 		if (mania < Note.minMania || mania > Note.maxMania)
 			mania = Note.defaultMania;
 
+		#if MODS_ALLOWED
+		if (mania == 0)
+			mania = Note.defaultMania;
+		#end
+
 		if (SONG == null)
 			SONG = Song.loadFromJson('tutorial');
 
