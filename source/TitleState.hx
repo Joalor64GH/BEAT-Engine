@@ -24,7 +24,6 @@ import sys.FileSystem;
 import sys.io.File;
 #end
 import options.GraphicsSettingsSubState;
-import options.GraphicsSettingsSubState;
 // import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup;
@@ -142,6 +141,7 @@ class TitleState extends MusicBeatState
 			}
 		}
 		#end
+
 		#if CHECK_FOR_UPDATES
 		if (!closedState)
 		{
@@ -181,6 +181,7 @@ class TitleState extends MusicBeatState
 
 		// DEBUG BULLSHIT
 
+		swagShader = new ColorSwap();
 		super.create();
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
@@ -229,7 +230,6 @@ class TitleState extends MusicBeatState
 	}
 
 	var logoBl:FlxSprite;
-	var logo:FlxSprite;
 	var gfDance:FlxSprite;
 	var danceLeft:Bool = false;
 	var titleText:FlxSprite;
@@ -239,6 +239,27 @@ class TitleState extends MusicBeatState
 	{
 		if (!initialized)
 		{
+			/*var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
+				diamond.persist = true;
+				diamond.destroyOnNoUse = false;
+
+				FlxTransitionableState.defaultTransIn = new TransitionData(FADE, FlxColor.BLACK, 1, new FlxPoint(0, -1), {asset: diamond, width: 32, height: 32},
+					new FlxRect(-300, -300, FlxG.width * 1.8, FlxG.height * 1.8));
+				FlxTransitionableState.defaultTransOut = new TransitionData(FADE, FlxColor.BLACK, 0.7, new FlxPoint(0, 1),
+					{asset: diamond, width: 32, height: 32}, new FlxRect(-300, -300, FlxG.width * 1.8, FlxG.height * 1.8));
+					
+				transIn = FlxTransitionableState.defaultTransIn;
+				transOut = FlxTransitionableState.defaultTransOut; */
+
+			// HAD TO MODIFY SOME BACKEND SHIT
+			// IF THIS PR IS HERE IF ITS ACCEPTED UR GOOD TO GO
+			// https://github.com/HaxeFlixel/flixel-addons/pull/348
+
+			// var music:FlxSound = new FlxSound();
+			// music.loadStream(Paths.music('freakyMenu'));
+			// FlxG.sound.list.add(music);
+			// music.play();
+
 			if (FlxG.sound.music == null)
 			{
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
@@ -269,7 +290,6 @@ class TitleState extends MusicBeatState
 
 		logoBl = new FlxSprite(titleJSON.titlex, titleJSON.titley);
 
-		var shouldUseBl:Bool = true;
 		#if (desktop && MODS_ALLOWED)
 		var path = "mods/" + Paths.currentModDirectory + "/images/logoBumpin.png";
 		// trace(path, FileSystem.exists(path));
@@ -299,25 +319,25 @@ class TitleState extends MusicBeatState
 		gfDance = new FlxSprite(titleJSON.gfx, titleJSON.gfy);
 
 		#if (desktop && MODS_ALLOWED)
-		var path = "mods/" + Paths.currentModDirectory + "/images/gfDanceTitle.png";
+		var path = "mods/" + Paths.currentModDirectory + "/images/GF_assets.png";
 		// trace(path, FileSystem.exists(path));
 		if (!FileSystem.exists(path))
 		{
-			path = "mods/images/gfDanceTitle.png";
+			path = "mods/images/GF_assets.png";
 			// trace(path, FileSystem.exists(path));
 		}
 		if (!FileSystem.exists(path))
 		{
-			path = "assets/images/gfDanceTitle.png";
+			path = "assets/images/GF_assets.png";
 			// trace(path, FileSystem.exists(path));
 		}
 		gfDance.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path), File.getContent(StringTools.replace(path, ".png", ".xml")));
 		#else
-		gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
+		gfDance.frames = Paths.getSparrowAtlas('GF_assets');
 		#end
-		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-
+		gfDance.animation.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+		gfDance.animation.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+		gfDance.animation.addByPrefix('Hey', 'GF Cheer', 24, false);
 		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
 		add(gfDance);
 		gfDance.shader = swagShader.shader;
@@ -350,14 +370,13 @@ class TitleState extends MusicBeatState
 		// titleText.screenCenter(X);
 		add(titleText);
 
-		if (!shouldUseBl)
-		{
-			logo = new FlxSprite().loadGraphic(Paths.image('titlelogo'));
-			logo.x = 0;
-			logo.y = 50;
-			logo.antialiasing = ClientPrefs.globalAntialiasing;
-			add(logo);
-		}
+		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
+		logo.screenCenter();
+		logo.antialiasing = ClientPrefs.globalAntialiasing;
+		// add(logo);
+
+		// FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
 
 		credGroup = new FlxGroup();
 		add(credGroup);
@@ -444,6 +463,8 @@ class TitleState extends MusicBeatState
 			#end
 		}
 
+		// EASTER EGG
+
 		if (!transitioning && skippedIntro)
 		{
 			if (pressedEnter)
@@ -453,8 +474,7 @@ class TitleState extends MusicBeatState
 
 				FlxG.camera.flash(FlxColor.WHITE, 1);
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-				// Title Screen Animations
-				FlxTween.tween(logo, {x: -1500}, 2, {ease: FlxEase.expoInOut});
+				FlxTween.tween(logoBl, {x: -1500}, 2, {ease: FlxEase.expoInOut});
 				FlxTween.tween(gfDance, {x: -1500}, 3.7, {ease: FlxEase.expoInOut});
 				FlxTween.tween(titleText, {y: 1500}, 3.7, {ease: FlxEase.expoInOut});
 
@@ -463,7 +483,6 @@ class TitleState extends MusicBeatState
 
 				gfDance.animation.play('Hey');
 				candance = false;
-
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
 					if (mustUpdate)
@@ -529,6 +548,14 @@ class TitleState extends MusicBeatState
 		if (pressedEnter && !skippedIntro)
 		{
 			skipIntro();
+		}
+
+		if (swagShader != null)
+		{
+			if (controls.UI_LEFT)
+				swagShader.hue -= elapsed * 0.1;
+			if (controls.UI_RIGHT)
+				swagShader.hue += elapsed * 0.1;
 		}
 
 		super.update(elapsed);
@@ -674,7 +701,6 @@ class TitleState extends MusicBeatState
 
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
-			FlxG.sound.music.time = 9400; // 9.4 seconds
 			skippedIntro = true;
 		}
 	}
