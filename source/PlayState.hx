@@ -1276,7 +1276,7 @@ class PlayState extends MusicBeatState
 				botplayTxt.text = "HE'S FUNKIN CHEATING";
 			case 3:
 				botplayTxt.text = "I CAN SEE YOU CHEATING";
-			default:
+			case 4:
 				botplayTxt.text = "CHEATING...";
 		}
 
@@ -1302,7 +1302,6 @@ class PlayState extends MusicBeatState
 		scoreTxt.cameras = [camHUD];
 		beWatermark.cameras = [camHUD];
 		peWatermark.cameras = [camHUD];
-		botplayTxt.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
@@ -2648,7 +2647,7 @@ class PlayState extends MusicBeatState
 					botplayTxt.text = "HE'S FUNKIN CHEATING";
 				case 3:
 					botplayTxt.text = "I CAN SEE YOU CHEATING";
-				default:
+				case 4:
 					botplayTxt.text = "CHEATING...";
 			}
 			alreadyChanged = false;
@@ -2892,11 +2891,15 @@ class PlayState extends MusicBeatState
 
 		if (healthBar.percent < 20)
 			iconP1.animation.curAnim.curFrame = 1;
+		else if (healthBar.percent > 85)
+			iconP1.animation.curAnim.curFrame = 2;
 		else
 			iconP1.animation.curAnim.curFrame = 0;
 
-		if (healthBar.percent > 80)
+		if (healthBar.percent > 85)
 			iconP2.animation.curAnim.curFrame = 1;
+		else if (healthBar.percent < 20)
+			iconP2.animation.curAnim.curFrame = 2;
 		else
 			iconP2.animation.curAnim.curFrame = 0;
 
