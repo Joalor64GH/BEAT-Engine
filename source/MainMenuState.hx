@@ -29,6 +29,7 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
+	public static var fridayVersion:String = '0.2.7.1';
 	public static var psychEngineVersion:String = '0.5.1';
 	public static var beatEngineVersion:String = '0.0.1'; // this is used for the discord_rpc
 	public static var curSelected:Int = 0;
@@ -43,9 +44,13 @@ class MainMenuState extends MusicBeatState
 
 	private var camAchievement:FlxCamera;
 
-	var optionShit:Array<String> = ['story_mode', 'freeplay', 'options', 'credits'];
+	var optionShit:Array<String> = ['story_mode', 'freeplay', 'credits', 'options'];
+
+	public var iconBG:FlxSprite;
 
 	public var icon:HealthIcon;
+
+	public static var lastRoll:String = "bf";
 
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
@@ -184,14 +189,52 @@ class MainMenuState extends MusicBeatState
 		versionShitpsych.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		versionShitpsych.screenCenter(X);
 		add(versionShitpsych);
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "FNF v" + Application.current.meta.get('version'), 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		versionShit.screenCenter(X);
-		add(versionShit);
+		var versionShitFriday:FlxText = new FlxText(12, FlxG.height - 24, 0, "FNF v" + fridayVersion, 12);
+		versionShitFriday.scrollFactor.set();
+		versionShitFriday.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		versionShitFriday.screenCenter(X);
+		add(versionShitFriday);
 
-		icon = new HealthIcon('bf');
-		icon.setGraphicSize(Std.int(icon.width * 2));
+		iconBG = new FlxSprite().loadGraphic(Paths.image('iconshitlol'));
+		iconBG.scrollFactor.set();
+		iconBG.updateHitbox();
+		iconBG.screenCenter();
+		iconBG.antialiasing = ClientPrefs.globalAntialiasing;
+		add(iconBG);
+
+		switch (FlxG.random.int(1, 5))
+		{
+			case 1:
+				icon = new HealthIcon('bf');
+				icon.setGraphicSize(Std.int(icon.width * 2));
+				iconBG.color = FlxColor.CYAN;
+			case 2:
+				icon = new HealthIcon('gf');
+				icon.setGraphicSize(Std.int(icon.width * 2));
+				iconBG.color = FlxColor.RED;
+			case 3:
+				icon = new HealthIcon('dad');
+				icon.setGraphicSize(Std.int(icon.width * 1.7));
+				iconBG.color = FlxColor.PURPLE;
+			case 4:
+				icon = new HealthIcon('mom');
+				icon.setGraphicSize(Std.int(icon.width * 1.8));
+				iconBG.color = FlxColor.PURPLE;
+			case 5:
+				icon = new HealthIcon('spooky');
+				icon.setGraphicSize(Std.int(icon.width * 2));
+				switch (FlxG.random.int(1, 2))
+				{
+					case 1:
+						iconBG.color = FlxColor.ORANGE;
+					case 2:
+						iconBG.color = FlxColor.WHITE;
+				}
+		} // YES, I WILL PUT THE HAXE COLORS INSTEAD THE NORMAL ONES
+
+		// icon = new HealthIcon('bf');
+		// icon.setGraphicSize(Std.int(icon.width * 2));
+		icon.antialiasing = ClientPrefs.globalAntialiasing;
 		icon.x = 80;
 		icon.y = 550;
 		icon.scrollFactor.set();

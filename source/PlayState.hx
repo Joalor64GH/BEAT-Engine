@@ -162,6 +162,8 @@ class PlayState extends MusicBeatState
 
 	private var healthBarBG:AttachedSprite;
 
+	private var healthBarFG:AttachedSprite;
+
 	public var healthBar:FlxBar;
 
 	var songPercent:Float = 0;
@@ -200,6 +202,7 @@ class PlayState extends MusicBeatState
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
 	public var camHUD:FlxCamera;
+	public var camCustom:FlxCamera;
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 1;
@@ -351,10 +354,13 @@ class PlayState extends MusicBeatState
 		camOther = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
 		camOther.bgColor.alpha = 0;
+		camCustom = new FlxCamera();
+		camCustom.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
 		FlxG.cameras.add(camOther);
+		FlxG.cameras.add(camCustom);
 		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
 
 		FlxCamera.defaultCameras = [camGame];
@@ -409,7 +415,7 @@ class PlayState extends MusicBeatState
 					curStage = 'spooky';
 				case 'pico' | 'blammed' | 'philly' | 'philly-nice':
 					curStage = 'philly';
-				case 'milf' | 'satin-panties' | 'high':
+				case 'milf' | 'satin-panties' | 'high' | 'parasite':
 					curStage = 'limo';
 				case 'cocoa' | 'eggnog':
 					curStage = 'mall';
@@ -1215,6 +1221,17 @@ class PlayState extends MusicBeatState
 		add(healthBar);
 		healthBarBG.sprTracker = healthBar;
 
+		healthBarFG = new AttachedSprite('healthBarFG');
+		healthBarFG.y = FlxG.height * 0.89;
+		healthBarFG.screenCenter(X);
+		healthBarFG.scrollFactor.set();
+		healthBarFG.visible = !ClientPrefs.hideHud;
+		healthBarFG.xAdd = -4;
+		healthBarFG.yAdd = -4;
+		add(healthBarFG);
+		if (ClientPrefs.downScroll)
+			healthBarFG.y = 0.11 * FlxG.height;
+
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
 		iconP1.y = healthBar.y - 75;
 		iconP1.visible = !ClientPrefs.hideHud;
@@ -1235,27 +1252,39 @@ class PlayState extends MusicBeatState
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
 
-		//Watermarks at the upper left corner, this is for BEAT! Engine
+		// Watermarks at the upper left corner, this is for BEAT! Engine
 		beWatermark = new FlxText(0, FlxG.height - 44, 0, "BEAT! Engine: v" + MainMenuState.beatEngineVersion, 16);
 		beWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		beWatermark.scrollFactor.set();
-		if(ClientPrefs.showWatermarks == false)
-		beWatermark = new FlxText(0, FlxG.height - 44, 0, "");
+		beWatermark.visible = ClientPrefs.showWatermarks;
 		add(beWatermark);
 
-		//And this is for Psych Engine
+		// And this is for Psych Engine
 		peWatermark = new FlxText(0, FlxG.height - 24, 0, "Psych Engine: v" + MainMenuState.psychEngineVersion, 16);
 		peWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		peWatermark.scrollFactor.set();
-		if(ClientPrefs.showWatermarks == false)
-		peWatermark = new FlxText(0, FlxG.height - 24, 0, "");
+		peWatermark.visible = ClientPrefs.showWatermarks;
 		add(peWatermark);
 
-		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
+		botplayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (ClientPrefs.downScroll ? 100 : -100), "", 32);
+
+		switch (FlxG.random.int(1, 4))
+		{
+			case 1:
+				botplayTxt.text = "CHEATER!";
+			case 2:
+				botplayTxt.text = "HE'S FUNKIN CHEATING";
+			case 3:
+				botplayTxt.text = "I CAN SEE YOU CHEATING";
+			default:
+				botplayTxt.text = "CHEATING...";
+		}
+
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
+		botplayTxt.cameras = [camCustom];
 		add(botplayTxt);
 		if (ClientPrefs.downScroll)
 		{
@@ -1267,6 +1296,7 @@ class PlayState extends MusicBeatState
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];
+		healthBarFG.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
@@ -2590,6 +2620,7 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
+	var alreadyChanged:Bool = false;
 
 	override public function update(elapsed:Float)
 	{
@@ -2597,6 +2628,29 @@ class PlayState extends MusicBeatState
 		{
 			iconP1.swapOldIcon();
 	}*/
+		if (cpuControlled && !alreadyChanged)
+		{
+			botplayTxt.color = FlxColor.RED;
+			scoreTxt.color = FlxColor.RED;
+			alreadyChanged = true;
+		}
+		else if (!cpuControlled && alreadyChanged)
+		{
+			botplayTxt.color = FlxColor.WHITE;
+			scoreTxt.color = FlxColor.WHITE;
+			switch (FlxG.random.int(1, 4))
+			{
+				case 1:
+					botplayTxt.text = "CHEATER!";
+				case 2:
+					botplayTxt.text = "HE'S FUNKIN CHEATING";
+				case 3:
+					botplayTxt.text = "I CAN SEE YOU CHEATING";
+				default:
+					botplayTxt.text = "CHEATING...";
+			}
+			alreadyChanged = false;
+		}
 
 		callOnLuas('onUpdate', [elapsed]);
 
@@ -5160,6 +5214,20 @@ class PlayState extends MusicBeatState
 		{
 			// trace('BEAT HIT: ' + curBeat + ', LAST HIT: ' + lastBeatHit);
 			return;
+		}
+
+		if (curStage == 'tank')
+		{
+			if (curBeat % 2 == 0)
+			{
+				tanjcuk.animation.play('dancey');
+				tankbop0.animation.play('danceya');
+				tank1.animation.play('dietz');
+				tank2.animation.play('idle');
+				tank3.animation.play('idle');
+				tank4.animation.play('idle');
+				tank5.animation.play('idle');
+			}
 		}
 
 		if (generatedMusic)

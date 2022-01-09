@@ -18,11 +18,11 @@ import openfl.text.TextField;
 import openfl.text.TextFormat;
 
 class FPS_Mem extends TextField
-
 {
 	private var times:Array<Float>;
 	private var memPeak:Float = 0;
-	public function new(inX:Float = 10.0, inY:Float = 10.0, inCol:Int = 0x000000) 
+
+	public function new(inX:Float = 10.0, inY:Float = 10.0, inCol:Int = 0x000000)
 	{
 		super();
 		x = inX;
@@ -35,17 +35,19 @@ class FPS_Mem extends TextField
 		width = 150;
 		height = 70;
 	}
+
 	private function onEnter(_)
 	{
 		var now = Timer.stamp();
 		times.push(now);
 		while (times[0] < now - 1)
 			times.shift();
-		var mem:Float = Math.round(System.totalMemory / 1024 / 1024 * 100)/100;
-		if (mem > memPeak) memPeak = mem;
+		var mem:Float = Math.round(System.totalMemory / 1024 / 1024 * 100) / 100;
+		if (mem > memPeak)
+			memPeak = mem;
 		if (visible)
 		{
-			text = "FPS: " + times.length + "\nMEM: " + mem + " MB\nMEM peak: " + memPeak + " MB";	
+			text = "FPS: " + times.length + "\nMEM: " + mem + " MB\nMEM peak: " + memPeak + " MB";
 		}
 	}
 }
@@ -122,17 +124,22 @@ class Main extends Sprite
 
 		#if !mobile
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
-		//addChild(fpsVar);
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
+		#end
+
+		#if !debug
+		addChild(fpsVar);
 		if (fpsVar != null)
 		{
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
 		#end
 
+		#if debug
 		var fps_mem:FPS_Mem = new FPS_Mem(10, 10, 0xffffff);
 		addChild(fps_mem);
+		#end
 
 		#if html5
 		FlxG.autoPause = false;
