@@ -12,6 +12,10 @@ import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.transition.TransitionData;
+import flixel.system.scaleModes.BaseScaleMode;
+import flixel.system.scaleModes.FillScaleMode;
+import flixel.system.scaleModes.FixedScaleMode;
+import flixel.system.scaleModes.StageSizeScaleMode;
 import haxe.Json;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
@@ -19,6 +23,7 @@ import openfl.display.BitmapData;
 import sys.FileSystem;
 import sys.io.File;
 #end
+import options.GraphicsSettingsSubState;
 import options.GraphicsSettingsSubState;
 // import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -595,12 +600,20 @@ class TitleState extends MusicBeatState
 			switch (sickBeats)
 			{
 				case 1:
-					createCoolText(['Project Hypnosis by'], 45);
+					#if PSYCH_WATERMARKS
+					createCoolText(['Psych Engine by'], 15);
+					#else
+					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+					#end
 				// credTextShit.visible = true;
 				case 3:
-					addMoreText('', 45);
-					addMoreText('Gui iago', 45);
-					addMoreText('', 45);
+					#if PSYCH_WATERMARKS
+					addMoreText('Shadow Mario', 15);
+					addMoreText('RiverOaken', 15);
+					addMoreText('bb-panzu', 15);
+					#else
+					addMoreText('present');
+					#end
 				// credTextShit.text += '\npresent...';
 				// credTextShit.addText();
 				case 4:
@@ -609,9 +622,13 @@ class TitleState extends MusicBeatState
 				// credTextShit.text = 'In association \nwith';
 				// credTextShit.screenCenter();
 				case 5:
-					createCoolText(['Not associated with'], -60);
+					#if PSYCH_WATERMARKS
+					createCoolText(['Extra keys mod', 'by'], -40);
+					#else
+					createCoolText(['In association', 'with'], -40);
+					#end
 				case 7:
-					addMoreText('Newgrounds', -60);
+					addMoreText('tposejank', -40);
 					ngSpr.visible = true;
 				// credTextShit.text += '\nNewgrounds';
 				case 8:
