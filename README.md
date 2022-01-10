@@ -19,6 +19,12 @@ To install LuaJIT do this: `haxelib install linc_luajit` on a Command prompt/Pow
 * Asho - Rich Presence Header Design
 * Salt for Some Reason - Logo
 * LeNinethGames - Menu Remix
+
+## OG Engines
+* Shadow Mario - Psych Engine
+* tposejank - Psych Extra Keys
 _____________________________________
+
+## Features
 
 uhhh yeah, the features are the same, we'll add more in the future, and this section for features will have some unic shit
