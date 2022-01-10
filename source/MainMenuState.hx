@@ -176,7 +176,12 @@ class MainMenuState extends MusicBeatState
 			logoBl.angle = -4;
 			logoBl.updateHitbox();
 			add(logoBl);
-			FlxTween.tween(logoBl, {y: logoBl.y + 100, x: logoBl.x + 100, alpha: 1}, 1.4, {ease: FlxEase.expoInOut});
+			FlxTween.tween(logoBl, {
+				y: logoBl.y + 100,
+				x: logoBl.x + 100,
+				angle: 4,
+				alpha: 1
+			}, 1.4, {ease: FlxEase.expoInOut});
 		}
 
 		if (!ClientPrefs.lowQuality)
@@ -321,7 +326,12 @@ class MainMenuState extends MusicBeatState
 				FlxTween.tween(bgdiferent, {alpha: 0}, 0.8, {ease: FlxEase.expoIn});
 				if (!ClientPrefs.lowQuality)
 				{
-					FlxTween.tween(logoBl, {alpha: 0, x: logoBl.x - 100, y: logoBl.y - 100}, 0.5, {ease: FlxEase.quadOut});
+					FlxTween.tween(logoBl, {
+						alpha: 0,
+						x: logoBl.x - 100,
+						y: logoBl.y - 100,
+						angle: -4
+					}, 0.5, {ease: FlxEase.quadOut});
 					FlxTween.tween(icon, {x: icon.x - 20, y: icon.y + 20}, 0.5, {ease: FlxEase.quadOut});
 				}
 			}
@@ -343,7 +353,12 @@ class MainMenuState extends MusicBeatState
 					if (!ClientPrefs.lowQuality)
 					{
 						FlxTween.tween(checker, {angle: 45}, 0.8, {ease: FlxEase.expoIn});
-						FlxTween.tween(logoBl, {alpha: 0, x: logoBl.x - 20, y: logoBl.y - 20}, 0.8, {ease: FlxEase.quadOut});
+						FlxTween.tween(logoBl, {
+							alpha: 0,
+							x: logoBl.x - 20,
+							y: logoBl.y - 20,
+							angle: -4
+						}, 0.8, {ease: FlxEase.quadOut});
 						FlxTween.tween(icon, {x: icon.x - 10, y: icon.y + 10}, 0.8, {ease: FlxEase.quadOut});
 					}
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)
@@ -394,17 +409,6 @@ class MainMenuState extends MusicBeatState
 
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
-
-		if (!ClientPrefs.lowQuality)
-		{
-			new FlxTimer().start(0.01, function(tmr:FlxTimer)
-			{
-				if (logoBl.angle == -4)
-					FlxTween.angle(logoBl, logoBl.angle, 4, 4, {ease: FlxEase.quartInOut});
-				if (logoBl.angle == 4)
-					FlxTween.angle(logoBl, logoBl.angle, -4, 4, {ease: FlxEase.quartInOut});
-			}, 0);
-		}
 
 		if (!selectedSomethin)
 		{

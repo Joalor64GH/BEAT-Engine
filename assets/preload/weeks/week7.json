@@ -1,8 +1,8 @@
 {
 	"songs": [
-		["Ugh", "tankman", [255, 120, 191]],
-		["Guns", "tankman", [255, 120, 191]],
-		["Stress", "tankman", [255, 120, 191]]
+		["Ugh", "tankman", [255, 215, 70]],
+		["Guns", "tankman", [255, 215, 70]],
+		["Stress", "tankman", [255, 215, 70]]
 	],
 
 	"weekCharacters": [

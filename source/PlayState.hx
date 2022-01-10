@@ -838,52 +838,49 @@ class PlayState extends MusicBeatState
 				tankmouthh.updateHitbox();
 				add(tankmouthh);
 
-				tankbop0 = new FlxSprite(-500, 650);
-				tankbop0.frames = Paths.getSparrowAtlas('tank0', 'week7');
-				tankbop0.animation.addByPrefix('danceya', 'fg tankhead far right instance', 24, false);
-				tankbop0.animation.play('danceya');
-				tankbop0.antialiasing = !ClientPrefs.lowQuality;
-				add(tankbop0);
+				if (!ClientPrefs.lowQuality)
+				{
+					tankbop0 = new FlxSprite(-500, 650);
+					tankbop0.frames = Paths.getSparrowAtlas('tank0', 'week7');
+					tankbop0.animation.addByPrefix('danceya', 'fg tankhead far right instance', 24, false);
+					tankbop0.animation.play('danceya');
+					tankbop0.antialiasing = true;
 
-				tank1 = new FlxSprite(-300, 750);
-				tank1.frames = Paths.getSparrowAtlas('tank1', 'week7');
-				tank1.animation.addByPrefix('dietz', 'fg tankhead 5 instance ', 24, false);
-				tank1.animation.play('detz');
-				tank1.scrollFactor.set(2, 0.2);
-				tank1.antialiasing = !ClientPrefs.lowQuality;
-				add(tank1);
+					tank1 = new FlxSprite(-300, 750);
+					tank1.frames = Paths.getSparrowAtlas('tank1', 'week7');
+					tank1.animation.addByPrefix('dietz', 'fg tankhead 5 instance ', 24, false);
+					tank1.animation.play('detz');
+					tank1.scrollFactor.set(2, 0.2);
+					tank1.antialiasing = true;
 
-				tank2 = new FlxSprite(450, 940);
-				tank2.frames = Paths.getSparrowAtlas('tank2', 'week7');
-				tank2.animation.addByPrefix('idle', 'foreground man 3 instance ', 24, false);
-				tank2.animation.play('idle');
-				tank2.scrollFactor.set(1.5, 1.5);
-				tank2.antialiasing = !ClientPrefs.lowQuality;
-				add(tank2);
+					tank2 = new FlxSprite(450, 940);
+					tank2.frames = Paths.getSparrowAtlas('tank2', 'week7');
+					tank2.animation.addByPrefix('idle', 'foreground man 3 instance ', 24, false);
+					tank2.animation.play('idle');
+					tank2.scrollFactor.set(1.5, 1.5);
+					tank2.antialiasing = true;
 
-				tank4 = new FlxSprite(1300, 900);
-				tank4.frames = Paths.getSparrowAtlas('tank4', 'week7');
-				tank4.animation.addByPrefix('idle', 'fg tankman bobbin 3 instance ', 24, false);
-				tank4.animation.play('idle');
-				tank4.scrollFactor.set(1.5, 1.5);
-				tank4.antialiasing = !ClientPrefs.lowQuality;
-				add(tank4);
+					tank4 = new FlxSprite(1300, 900);
+					tank4.frames = Paths.getSparrowAtlas('tank4', 'week7');
+					tank4.animation.addByPrefix('idle', 'fg tankman bobbin 3 instance ', 24, false);
+					tank4.animation.play('idle');
+					tank4.scrollFactor.set(1.5, 1.5);
+					tank4.antialiasing = true;
 
-				tank5 = new FlxSprite(1620, 700);
-				tank5.frames = Paths.getSparrowAtlas('tank5', 'week7');
-				tank5.animation.addByPrefix('idle', 'fg tankhead far right instance ', 24, false);
-				tank5.animation.play('idle');
-				tank5.scrollFactor.set(1.5, 1.5);
-				tank5.antialiasing = !ClientPrefs.lowQuality;
-				add(tank5);
+					tank5 = new FlxSprite(1620, 700);
+					tank5.frames = Paths.getSparrowAtlas('tank5', 'week7');
+					tank5.animation.addByPrefix('idle', 'fg tankhead far right instance ', 24, false);
+					tank5.animation.play('idle');
+					tank5.scrollFactor.set(1.5, 1.5);
+					tank5.antialiasing = true;
 
-				tank3 = new FlxSprite(1300, 1200);
-				tank3.frames = Paths.getSparrowAtlas('tank3', 'week7');
-				tank3.animation.addByPrefix('idle', 'fg tankhead 4 instance ', 24, false);
-				tank3.animation.play('idle');
-				tank3.scrollFactor.set(1.5, 1.5);
-				tank3.antialiasing = !ClientPrefs.lowQuality;
-				add(tank3);
+					tank3 = new FlxSprite(1300, 1200);
+					tank3.frames = Paths.getSparrowAtlas('tank3', 'week7');
+					tank3.animation.addByPrefix('idle', 'fg tankhead 4 instance ', 24, false);
+					tank3.animation.play('idle');
+					tank3.scrollFactor.set(1.5, 1.5);
+					tank3.antialiasing = true;
+				}
 		}
 
 		if (isPixelStage)
@@ -1049,6 +1046,16 @@ class PlayState extends MusicBeatState
 			case 'schoolEvil':
 				var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069); // nice
 				insert(members.indexOf(dadGroup) - 1, evilTrail);
+			case 'tank':
+				if (!ClientPrefs.lowQuality)
+				{
+					add(tankbop0);
+					add(tank1);
+					add(tank2);
+					add(tank4);
+					add(tank5);
+					add(tank3);
+				}
 		}
 
 		var file:String = Paths.json(songName + '/dialogue'); // Checks for json/Psych Engine dialogue
@@ -4691,7 +4698,10 @@ class PlayState extends MusicBeatState
 				daAlt = '-alt';
 
 			var animToPlay:String = 'sing' + Note.keysShit.get(mania).get('anims')[daNote.noteData] + 'miss' + daAlt;
-			char.playAnim(animToPlay, true);
+			if (daNote.isSustainNote && char.animation.curAnim.name == 'idle')
+				char.playAnim(animToPlay);
+			else if (!daNote.isSustainNote)
+				char.playAnim(animToPlay, true);
 		}
 
 		callOnLuas('noteMiss', [
@@ -4782,7 +4792,10 @@ class PlayState extends MusicBeatState
 				char = gf;
 			}
 
-			char.playAnim(animToPlay, true);
+			if (note.isSustainNote && char.animation.curAnim.name == 'idle')
+				char.playAnim(animToPlay);
+			else if (!note.isSustainNote)
+				char.playAnim(animToPlay, true);
 			char.holdTimer = 0;
 		}
 
@@ -4883,12 +4896,20 @@ class PlayState extends MusicBeatState
 				// }else{
 				if (note.gfNote)
 				{
-					gf.playAnim(animToPlay + daAlt, true);
+					// gf.playAnim(animToPlay + daAlt, true);
+					if (note.isSustainNote && gf.animation.curAnim.name == 'idle')
+						gf.playAnim(animToPlay + daAlt);
+					else if (!note.isSustainNote)
+						gf.playAnim(animToPlay + daAlt, true);
 					gf.holdTimer = 0;
 				}
 				else
 				{
-					boyfriend.playAnim(animToPlay + daAlt, true);
+					// boyfriend.playAnim(animToPlay + daAlt, true);
+					if (note.isSustainNote && boyfriend.animation.curAnim.name == 'idle')
+						boyfriend.playAnim(animToPlay + daAlt);
+					else if (!note.isSustainNote)
+						boyfriend.playAnim(animToPlay + daAlt, true);
 					boyfriend.holdTimer = 0;
 				}
 				// }
@@ -5228,12 +5249,15 @@ class PlayState extends MusicBeatState
 			if (curBeat % 2 == 0)
 			{
 				tanjcuk.animation.play('dancey');
-				tankbop0.animation.play('danceya');
-				tank1.animation.play('dietz');
-				tank2.animation.play('idle');
-				tank3.animation.play('idle');
-				tank4.animation.play('idle');
-				tank5.animation.play('idle');
+				if (!ClientPrefs.lowQuality)
+				{
+					tankbop0.animation.play('danceya');
+					tank1.animation.play('dietz');
+					tank2.animation.play('idle');
+					tank3.animation.play('idle');
+					tank4.animation.play('idle');
+					tank5.animation.play('idle');
+				}
 			}
 		}
 
