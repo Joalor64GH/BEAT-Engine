@@ -30,7 +30,8 @@ class Paths
 
 	#if MODS_ALLOWED
 	public static var ignoreModFolders:Array<String> = [
-		'characters', 'custom_events', 'custom_notetypes', 'data', 'songs', 'music', 'sounds', 'videos', 'images', 'stages', 'weeks', 'fonts', 'scripts'
+		'characters', 'custom_events', 'custom_notetypes', 'data', 'songs', 'music', 'sounds', 'videos', 'images', 'stages', 'weeks', 'fonts', 'scripts',
+		'achievements'
 	];
 	#end
 
@@ -417,6 +418,11 @@ class Paths
 	inline static public function modsTxt(key:String)
 	{
 		return modFolders('images/' + key + '.txt');
+	}
+
+	inline static public function modsAchievements(key:String)
+	{
+		return modFolders('achievements/' + key + '.json');
 	}
 
 	static public function modFolders(key:String)
