@@ -179,7 +179,7 @@ class MainMenuState extends MusicBeatState
 			FlxTween.tween(logoBl, {
 				y: logoBl.y + 100,
 				x: logoBl.x + 100,
-				angle: 4,
+				angle: -4,
 				alpha: 1
 			}, 1.4, {ease: FlxEase.expoInOut});
 		}
@@ -330,7 +330,7 @@ class MainMenuState extends MusicBeatState
 						alpha: 0,
 						x: logoBl.x - 100,
 						y: logoBl.y - 100,
-						angle: -4
+						angle: 4
 					}, 0.5, {ease: FlxEase.quadOut});
 					FlxTween.tween(icon, {x: icon.x - 20, y: icon.y + 20}, 0.5, {ease: FlxEase.quadOut});
 				}
@@ -357,7 +357,7 @@ class MainMenuState extends MusicBeatState
 							alpha: 0,
 							x: logoBl.x - 20,
 							y: logoBl.y - 20,
-							angle: -4
+							angle: 4
 						}, 0.8, {ease: FlxEase.quadOut});
 						FlxTween.tween(icon, {x: icon.x - 10, y: icon.y + 10}, 0.8, {ease: FlxEase.quadOut});
 					}

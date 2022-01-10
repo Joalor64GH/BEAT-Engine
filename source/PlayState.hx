@@ -5260,18 +5260,21 @@ class PlayState extends MusicBeatState
 
 		if (SONG.song.toLowerCase() == 'stress')
 		{
-			switch (curBeat)
+			if (!ClientPrefs.middleScroll)
 			{
-				case 184:
-					opponentStrums.forEach(function(spr:FlxSprite)
-					{
-						FlxTween.tween(spr, {alpha: 0.1}, 0.5, {ease: FlxEase.quadOut});
-					});
-				case 192:
-					opponentStrums.forEach(function(spr:FlxSprite)
-					{
-						FlxTween.tween(spr, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
-					});
+				switch (curBeat)
+				{
+					case 184:
+						opponentStrums.forEach(function(spr:FlxSprite)
+						{
+							FlxTween.tween(spr, {alpha: 0.1}, 0.5, {ease: FlxEase.quadOut});
+						});
+					case 192:
+						opponentStrums.forEach(function(spr:FlxSprite)
+						{
+							FlxTween.tween(spr, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
+						});
+				}
 			}
 		}
 
@@ -5279,7 +5282,6 @@ class PlayState extends MusicBeatState
 		{
 			notes.sort(FlxSort.byY, ClientPrefs.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
 		}
-
 		if (SONG.notes[Math.floor(curStep / 16)] != null)
 		{
 			if (SONG.notes[Math.floor(curStep / 16)].changeBPM)
@@ -5297,7 +5299,6 @@ class PlayState extends MusicBeatState
 			// Conductor.changeBPM(SONG.bpm);
 		}
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
-
 		if (generatedMusic && PlayState.SONG.notes[Std.int(curStep / 16)] != null && !endingSong && !isCameraOnForcedPos)
 		{
 			moveCameraSection(Std.int(curStep / 16));
@@ -5307,13 +5308,10 @@ class PlayState extends MusicBeatState
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
 		}
-
 		iconP1.scale.set(1.2, 1.2);
 		iconP2.scale.set(1.2, 1.2);
-
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
-
 		if (curBeat % gfSpeed == 0
 			&& !gf.stunned
 			&& gf.animation.curAnim.name != null
@@ -5321,7 +5319,6 @@ class PlayState extends MusicBeatState
 		{
 			gf.dance();
 		}
-
 		if (curBeat % 2 == 0)
 		{
 			if (boyfriend.animation.curAnim.name != null && !boyfriend.animation.curAnim.name.startsWith("sing"))
@@ -5341,7 +5338,6 @@ class PlayState extends MusicBeatState
 		{
 			dad.dance();
 		}
-
 		switch (curStage)
 		{
 			case 'school':
@@ -5349,17 +5345,14 @@ class PlayState extends MusicBeatState
 				{
 					bgGirls.dance();
 				}
-
 			case 'mall':
 				if (!ClientPrefs.lowQuality)
 				{
 					upperBoppers.dance(true);
 				}
-
 				if (heyTimer <= 0)
 					bottomBoppers.dance(true);
 				santa.dance(true);
-
 			case 'limo':
 				if (!ClientPrefs.lowQuality)
 				{
@@ -5368,13 +5361,11 @@ class PlayState extends MusicBeatState
 						dancer.dance();
 					});
 				}
-
 				if (FlxG.random.bool(10) && fastCarCanDrive)
 					fastCarDrive();
 			case "philly":
 				if (!trainMoving)
 					trainCooldown += 1;
-
 				if (curBeat % 4 == 0)
 				{
 					phillyCityLights.forEach(function(light:BGSprite)
@@ -5383,24 +5374,20 @@ class PlayState extends MusicBeatState
 					});
 
 					curLight = FlxG.random.int(0, phillyCityLights.length - 1, [curLight]);
-
 					phillyCityLights.members[curLight].visible = true;
 					phillyCityLights.members[curLight].alpha = 1;
 				}
-
 				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
 				{
 					trainCooldown = FlxG.random.int(-4, 0);
 					trainStart();
 				}
 		}
-
 		if (curStage == 'spooky' && FlxG.random.bool(10) && curBeat > lightningStrikeBeat + lightningOffset)
 		{
 			lightningStrikeShit();
 		}
 		lastBeatHit = curBeat;
-
 		setOnLuas('curBeat', curBeat); // DAWGG?????
 		callOnLuas('onBeatHit', []);
 	}
