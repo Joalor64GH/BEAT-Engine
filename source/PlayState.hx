@@ -5244,12 +5244,12 @@ class PlayState extends MusicBeatState
 				case 184:
 					opponentStrums.forEach(function(spr:FlxSprite)
 					{
-						FlxTween.tween(spr, {alpha: 0.0}, 0.5, {ease: FlxEase.quadOut});
+						FlxTween.tween(spr, {alpha: 0.1}, 0.5, {ease: FlxEase.quadOut});
 					});
 				case 192:
 					opponentStrums.forEach(function(spr:FlxSprite)
 					{
-						FlxTween.tween(spr, {alpha: 0.0}, 0.5, {ease: FlxEase.quadOut});
+						FlxTween.tween(spr, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
 					});
 			}
 		}
