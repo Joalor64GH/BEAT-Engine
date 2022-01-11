@@ -37,9 +37,9 @@ class SimpleMenuState extends MusicBeatState
 	'Freeplay', 
 	//'Mods', 
 	//'Awards', 
-	//'Donate', 
-	'Credits', 
+	//'Donate',
 	'Discord', 
+	'Credits',  
 	'Options'];
 
 	public static var beatEngineVersion:String = '0.0.1'; // This is also used for Discord RPC
@@ -65,12 +65,12 @@ class SimpleMenuState extends MusicBeatState
 			//case 'Awards':
 			//	MusicBeatState.switchState(new AchievementsMenuState());
 				//note to self: fix this button - Gui iago
+			case 'Discord':
+				CoolUtil.browserLoad('https://discord.gg/CqWbjb6w');
 			case 'Credits':
 				MusicBeatState.switchState(new CreditsState());
 			//case 'Donate':
 			//	CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
-			case 'Discord':
-				CoolUtil.browserLoad('https://discord.gg/CqWbjb6w');
 			case 'Options':
 				MusicBeatState.switchState(new options.OptionsState());
 		}
