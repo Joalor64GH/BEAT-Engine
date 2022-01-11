@@ -16,6 +16,7 @@ import flixel.FlxSubState;
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.FlxCamera;
 import flixel.util.FlxSave;
 import flixel.effects.FlxFlicker;
 import haxe.Json;
@@ -35,11 +36,10 @@ class SimpleMenuState extends MusicBeatState
 {
 	var options:Array<String> = ['Story Mode', 
 	'Freeplay', 
-	//'Mods', 
-	//'Awards', 
-	//'Donate',
-	'Discord', 
-	'Credits',  
+	#if MODS_ALLOWED 'Mods', #end
+	#if ACHIEVEMENTS_ALLOWED 'Awards', #end
+	'Credits',
+	#if !switch 'Donate', #end
 	'Options'];
 
 	public static var beatEngineVersion:String = '0.0.1'; // This is also used for Discord RPC
@@ -48,6 +48,7 @@ class SimpleMenuState extends MusicBeatState
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 
 	private static var curSelected:Int = 0;
+	private var camAchievement:FlxCamera;
 	public static var menuBG:FlxSprite;
 
 	var debugKeys:Array<FlxKey>;
@@ -60,17 +61,14 @@ class SimpleMenuState extends MusicBeatState
 				MusicBeatState.switchState(new StoryMenuState());
 			case 'Freeplay':
 				MusicBeatState.switchState(new FreeplayState());
-			//case 'Mods':
-			//	MusicBeatState.switchState(new ModsMenuState());
-			//case 'Awards':
-			//	MusicBeatState.switchState(new AchievementsMenuState());
-				//note to self: fix this button - Gui iago
-			case 'Discord':
-				CoolUtil.browserLoad('https://discord.gg/CqWbjb6w');
+			case 'Mods':
+				MusicBeatState.switchState(new ModsMenuState());
+			case 'Awards':
+				MusicBeatState.switchState(new AchievementsMenuState());
 			case 'Credits':
 				MusicBeatState.switchState(new CreditsState());
-			//case 'Donate':
-			//	CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
+			case 'Donate':
+				CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
 			case 'Options':
 				MusicBeatState.switchState(new options.OptionsState());
 		}
@@ -98,7 +96,7 @@ class SimpleMenuState extends MusicBeatState
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
 
-		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 64, 0, "BEAT!Engine v" + beatEngineVersion, 12);
+		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 64, 0, "BEAT! Engine v" + beatEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -193,6 +191,29 @@ class SimpleMenuState extends MusicBeatState
 				selectorRight.y = item.y;
 			}
 		}
+		camAchievement = new FlxCamera();
+		camAchievement.bgColor.alpha = 0;
+		FlxG.cameras.add(camAchievement);
+		#if ACHIEVEMENTS_ALLOWED
+		// Unlocks "Freaky on a Friday Night" achievement
+		function giveAchievement() {
+			add(new AchievementObject('friday_night_play', camAchievement));
+			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+			trace('Giving achievement "friday_night_play"');
+		}
+		#end
+		#if ACHIEVEMENTS_ALLOWED
+		Achievements.loadAchievements();
+		var leDate = Date.now();
+		if (leDate.getDay() == 5 && leDate.getHours() >= 18) {
+		var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
+		if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
+			Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+			giveAchievement();
+			ClientPrefs.saveSettings();
+		}
+	}
+		#end
 		FlxG.sound.play(Paths.sound('scrollMenu'));
 	}
 }
