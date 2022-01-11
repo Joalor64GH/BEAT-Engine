@@ -16,6 +16,7 @@ import flixel.FlxSubState;
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.FlxCamera;
 import flixel.util.FlxSave;
 import flixel.effects.FlxFlicker;
 import haxe.Json;
@@ -36,17 +37,19 @@ class SimpleMenuState extends MusicBeatState
 	var options:Array<String> = [
 		'Story Mode',
 		'Freeplay',
-		// 'Mods',
-		// 'Awards',
-		// 'Donate',
+		// #if MODS_ALLOWED 'Mods', #end
+		// #if ACHIEVEMENTS_ALLOWED 'Awards', #end
 		'Discord',
 		'Credits',
+		// #if !switch 'Donate', #end
 		'Options'
 	];
-
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 
 	private static var curSelected:Int = 0;
+
+	private var camAchievement:FlxCamera;
+
 	public static var menuBG:FlxSprite;
 
 	var debugKeys:Array<FlxKey>;
@@ -59,10 +62,10 @@ class SimpleMenuState extends MusicBeatState
 				MusicBeatState.switchState(new StoryMenuState());
 			case 'Freeplay':
 				MusicBeatState.switchState(new FreeplayState());
-			/*case 'Mods':
+			case 'Mods':
 				MusicBeatState.switchState(new ModsMenuState());
-				case 'Awards':
-				MusicBeatState.switchState(new AchievementsMenuState()); */
+			// case 'Awards':
+			//	MusicBeatState.switchState(new AchievementsMenuState());
 			case 'Discord':
 				CoolUtil.browserLoad('https://discord.gg/CqWbjb6w');
 			case 'Credits':
@@ -190,6 +193,32 @@ class SimpleMenuState extends MusicBeatState
 				selectorRight.y = item.y;
 			}
 		}
+		camAchievement = new FlxCamera();
+		camAchievement.bgColor.alpha = 0;
+		FlxG.cameras.add(camAchievement);
+		#if ACHIEVEMENTS_ALLOWED
+		// Unlocks "Freaky on a Friday Night" achievement
+		function giveAchievement()
+		{
+			add(new AchievementObject('friday_night_play', camAchievement));
+			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+			trace('Giving achievement "friday_night_play"');
+		}
+		#end
+		#if ACHIEVEMENTS_ALLOWED
+		Achievements.loadAchievements();
+		var leDate = Date.now();
+		if (leDate.getDay() == 5 && leDate.getHours() >= 18)
+		{
+			var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
+			if (!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2]))
+			{ // It's a friday night. WEEEEEEEEEEEEEEEEEE
+				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+				giveAchievement();
+				ClientPrefs.saveSettings();
+			}
+		}
+		#end
 		FlxG.sound.play(Paths.sound('scrollMenu'));
 	}
 }

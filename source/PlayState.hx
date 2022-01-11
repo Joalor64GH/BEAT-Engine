@@ -47,7 +47,7 @@ import flixel.util.FlxTimer;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
-#if windows
+#if desktop
 import Discord.DiscordClient;
 #end
 #if cpp
