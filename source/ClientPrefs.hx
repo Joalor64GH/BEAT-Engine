@@ -65,6 +65,7 @@ class ClientPrefs
 	public static var goodWindow:Int = 90;
 	public static var badWindow:Int = 135;
 	public static var safeFrames:Float = 10;
+	public static var lowEndMode:Bool = false;
 
 	// Added by Beat Engine
 	public static var showWatermarks:Bool = true;
@@ -206,6 +207,7 @@ class ClientPrefs
 		FlxG.save.data.screenScaleMode = screenScaleMode;
 		// Added by Beat Engine
 		FlxG.save.data.showWatermarks = showWatermarks;
+		FlxG.save.data.lowEndMode = lowEndMode;
 
 		FlxG.save.flush();
 
@@ -360,6 +362,9 @@ class ClientPrefs
 		if (FlxG.save.data.showWatermarks != null)
 		{
 			showWatermarks = FlxG.save.data.showWatermarks;
+		}
+		if (FlxG.save.data.lowEndMode != null) {
+			lowEndMode = FlxG.save.data.lowEndMode;
 		}
 
 		// flixel automatically saves your volume!
