@@ -179,6 +179,8 @@ class CreditsState extends MusicBeatState
 			}
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			MusicBeatState.switchState(new MainMenuState());
+			if (ClientPrefs.lowEndMode == true) {
+				MusicBeatState.switchState(new SimpleMenuState());
 		}
 		if(controls.ACCEPT) {
 			CoolUtil.browserLoad(creditsStuff[curSelected][3]);
