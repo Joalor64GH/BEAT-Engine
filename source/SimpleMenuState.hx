@@ -36,10 +36,11 @@ class SimpleMenuState extends MusicBeatState
 {
 	var options:Array<String> = ['Story Mode', 
 	'Freeplay', 
-	#if MODS_ALLOWED 'Mods', #end
-	#if ACHIEVEMENTS_ALLOWED 'Awards', #end
+	//#if MODS_ALLOWED 'Mods', #end
+	//#if ACHIEVEMENTS_ALLOWED 'Awards', #end
+	'Discord',
 	'Credits',
-	#if !switch 'Donate', #end
+	//#if !switch 'Donate', #end
 	'Options'];
 
 	public static var beatEngineVersion:String = '0.0.1'; // This is also used for Discord RPC
@@ -63,12 +64,14 @@ class SimpleMenuState extends MusicBeatState
 				MusicBeatState.switchState(new FreeplayState());
 			case 'Mods':
 				MusicBeatState.switchState(new ModsMenuState());
-			case 'Awards':
-				MusicBeatState.switchState(new AchievementsMenuState());
+			//case 'Awards':
+			//	MusicBeatState.switchState(new AchievementsMenuState());
+			case 'Discord':
+				CoolUtil.browserLoad('https://discord.gg/CqWbjb6w');
 			case 'Credits':
 				MusicBeatState.switchState(new CreditsState());
-			case 'Donate':
-				CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
+			//case 'Donate':
+			//	CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
 			case 'Options':
 				MusicBeatState.switchState(new options.OptionsState());
 		}
