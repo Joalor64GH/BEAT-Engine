@@ -1,6 +1,10 @@
 # Friday Night Funkin' - BEAT! Engine
 Engine was made using lot of different Source Codes (btw, made/modified in Brazil)
 
+## Social Media
+* [Discord Server](https://discord.gg/f8CUrTchuT)
+* [Twitter](https://twitter.com/beat_engine)
+
 ## Installation:
 You must have [the most up-to-date version of Haxe](https://haxe.org/download/), seriously, stop using 4.1.5, it misses some stuff.
 
@@ -10,17 +14,17 @@ To install LuaJIT do this: `haxelib install linc_luajit` on a Command prompt/Pow
 
 ...Or if you don't want your mod to be able to run .lua scripts, delete the "LUA_ALLOWED" line on Project.xml
 
-### Credits:
+### BEAT! Engine Team:
 * Luisinh010, Gui-iago - Coding/Mania Charts
 * aquastrikr, NooBZiiTo - Arts and Animations
 * a gorila guy - Secret Covers
 
-### Special Thanks
+### Contributors
 * Asho - Rich Presence Header Design
 * Salt for Some Reason - Logo
 * LeNinethGames - Menu Remix
 
-### OG Engines
+### Special Thanks
 * Shadow Mario - Psych Engine
 * tposejank - Psych Extra Keys
 _____________________________________
@@ -34,9 +38,9 @@ _____________________________________
 
 ## Revamped Menu
 * Transitions Based on Mic'd Up Engine
-* Random Icon appearing on the screen (also changes the Menu Color)
-* Discord Button (Linked to the BEAT! Engine Server)
-* Twitter Butto (Linked to the BEAT! Engine Account)
+* Random Icon appearing on the screen (also changes the Menu BG Color)
+* Discord Button
+* Twitter Button
 
 ## Simple Menu Option
 * This option was created for Low End Devices
