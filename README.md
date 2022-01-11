@@ -10,8 +10,8 @@ To install LuaJIT do this: `haxelib install linc_luajit` on a Command prompt/Pow
 
 ...Or if you don't want your mod to be able to run .lua scripts, delete the "LUA_ALLOWED" line on Project.xml
 
-## Credits:
-* Luisinh010, Gui-iago - Coding
+### Credits:
+* Luisinh010, Gui-iago - Coding/Mania Charts
 * aquastrikr, NooBZiiTo - Arts and Animations
 * a gorila guy - Secret Covers
 
@@ -20,9 +20,29 @@ To install LuaJIT do this: `haxelib install linc_luajit` on a Command prompt/Pow
 * Salt for Some Reason - Logo
 * LeNinethGames - Menu Remix
 
-## OG Engines
+### OG Engines
 * Shadow Mario - Psych Engine
 * tposejank - Psych Extra Keys
 _____________________________________
 
 # Features
+
+## Mania Difficulty + Charts
+* Tutorial + Week 1-2 (5K Charts)
+* Weeks 3-5 (6K/7K Charts)
+* Weeks 6-7 (8K Charts)
+
+## Revamped Menu
+* Transitions Based on Mic'd Up Engine
+* Random Icon appearing on the screen (also changes the Menu Color)
+* Discord Button (Linked to the BEAT! Engine Server)
+* Twitter Butto (Linked to the BEAT! Engine Account)
+
+## Simple Menu Option
+* This option was created for Low End Devices
+* Also Works for better performance (+ Deactivaded Antialising and Active Low Quality Options)
+
+## Xtras
+* Winning Icons
+* New Health Bar
+* New Grafix (Sick, Good, Bad, Shit)
