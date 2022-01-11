@@ -246,8 +246,8 @@ class MainMenuState extends MusicBeatState
 			// icon = new HealthIcon('bf');
 			// icon.setGraphicSize(Std.int(icon.width * 2));
 			icon.antialiasing = ClientPrefs.globalAntialiasing;
-			icon.x = 75;
-			icon.y = FlxG.height - 195;
+			icon.x = 70;
+			icon.y = FlxG.height - 180;
 			icon.scrollFactor.set();
 			icon.updateHitbox();
 			add(icon);

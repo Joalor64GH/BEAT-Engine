@@ -33,17 +33,16 @@ using StringTools;
 
 class SimpleMenuState extends MusicBeatState
 {
-	var options:Array<String> = ['Story Mode', 
-	'Freeplay', 
-	//'Mods', 
-	//'Awards', 
-	//'Donate',
-	'Discord', 
-	'Credits',  
-	'Options'];
-
-	public static var beatEngineVersion:String = '0.0.1'; // This is also used for Discord RPC
-	public static var psychEngineVersion:String = '0.5.1'; // this one too
+	var options:Array<String> = [
+		'Story Mode',
+		'Freeplay',
+		// 'Mods',
+		// 'Awards',
+		// 'Donate',
+		'Discord',
+		'Credits',
+		'Options'
+	];
 
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 
@@ -60,16 +59,15 @@ class SimpleMenuState extends MusicBeatState
 				MusicBeatState.switchState(new StoryMenuState());
 			case 'Freeplay':
 				MusicBeatState.switchState(new FreeplayState());
-			//case 'Mods':
-			//	MusicBeatState.switchState(new ModsMenuState());
-			//case 'Awards':
-			//	MusicBeatState.switchState(new AchievementsMenuState());
-				//note to self: fix this button - Gui iago
+			/*case 'Mods':
+				MusicBeatState.switchState(new ModsMenuState());
+				case 'Awards':
+				MusicBeatState.switchState(new AchievementsMenuState()); */
 			case 'Discord':
 				CoolUtil.browserLoad('https://discord.gg/CqWbjb6w');
 			case 'Credits':
 				MusicBeatState.switchState(new CreditsState());
-			//case 'Donate':
+			// case 'Donate':
 			//	CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
 			case 'Options':
 				MusicBeatState.switchState(new options.OptionsState());
@@ -98,16 +96,15 @@ class SimpleMenuState extends MusicBeatState
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
 
-		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 64, 0, "BEAT!Engine v" + beatEngineVersion, 12);
+		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 64, 0, "BEAT!Engine v" + MainMenuState.beatEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
-		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
+		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 44, 0, "Psych Engine v" + MainMenuState.psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
-		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'),
-			12);
+		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 24, 0, "Friday Night Funkin' v" + MainMenuState.fridayVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);

@@ -131,7 +131,7 @@ class CreditsState extends MusicBeatState
 				'asho',
 				'Rich Presence Header Design',
 				'https://twitter.com/ashomoment',
-				'FF0000'
+				'FFCCCB'
 			],
 			['Lenineth', 'lenineth', 'Menu Remix', 'https://twitter.com/LeNineth', '00FF00'],
 			[''],
@@ -318,7 +318,8 @@ class CreditsState extends MusicBeatState
 			}
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			MusicBeatState.switchState(new MainMenuState());
-			if (ClientPrefs.lowEndMode == true) {
+			if (ClientPrefs.lowEndMode == true)
+			{
 				MusicBeatState.switchState(new SimpleMenuState());
 			}
 		}

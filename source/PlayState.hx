@@ -14,8 +14,6 @@ import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
 import Shaders;
-#if sys
-#end
 import openfl.utils.AssetType;
 // Lua
 #if cpp
