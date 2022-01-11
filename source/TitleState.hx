@@ -241,7 +241,7 @@ class TitleState extends MusicBeatState
 		{
 			if (FlxG.sound.music == null)
 			{
-				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+				FlxG.sound.playMusic(Paths.music('freakyMenuRemix'), 0);
 
 				FlxG.sound.music.fadeIn(4, 0, 0.7);
 			}

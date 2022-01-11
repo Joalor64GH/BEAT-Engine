@@ -4069,7 +4069,7 @@ class PlayState extends MusicBeatState
 
 				if (storyPlaylist.length <= 0)
 				{
-					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					FlxG.sound.playMusic(Paths.music('freakyMenuRemix'));
 
 					cancelMusicFadeTween();
 					CustomFadeTransition.nextCamera = camOther;
@@ -4147,7 +4147,7 @@ class PlayState extends MusicBeatState
 					CustomFadeTransition.nextCamera = null;
 				}
 				MusicBeatState.switchState(new FreeplayState());
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				FlxG.sound.playMusic(Paths.music('freakyMenuRemix'));
 				changedDifficulty = false;
 			}
 			transitioning = true;
@@ -4838,7 +4838,7 @@ class PlayState extends MusicBeatState
 					dad.heyTimer = 0.6;
 				}
 			}
-			else
+			else if (opponentChart)
 			{
 				if (boyfriend.animOffsets.exists('hey'))
 				{
@@ -5003,7 +5003,7 @@ class PlayState extends MusicBeatState
 				// }
 				if (note.noteType == 'Hey!')
 				{
-					if (opponentChart)
+					if (!opponentChart)
 					{
 						if (boyfriend.animOffsets.exists('hey'))
 						{
@@ -5014,7 +5014,7 @@ class PlayState extends MusicBeatState
 							boyfriend.holdTimer = 0;
 						}
 					}
-					else if (!opponentChart)
+					else if (opponentChart)
 					{
 						if (dad.animOffsets.exists('hey'))
 						{
