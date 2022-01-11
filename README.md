@@ -41,7 +41,7 @@ _____________________________________
 * Random Icon appearing on the screen (also changes the Menu BG Color)
 * Discord Button
 * Twitter Button
-#### Simple Menu Option
+##### Simple Menu Option
 * This option was created for Low End Devices
 * Also Works for better performance (+ Deactivaded Antialising and Active Low Quality Options)
 
@@ -49,3 +49,4 @@ _____________________________________
 * Winning Icons
 * New Health Bar
 * New Grafix (Sick, Good, Bad, Shit)
+* Secret Covers (uhhh)
