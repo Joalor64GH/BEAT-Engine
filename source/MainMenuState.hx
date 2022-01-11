@@ -40,7 +40,7 @@ class MainMenuState extends MusicBeatState
 
 	private var camAchievement:FlxCamera;
 
-	var optionShit:Array<String> = ['story_mode', 'freeplay', 'discord', 'credits', 'options'];
+	var optionShit:Array<String> = ['story_mode', 'freeplay', 'discord', 'twitter', 'credits', 'options'];
 
 	public var iconBG:FlxSprite;
 
@@ -346,6 +346,10 @@ class MainMenuState extends MusicBeatState
 				if (optionShit[curSelected] == 'discord')
 				{
 					CoolUtil.browserLoad('https://discord.gg/yuUt7KeGS5');
+				}
+				if (optionShit[curSelected] == 'twitter')
+				{
+					CoolUtil.browserLoad('https://twitter.com/beat_engine');
 				}
 				else
 				{
