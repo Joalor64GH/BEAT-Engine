@@ -14,6 +14,7 @@ To install LuaJIT do this: `haxelib install linc_luajit` on a Command prompt/Pow
 
 ...Or if you don't want your mod to be able to run .lua scripts, delete the "LUA_ALLOWED" line on Project.xml
 
+_____________________________________
 ### BEAT! Crew
 * Luisinhi010, Gui-iago - Coding/Mania Charts
 * aquastrikr, NooBZiiTo - Arts and Animations
@@ -30,6 +31,9 @@ To install LuaJIT do this: `haxelib install linc_luajit` on a Command prompt/Pow
 _____________________________________
 
 # Features
+## Week 7
+* Yeah, it's what you read, Week 7, lol
+* Contains: UGH, Guns, Stress (ofc lol)
 
 ## Mania Difficulty + Charts
 * Tutorial + Week 1-2 (5K Charts)
@@ -41,7 +45,7 @@ _____________________________________
 * Random Icon appearing on the screen (also changes the Menu BG Color)
 * Discord Button
 * Twitter Button
-##### Simple Menu Option
+> ### Simplified Menu Option
 * This option was created for Low End Devices
 * Also Works for better performance (+ Deactivaded Antialising and Active Low Quality Options)
 
