@@ -162,7 +162,11 @@ class SimpleMenuState extends MusicBeatState
 		if (controls.ACCEPT)
 		{
 			FlxG.sound.play(Paths.sound('confirmMenu'));
-			openSelectedSubstate(options[curSelected]);
+
+			new FlxTimer().start(1, function(tmr:FlxTimer)
+			{
+				openSelectedSubstate(options[curSelected]);
+			});
 		}
 
 		#if desktop

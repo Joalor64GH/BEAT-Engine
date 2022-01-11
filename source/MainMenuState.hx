@@ -31,7 +31,6 @@ class MainMenuState extends MusicBeatState
 	public static var curSelected:Int = 0;
 
 	public static var correct:String = 'correct engine - pass';
-	public static var incorrect:String = 'bitch why you using zoros engine';
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
@@ -68,8 +67,6 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-		Paths.clearStoredMemory();
-		Paths.clearUnusedMemory();
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
@@ -83,7 +80,6 @@ class MainMenuState extends MusicBeatState
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camAchievement);
 		FlxCamera.defaultCameras = [camGame];
-
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
 
@@ -493,6 +489,9 @@ class MainMenuState extends MusicBeatState
 				}
 				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y - add);
 				spr.centerOffsets();
+
+				// if (curSelected == 4)
+				//	spr.x -= 30;
 			}
 		});
 	}
