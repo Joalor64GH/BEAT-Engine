@@ -83,6 +83,8 @@ class SimpleMenuState extends MusicBeatState
 
 	override function create()
 	{
+		Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
 		#if desktop
 		DiscordClient.changePresence("In the Main Menu", null);
 		#end

@@ -188,6 +188,7 @@ class PlayState extends MusicBeatState
 	public var instakillOnMiss:Bool = false;
 	public var cpuControlled:Bool = false;
 	public var practiceMode:Bool = false;
+	public var opponentChart:Bool = false;
 
 	public var botplaySine:Float = 0;
 	public var botplayTxt:FlxText;
@@ -339,6 +340,7 @@ class PlayState extends MusicBeatState
 		instakillOnMiss = ClientPrefs.getGameplaySetting('instakill', false);
 		practiceMode = ClientPrefs.getGameplaySetting('practice', false);
 		cpuControlled = ClientPrefs.getGameplaySetting('botplay', false);
+		opponentChart = ClientPrefs.getGameplaySetting('opponentplay', false);
 
 		shader_chromatic_abberation = new ChromaticAberrationEffect();
 
@@ -1214,7 +1216,10 @@ class PlayState extends MusicBeatState
 		if (ClientPrefs.downScroll)
 			healthBarBG.y = 0.11 * FlxG.height;
 
-		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+		var healthdirection = RIGHT_TO_LEFT;
+		if (opponentChart)
+			healthdirection = LEFT_TO_RIGHT;
+		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, healthdirection, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
 		// healthBar
@@ -1488,8 +1493,12 @@ class PlayState extends MusicBeatState
 
 	public function reloadHealthBarColors()
 	{
-		healthBar.createFilledBar(FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]),
-			FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]));
+		if (!opponentChart)
+			healthBar.createFilledBar(FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]),
+				FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]));
+		else
+			healthBar.createFilledBar(FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]),
+				FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]));
 
 		healthBar.updateBar();
 	}
@@ -2191,7 +2200,11 @@ class PlayState extends MusicBeatState
 
 				var gottaHitNote:Bool = section.mustHitSection;
 
-				if (songNotes[1] > (Note.ammo[mania] - 1))
+				if (songNotes[1] > 3 && !opponentChart)
+				{
+					gottaHitNote = !section.mustHitSection;
+				}
+				else if (songNotes[1] <= 3 && opponentChart)
 				{
 					gottaHitNote = !section.mustHitSection;
 				}
@@ -2378,7 +2391,10 @@ class PlayState extends MusicBeatState
 
 			if (player == 1)
 			{
-				playerStrums.add(babyArrow);
+				if (!opponentChart || opponentChart && ClientPrefs.middleScroll)
+					playerStrums.add(babyArrow);
+				else
+					opponentStrums.add(babyArrow);
 			}
 			else
 			{
@@ -2392,7 +2408,10 @@ class PlayState extends MusicBeatState
 						babyArrow.x += FlxG.width / 2 + 25;
 					}
 				}
-				opponentStrums.add(babyArrow);
+				if (!opponentChart || opponentChart && ClientPrefs.middleScroll)
+					opponentStrums.add(babyArrow);
+				else
+					playerStrums.add(babyArrow);
 			}
 
 			strumLineNotes.add(babyArrow);
@@ -2878,32 +2897,48 @@ class PlayState extends MusicBeatState
 		iconP2.updateHitbox();
 
 		var iconOffset:Int = 26;
-
-		iconP1.x = healthBar.x
-			+ (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01))
+		var offset:Float = 0;
+		var direction:Int = 1;
+		if (opponentChart)
+		{
+			offset = -593;
+			direction = -1;
+		}
+		iconP1.x = offset
+			+ healthBar.x
+			+ (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100 * direction, 100, 0) * 0.01))
 			+ (150 * iconP1.scale.x - 150) / 2
 			- iconOffset;
-		iconP2.x = healthBar.x
-			+ (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01))
+		iconP2.x = offset
+			+ healthBar.x
+			+ (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100 * direction, 100, 0) * 0.01))
 			- (150 * iconP2.scale.x) / 2
 			- iconOffset * 2;
 
 		if (health > 2)
 			health = 2;
 
+		var p1 = iconP1;
+		var p2 = iconP2;
+		if (opponentChart)
+		{
+			p1 = iconP2;
+			p2 = iconP1;
+		}
+
 		if (healthBar.percent < 20)
-			iconP1.animation.curAnim.curFrame = 1;
+			p1.animation.curAnim.curFrame = 1;
 		else if (healthBar.percent > 85)
-			iconP1.animation.curAnim.curFrame = 2;
+			p1.animation.curAnim.curFrame = 2;
 		else
-			iconP1.animation.curAnim.curFrame = 0;
+			p1.animation.curAnim.curFrame = 0;
 
 		if (healthBar.percent > 85)
-			iconP2.animation.curAnim.curFrame = 1;
+			p2.animation.curAnim.curFrame = 1;
 		else if (healthBar.percent < 20)
-			iconP2.animation.curAnim.curFrame = 2;
+			p2.animation.curAnim.curFrame = 2;
 		else
-			iconP2.animation.curAnim.curFrame = 0;
+			p2.animation.curAnim.curFrame = 0;
 
 		if (FlxG.keys.anyJustPressed(debugKeysCharacter) && !endingSong && !inCutscene)
 		{
@@ -4676,6 +4711,10 @@ class PlayState extends MusicBeatState
 		RecalculateRating();
 
 		var char:Character = boyfriend;
+		if (opponentChart)
+		{
+			char = dad;
+		}
 		if (daNote.gfNote)
 		{
 			char = gf;
@@ -4743,7 +4782,7 @@ class PlayState extends MusicBeatState
 				boyfriend.stunned = false;
 		});*/
 
-			if (boyfriend.hasMissAnimations)
+			if (boyfriend.hasMissAnimations && !opponentChart)
 			{
 				boyfriend.playAnim('sing' + Note.keysShit.get(mania).get('anims')[direction] + 'miss', true);
 			}
@@ -4786,11 +4825,23 @@ class PlayState extends MusicBeatState
 				char = gf;
 			}
 
-			if (note.isSustainNote && char.animation.curAnim.name == 'idle')
-				char.playAnim(animToPlay);
-			else if (!note.isSustainNote)
-				char.playAnim(animToPlay, true);
-			char.holdTimer = 0;
+			if (opponentChart)
+			{
+				if (note.isSustainNote && boyfriend.animation.curAnim.name == 'idle')
+					boyfriend.playAnim(animToPlay);
+				else if (!note.isSustainNote)
+					boyfriend.playAnim(animToPlay, true);
+				boyfriend.playAnim(animToPlay, true);
+				boyfriend.holdTimer = 0;
+			}
+			if (!opponentChart)
+			{
+				if (note.isSustainNote && char.animation.curAnim.name == 'idle')
+					char.playAnim(animToPlay);
+				else if (!note.isSustainNote)
+					char.playAnim(animToPlay, true);
+				char.holdTimer = 0;
+			}
 		}
 
 		if (SONG.needsVoices)
@@ -4890,7 +4941,6 @@ class PlayState extends MusicBeatState
 				// }else{
 				if (note.gfNote)
 				{
-					// gf.playAnim(animToPlay + daAlt, true);
 					if ((note.isSustainNote && gf.animation.curAnim.name.startsWith('dance')))
 						gf.playAnim(animToPlay + daAlt);
 					else if (!note.isSustainNote)
@@ -4912,7 +4962,6 @@ class PlayState extends MusicBeatState
 					if (boyfriend.animOffsets.exists('hey'))
 					{
 						boyfriend.holdTimer = 0;
-						// boyfriend.playAnim('hey', true);
 						if (note.isSustainNote && boyfriend.animation.curAnim.name == 'idle')
 							boyfriend.playAnim('hey');
 						else if (!note.isSustainNote)
@@ -4923,7 +4972,6 @@ class PlayState extends MusicBeatState
 
 					if (gf.animOffsets.exists('cheer'))
 					{
-						// gf.playAnim('cheer', true);
 						if (note.isSustainNote && gf.animation.curAnim.name.startsWith('dance'))
 							gf.playAnim('cheer');
 						else if (!note.isSustainNote)
@@ -5435,7 +5483,11 @@ class PlayState extends MusicBeatState
 	function StrumPlayAnim(isDad:Bool, id:Int, time:Float)
 	{
 		var spr:StrumNote = null;
-		if (isDad)
+		if (isDad && opponentChart)
+		{
+			spr = opponentStrums.members[id];
+		}
+		else if (isDad)
 		{
 			spr = strumLineNotes.members[id];
 		}
