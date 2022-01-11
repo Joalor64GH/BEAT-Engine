@@ -1,51 +1,8 @@
 package;
 
-import flixel.graphics.FlxGraphic;
 #if desktop
-import Discord.DiscordClient;
 #end
-import Section.SwagSection;
-import Song.SwagSong;
-import WiggleEffect.WiggleEffectType;
-import flixel.FlxBasic;
-import flixel.FlxCamera;
-import flixel.FlxG;
-import flixel.FlxGame;
-import flixel.FlxObject;
-import flixel.FlxSprite;
-import flixel.FlxState;
-import flixel.FlxSubState;
-import flixel.addons.display.FlxGridOverlay;
-import flixel.addons.effects.FlxTrail;
-import flixel.addons.effects.FlxTrailArea;
-import flixel.addons.effects.chainable.FlxEffectSprite;
-import flixel.addons.effects.chainable.FlxWaveEffect;
-import flixel.addons.transition.FlxTransitionableState;
-import flixel.graphics.atlas.FlxAtlas;
-import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.math.FlxMath;
-import flixel.math.FlxPoint;
-import flixel.math.FlxRect;
-import flixel.system.FlxAssets.FlxShader;
-import flixel.system.FlxSound;
-import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.ui.FlxBar;
-import flixel.util.FlxCollision;
-import flixel.util.FlxColor;
-import flixel.util.FlxSort;
-import flixel.util.FlxStringUtil;
-import flixel.util.FlxTimer;
-import haxe.Json;
-import lime.utils.Assets;
-import openfl.Lib;
-import openfl.display.BlendMode;
-import openfl.display.Shader;
-import openfl.display.StageQuality;
 import openfl.filters.BitmapFilter;
-import openfl.filters.ShaderFilter;
 import openfl.utils.Assets as OpenFlAssets;
 import editors.ChartingState;
 import editors.CharacterEditorState;
@@ -58,6 +15,44 @@ import FunkinLua;
 import DialogueBoxPsych;
 import Shaders;
 #if sys
+#end
+import openfl.utils.AssetType;
+// Lua
+#if cpp
+#end
+import Section.SwagSection;
+import Song.SwagSong;
+import WiggleEffect.WiggleEffectType;
+import flixel.FlxBasic;
+import flixel.FlxCamera;
+import flixel.FlxG;
+import flixel.FlxObject;
+import flixel.FlxSprite;
+import flixel.FlxState;
+import flixel.FlxSubState;
+import flixel.addons.effects.FlxTrail;
+import flixel.addons.effects.chainable.FlxWaveEffect;
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.math.FlxMath;
+import flixel.math.FlxPoint;
+import flixel.math.FlxRect;
+import flixel.system.FlxSound;
+import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import flixel.ui.FlxBar;
+import flixel.util.FlxColor;
+import flixel.util.FlxSort;
+import flixel.util.FlxStringUtil;
+import flixel.util.FlxTimer;
+import openfl.display.BlendMode;
+import openfl.display.StageQuality;
+import openfl.filters.ShaderFilter;
+#if windows
+import Discord.DiscordClient;
+#end
+#if cpp
 import sys.FileSystem;
 #end
 
@@ -753,7 +748,7 @@ class PlayState extends MusicBeatState
 				defaultCamZoom = 0.9;
 
 				tankSky = new FlxSprite(-400, -400).loadGraphic(Paths.image('tankSky', 'week7'));
-				tankSky.antialiasing = !ClientPrefs.lowQuality;
+				tankSky.antialiasing = ClientPrefs.globalAntialiasing;
 				tankSky.scrollFactor.set(0, 0);
 				tankSky.setGraphicSize(Std.int(tankSky.width * 2.7));
 				tankSky.active = false;
@@ -770,7 +765,7 @@ class PlayState extends MusicBeatState
 				}
 
 				tankmout = new FlxSprite(-300, -20).loadGraphic(Paths.image('tankMountains', 'week7'));
-				tankmout.antialiasing = !ClientPrefs.lowQuality;
+				tankmout.antialiasing = ClientPrefs.globalAntialiasing;
 				tankmout.scrollFactor.set(0.2, 0.2);
 				tankmout.setGraphicSize(Std.int(tankmout.width * 1.1));
 				tankmout.active = false;
@@ -778,7 +773,7 @@ class PlayState extends MusicBeatState
 				add(tankmout);
 
 				tankmouwt = new FlxSprite(-200, 0).loadGraphic(Paths.image('tankBuildings', 'week7'));
-				tankmouwt.antialiasing = !ClientPrefs.lowQuality;
+				tankmouwt.antialiasing = ClientPrefs.globalAntialiasing;
 				tankmouwt.scrollFactor.set(0.3, 0.3);
 				tankmouwt.setGraphicSize(Std.int(tankmouwt.width * 1.1));
 				tankmouwt.active = false;
@@ -817,22 +812,22 @@ class PlayState extends MusicBeatState
 				tanjcuk.frames = Paths.getSparrowAtlas('tankWatchtower', 'week7');
 				tanjcuk.animation.addByPrefix('dancey', 'watchtower gradient color instance ', 24, false);
 				tanjcuk.animation.play('dancey');
-				tanjcuk.antialiasing = !ClientPrefs.lowQuality;
+				tanjcuk.antialiasing = ClientPrefs.globalAntialiasing;
 				tanjcuk.scrollFactor.set(0.5, 0.5);
 				tanjcuk.setGraphicSize(Std.int(tanjcuk.width * 1.2));
-				tanjcuk.antialiasing = !ClientPrefs.lowQuality;
+				tanjcuk.antialiasing = ClientPrefs.globalAntialiasing;
 				add(tanjcuk);
 
 				tankRolling = new FlxSprite(300, 300);
 				tankRolling.frames = Paths.getSparrowAtlas('tankRolling', 'week7');
 				tankRolling.animation.addByPrefix('idle', 'BG tank w lighting instance ', 24, true);
 				tankRolling.scrollFactor.set(0.5, 0.5);
-				tankRolling.antialiasing = !ClientPrefs.lowQuality;
+				tankRolling.antialiasing = ClientPrefs.globalAntialiasing;
 				tankRolling.animation.play('idle');
 				add(tankRolling);
 
 				tankmouthh = new FlxSprite(-420, -150).loadGraphic(Paths.image('tankGround', 'week7'));
-				tankmouthh.antialiasing = !ClientPrefs.lowQuality;
+				tankmouthh.antialiasing = ClientPrefs.globalAntialiasing;
 				tankmouthh.setGraphicSize(Std.int(tankmouthh.width * 1.15));
 				tankmouthh.active = false;
 				tankmouthh.updateHitbox();
@@ -3399,7 +3394,7 @@ class PlayState extends MusicBeatState
 				if (value != 0)
 				{
 					if (dad.curCharacter.startsWith('gf'))
-					{ // Tutorial GF is actually Dad! The GF is an imposter!! ding ding ding ding ding ding ding, dindinding, end my suffering
+					{ // Tutorial GF is actually Dad! The GF is an imposter!! ding ding ding ding ding ding ding, dindinding, end my suffering?
 						dad.playAnim('cheer', true);
 						dad.specialAnim = true;
 						dad.heyTimer = time;
@@ -4765,7 +4760,11 @@ class PlayState extends MusicBeatState
 
 		if (note.noteType == 'Hey!' && dad.animOffsets.exists('hey'))
 		{
-			dad.playAnim('hey', true);
+			if ((note.isSustainNote && dad.animation.curAnim.name.startsWith('dance')))
+				dad.playAnim('hey');
+			else if (!note.isSustainNote)
+				dad.playAnim('hey', true);
+			// dad.playAnim('hey', true);
 			dad.specialAnim = true;
 			dad.heyTimer = 0.6;
 		}
@@ -4894,7 +4893,7 @@ class PlayState extends MusicBeatState
 				if (note.gfNote)
 				{
 					// gf.playAnim(animToPlay + daAlt, true);
-					if (note.isSustainNote && gf.animation.curAnim.name == 'idle')
+					if ((note.isSustainNote && gf.animation.curAnim.name.startsWith('dance')))
 						gf.playAnim(animToPlay + daAlt);
 					else if (!note.isSustainNote)
 						gf.playAnim(animToPlay + daAlt, true);
@@ -4914,14 +4913,23 @@ class PlayState extends MusicBeatState
 				{
 					if (boyfriend.animOffsets.exists('hey'))
 					{
-						boyfriend.playAnim('hey', true);
+						boyfriend.holdTimer = 0;
+						// boyfriend.playAnim('hey', true);
+						if (note.isSustainNote && boyfriend.animation.curAnim.name == 'idle')
+							boyfriend.playAnim('hey');
+						else if (!note.isSustainNote)
+							boyfriend.playAnim('hey', true);
 						boyfriend.specialAnim = true;
 						boyfriend.heyTimer = 0.6;
 					}
 
 					if (gf.animOffsets.exists('cheer'))
 					{
-						gf.playAnim('cheer', true);
+						// gf.playAnim('cheer', true);
+						if (note.isSustainNote && gf.animation.curAnim.name.startsWith('dance'))
+							gf.playAnim('cheer');
+						else if (!note.isSustainNote)
+							gf.playAnim('cheer', true);
 						gf.specialAnim = true;
 						gf.heyTimer = 0.6;
 					}

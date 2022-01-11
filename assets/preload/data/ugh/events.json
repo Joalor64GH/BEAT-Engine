@@ -1,0 +1,19 @@
+{
+	"song": {
+		"speed": 2.3,
+		"stage": "tank",
+		"player1": "bf",
+		"player2": "tankman",
+		"player3": null,
+		"events": [],
+		"notes": [],
+		"splashSkin": null,
+		"validScore": false,
+		"gfVersion": "gftankmen",
+		"bpm": 160,
+		"mania": 3,
+		"arrowSkin": null,
+		"needsVoices": true,
+		"song": "Ugh"
+	}
+}

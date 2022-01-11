@@ -40,7 +40,7 @@ class MainMenuState extends MusicBeatState
 
 	private var camAchievement:FlxCamera;
 
-	var optionShit:Array<String> = ['story_mode', 'freeplay', 'credits', 'options'];
+	var optionShit:Array<String> = ['story_mode', 'freeplay', 'discord', 'credits', 'options'];
 
 	public var iconBG:FlxSprite;
 
@@ -147,12 +147,12 @@ class MainMenuState extends MusicBeatState
 			menuItem.screenCenter(X);
 			menuItems.add(menuItem);
 			var scr:Float = (optionShit.length - 4) * 0.135;
-			if (optionShit.length < 6)
+			if (optionShit.length < 3)
 				scr = 0;
 			menuItem.scrollFactor.set(0, scr);
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
 			// menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
-			FlxTween.tween(menuItem, {y: 60 + (i * 160)}, 1 + (i * 0.25), {
+			FlxTween.tween(menuItem, {y: 30 + (i * 120)}, 1 + (i * 0.25), {
 				ease: FlxEase.expoInOut,
 				onComplete: function(flxTween:FlxTween)
 				{
@@ -160,6 +160,7 @@ class MainMenuState extends MusicBeatState
 				}
 			});
 			menuItem.updateHitbox();
+			menuItem.scrollFactor.set(0, scr);
 		}
 
 		if (!ClientPrefs.lowQuality)
@@ -170,15 +171,15 @@ class MainMenuState extends MusicBeatState
 			logoBl.scrollFactor.set();
 			logoBl.antialiasing = ClientPrefs.globalAntialiasing;
 			logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
-			logoBl.setGraphicSize(Std.int(logoBl.width * 0.4));
+			logoBl.setGraphicSize(Std.int(logoBl.width * 0.5));
 			logoBl.animation.play('bump');
 			logoBl.alpha = 0;
 			logoBl.angle = -4;
 			logoBl.updateHitbox();
 			add(logoBl);
 			FlxTween.tween(logoBl, {
-				y: logoBl.y + 100,
-				x: logoBl.x + 100,
+				y: logoBl.y + 150,
+				x: logoBl.x + 150,
 				angle: -4,
 				alpha: 1
 			}, 1.4, {ease: FlxEase.expoInOut});
@@ -205,7 +206,7 @@ class MainMenuState extends MusicBeatState
 
 		if (!ClientPrefs.lowQuality)
 		{
-			iconBG = new FlxSprite().loadGraphic(Paths.image('iconshitlol'));
+			iconBG = new FlxSprite(0, FlxG.height + 0).loadGraphic(Paths.image('iconshitlol'));
 			iconBG.scrollFactor.set();
 			iconBG.updateHitbox();
 			iconBG.screenCenter();
@@ -245,8 +246,8 @@ class MainMenuState extends MusicBeatState
 			// icon = new HealthIcon('bf');
 			// icon.setGraphicSize(Std.int(icon.width * 2));
 			icon.antialiasing = ClientPrefs.globalAntialiasing;
-			icon.x = 80;
-			icon.y = 550;
+			icon.x = 75;
+			icon.y = FlxG.height - 195;
 			icon.scrollFactor.set();
 			icon.updateHitbox();
 			add(icon);
@@ -328,8 +329,8 @@ class MainMenuState extends MusicBeatState
 				{
 					FlxTween.tween(logoBl, {
 						alpha: 0,
-						x: logoBl.x - 100,
-						y: logoBl.y - 100,
+						x: -100,
+						y: -100,
 						angle: 4
 					}, 0.5, {ease: FlxEase.quadOut});
 					FlxTween.tween(icon, {x: icon.x - 20, y: icon.y + 20}, 0.5, {ease: FlxEase.quadOut});
@@ -341,6 +342,10 @@ class MainMenuState extends MusicBeatState
 				if (optionShit[curSelected] == 'donate')
 				{
 					CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
+				}
+				if (optionShit[curSelected] == 'discord')
+				{
+					CoolUtil.browserLoad('https://discord.gg/yuUt7KeGS5');
 				}
 				else
 				{
@@ -355,8 +360,8 @@ class MainMenuState extends MusicBeatState
 						FlxTween.tween(checker, {angle: 45}, 0.8, {ease: FlxEase.expoIn});
 						FlxTween.tween(logoBl, {
 							alpha: 0,
-							x: logoBl.x - 20,
-							y: logoBl.y - 20,
+							x: logoBl.x - 30,
+							y: logoBl.y - 30,
 							angle: 4
 						}, 0.8, {ease: FlxEase.quadOut});
 						FlxTween.tween(icon, {x: icon.x - 10, y: icon.y + 10}, 0.8, {ease: FlxEase.quadOut});
@@ -415,7 +420,7 @@ class MainMenuState extends MusicBeatState
 			menuItems.forEach(function(spr:FlxSprite)
 			{
 				spr.screenCenter(X);
-				spr.x += 250;
+				spr.x += 240;
 			});
 		}
 	}

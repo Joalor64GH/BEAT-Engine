@@ -357,7 +357,8 @@
 					[
 						11625,
 						1,
-						281.25
+						281.25,
+						"Hey!"
 					]
 				],
 				"mustHitSection": true
@@ -367,11 +368,6 @@
 				"sectionNotes": [
 					[
 						12000,
-						3,
-						0
-					],
-					[
-						12093.75,
 						3,
 						0
 					],
@@ -418,6 +414,11 @@
 					[
 						13312.5,
 						1,
+						0
+					],
+					[
+						12093.75,
+						3,
 						0
 					]
 				],
@@ -586,23 +587,8 @@
 				"sectionNotes": [
 					[
 						18000,
-						3,
-						0
-					],
-					[
-						18000,
 						7,
 						281.25
-					],
-					[
-						18093.75,
-						3,
-						0
-					],
-					[
-						18187.5,
-						1,
-						0
 					],
 					[
 						18375,
@@ -642,6 +628,16 @@
 					[
 						19312.5,
 						1,
+						0
+					],
+					[
+						18000,
+						1,
+						0
+					],
+					[
+						18187.5,
+						3,
 						0
 					]
 				],
@@ -1712,7 +1708,8 @@
 					[
 						47625,
 						1,
-						281.25
+						281.25,
+						"Hey!"
 					]
 				],
 				"mustHitSection": true
@@ -2005,7 +2002,8 @@
 					[
 						55125,
 						1,
-						281.25
+						281.25,
+						"Hey!"
 					]
 				],
 				"mustHitSection": true
@@ -2044,14 +2042,15 @@
 						0
 					],
 					[
-						56625,
-						0,
-						0
-					],
-					[
 						56812.5,
 						3,
 						0
+					],
+					[
+						56625,
+						0,
+						0,
+						"Hey!"
 					]
 				],
 				"mustHitSection": true
@@ -2975,7 +2974,8 @@
 					[
 						83625,
 						1,
-						281.25
+						281.25,
+						"Hey!"
 					]
 				],
 				"mustHitSection": true
@@ -3001,6 +3001,36 @@
 			},
 			{
 				"lengthInSteps": 16,
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"altAnim": false,
+				"bpm": 160,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"sectionNotes": [],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": true,
+				"changeBPM": false,
+				"bpm": 160
+			},
+			{
+				"gfSection": false,
+				"lengthInSteps": 16,
+				"altAnim": false,
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"bpm": 160,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"gfSection": false,
+				"lengthInSteps": 16,
 				"altAnim": false,
 				"typeOfSection": 0,
 				"sectionNotes": [],
@@ -3009,11 +3039,14 @@
 				"mustHitSection": true
 			}
 		],
-		"player3": "gftankmen",
+		"gfVersion": "gftankmen",
+		"events": [],
+		"player3": null,
+		"mania": 3,
 		"song": "Ugh",
-		"stage": "tank",
-		"needsVoices": true,
 		"validScore": true,
+		"needsVoices": true,
+		"stage": "tank",
 		"speed": 2.3,
 		"bpm": 160
 	}
