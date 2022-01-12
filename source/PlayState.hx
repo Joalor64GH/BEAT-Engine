@@ -4830,7 +4830,7 @@ class PlayState extends MusicBeatState
 			{
 				if (dad.animOffsets.exists('hey'))
 				{
-					if ((note.isSustainNote && (dad.animation.curAnim.name.startsWith('dance') || boyfriend.animation.curAnim.name == 'idle')))
+					if ((note.isSustainNote && (dad.animation.curAnim.name.startsWith('dance') || dad.animation.curAnim.name == 'idle')))
 						dad.playAnim('hey');
 					else if (!note.isSustainNote)
 						dad.playAnim('hey', true);
