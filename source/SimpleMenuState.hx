@@ -35,7 +35,8 @@ using StringTools;
 
 class SimpleMenuState extends MusicBeatState
 {
-	var options:Array<String> = ['Story Mode', 
+	var options:Array<String> = [
+	'Story Mode', 
 	'Freeplay', 
 	#if MODS_ALLOWED 'Mods', #end
 	#if ACHIEVEMENTS_ALLOWED 'Awards', #end
@@ -47,7 +48,7 @@ class SimpleMenuState extends MusicBeatState
 
 	public static var fridayVersion:String = '0.2.7.1';
 	#if debug
-	public static var beatDebugVersion:String = '0.3 (Debug Build)';
+	public static var beatDebugVersion:String = '0.0.1 (Debug Build)';
 	public static var psychDebugVersion:String = '0.5.1';
 	#end
 	public static var psychEngineVersion:String = '0.5.1';
