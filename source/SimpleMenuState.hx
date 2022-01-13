@@ -107,7 +107,6 @@ class SimpleMenuState extends MusicBeatState
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "BEAT! Engine v" + beatEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		versionShit.screenCenter(X);
 		add(versionShit);
 		var versionShitpsych:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShitpsych.scrollFactor.set();
