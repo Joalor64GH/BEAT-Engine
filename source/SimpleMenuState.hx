@@ -45,12 +45,13 @@ class SimpleMenuState extends MusicBeatState
 	#if !switch 'Donate', #end
 	'Options'];
 
+	public static var fridayVersion:String = '0.2.7.1';
 	#if debug
 	public static var beatDebugVersion:String = '0.3 (Debug Build)';
 	public static var psychDebugVersion:String = '0.5.1';
 	#end
-	public static var beatEngineVersion:String = '0.3'; //This is also used for Discord RPC
-	public static var psychEngineVersion:String = '0.5.1'; //this one too
+	public static var psychEngineVersion:String = '0.5.1';
+	public static var beatEngineVersion:String = '0.0.1'; // this is used for Discord RPC
 
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 
@@ -103,16 +104,16 @@ class SimpleMenuState extends MusicBeatState
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
 
-		//Version Text
-		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 64, 0, "BEAT! Engine v" + beatEngineVersion, 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "BEAT! Engine v" + beatEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		versionShit.screenCenter(X);
 		add(versionShit);
-		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
-		//Debug Build Version Text
+		var versionShitpsych:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
+		versionShitpsych.scrollFactor.set();
+		versionShitpsych.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		versionShitpsych.screenCenter(X);
+		add(versionShitpsych);
 		#if debug
 		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 64, 0, "BEAT! Engine v" + beatDebugVersion, 12);
 		versionShit.scrollFactor.set();
@@ -123,11 +124,11 @@ class SimpleMenuState extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 		#end
-		//FNF Version Text (Global)
-		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
+		var versionShitFriday:FlxText = new FlxText(12, FlxG.height - 24, 0, "FNF v" + fridayVersion, 12);
+		versionShitFriday.scrollFactor.set();
+		versionShitFriday.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		versionShitFriday.screenCenter(X);
+		add(versionShitFriday);
 
 		for (i in 0...options.length)
 		{

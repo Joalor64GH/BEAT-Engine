@@ -26,8 +26,12 @@ using StringTools;
 class MainMenuState extends MusicBeatState
 {
 	public static var fridayVersion:String = '0.2.7.1';
+	#if debug
+	public static var beatDebugVersion:String = '0.3 (Debug Build)';
+	public static var psychDebugVersion:String = '0.5.1';
+	#end
 	public static var psychEngineVersion:String = '0.5.1';
-	public static var beatEngineVersion:String = '0.0.1'; // this is used for the discord_rpc
+	public static var beatEngineVersion:String = '0.0.1'; // this is used for Discord RPC
 	public static var curSelected:Int = 0;
 
 	public static var correct:String = 'correct engine - pass';
@@ -196,6 +200,16 @@ class MainMenuState extends MusicBeatState
 		versionShitpsych.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		versionShitpsych.screenCenter(X);
 		add(versionShitpsych);
+		#if debug
+		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 64, 0, "BEAT! Engine v" + beatDebugVersion, 12);
+		versionShit.scrollFactor.set();
+		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(versionShit);
+		var versionShit:FlxText = new FlxText(12, ClientPrefs.getResolution()[1] - 44, 0, "Psych Engine v" + psychDebugVersion, 12);
+		versionShit.scrollFactor.set();
+		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(versionShit);
+		#end
 		var versionShitFriday:FlxText = new FlxText(12, FlxG.height - 24, 0, "FNF v" + fridayVersion, 12);
 		versionShitFriday.scrollFactor.set();
 		versionShitFriday.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
