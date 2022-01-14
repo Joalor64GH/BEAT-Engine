@@ -65,10 +65,11 @@ class ClientPrefs
 	public static var goodWindow:Int = 90;
 	public static var badWindow:Int = 135;
 	public static var safeFrames:Float = 10;
-	public static var lowEndMode:Bool = false;
 
 	// Added by Beat Engine
 	public static var showWatermarks:Bool = true;
+	public static var lowEndMode:Bool = false;
+	public static var playHitSounds:Bool = true;
 
 	// Every key has two binds, add your key bind down here and then add your control on options/ControlsSubState.hx and Controls.hx
 	public static var keyBinds:Map<String, Array<FlxKey>> = [
@@ -208,6 +209,7 @@ class ClientPrefs
 		// Added by Beat Engine
 		FlxG.save.data.showWatermarks = showWatermarks;
 		FlxG.save.data.lowEndMode = lowEndMode;
+		FlxG.save.data.playHitSounds = playHitSounds;
 
 		FlxG.save.flush();
 
@@ -365,6 +367,9 @@ class ClientPrefs
 		}
 		if (FlxG.save.data.lowEndMode != null) {
 			lowEndMode = FlxG.save.data.lowEndMode;
+		}
+		if (FlxG.save.data.playHitSounds != null) {
+			playHitSounds = FlxG.save.data.playHitSounds;
 		}
 
 		// flixel automatically saves your volume!
