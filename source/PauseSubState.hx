@@ -90,7 +90,7 @@ class PauseSubState extends MusicBeatSubstate
 		practiceText.visible = PlayState.instance.practiceMode;
 		add(practiceText);
 
-		opponentText = new FlxText(20, 15 + 130, 0, "OPPONENT MODE", 32);
+		opponentText = new FlxText(20, 15 + 96, 0, "OPPONENT MODE", 32);
 		opponentText.scrollFactor.set();
 		opponentText.setFormat(Paths.font('vcr.ttf'), 32);
 		opponentText.y = opponentText.y - 5;
