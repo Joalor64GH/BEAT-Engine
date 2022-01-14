@@ -79,6 +79,13 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			false);
 		addOption(option);
 
+		var option:Option = new Option('Play Hit Sounds',
+			"If checked, will play a sound when you hit a note",
+			'playHitSounds',
+			'bool',
+			true);
+		addOption(option);
+
 		/*var option:Option = new Option('Note Delay',
 			'Changes how late a note is spawned.\nUseful for preventing audio lag from wireless earphones.',
 			'noteOffset',
