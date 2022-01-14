@@ -61,6 +61,8 @@ class FreeplayState extends MusicBeatState
 		PlayState.isStoryMode = false;
 		WeekData.reloadWeekFiles(false);
 
+		FlxG.mouse.visible = true;
+
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In Freeplay", null);
