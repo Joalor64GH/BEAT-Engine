@@ -29,17 +29,17 @@ Engine was made using lot of different Source Codes (btw, made/modified in Brazi
 
 ### Git 
 for Windows and Mac: https://git-scm.com/downloads
-**after installing, open a Command Prompt or Terminal, and type in:**
+* **after installing, open a Command Prompt or Terminal, and type in:**
 haxelib setup
 
 Linux (Ubuntu and Debian based Distros): 
 
-sudo apt-get update
-sudo apt-get install git -y
+* sudo apt-get update
+* sudo apt-get install git -y
 
 Linux (Arch based Distros): 
 
-sudo pacman -Sy git --noconfirm
+* sudo pacman -Sy git --noconfirm
 
 ### Haxel
 
@@ -47,14 +47,14 @@ for Windows and Mac: https://haxe.org/download/
 
 Linux (Ubuntu and Debian based Distros):
 
-sudo add-apt-repository ppa:haxe/releases -y
-sudo apt-get update
-sudo apt-get install haxe -y
-mkdir ~/haxelib && haxelib setup ~/haxelib
+* sudo add-apt-repository ppa:haxe/releases -y
+* sudo apt-get update
+* sudo apt-get install haxe -y
+* mkdir ~/haxelib && haxelib setup ~/haxelib
 
 Linux (Arch based Distros)
 
-sudo pacman -Sy haxe --noconfirm
+* sudo pacman -Sy haxe --noconfirm
 
 ### VS Community
 https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads
@@ -117,13 +117,13 @@ add a "-debug" flag at the end of "lime test <platform>"
 Windows and Mac: https://code.visualstudio.com/Download
 
 Linux (Ubuntu and Debian based Distros):
-sudo apt install software-properties-common apt-transport-https wget
-wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-sudo apt install code
+* sudo apt install software-properties-common apt-transport-https wget
+* wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+* sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+* sudo apt install code
 
 Linux (Arch based distros):
-sudo pacman -Sy code
+* sudo pacman -Sy code
 
 In case you don't want your mod to be able to run .lua scripts, delete the "LUA_ALLOWED" line on Project.xml
 
