@@ -8,13 +8,13 @@ Engine was made using lot of different Source Codes (btw, made/modified in Brazi
 ## Compiling:
 
 
-> ### Dependencies =
+> ### Dependencies
 
 - Git
 - Haxel (LATEST VERSION, STOP USING 4.1.5!!!!)
 - VS Community (windows only!)
 
-> ### OPTIONAL Dependencies = 
+> ### OPTIONAL Dependencies 
 
 - Visual Studio Code (for modifying the code itself)
 
@@ -66,7 +66,7 @@ near the "Install" button, there's a Drop-Down menu, click on it, Select "Downlo
 
 now wait until it finishes, it is recommended to reboot your PC once it finishes, but it's not needed at all
 
-### Terminal Setup & Compiling Game
+# Terminal Setup & Compiling Game
 
 on Windows, press "Windows+R" and type in "cmd", if you don't like cmd, or you just use something different, open that program instead
 cmd is usually faster, that's why I'm recommending it!
