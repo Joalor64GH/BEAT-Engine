@@ -244,6 +244,8 @@ class PlayState extends MusicBeatState
 	var scoreTxtTween:FlxTween;
 	var beWatermark:FlxText;
 	var peWatermark:FlxText;
+	var debugWatermark:FlxText;
+	var debugWatermark2:FlxText;
 	var opponentText:FlxText;
 
 	public static var campaignScore:Int = 0;
@@ -1275,6 +1277,24 @@ class PlayState extends MusicBeatState
 		peWatermark.scrollFactor.set();
 		peWatermark.visible = ClientPrefs.showWatermarks;
 		add(peWatermark);
+
+		#if debug
+		remove(beWatermark);
+		remove(peWatermark);
+		debugWatermark = new FlxText(0, FlxG.height - 44, 0, "Debug Build - B!E v" + MainMenuState.beatEngineVersion, 16);
+		debugWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		debugWatermark.scrollFactor.set();
+		if (ClientPrefs.showWatermarks == false)
+			debugWatermark = new FlxText(0, FlxG.height - 44, 0, "");
+		add(debugWatermark);
+
+		debugWatermark2 = new FlxText(0, FlxG.height - 24, 0, "Press F2 to Open Logs - PE v" + MainMenuState.psychEngineVersion, 16);
+		debugWatermark2.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		debugWatermark2.scrollFactor.set();
+		if (ClientPrefs.showWatermarks == false)
+			debugWatermark2 = new FlxText(0, FlxG.height - 24, 0, "");
+		add(debugWatermark2);
+		#end
 
 		botplayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (ClientPrefs.downScroll ? 100 : -100), "", 32);
 
