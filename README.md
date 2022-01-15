@@ -5,7 +5,7 @@ Engine was made using lot of different Source Codes (btw, made/modified in Brazi
 * [Discord Server](https://discord.gg/f8CUrTchuT)
 * [Twitter](https://twitter.com/beat_engine)
 
-# Compiling:
+# Compiling
 
 
 > ### Dependencies
