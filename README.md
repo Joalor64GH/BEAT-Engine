@@ -56,7 +56,8 @@ Linux (Arch based Distros)
 
 sudo pacman -Sy haxe --noconfirm
 
-### VS Community: https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads
+### VS Community
+https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads
 
 > ### VS Community Setup
 
