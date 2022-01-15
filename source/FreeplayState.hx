@@ -40,7 +40,7 @@ class FreeplayState extends MusicBeatState
 	var lerpRating:Float = 0;
 	var intendedScore:Int = 0;
 	var intendedRating:Float = 0;
-        var scrollBar:FlxSprite;
+
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
@@ -135,9 +135,7 @@ class FreeplayState extends MusicBeatState
 		scoreBG.alpha = 0.6;
 		add(scoreBG);
 		
-		scrollBar = new FlxSprite(10, FlxG.height / 4).makeGraphic(10, 80, 0xFF000000);
-		scrollBar.alpha = 0.6;
-		add(scrollBar);
+
 
 		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
@@ -230,21 +228,7 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 		
-			if (FlxG.mouse.overlaps(scrollBar)){
-			scrollBar.alpha = 1;
-			scrollBar.y = FlxG.mouse.y - scrollBar.height / 2;
-			if (scrollBar.y < 0)
-				scrollBar.y = 0;
-			if (scrollBar.y > FlxG.height - scrollBar.height)
-				scrollBar.y = FlxG.height - scrollBar.height;
-			if (FlxG.mouse.y < scrollBar.y)
-				changeSelection(1);
-			else
-			changeSelection(-1);
 
-		}
-		else{scrollBar.alpha = 0.6;
-		}
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 24, 0, 1)));
 		lerpRating = FlxMath.lerp(lerpRating, intendedRating, CoolUtil.boundTo(elapsed * 12, 0, 1));
