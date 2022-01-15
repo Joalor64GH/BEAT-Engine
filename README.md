@@ -46,8 +46,7 @@ _____________________________________
 * Discord Button
 * Twitter Button
 > ### Simplified Menu Option
-* This option was created for Low End Devices
-* Also Works for better performance (+ Deactivaded Antialising and Active Low Quality Options)
+* This option was created for Low End Devices, Simplifies the Main Menu in order to decrease Loading times and improve performance
 
 ## Xtras
 * Winning Icons
