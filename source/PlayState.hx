@@ -1261,40 +1261,33 @@ class PlayState extends MusicBeatState
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
-		add(iconP1);
 		add(iconP2);
+		add(iconP1);
 
 		// Watermarks at the upper left corner, this is for BEAT! Engine
-		beWatermark = new FlxText(0, FlxG.height - 44, 0, "BEAT! Engine: v" + MainMenuState.beatEngineVersion, 16);
+		beWatermark = new FlxText(0, FlxG.height - 44, 0, "", 16);
 		beWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		beWatermark.scrollFactor.set();
 		beWatermark.visible = ClientPrefs.showWatermarks;
 		add(beWatermark);
 
 		// And this is for Psych Engine
-		peWatermark = new FlxText(0, FlxG.height - 24, 0, "Psych Engine: v" + MainMenuState.psychEngineVersion, 16);
+		peWatermark = new FlxText(0, FlxG.height - 24, 0, "", 16);
 		peWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		peWatermark.scrollFactor.set();
 		peWatermark.visible = ClientPrefs.showWatermarks;
 		add(peWatermark);
 
-		#if debug
-		remove(beWatermark);
-		remove(peWatermark);
-		debugWatermark = new FlxText(0, FlxG.height - 44, 0, "Debug Build - B!E v" + MainMenuState.beatEngineVersion, 16);
-		debugWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		debugWatermark.scrollFactor.set();
-		if (ClientPrefs.showWatermarks == false)
-			debugWatermark = new FlxText(0, FlxG.height - 44, 0, "");
-		add(debugWatermark);
-
-		debugWatermark2 = new FlxText(0, FlxG.height - 24, 0, "Press F2 to Open Logs - PE v" + MainMenuState.psychEngineVersion, 16);
-		debugWatermark2.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		debugWatermark2.scrollFactor.set();
-		if (ClientPrefs.showWatermarks == false)
-			debugWatermark2 = new FlxText(0, FlxG.height - 24, 0, "");
-		add(debugWatermark2);
+		#if !debug
+		beWatermark.text = "BEAT! Engine: v" + MainMenuState.beatEngineVersion;
+		peWatermark.text = "Psych Engine: v" + MainMenuState.psychEngineVersion;
 		#end
+
+		#if debug
+		beWatermark.text = "Debug Build - B!E v" + MainMenuState.beatEngineVersion;
+		peWatermark.text = "Press F2 to Open Logs - PE v" + MainMenuState.psychEngineVersion;
+		#end
+		// i mean, i do a little coding?
 
 		botplayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (ClientPrefs.downScroll ? 100 : -100), "", 32);
 
