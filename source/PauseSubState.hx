@@ -23,6 +23,10 @@ class PauseSubState extends MusicBeatSubstate
 	var difficultyChoices = [];
 	var curSelected:Int = 0;
 
+	var pausebg:FlxSprite;
+	var pausebg1:FlxSprite;
+	var iconBG:FlxSprite;
+	var icon:HealthIcon;
 	var pauseMusic:FlxSound;
 	var practiceText:FlxText;
 	var opponentText:FlxText;
@@ -60,6 +64,84 @@ class PauseSubState extends MusicBeatSubstate
 		bg.alpha = 0;
 		bg.scrollFactor.set();
 		add(bg);
+
+		if (!ClientPrefs.lowQuality)
+		{
+			pausebg = new FlxSprite(FlxG.width + 0, FlxG.height + 0).loadGraphic(Paths.image('pausemenubg'));
+			pausebg.color = 0xFF1E1E1E;
+			pausebg.scrollFactor.set();
+			pausebg.updateHitbox();
+			pausebg.screenCenter();
+			pausebg.antialiasing = ClientPrefs.globalAntialiasing;
+			add(pausebg);
+			pausebg.x += 200;
+			pausebg.y -= 200;
+			pausebg.alpha = 0;
+			FlxTween.tween(pausebg, {
+				x: 0,
+				y: 0,
+				alpha: 1
+			}, 1, {ease: FlxEase.quadOut});
+
+			pausebg1 = new FlxSprite(FlxG.width + 0, FlxG.height + 0).loadGraphic(Paths.image('iconbackground'));
+			pausebg1.color = 0xFF141414;
+			pausebg1.scrollFactor.set();
+			pausebg1.updateHitbox();
+			pausebg1.screenCenter();
+			pausebg1.antialiasing = ClientPrefs.globalAntialiasing;
+			add(pausebg1);
+			pausebg1.x -= 150;
+			pausebg1.y += 150;
+			pausebg1.alpha = 0;
+			FlxTween.tween(pausebg1, {
+				x: 0,
+				y: 0,
+				alpha: 1
+			}, 0.9, {ease: FlxEase.quadOut});
+
+			iconBG = new FlxSprite(FlxG.width + 0, FlxG.height + 0).loadGraphic(Paths.image('iconbackground'));
+			iconBG.flipX = true;
+			if (!PlayState.instance.opponentChart)
+				iconBG.color = FlxColor.fromRGB(PlayState.instance.dad.healthColorArray[0], PlayState.instance.dad.healthColorArray[1],
+					PlayState.instance.dad.healthColorArray[2]);
+			else
+				iconBG.color = FlxColor.fromRGB(PlayState.instance.boyfriend.healthColorArray[0], PlayState.instance.boyfriend.healthColorArray[1],
+					PlayState.instance.boyfriend.healthColorArray[2]);
+			iconBG.scrollFactor.set();
+			iconBG.updateHitbox();
+			iconBG.screenCenter();
+			iconBG.antialiasing = ClientPrefs.globalAntialiasing;
+			add(iconBG);
+			iconBG.x += 100;
+			iconBG.y += 100;
+			iconBG.alpha = 0;
+			FlxTween.tween(iconBG, {
+				x: 0,
+				y: 0,
+				alpha: 1
+			}, 0.8, {ease: FlxEase.quadOut});
+
+			if (!PlayState.instance.opponentChart)
+				icon = new HealthIcon(PlayState.instance.dad.healthIcon);
+			else
+				icon = new HealthIcon(PlayState.instance.boyfriend.healthIcon);
+			icon.setGraphicSize(Std.int(icon.width * 1.7));
+			icon.antialiasing = ClientPrefs.globalAntialiasing;
+			icon.x = FlxG.width - 230;
+			icon.y = FlxG.height - 180;
+			icon.flipX = true;
+			icon.scrollFactor.set();
+			icon.updateHitbox();
+			add(icon);
+			icon.x += 150;
+			icon.y += 150;
+			icon.alpha = 0;
+			FlxTween.tween(icon, {
+				x: icon.x - 150,
+				y: icon.y - 150,
+				alpha: 1
+			}, 0.8, {ease: FlxEase.quadOut});
+		}
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += PlayState.SONG.song;

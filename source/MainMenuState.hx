@@ -137,7 +137,7 @@ class MainMenuState extends MusicBeatState
 		for (i in 0...optionShit.length)
 		{
 			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var menuItem:FlxSprite = new FlxSprite(0, (i * 140) + offset);
+			var menuItem:FlxSprite = new FlxSprite(FlxG.width + 0, (i * 140) + offset);
 			menuItem.scale.x = scale;
 			menuItem.scale.y = scale;
 			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
@@ -214,7 +214,7 @@ class MainMenuState extends MusicBeatState
 
 		if (!ClientPrefs.lowQuality)
 		{
-			iconBG = new FlxSprite(0, FlxG.height + 0).loadGraphic(Paths.image('iconshitlol'));
+			iconBG = new FlxSprite(0, FlxG.height + 0).loadGraphic(Paths.image('iconbackground'));
 			iconBG.scrollFactor.set();
 			iconBG.updateHitbox();
 			iconBG.screenCenter();

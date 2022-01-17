@@ -253,6 +253,16 @@ class PlayState extends MusicBeatState
 	public static var seenCutscene:Bool = false;
 	public static var deathCounter:Int = 0;
 
+	var camXdad:Int = 0;
+
+	var camYdad:Int = 0;
+
+	var camXbf:Int = 0;
+
+	var camYbf:Int = 0;
+
+	var cameramove:Bool = true;
+
 	// week 7 related stuff
 	var tankRolling:FlxSprite;
 	var tankClouds:FlxSprite;
@@ -351,6 +361,7 @@ class PlayState extends MusicBeatState
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
 		camOther = new FlxCamera();
+		camGame.alpha = ClientPrefs.backgroundalpha;
 		camHUD.bgColor.alpha = 0;
 		camOther.bgColor.alpha = 0;
 		camCustom = new FlxCamera();
@@ -1100,7 +1111,10 @@ class PlayState extends MusicBeatState
 		}
 		updateTime = showTime;
 
-		timeBarBG = new AttachedSprite('timeBar');
+		if (ClientPrefs.timeBarUi == 'Kade Engine') // i don't make this a switch because it still have just 2 options
+			timeBarBG = new AttachedSprite('healthBar');
+		else
+			timeBarBG = new AttachedSprite('timeBar');
 		timeBarBG.x = timeTxt.x;
 		timeBarBG.y = timeTxt.y + (timeTxt.height / 4);
 		timeBarBG.scrollFactor.set();
@@ -1109,12 +1123,17 @@ class PlayState extends MusicBeatState
 		timeBarBG.color = FlxColor.BLACK;
 		timeBarBG.xAdd = -4;
 		timeBarBG.yAdd = -4;
+		if (ClientPrefs.timeBarUi == 'Kade Engine')
+			timeBarBG.screenCenter(X);
 		add(timeBarBG);
 
 		timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this,
 			'songPercent', 0, 1);
 		timeBar.scrollFactor.set();
-		timeBar.createFilledBar(0xFF000000, 0xFFFFFFFF);
+		if (ClientPrefs.timeBarUi == 'Kade Engine')
+			timeBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
+		else
+			timeBar.createFilledBar(0xFF000000, 0xFFFFFFFF);
 		timeBar.numDivisions = 800; // How much lag this causes?? Should i tone it down to idk, 400 or 200?
 		timeBar.alpha = 0;
 		timeBar.visible = showTime;
@@ -1221,11 +1240,8 @@ class PlayState extends MusicBeatState
 		if (ClientPrefs.downScroll)
 			healthBarBG.y = 0.11 * FlxG.height;
 
-		var healthdirection = RIGHT_TO_LEFT;
-		if (opponentChart)
-			healthdirection = LEFT_TO_RIGHT;
-		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, healthdirection, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
-			'health', 0, 2);
+		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, (opponentChart ? LEFT_TO_RIGHT : RIGHT_TO_LEFT), Std.int(healthBarBG.width - 8),
+			Std.int(healthBarBG.height - 8), this, 'health', 0, 2);
 		healthBar.scrollFactor.set();
 		// healthBar
 		healthBar.visible = !ClientPrefs.hideHud;
@@ -1535,7 +1551,6 @@ class PlayState extends MusicBeatState
 		else
 			healthBar.createFilledBar(FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]),
 				FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]));
-
 		healthBar.updateBar();
 	}
 
@@ -2032,6 +2047,7 @@ class PlayState extends MusicBeatState
 					case 1:
 						countdownReady = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
 						countdownReady.scrollFactor.set();
+						countdownReady.cameras = [camHUD];
 						countdownReady.updateHitbox();
 
 						if (PlayState.isPixelStage)
@@ -2052,11 +2068,12 @@ class PlayState extends MusicBeatState
 					case 2:
 						countdownSet = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
 						countdownSet.scrollFactor.set();
+						countdownSet.cameras = [camHUD];
 
 						if (PlayState.isPixelStage)
 							countdownSet.setGraphicSize(Std.int(countdownSet.width * daPixelZoom));
-
 						countdownSet.screenCenter();
+						countdownSet.cameras = [camHUD];
 						countdownSet.antialiasing = antialias;
 						add(countdownSet);
 						FlxTween.tween(countdownSet, {/*y: countdownSet.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
@@ -2073,6 +2090,7 @@ class PlayState extends MusicBeatState
 						{
 							countdownGo = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
 							countdownGo.scrollFactor.set();
+							countdownGo.cameras = [camHUD];
 
 							if (PlayState.isPixelStage)
 								countdownGo.setGraphicSize(Std.int(countdownGo.width * daPixelZoom));
@@ -2943,21 +2961,15 @@ class PlayState extends MusicBeatState
 		iconP2.updateHitbox();
 
 		var iconOffset:Int = 26;
-		var offset:Float = 0;
-		var direction:Int = 1;
-		if (opponentChart)
-		{
-			offset = -593;
-			direction = -1;
-		}
-		iconP1.x = offset
+
+		iconP1.x = (opponentChart ? -593 : 0)
 			+ healthBar.x
-			+ (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100 * direction, 100, 0) * 0.01))
+			+ (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, (opponentChart ? -100 : 100), 100, 0) * 0.01))
 			+ (150 * iconP1.scale.x - 150) / 2
 			- iconOffset;
-		iconP2.x = offset
+		iconP2.x = (opponentChart ? -593 : 0)
 			+ healthBar.x
-			+ (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100 * direction, 100, 0) * 0.01))
+			+ (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, (opponentChart ? -100 : 100), 100, 0) * 0.01))
 			- (150 * iconP2.scale.x) / 2
 			- iconOffset * 2;
 
@@ -3925,6 +3937,12 @@ class PlayState extends MusicBeatState
 			camFollow.x += dad.cameraPosition[0];
 			camFollow.y += dad.cameraPosition[1];
 			tweenCamIn();
+			if (cameramove)
+			{
+				camFollow.y += camYdad;
+
+				camFollow.x += camXdad;
+			}
 		}
 		else
 		{
@@ -3942,6 +3960,13 @@ class PlayState extends MusicBeatState
 			}
 			camFollow.x -= boyfriend.cameraPosition[0];
 			camFollow.y += boyfriend.cameraPosition[1];
+
+			if (cameramove)
+			{
+				camFollow.y += camYbf;
+
+				camFollow.x += camXbf;
+			}
 
 			if (Paths.formatToSongPath(SONG.song) == 'tutorial' && cameraTwn == null && FlxG.camera.zoom != 1)
 			{

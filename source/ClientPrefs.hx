@@ -27,9 +27,11 @@ class ClientPrefs
 	public static var imagesPersist:Bool = false;
 	public static var ghostTapping:Bool = true;
 	public static var timeBarType:String = 'Time Left';
+	public static var timeBarUi:String = 'Psych Engine';
 	public static var scoreZoom:Bool = true;
 	public static var noReset:Bool = false;
 	public static var healthBarAlpha:Float = 1;
+	public static var backgroundalpha:Float = 1;
 	public static var controllerMode:Bool = false;
 	public static var screenRes:String = "1280 x 720";
 	public static var screenResTemp:String = "1280 x 720"; // dummy value that isn't saved, used so that if the player cancels instead of hitting space the resolution isn't applied
@@ -189,9 +191,11 @@ class ClientPrefs
 		FlxG.save.data.imagesPersist = imagesPersist;
 		FlxG.save.data.ghostTapping = ghostTapping;
 		FlxG.save.data.timeBarType = timeBarType;
+		FlxG.save.data.timeBarUi = timeBarUi;
 		FlxG.save.data.scoreZoom = scoreZoom;
 		FlxG.save.data.noReset = noReset;
 		FlxG.save.data.healthBarAlpha = healthBarAlpha;
+		FlxG.save.data.backgroundalpha = backgroundalpha;
 		FlxG.save.data.comboOffset = comboOffset;
 		FlxG.save.data.achievementsMap = Achievements.achievementsMap;
 		FlxG.save.data.henchmenDeath = Achievements.henchmenDeath;
@@ -302,6 +306,10 @@ class ClientPrefs
 		{
 			timeBarType = FlxG.save.data.timeBarType;
 		}
+		if (FlxG.save.data.timeBarUi != null)
+		{
+			timeBarUi = FlxG.save.data.timeBarUi;
+		}
 		if (FlxG.save.data.scoreZoom != null)
 		{
 			scoreZoom = FlxG.save.data.scoreZoom;
@@ -313,6 +321,10 @@ class ClientPrefs
 		if (FlxG.save.data.healthBarAlpha != null)
 		{
 			healthBarAlpha = FlxG.save.data.healthBarAlpha;
+		}
+		if (FlxG.save.data.backgroundalpha != null)
+		{
+			backgroundalpha = FlxG.save.data.backgroundalpha;
 		}
 		if (FlxG.save.data.comboOffset != null)
 		{
@@ -365,10 +377,12 @@ class ClientPrefs
 		{
 			showWatermarks = FlxG.save.data.showWatermarks;
 		}
-		if (FlxG.save.data.lowEndMode != null) {
+		if (FlxG.save.data.lowEndMode != null)
+		{
 			lowEndMode = FlxG.save.data.lowEndMode;
 		}
-		if (FlxG.save.data.playHitSounds != null) {
+		if (FlxG.save.data.playHitSounds != null)
+		{
 			playHitSounds = FlxG.save.data.playHitSounds;
 		}
 
