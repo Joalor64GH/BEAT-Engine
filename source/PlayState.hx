@@ -1279,7 +1279,10 @@ class PlayState extends MusicBeatState
 		add(peWatermark);
 
 		#if !debug
-		beWatermark.text = "BEAT! Engine: v" + MainMenuState.beatEngineVersion;
+		if (FlxG.random.bool(0.1))
+			beWatermark.text = "SUS Engine: v" + MainMenuState.beatEngineVersion;
+		else
+			beWatermark.text = "BEAT! Engine: v" + MainMenuState.beatEngineVersion;
 		peWatermark.text = "Psych Engine: v" + MainMenuState.psychEngineVersion;
 		#end
 
