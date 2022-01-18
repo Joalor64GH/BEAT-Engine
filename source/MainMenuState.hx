@@ -26,7 +26,6 @@ using StringTools;
 class MainMenuState extends MusicBeatState
 {
 	public static var fridayVersion:String = '0.2.7.1';
-	public static var beatDebugVersion:String = '0.0.1 (Debug Build)';
 	public static var psychEngineVersion:String = '0.5.1';
 	public static var beatEngineVersion:String = '0.0.1'; // this is used for Discord RPC
 	public static var curSelected:Int = 0;
@@ -186,8 +185,7 @@ class MainMenuState extends MusicBeatState
 			}, 1.4, {ease: FlxEase.expoInOut});
 		}
 
-		if (!ClientPrefs.lowQuality)
-			FlxG.camera.follow(camFollowPos, null, 1);
+		FlxG.camera.follow(camFollowPos, null, 1); // todo: fix this mf camera
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "", 12);
 		versionShit.scrollFactor.set();
@@ -201,7 +199,7 @@ class MainMenuState extends MusicBeatState
 		versionShit.text = "BEAT! Engine v" + beatEngineVersion;
 		#end
 		#if debug
-		versionShit.text = "BEAT! Engine v" + beatDebugVersion;
+		versionShit.text = "BEAT! Engine v" + beatEngineVersion + ' (debug)';
 		#end
 		versionShitpsych.text = "Psych Engine v" + psychEngineVersion;
 		versionShit.screenCenter(X);

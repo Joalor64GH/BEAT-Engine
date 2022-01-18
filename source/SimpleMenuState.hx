@@ -46,7 +46,7 @@ class SimpleMenuState extends MusicBeatState
 		]; */ // todo, fix somethings with this menus
 	var options:Array<String> = ['Story Mode', 'Freeplay', 'Discord', 'Twitter', 'Credits', 'Options'];
 
-	// gui, you dont need to made a var with the versions again, use the MainMenuState.hx
+	// gui, you dont need to made a var with the versions again, use the MainMenuState.hx ones
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 
 	private static var curSelected:Int = 0;
@@ -112,7 +112,7 @@ class SimpleMenuState extends MusicBeatState
 		versionShit.text = "BEAT! Engine v" + MainMenuState.beatEngineVersion;
 		#end
 		#if debug
-		versionShit.text = "BEAT! Engine v" + MainMenuState.beatDebugVersion;
+		versionShit.text = "BEAT! Engine v" + MainMenuState.beatEngineVersion + ' (debug)';
 		#end
 		versionShitpsych.text = "Psych Engine v" + MainMenuState.psychEngineVersion;
 		var versionShitFriday:FlxText = new FlxText(12, FlxG.height - 24, 0, "FNF v" + MainMenuState.fridayVersion, 12);
