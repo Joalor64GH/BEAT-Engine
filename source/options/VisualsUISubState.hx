@@ -44,7 +44,7 @@ class VisualsUISubState extends BaseOptionsMenu
 			['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']);
 		addOption(option);
 
-		var option:Option = new Option('Time Bar Style:', "What texture you want to use in timebar?", 'timeBarUi', 'string', 'Psych Engine',
+		var option:Option = new Option('Time Bar Style:', "What should the Time Bar look like?", 'timeBarUi', 'string', 'Psych Engine',
 			['Psych Engine', 'Kade Engine']);
 		addOption(option);
 
@@ -66,7 +66,7 @@ class VisualsUISubState extends BaseOptionsMenu
 		option.decimals = 1;
 		addOption(option);
 
-		var option:Option = new Option('Background Opacity', 'How much Opaque should Background be.', 'backgroundalpha', 'percent', 1);
+		var option:Option = new Option('Background Opacity', 'How much Opaque should  the Background be.', 'backgroundalpha', 'percent', 1);
 		option.scrollSpeed = 1.6;
 		option.minValue = 0.0;
 		option.maxValue = 1;
