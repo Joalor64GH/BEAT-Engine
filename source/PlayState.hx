@@ -1111,7 +1111,7 @@ class PlayState extends MusicBeatState
 		}
 		updateTime = showTime;
 
-		if (ClientPrefs.timeBarUi == 'Kade Engine') // i don't make this a switch because it still have just 2 options
+		if (ClientPrefs.timeBarUi == 'Kade Engine') // this is not a switch because it's only two options
 			timeBarBG = new AttachedSprite('healthBar');
 		else
 			timeBarBG = new AttachedSprite('timeBar');
