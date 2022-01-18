@@ -159,9 +159,7 @@ _____________________________________
 * Contains: UGH, Guns, Stress (ofc lol)
 
 ## Mania Difficulty + Charts
-* Tutorial + Week 1-2 (5K Charts)
-* Weeks 3-5 (6K/7K Charts)
-* Weeks 6-7 (8K Charts)
+* Extra Keys for all weeks (Week 1 to 7)
 
 ## Revamped Menu
 * Transitions Based on Mic'd Up Engine
