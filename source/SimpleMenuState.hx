@@ -142,6 +142,8 @@ class SimpleMenuState extends MusicBeatState
 	{
 		super.update(elapsed);
 
+		Conductor.songPosition = FlxG.sound.music.time;
+
 		if (controls.UI_UP_P)
 		{
 			changeSelection(-1);

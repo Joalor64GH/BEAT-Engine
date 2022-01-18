@@ -300,6 +300,8 @@ class MainMenuState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
+		Conductor.songPosition = FlxG.sound.music.time;
+
 		checker.x -= 0.45 / (ClientPrefs.framerate / 60);
 		checker.y -= 0.16 / (ClientPrefs.framerate / 60);
 

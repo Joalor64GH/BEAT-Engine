@@ -203,6 +203,8 @@ class StoryMenuState extends MusicBeatState
 
 		scoreText.text = "WEEK SCORE:" + lerpScore;
 
+		Conductor.songPosition = FlxG.sound.music.time;
+
 		// FlxG.watch.addQuick('font', scoreText.font);
 
 		difficultySelectors.visible = !weekIsLocked(curWeek);
