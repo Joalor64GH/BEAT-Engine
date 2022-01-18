@@ -86,6 +86,13 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
+		var option:Option = new Option('Marvelous Ratings',
+			'If unchecked, marvelous ratings will disappear.',
+			'marvelouses',
+			'bool',
+			true);
+		addOption(option);
+
 		/*var option:Option = new Option('Note Delay',
 			'Changes how late a note is spawned.\nUseful for preventing audio lag from wireless earphones.',
 			'noteOffset',

@@ -63,6 +63,7 @@ class ClientPrefs
 	public static var keSustains:Bool = false; // i was bored, okay?
 	public static var noAntimash:Bool = false;
 	public static var ratingOffset:Int = 0;
+	public static var marvelousWindow:Int = 25;
 	public static var sickWindow:Int = 45;
 	public static var goodWindow:Int = 90;
 	public static var badWindow:Int = 135;
@@ -72,6 +73,7 @@ class ClientPrefs
 	public static var showWatermarks:Bool = true;
 	public static var lowEndMode:Bool = false;
 	public static var playHitSounds:Bool = true;
+	public static var marvelouses:Bool = true;
 
 	// Every key has two binds, add your key bind down here and then add your control on options/ControlsSubState.hx and Controls.hx
 	public static var keyBinds:Map<String, Array<FlxKey>> = [
@@ -201,6 +203,7 @@ class ClientPrefs
 		FlxG.save.data.henchmenDeath = Achievements.henchmenDeath;
 		FlxG.save.data.noAntimash = noAntimash;
 		FlxG.save.data.ratingOffset = ratingOffset;
+		FlxG.save.data.marvelousWindow = marvelousWindow;
 		FlxG.save.data.sickWindow = sickWindow;
 		FlxG.save.data.goodWindow = goodWindow;
 		FlxG.save.data.badWindow = badWindow;
@@ -214,6 +217,7 @@ class ClientPrefs
 		FlxG.save.data.showWatermarks = showWatermarks;
 		FlxG.save.data.lowEndMode = lowEndMode;
 		FlxG.save.data.playHitSounds = playHitSounds;
+		FlxG.save.data.marvelouses = marvelouses;
 
 		FlxG.save.flush();
 
@@ -384,6 +388,9 @@ class ClientPrefs
 		if (FlxG.save.data.playHitSounds != null)
 		{
 			playHitSounds = FlxG.save.data.playHitSounds;
+		}
+		if(FlxG.save.data.marvelouses != null){
+			marvelouses = FlxG.save.data.marvelouses;
 		}
 
 		// flixel automatically saves your volume!
