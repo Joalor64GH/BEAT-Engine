@@ -165,7 +165,7 @@ _____________________________________
 * Transitions Based on Mic'd Up Engine
 * Random Icon appearing on the screen (also changes the Menu BG Color)
 * Socials Button
-  > * Twitter and Discord
+  * Twitter and Discord
 > ### Simplified Menu Option
 * This option was created for Low End Devices, Simplifies the Main Menu in order to decrease Loading times and improve performance
 > ### Osu! Style Menu (Alt Menu)
