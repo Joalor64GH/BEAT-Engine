@@ -137,14 +137,15 @@ Linux (Arch based distros):
 In case you don't want your mod to be able to run .lua scripts, delete the "LUA_ALLOWED" line on Project.xml
 
 _____________________________________
-### BEAT! Crew
+### BEAT! Devs
 * Luisinhi010, Gui-iago - Coding/Mania Charts
-* aquastrikr, NooBZiiTo - Arts and Animations
-* a gorila guy - Secret Covers
+* aquastrikr, NooBZiiTo,  - Arts and Animations
+* a gorila guy - Secret Stuff
 
 ### Contributors
 * Asho - Rich Presence Header Design
 * Salt for Some Reason - Logo
+* El_Cyaan - Guns Mania Chart
 * LeNinethGames - Menu Remix
 
 ### Special Thanks
@@ -165,13 +166,16 @@ _____________________________________
 ## Revamped Menu
 * Transitions Based on Mic'd Up Engine
 * Random Icon appearing on the screen (also changes the Menu BG Color)
-* Discord Button
-* Twitter Button
+* Socials Button
+  > ### Simplified Menu Option
+  * Twitter and Discord
 > ### Simplified Menu Option
 * This option was created for Low End Devices, Simplifies the Main Menu in order to decrease Loading times and improve performance
+> ### Osu! Style Menu (Alt Menu)
+* Osu! Menu, if you like Osu!
 
 ## Xtras
 * Winning Icons
 * New Health Bar
 * New Grafix (Sick, Good, Bad, Shit)
-* Secret Covers (uhhh)
+* LOTS OF STUFF
