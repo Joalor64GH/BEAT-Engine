@@ -23,7 +23,16 @@ Engine was made using lot of different Source Codes (btw, made/modified in Brazi
 - Lime
 - Bracket Pair Colorizer 2
 - HXCPP Debugger
-- Tabline
+- Tabnine
+
+> ### optional VS Code Extensions
+- Haxe blocks
+- Haxe Checkstyle
+- Haxe JSX
+- Haxe Extension Pack
+- HaxeUI
+- indent-rainbow
+- Lua Extension by keyring
 
 # Downloads
 
