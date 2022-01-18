@@ -63,7 +63,7 @@ class ClientPrefs
 	public static var keSustains:Bool = false; // i was bored, okay?
 	public static var noAntimash:Bool = false;
 	public static var ratingOffset:Int = 0;
-	public static var marvelousWindow:Int = 25;
+	public static var marvelousWindow:Int = 20;
 	public static var sickWindow:Int = 45;
 	public static var goodWindow:Int = 90;
 	public static var badWindow:Int = 135;
