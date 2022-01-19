@@ -1,9 +1,9 @@
 {
 	"song": {
-		"player1": "bf",
+		"player1": "pico-car",
 		"songId": "parasite",
 		"songName": "parasite",
-		"player2": "agoti",
+		"player2": "mom-car",
 		"notes": [
 			{
 				"sectionNotes": [],
@@ -2977,7 +2977,7 @@
 				"mustHitSection": true
 			}
 		],
-		"player3": "gf-rock",
+		"player3": "gf-car",
 		"offset": 0,
 		"song": "Parasite",
 		"validScore": true,
