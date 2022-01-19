@@ -65,25 +65,23 @@ Linux (Arch based Distros)
 
 * sudo pacman -Sy haxe --noconfirm
 
-### VS Community
+### Visual Studio Community
 https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads
 
-> ### VS Community Setup
+> ### Visual Studo Community Setup
 
-once you download and install VS Community, on the "Workloads" tab, select "Desktop Development with C++"
-
-near the "Install" button, there's a Drop-Down menu, click on it, Select "Download first, then Install"
-
-now wait until it finishes, it is recommended to reboot your PC once it finishes, but it's not needed at all
+Once you download and install VS Community, on the "Workloads" tab, select "Desktop Development with C++"
+Near the "Install" button, there's a Drop-Down menu, click on it, Select "Download first, then Install"
+Now wait until it finishes, it is recommended to reboot your PC once it finishes, but it's not needed at all
 
 # Terminal Setup & Compiling Game
 
-on Windows, press "Windows+R" and type in "cmd", if you don't like cmd, or you just use something different, open that program instead
+Windows: Press "Windows + R" and type in "cmd", if you don't like cmd, or you just use something different, open that program instead
 cmd is usually faster, that's why I'm recommending it!
 
-on Linux, press "CTRL+ALT+T" and a Terminal window should open -- although, if you are on linux, you probably know that already
+Linux: press "CTRL + ALT + T" and a Terminal window should open -- although, if you are on linux, you probably know that already
 
-type in these commands
+## Type in these commands:
 
 * haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
 * haxelib git linc_luajit https://github.com/nebulazorua/linc_luajit.git
@@ -122,7 +120,7 @@ lime test mac
 
 add a "-debug" flag at the end of "lime test <platform>"
 
-### VS Code Installation
+### Visual Studio Code Installation
 Windows and Mac: https://code.visualstudio.com/Download
 
 Linux (Ubuntu and Debian based Distros):
