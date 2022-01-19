@@ -165,7 +165,7 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 
  ## Revamped Menu
 * Transitions Based on Mic'd Up Engine
-* Random Icon appearing on the screen (also changes the Menu BG Color)
+* Random Icon appearing on the screen (also changes the Icon BG Color)
 * Socials Button (Discord and Twitter, UPCOMING)
  ![kbjrew](https://user-images.githubusercontent.com/69995597/150060251-2c901806-db80-4818-aebd-5555a5fbdbff.png)
 
