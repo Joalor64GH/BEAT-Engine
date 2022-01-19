@@ -4337,10 +4337,43 @@ class PlayState extends MusicBeatState
 		var pixelShitPart1:String = "";
 		var pixelShitPart2:String = '';
 
-		if (PlayState.isPixelStage)
+		// Judgement Skins (using preload for now)
+
+		switch (ClientPrefs.uiSkin)
 		{
-			pixelShitPart1 = 'pixelUI/';
-			pixelShitPart2 = '-pixel';
+			case 'Classic':
+				if (isPixelStage)
+				{
+					pixelShitPart1 = 'pixelUI/';
+					pixelShitPart2 = '-pixel';
+				}
+				else
+				{
+					pixelShitPart1 = 'judgements/classic/';
+					pixelShitPart2 = '';
+				}
+			case 'BEAT!':
+				if (isPixelStage)
+				{
+					pixelShitPart1 = 'judgements/beat/';
+					pixelShitPart2 = '-pixel';
+				}
+				else
+				{
+					pixelShitPart1 = 'judgements/beat/';
+					pixelShitPart2 = '';
+				}
+			case 'Bedrock':
+				if (isPixelStage)
+				{
+					pixelShitPart1 = 'judgements/bedrock/';
+					pixelShitPart2 = '-pixel';
+				}
+				else
+				{
+					pixelShitPart1 = 'judgements/bedrock/';
+					pixelShitPart2 = '';
+				}
 		}
 
 		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2));
@@ -5538,8 +5571,6 @@ class PlayState extends MusicBeatState
 			iconP1.updateHitbox();
 			iconP2.updateHitbox();
 		}
-
-		// note to self: make it less "dave and bamb"ey - Gui iago
 
 		switch (curStage)
 		{

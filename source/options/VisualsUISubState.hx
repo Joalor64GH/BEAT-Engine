@@ -74,6 +74,10 @@ class VisualsUISubState extends BaseOptionsMenu
 		option.decimals = 1;
 		addOption(option);
 
+		var option:Option = new Option('UI Skin:', "What should your judgements look like?", 'uiSkin', 'string', 'Bedrock',
+		['Classic', 'BEAT!', 'Bedrock']);
+		addOption(option);
+
 		var option:Option = new Option('Show Watermarks', "If unchecked, hides engine watermarks from the top left corner.", 'showWatermarks', 'bool', true);
 		addOption(option);
 
