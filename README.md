@@ -111,19 +111,19 @@ Once it's done, do this command to compile the game
 
 
 ### Windows
-lime test windows
+ lime test windows
 
 ### Linux
-lime test linux
+ lime test linux
 
 ### Mac
-lime test mac
+ lime test mac
 
 ### for Debug Builds
-add a "-debug" flag at the end of "lime test <platform>"
+ add a "-debug" flag at the end of "lime test <platform>"
 
 ### Visual Studio Code Installation
-Windows and Mac: https://code.visualstudio.com/Download
+ Windows and Mac: https://code.visualstudio.com/Download
 
 Linux (Ubuntu and Debian based Distros):
 * sudo apt install software-properties-common apt-transport-https wget
