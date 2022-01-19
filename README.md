@@ -156,19 +156,28 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
  ## Week 7
 * Yeah, it's what you read, Week 7, lol
 * Contains: UGH, Guns, Stress (ofc lol)
+ ![unknown](https://user-images.githubusercontent.com/69995597/150059799-db3c2624-e47c-4af7-9819-31792011669d.png)
 
  ## Mania Difficulty + Charts
 * Extra Keys and Charts for all weeks (Even Tutorial)
+ 
+ https://user-images.githubusercontent.com/69995597/150059551-02c76ed2-bee4-4537-aaf5-e2ac73ed43a2.mp4
 
  ## Revamped Menu
 * Transitions Based on Mic'd Up Engine
 * Random Icon appearing on the screen (also changes the Menu BG Color)
-* Socials Button
-  * Twitter and Discord
-> ### Simplified Menu Option
+* Socials Button (Discord and Twitter, UPCOMING)
+ ![kbjrew](https://user-images.githubusercontent.com/69995597/150060251-2c901806-db80-4818-aebd-5555a5fbdbff.png)
+
+ > ### Simplified Menu Option
 * This option was created for Low End Devices, Simplifies the Main Menu in order to decrease Loading times and improve performance
-> ### Osu! Style Menu (Alt Menu)
+![FIzLMsBX0AI4ans](https://user-images.githubusercontent.com/69995597/150060301-6e288d57-d610-48b9-bc9a-74a9ff9ea6da.jpeg)
+
+ 
+ > ### Osu! Style Menu (Alt Menu, UPCOMING)
 * Osu! Menu, if you like Osu! (lmao)
+![concep-menu](https://user-images.githubusercontent.com/69995597/150062868-1177f151-2327-445f-9c41-99c583c9986d.jpg)
+
 
  ## Xtras
 * Winning Icons
