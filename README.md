@@ -106,11 +106,9 @@ Linux: press "CTRL + ALT + T" and a Terminal window should open -- although, if 
 once it's done, do this command to compile the game
 
 ### Windows
-
 lime test windows
 
 ### Linux
-
 lime test linux
 
 ### Mac
