@@ -81,7 +81,7 @@ cmd is usually faster, that's why I'm recommending it!
 
 Linux: press "CTRL + ALT + T" and a Terminal window should open -- although, if you are on linux, you probably know that already
 
-## Type in these commands:
+### Type in these commands:
 
 * haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
 * haxelib git linc_luajit https://github.com/nebulazorua/linc_luajit.git
