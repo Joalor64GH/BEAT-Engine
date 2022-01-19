@@ -171,16 +171,19 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * Transitions Based on Mic'd Up Engine
 * Random Icon appearing on the screen (also changes the Icon BG Color)
 * Socials Button (Discord and Twitter, UPCOMING)
+
  ![kbjrew](https://user-images.githubusercontent.com/69995597/150060251-2c901806-db80-4818-aebd-5555a5fbdbff.png)
 
  > ### Simplified Menu Option
 * This option was created for Low End Devices, Simplifies the Main Menu in order to decrease Loading times and improve performance
-![FIzLMsBX0AI4ans](https://user-images.githubusercontent.com/69995597/150060301-6e288d57-d610-48b9-bc9a-74a9ff9ea6da.jpeg)
+
+ ![FIzLMsBX0AI4ans](https://user-images.githubusercontent.com/69995597/150060301-6e288d57-d610-48b9-bc9a-74a9ff9ea6da.jpeg)
 
  
  > ### Osu! Style Menu (Alt Menu, UPCOMING)
 * Osu! Menu, if you like Osu! (lmao)
-![concep-menu](https://user-images.githubusercontent.com/69995597/150062868-1177f151-2327-445f-9c41-99c583c9986d.jpg)
+
+ ![concep-menu](https://user-images.githubusercontent.com/69995597/150062868-1177f151-2327-445f-9c41-99c583c9986d.jpg)
 
 
  ## Xtras
