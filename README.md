@@ -158,7 +158,7 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * Contains: UGH, Guns, Stress (ofc lol)
 
  ## Mania Difficulty + Charts
-* Extra Keys for all weeks (Week 1 to 7)
+* Extra Keys and Charts for all weeks (Even Tutorial)
 
  ## Revamped Menu
 * Transitions Based on Mic'd Up Engine
