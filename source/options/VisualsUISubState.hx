@@ -74,7 +74,7 @@ class VisualsUISubState extends BaseOptionsMenu
 		option.decimals = 1;
 		addOption(option);
 
-		var option:Option = new Option('UI Skin:', "What should your judgements look like?", 'uiSkin', 'string', 'Bedrock',
+		var option:Option = new Option('Judgement Skin:', "What should your judgements look like?", 'uiSkin', 'string', 'Bedrock',
 		['Classic', 'BEAT!', 'Bedrock']);
 		addOption(option);
 
