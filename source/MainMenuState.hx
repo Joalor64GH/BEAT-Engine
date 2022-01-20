@@ -212,7 +212,7 @@ class MainMenuState extends MusicBeatState
 
 		if (!ClientPrefs.lowQuality)
 		{
-			iconBG = new FlxSprite(0, FlxG.height + 0).loadGraphic(Paths.image('iconbackground'));
+			iconBG = new FlxSprite().loadGraphic(Paths.image('iconbackground'));
 			iconBG.scrollFactor.set();
 			iconBG.updateHitbox();
 			iconBG.screenCenter();

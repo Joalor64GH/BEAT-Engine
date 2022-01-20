@@ -44,8 +44,10 @@ class AchievementsMenuState extends MusicBeatState
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
 
-		for (i in 0...Achievements.achievementsStuff.length) {
-			if(!Achievements.achievementsStuff[i][4] || Achievements.achievementsMap.exists(Achievements.achievementsStuff[i][2])) {
+		for (i in 0...Achievements.achievementsStuff.length)
+		{
+			if (!Achievements.achievementsStuff[i][4] || Achievements.achievementsMap.exists(Achievements.achievementsStuff[i][2]))
+			{
 				options.push(Achievements.achievementsStuff[i]);
 				achievementIndex.push(i);
 			}
