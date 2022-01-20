@@ -166,7 +166,6 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * Cary - OG Resolution code
 * Nebula_Zorua - VCR Shader code
 _____________________________________
->>>>>>> upstream/main
 
 # Features
 
