@@ -9,16 +9,12 @@ Engine was made using lot of different Source Codes
 * [Discord Server](https://discord.gg/f8CUrTchuT)
 * [Twitter](https://twitter.com/beat_engine)
 
-<<<<<<< HEAD
-# Compiling
-=======
-To install LuaJIT do this: `haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit ` on a Command prompt/PowerShell
->>>>>>> upstream/main
 
+# Compiling
 
 > ### Dependencies
 
-<<<<<<< HEAD
+
 - Git
 - Haxel (LATEST VERSION ONLY, STOP USING 4.1.5!!!!)
 - Visual Studio Community (Windows Only)
