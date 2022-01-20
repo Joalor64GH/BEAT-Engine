@@ -144,19 +144,19 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * aquastrikr, NooBZiiTo,  - Arts and Animations
 * a gorila guy - Secret Stuff
 
- ### Contributors
+ ### Contributors/Special Thanks
 * Asho - Rich Presence Header Design
 * Salt for Some Reason - Logo
 * El_Cyaan - Guns Mania Chart
 * LeNinethGames - Menu Remix
 
- ### Special Thanks
+ ### Psych Engine Credits
 * Shadow Mario - Psych Engine
-* tposejank - Psych Extra Keys
+* tposejank - Extra Keys
 
 ──────────────────────────────────────
-=======
-### Special Thanks
+
+### Special Thanks (Psych Engine)
 * shubs - New Input System
 * SqirraRNG - Chart Editor's Sound Waveform base code
 * iFlicky - Delay/Combo Menu Song Composer + Dialogue Sounds
@@ -165,7 +165,8 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * Smokey - Spritemap Texture Atlas support
 * Cary - OG Resolution code
 * Nebula_Zorua - VCR Shader code
-_____________________________________
+ 
+──────────────────────────────────────
 
 # Features
 
@@ -188,8 +189,7 @@ _____________________________________
 
  > ### Simplified Menu Option
 * This option was created for Low End Devices, Simplifies the Main Menu in order to decrease Loading times and improve performance
-
-* May not decrease the loading so much, because still use one of the large file of the main menu, (the bg) - Luis
+* May not decrease the loading so much, because still use one of the large file of the main menu (the bg)
 
  ![FIzLMsBX0AI4ans](https://user-images.githubusercontent.com/69995597/150060301-6e288d57-d610-48b9-bc9a-74a9ff9ea6da.jpeg)
 
@@ -204,4 +204,9 @@ _____________________________________
 * Winning Icons
 * New Health Bar
 * New Grafix (Sick, Good, Bad, Shit)
-* LOTS OF STUFF
+* AND MORE!
+
+ 
+ 
+ 
+ sus
