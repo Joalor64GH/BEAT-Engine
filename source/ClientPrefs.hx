@@ -369,11 +369,10 @@ class ClientPrefs
 		{
 			screenRes = FlxG.save.data.screenRes;
 		}
-		if (FlxG.save.data.screenScaleMode != null)
-		{
+		if(FlxG.save.data.screenScaleMode != null) {
 			screenScaleMode = FlxG.save.data.screenScaleMode;
 		}
-		if (FlxG.save.data.gameplaySettings != null)
+		if(FlxG.save.data.gameplaySettings != null)
 		{
 			var savedMap:Map<String, Dynamic> = FlxG.save.data.gameplaySettings;
 			for (name => value in savedMap)

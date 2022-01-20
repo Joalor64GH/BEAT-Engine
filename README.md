@@ -9,11 +9,16 @@ Engine was made using lot of different Source Codes
 * [Discord Server](https://discord.gg/f8CUrTchuT)
 * [Twitter](https://twitter.com/beat_engine)
 
+<<<<<<< HEAD
 # Compiling
+=======
+To install LuaJIT do this: `haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit ` on a Command prompt/PowerShell
+>>>>>>> upstream/main
 
 
 > ### Dependencies
 
+<<<<<<< HEAD
 - Git
 - Haxel (LATEST VERSION ONLY, STOP USING 4.1.5!!!!)
 - Visual Studio Community (Windows Only)
@@ -154,6 +159,18 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * tposejank - Psych Extra Keys
 
 ──────────────────────────────────────
+=======
+### Special Thanks
+* shubs - New Input System
+* SqirraRNG - Chart Editor's Sound Waveform base code
+* iFlicky - Delay/Combo Menu Song Composer + Dialogue Sounds
+* PolybiusProxy - .MP4 Loader Extension
+* Keoiki - Note Splash Animations
+* Smokey - Spritemap Texture Atlas support
+* Cary - OG Resolution code
+* Nebula_Zorua - VCR Shader code
+_____________________________________
+>>>>>>> upstream/main
 
 # Features
 

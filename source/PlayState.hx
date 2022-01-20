@@ -3083,9 +3083,8 @@ class PlayState extends MusicBeatState
 		var roundedSpeed:Float = FlxMath.roundDecimal(songSpeed, 2);
 		if (unspawnNotes[0] != null)
 		{
-			var time:Float = 1500;
-			if (roundedSpeed < 1)
-				time /= roundedSpeed;
+			var time:Float = 3000;//shit be werid on 4:3
+			if(roundedSpeed < 1) time /= roundedSpeed;
 
 			while (unspawnNotes.length > 0 && unspawnNotes[0].strumTime - Conductor.songPosition < time)
 			{
@@ -4072,9 +4071,7 @@ class PlayState extends MusicBeatState
 		if (achievementObj != null)
 		{
 			return;
-		}
-		else
-		{
+		} else {
 			var achieve:String = checkForAchievement();
 
 			if (achieve != null)
@@ -5743,80 +5740,59 @@ class PlayState extends MusicBeatState
 	}
 
 	public static var othersCodeName:String = 'otherAchievements';
-
 	#if ACHIEVEMENTS_ALLOWED
-	private function checkForAchievement(achievesToCheck:Array<String> = null):String
-	{
-		if (chartingMode)
-			return null;
+	private function checkForAchievement(achievesToCheck:Array<String> = null):String {
+
+		if(chartingMode) return null;
 
 		var usedPractice:Bool = (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false));
 		var achievementsToCheck:Array<String> = achievesToCheck;
-		if (achievementsToCheck == null)
-		{
+		if (achievementsToCheck == null) {
 			achievementsToCheck = [];
-			for (i in 0...Achievements.achievementsStuff.length)
-			{
+			for (i in 0...Achievements.achievementsStuff.length) {
 				achievementsToCheck.push(Achievements.achievementsStuff[i][2]);
 			}
 			achievementsToCheck.push(othersCodeName);
 		}
 
-		for (i in 0...achievementsToCheck.length)
-		{
+		for (i in 0...achievementsToCheck.length) {
 			var achievementName:String = achievementsToCheck[i];
 			var unlock:Bool = false;
 
-			if (achievementName == othersCodeName)
-			{
-				if (isStoryMode
-					&& campaignMisses + songMisses < 1
-					&& CoolUtil.difficultyString() == 'HARD'
-					&& storyPlaylist.length <= 1
-					&& !changedDifficulty
-					&& !usedPractice)
+			if (achievementName == othersCodeName) {
+				if(isStoryMode && campaignMisses + songMisses < 1 && CoolUtil.difficultyString() == 'HARD' && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
 				{
 					var weekName:String = WeekData.getWeekFileName();
 
-					for (json in Achievements.loadedAchievements)
-					{
-						if (json.unlocksAfter == weekName && !Achievements.isAchievementUnlocked(json.icon) && !json.customGoal)
-							unlock = true;
+					for (json in Achievements.loadedAchievements) {
+						if (json.unlocksAfter == weekName && !Achievements.isAchievementUnlocked(json.icon) && !json.customGoal) unlock = true;
 						achievementName = json.icon;
 					}
 
-					for (k in 0...Achievements.achievementsStuff.length)
-					{
+					for (k in 0...Achievements.achievementsStuff.length) {
 						var unlockPoint:String = Achievements.achievementsStuff[k][3];
-						if (unlockPoint != null)
-						{
-							if (unlockPoint == weekName
-								&& !unlock
-								&& !Achievements.isAchievementUnlocked(Achievements.achievementsStuff[k][2]))
-								unlock = true;
+						if (unlockPoint != null) {
+							if (unlockPoint == weekName && !unlock && !Achievements.isAchievementUnlocked(Achievements.achievementsStuff[k][2])) unlock = true;
 							achievementName = Achievements.achievementsStuff[k][2];
 						}
 					}
 				}
 			}
 
-			for (json in Achievements.loadedAchievements)
-			{ // Requires jsons for call
-				var ret:Dynamic = callOnLuas('onCheckForAchievement', [json.icon]); // Set custom goals
+			for (json in Achievements.loadedAchievements) { //Requires jsons for call
+				var ret:Dynamic = callOnLuas('onCheckForAchievement', [json.icon]); //Set custom goals
 
-				// IDK, like
+				//IDK, like
 				// if getProperty('misses') > 10 and leName == 'lmao_skill_issue' then return Function_Continue end
 
-				if (ret == FunkinLua.Function_Continue && !Achievements.isAchievementUnlocked(json.icon) && json.customGoal && !unlock)
-				{
+				if (ret == FunkinLua.Function_Continue && !Achievements.isAchievementUnlocked(json.icon) && json.customGoal && !unlock) {
 					unlock = true;
 					achievementName = json.icon;
 				}
 			}
 
-			if (!Achievements.isAchievementUnlocked(achievementName) && !cpuControlled && !unlock)
-			{
-				switch (achievementName)
+			if(!Achievements.isAchievementUnlocked(achievementName) && !cpuControlled && !unlock) {
+				switch(achievementName)
 				{
 					case 'ur_bad':
 						if (ratingPercent < 0.2 && !practiceMode)
@@ -5859,8 +5835,7 @@ class PlayState extends MusicBeatState
 							}
 						}
 					case 'toastie':
-						if (/*ClientPrefs.framerate <= 60 &&*/ ClientPrefs.lowQuality && !ClientPrefs.globalAntialiasing && !ClientPrefs.imagesPersist)
-						{
+						if(/*ClientPrefs.framerate <= 60 &&*/ ClientPrefs.lowQuality && !ClientPrefs.globalAntialiasing /*&& !ClientPrefs.imagesPersist*/) {
 							unlock = true;
 						}
 					case 'debugger':
@@ -5869,12 +5844,11 @@ class PlayState extends MusicBeatState
 							unlock = true;
 						}
 				}
+			}
 
-				if (unlock)
-				{
-					Achievements.unlockAchievement(achievementName);
-					return achievementName;
-				}
+			if(unlock) {
+				Achievements.unlockAchievement(achievementName);
+				return achievementName;
 			}
 		}
 		return null;
