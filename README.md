@@ -1,6 +1,6 @@
 # Friday Night Funkin' - BEAT! Engine
-Engine was made using lot of different Source Codes
- * Made/Modified in Brazil
+Engine was made using lot of different Source Codes.
+ * Made/Modified in Brazil. (Yeah, Brazil Moment 🇧🇷)
 
 ![banner_final](https://user-images.githubusercontent.com/69995597/150093578-965240fa-71b3-4ea8-a541-fb50a2be8064.jpg)
 
