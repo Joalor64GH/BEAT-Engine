@@ -194,6 +194,8 @@ _____________________________________
  > ### Simplified Menu Option
 * This option was created for Low End Devices, Simplifies the Main Menu in order to decrease Loading times and improve performance
 
+* May not decrease the loading so much, because still use one of the large file of the main menu, (the bg) - Luis
+
  ![FIzLMsBX0AI4ans](https://user-images.githubusercontent.com/69995597/150060301-6e288d57-d610-48b9-bc9a-74a9ff9ea6da.jpeg)
 
  
