@@ -4396,6 +4396,17 @@ class PlayState extends MusicBeatState
 					pixelShitPart1 = 'judgements/beat/';
 					pixelShitPart2 = '';
 				}
+			case 'BEAT! Gradient':
+				if (isPixelStage)
+				{
+					pixelShitPart1 = 'judgements/beat-alt/';
+					pixelShitPart2 = '-pixel';
+				}
+				else
+				{
+					pixelShitPart1 = 'judgements/beat-alt/';
+					pixelShitPart2 = '';
+				}
 			case 'Bedrock':
 				if (isPixelStage)
 				{
