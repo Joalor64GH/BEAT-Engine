@@ -1145,26 +1145,26 @@ class PlayState extends MusicBeatState
 		add(timeTxt);
 		timeBarBG.sprTracker = timeBar;
 
-		laneunderlayOpponent = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);//from ke
+		laneunderlayOpponent = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);//from kade engine
 		//laneunderlayOpponent.alpha = FlxG.save.data.laneTransparency;
 		laneunderlayOpponent.visible = false; 
 		laneunderlayOpponent.color = FlxColor.BLACK;
 		laneunderlayOpponent.scrollFactor.set();
 
-		laneunderlay = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);//from ke
+		laneunderlay = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);//from kade engine
 		//laneunderlay.alpha = FlxG.save.data.laneTransparency;
 		laneunderlay.visible = false;
 		laneunderlay.color = FlxColor.BLACK;
 		laneunderlay.scrollFactor.set();
 
-		if (FlxG.save.data.laneUnderlay)
+		/*if (FlxG.save.data.laneUnderlay)
 		{
 			if (!ClientPrefs.middleScroll)
 			{
 				add(laneunderlayOpponent);
 			}
 			add(laneunderlay);
-		}
+		}*/
 
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
