@@ -205,6 +205,7 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * New Health Bar
 * New Grafix (Sick, Good, Bad, Shit)
 * Memory Counter
+* Opponent Mode (Yeah, you can play as the opponent, kinda dumb, ngl, but it's rlly funkin' cool, y'know?)
 * AND MORE!
 
 
