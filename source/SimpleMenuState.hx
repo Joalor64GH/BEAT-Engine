@@ -65,10 +65,8 @@ class SimpleMenuState extends MusicBeatState
 				MusicBeatState.switchState(new StoryMenuState());
 			case 'Freeplay':
 				MusicBeatState.switchState(new FreeplayState());
-			case 'Discord':
-				CoolUtil.browserLoad('https://discord.gg/CqWbjb6w');
-			case 'Twitter':
-				CoolUtil.browserLoad('https://twitter.com/beat_engine');
+			case 'Socials':
+				MusicBeatState.switchState(new SocialsState());
 			/*case 'Mods':
 				MusicBeatState.switchState(new ModsMenuState()); */
 			case 'Awards':

@@ -2902,15 +2902,10 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		if (ratingName == '?')
-			scoreTxt.text = 'Score: ' + songScore + ' - Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' [' + 'Unrated' + ']'
-				+ ' - Combo Breaks: ' + songMisses + ' - Rank: ?';
+		if (ratingFC == "")
+			scoreTxt.text = 'Score: ' + songScore + ' // Combo Breaks: ' + songMisses + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% ' + ratingFC + '(?)';
 		else
-			scoreTxt.text = 'Score: ' + songScore + ' - Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' [' + ratingFC + ']'
-				+ ' - Combo Breaks: ' + songMisses + ' - Rank: ' + ratingName;
-		if (songMisses > 1)
-			scoreTxt.text = 'Score: ' + songScore + ' - Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' - Combo Breaks: ' + songMisses
-				+ ' - Rank: ' + ratingName;
+			scoreTxt.text = 'Score: ' + songScore + ' // Combo Breaks: ' + songMisses + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% ' + ratingFC + ratingName;
 
 		if (botplayTxt.visible)
 		{

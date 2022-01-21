@@ -20,7 +20,7 @@ import lime.utils.Assets;
 
 using StringTools;
 
-class CreditsState extends MusicBeatState
+class SocialsState extends MusicBeatState
 {
 	var curSelected:Int = -1;
 
@@ -38,7 +38,7 @@ class CreditsState extends MusicBeatState
 	{
 		#if desktop
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("Reading the Credits", null);
+		DiscordClient.changePresence("Checking the Socials", null);
 		#end
 
 		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
@@ -86,168 +86,33 @@ class CreditsState extends MusicBeatState
 
 		var pisspoop:Array<Array<String>> = [
 			// Name - Icon name - Description - Link - HEX BG Color
-			['BEAT!Engine Team'],
 			[
-				'Luis Com S',
-				'luis',
-				'Main Programmer',
-				'https://www.youtube.com/channel/UCLmft4rF9cIyLbGGg1EHRHg',
-				'00FFFF'
+				'Discord',
+				'discord',
+				"BEAT!Engine's Discord Server!",
+				'https://discord.gg/CqWbjb6w',
+				'5165F6'
 			],
 			[
-				'Gui iago',
-				'guiiago',
-				'Additional Programmer',
-				'https://github.com/Gui-iago',
-				'FFFF00'
+				'Twitter',
+				'twitter',
+				"BEAT!Engine's Twitter Account!",
+				'https://twitter.com/beat_engine',
+				'3DADE2'
 			],
 			[
-				'AquaStrikr',
-				'aqua',
-				'Director / Artist',
-				'https://twitter.com/aqua_strikr',
-				'2596be'
+				'YouTube',
+				'youtube',
+				"BEAT!Engine's YouTube Channel!",
+				'https://youtu.be/VfmpFCe7SPA',
+				'DD0004',
 			],
 			[
-				'NoobZiito',
-				'noobziito',
-				"Artist",
-				'https://twitter.com/NooBZiiTo1',
-				'013220'
-			],
-			[
-				'Cranile',
-				'saltforsomereason',
-				'Logo',
-				'https://twitter.com/7saltybro',
-				'FFFFFF'
-			],
-			[
-				'Cyaan',
-				'cyaan',
-				"Guns Mania Chart",
-				'https://twitter.com/El_Cyaan',
-				'2596be'
-			],
-			[
-				'asho',
-				'asho',
-				'Rich Presence Header Design',
-				'https://twitter.com/ashomoment',
-				'FFCCCB'
-			],
-			[
-				'Lenineth',
-				'lenineth',
-				'Menu Remix',
-				'https://twitter.com/LeNineth',
-				'00FF00'
-			],
-			[''],
-			['Psych Engine Extra Keys'],
-			[
-				'tposejank',
-				'tposejank',
-				'Extra Keys',
-				'https://github.com/tposejank',
-				'013220'
-			],
-			[''],
-			['Psych Engine Team'],
-			[
-				'Shadow Mario',
-				'shadowmario',
-				'Main Programmer of Psych Engine',
-				'https://twitter.com/Shadow_Mario_',
-				'444444'
-			],
-			[
-				'RiverOaken',
-				'riveroaken',
-				'Main Artist/Animator of Psych Engine',
-				'https://twitter.com/river_oaken',
-				'C30085'
-			],
-			[
-				'bb-panzu',
-				'bb-panzu',
-				'Additional Programmer of Psych Engine',
-				'https://twitter.com/bbsub3',
-				'389A58'
-			],
-			[''],
-			['Psych Engine Contributors'],
-			[
-				'shubs',
-				'shubs',
-				'New Input System Programmer',
-				'https://twitter.com/yoshubs',
-				'4494E6'
-			],
-			[
-				'SqirraRNG',
-				'gedehari',
-				'Chart Editor\'s Sound Waveform base',
-				'https://twitter.com/gedehari',
-				'FF9300'
-			],
-			[
-				'iFlicky',
-				'iflicky',
-				'Delay/Combo Menu Song Composer\nand Dialogue Sounds',
-				'https://twitter.com/flicky_i',
-				'C549DB'
-			],
-			[
-				'PolybiusProxy',
-				'polybiusproxy',
-				'.MP4 Video Loader Extension',
-				'https://twitter.com/polybiusproxy',
-				'FFEAA6'
-			],
-			[
-				'Keoiki',
-				'keoiki',
-				'Note Splash Animations',
-				'https://twitter.com/Keoiki_',
-				'FFFFFF'
-			],
-			[
-				'Smokey',
-				'smokey',
-				'Spritemap Texture Support',
-				'https://twitter.com/Smokey_5_',
-				'0033CC'
-			],
-			[''],
-			["Funkin' Crew"],
-			[
-				'ninjamuffin99',
-				'ninjamuffin99',
-				"Programmer of Friday Night Funkin'",
-				'https://twitter.com/ninja_muffin99',
-				'F73838'
-			],
-			[
-				'PhantomArcade',
-				'phantomarcade',
-				"Animator of Friday Night Funkin'",
-				'https://twitter.com/PhantomArcade3K',
-				'FFBB1B'
-			],
-			[
-				'evilsk8r',
-				'evilsk8r',
-				"Artist of Friday Night Funkin'",
-				'https://twitter.com/evilsk8r',
-				'53E52C'
-			],
-			[
-				'kawaisprite',
-				'kawaisprite',
-				"Composer of Friday Night Funkin'",
-				'https://twitter.com/kawaisprite',
-				'6475F3'
+				'Github',
+				'github',
+				"BEAT!Engine's Github Page",
+				"https://github.com/Luisinhi010/BEAT-engine/",
+				"161C21"
 			]
 		];
 
