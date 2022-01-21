@@ -204,7 +204,9 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * Winning Icons
 * New Health Bar
 * New Grafix (Sick, Good, Bad, Shit)
+* Memory Counter
 * AND MORE!
+
 
  
  
