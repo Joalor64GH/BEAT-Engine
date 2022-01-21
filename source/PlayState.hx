@@ -140,6 +140,9 @@ class PlayState extends MusicBeatState
 	private static var prevCamFollow:FlxPoint;
 	private static var prevCamFollowPos:FlxObject;
 
+	public var laneunderlay:FlxSprite;
+	public var laneunderlayOpponent:FlxSprite;
+
 	public var strumLineNotes:FlxTypedGroup<StrumNote>;
 	public var opponentStrums:FlxTypedGroup<StrumNote>;
 	public var playerStrums:FlxTypedGroup<StrumNote>;
@@ -1142,6 +1145,27 @@ class PlayState extends MusicBeatState
 		add(timeTxt);
 		timeBarBG.sprTracker = timeBar;
 
+		laneunderlayOpponent = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);//from kade engine
+		//laneunderlayOpponent.alpha = FlxG.save.data.laneTransparency;
+		laneunderlayOpponent.visible = false; 
+		laneunderlayOpponent.color = FlxColor.BLACK;
+		laneunderlayOpponent.scrollFactor.set();
+
+		laneunderlay = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);//from kade engine
+		//laneunderlay.alpha = FlxG.save.data.laneTransparency;
+		laneunderlay.visible = false;
+		laneunderlay.color = FlxColor.BLACK;
+		laneunderlay.scrollFactor.set();
+
+		/*if (FlxG.save.data.laneUnderlay)
+		{
+			if (!ClientPrefs.middleScroll)
+			{
+				add(laneunderlayOpponent);
+			}
+			add(laneunderlay);
+		}*/
+
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
 		add(grpNoteSplashes);
@@ -1365,6 +1389,8 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
+		laneunderlay.cameras = [camHUD];
+		laneunderlayOpponent.cameras = [camHUD];
 		beWatermark.cameras = [camHUD];
 		peWatermark.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
@@ -1980,6 +2006,14 @@ class PlayState extends MusicBeatState
 				setOnLuas('defaultOpponentStrumY' + i, opponentStrums.members[i].y);
 				// if(ClientPrefs.middleScroll) opponentStrums.members[i].visible = false;
 			}
+
+			// Update lane underlay positions AFTER static arrows :)
+
+			laneunderlay.x = playerStrums.members[0].x - 25;
+			laneunderlayOpponent.x = opponentStrums.members[0].x - 25;
+
+			laneunderlay.screenCenter(Y);
+			laneunderlayOpponent.screenCenter(Y);
 
 			startedCountdown = true;
 			Conductor.songPosition = 0;
@@ -3078,8 +3112,9 @@ class PlayState extends MusicBeatState
 		var roundedSpeed:Float = FlxMath.roundDecimal(songSpeed, 2);
 		if (unspawnNotes[0] != null)
 		{
-			var time:Float = 3000;//shit be werid on 4:3
-			if(roundedSpeed < 1) time /= roundedSpeed;
+			var time:Float = 3000; // shit be werid on 4:3
+			if (roundedSpeed < 1)
+				time /= roundedSpeed;
 
 			while (unspawnNotes.length > 0 && unspawnNotes[0].strumTime - Conductor.songPosition < time)
 			{
@@ -4066,7 +4101,9 @@ class PlayState extends MusicBeatState
 		if (achievementObj != null)
 		{
 			return;
-		} else {
+		}
+		else
+		{
 			var achieve:String = checkForAchievement();
 
 			if (achieve != null)
@@ -4273,25 +4310,24 @@ class PlayState extends MusicBeatState
 			case "sick": // sick
 				totalNotesHit += 1;
 				sicks++;
-			case "marvelous": //marvelous
-			totalNotesHit += 1;
-			marvelouses++;
+			case "marvelous": // marvelous
+				totalNotesHit += 1;
+				marvelouses++;
 		}
 
-		if (ClientPrefs.marvelouses==true){	
-
-		if (daRating == 'marvelous' && !note.noteSplashDisabled)
+		if (ClientPrefs.marvelouses == true)
 		{
-			spawnNoteSplashOnNote(note);
+			if (daRating == 'marvelous' && !note.noteSplashDisabled)
+			{
+				spawnNoteSplashOnNote(note);
+			}
 		}
-		}
-
-		else{
-
-		if (daRating == 'sick' && !note.noteSplashDisabled)
+		else
 		{
-			spawnNoteSplashOnNote(note);
-		}
+			if (daRating == 'sick' && !note.noteSplashDisabled)
+			{
+				spawnNoteSplashOnNote(note);
+			}
 		}
 
 		if (!practiceMode && !cpuControlled)
@@ -5727,7 +5763,7 @@ class PlayState extends MusicBeatState
 
 			// Rating FC
 			ratingFC = "";
-			if (marvelouses > 0) 
+			if (marvelouses > 0)
 				ratingFC = "MFC";
 			if (sicks > 0)
 				ratingFC = "SFC";
@@ -5746,59 +5782,80 @@ class PlayState extends MusicBeatState
 	}
 
 	public static var othersCodeName:String = 'otherAchievements';
-	#if ACHIEVEMENTS_ALLOWED
-	private function checkForAchievement(achievesToCheck:Array<String> = null):String {
 
-		if(chartingMode) return null;
+	#if ACHIEVEMENTS_ALLOWED
+	private function checkForAchievement(achievesToCheck:Array<String> = null):String
+	{
+		if (chartingMode)
+			return null;
 
 		var usedPractice:Bool = (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false));
 		var achievementsToCheck:Array<String> = achievesToCheck;
-		if (achievementsToCheck == null) {
+		if (achievementsToCheck == null)
+		{
 			achievementsToCheck = [];
-			for (i in 0...Achievements.achievementsStuff.length) {
+			for (i in 0...Achievements.achievementsStuff.length)
+			{
 				achievementsToCheck.push(Achievements.achievementsStuff[i][2]);
 			}
 			achievementsToCheck.push(othersCodeName);
 		}
 
-		for (i in 0...achievementsToCheck.length) {
+		for (i in 0...achievementsToCheck.length)
+		{
 			var achievementName:String = achievementsToCheck[i];
 			var unlock:Bool = false;
 
-			if (achievementName == othersCodeName) {
-				if(isStoryMode && campaignMisses + songMisses < 1 && CoolUtil.difficultyString() == 'HARD' && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
+			if (achievementName == othersCodeName)
+			{
+				if (isStoryMode
+					&& campaignMisses + songMisses < 1
+					&& CoolUtil.difficultyString() == 'HARD'
+					&& storyPlaylist.length <= 1
+					&& !changedDifficulty
+					&& !usedPractice)
 				{
 					var weekName:String = WeekData.getWeekFileName();
 
-					for (json in Achievements.loadedAchievements) {
-						if (json.unlocksAfter == weekName && !Achievements.isAchievementUnlocked(json.icon) && !json.customGoal) unlock = true;
+					for (json in Achievements.loadedAchievements)
+					{
+						if (json.unlocksAfter == weekName && !Achievements.isAchievementUnlocked(json.icon) && !json.customGoal)
+							unlock = true;
 						achievementName = json.icon;
 					}
 
-					for (k in 0...Achievements.achievementsStuff.length) {
+					for (k in 0...Achievements.achievementsStuff.length)
+					{
 						var unlockPoint:String = Achievements.achievementsStuff[k][3];
-						if (unlockPoint != null) {
-							if (unlockPoint == weekName && !unlock && !Achievements.isAchievementUnlocked(Achievements.achievementsStuff[k][2])) unlock = true;
+						if (unlockPoint != null)
+						{
+							if (unlockPoint == weekName
+								&& !unlock
+								&& !Achievements.isAchievementUnlocked(Achievements.achievementsStuff[k][2]))
+								unlock = true;
 							achievementName = Achievements.achievementsStuff[k][2];
 						}
 					}
 				}
 			}
 
-			for (json in Achievements.loadedAchievements) { //Requires jsons for call
-				var ret:Dynamic = callOnLuas('onCheckForAchievement', [json.icon]); //Set custom goals
+			for (json in Achievements.loadedAchievements)
+			{ // Requires jsons for call
+				var ret:Dynamic = callOnLuas('onCheckForAchievement', [json.icon]); // Set custom goals
 
-				//IDK, like
+				// IDK, like
 				// if getProperty('misses') > 10 and leName == 'lmao_skill_issue' then return Function_Continue end
 
-				if (ret == FunkinLua.Function_Continue && !Achievements.isAchievementUnlocked(json.icon) && json.customGoal && !unlock) {
+				if (ret == FunkinLua.Function_Continue && !Achievements.isAchievementUnlocked(json.icon) && json.customGoal && !unlock)
+				{
 					unlock = true;
 					achievementName = json.icon;
 				}
 			}
 
-			if(!Achievements.isAchievementUnlocked(achievementName) && !cpuControlled && !unlock) {
-				switch(achievementName)
+			if (!Achievements.isAchievementUnlocked(achievementName) && !cpuControlled && !unlock)
+			{
+				switch (achievementName)
 				{
 					case 'ur_bad':
 						if (ratingPercent < 0.2 && !practiceMode)
@@ -5841,7 +5898,8 @@ class PlayState extends MusicBeatState
 							}
 						}
 					case 'toastie':
-						if(/*ClientPrefs.framerate <= 60 &&*/ ClientPrefs.lowQuality && !ClientPrefs.globalAntialiasing /*&& !ClientPrefs.imagesPersist*/) {
+						if (/*ClientPrefs.framerate <= 60 &&*/ ClientPrefs.lowQuality && !ClientPrefs.globalAntialiasing /*&& !ClientPrefs.imagesPersist*/)
+						{
 							unlock = true;
 						}
 					case 'debugger':
@@ -5852,7 +5910,8 @@ class PlayState extends MusicBeatState
 				}
 			}
 
-			if(unlock) {
+			if (unlock)
+			{
 				Achievements.unlockAchievement(achievementName);
 				return achievementName;
 			}

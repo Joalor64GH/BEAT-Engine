@@ -67,7 +67,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		if (!ClientPrefs.lowQuality)
 		{
-			pausebg = new FlxSprite(FlxG.width + 0, FlxG.height + 0).loadGraphic(Paths.image('pausemenubg'));
+			pausebg = new FlxSprite().loadGraphic(Paths.image('pausemenubg'));
 			pausebg.color = 0xFF1E1E1E;
 			pausebg.scrollFactor.set();
 			pausebg.updateHitbox();
@@ -83,7 +83,7 @@ class PauseSubState extends MusicBeatSubstate
 				alpha: 1
 			}, 1, {ease: FlxEase.quadOut});
 
-			pausebg1 = new FlxSprite(FlxG.width + 0, FlxG.height + 0).loadGraphic(Paths.image('iconbackground'));
+			pausebg1 = new FlxSprite().loadGraphic(Paths.image('iconbackground'));
 			pausebg1.color = 0xFF141414;
 			pausebg1.scrollFactor.set();
 			pausebg1.updateHitbox();
@@ -99,7 +99,7 @@ class PauseSubState extends MusicBeatSubstate
 				alpha: 1
 			}, 0.9, {ease: FlxEase.quadOut});
 
-			iconBG = new FlxSprite(FlxG.width + 0, FlxG.height + 0).loadGraphic(Paths.image('iconbackground'));
+			iconBG = new FlxSprite().loadGraphic(Paths.image('iconbackground'));
 			iconBG.flipX = true;
 			if (!PlayState.instance.opponentChart)
 				iconBG.color = FlxColor.fromRGB(PlayState.instance.dad.healthColorArray[0], PlayState.instance.dad.healthColorArray[1],
