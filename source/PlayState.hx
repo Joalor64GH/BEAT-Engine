@@ -2937,9 +2937,9 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		if (ratingFC == "")
-			scoreTxt.text = 'Score: ' + songScore + ' // Misses: ' + songMisses + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% ' + '(?)';
+			scoreTxt.text = 'Score: ' + songScore + ' // Misses: ' + songMisses + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% // ' + '(?)';
 		else
-			scoreTxt.text = 'Score: ' + songScore + ' // Misses: ' + songMisses + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% -' + ratingName + ratingFC;
+			scoreTxt.text = 'Score: ' + songScore + ' // Misses: ' + songMisses + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% // ' + ratingName + ' ' + ratingFC;
 
 		if (botplayTxt.visible)
 		{
@@ -5773,17 +5773,17 @@ class PlayState extends MusicBeatState
 			// Rating FC
 			ratingFC = "";
 			if (marvelouses > 0)
-				ratingFC = "[MFC] ";
+				ratingFC = "[MFC]";
 			if (sicks > 0)
-				ratingFC = "[SFC] ";
+				ratingFC = "[SFC]";
 			if (goods > 0)
-				ratingFC = "[GFC] ";
+				ratingFC = "[GFC]";
 			if (bads > 0 || shits > 0)
-				ratingFC = "[FC] ";
+				ratingFC = "[FC]";
 			if (songMisses > 0 && songMisses < 10)
-				ratingFC = "[SDCB] ";
+				ratingFC = "[SDCB]";
 			else if (songMisses >= 10)
-				ratingFC = "[Clear] ";
+				ratingFC = "[Clear]";
 		}
 		setOnLuas('rating', ratingPercent);
 		setOnLuas('ratingName', ratingName);
