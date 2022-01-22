@@ -1,1 +1,0 @@
-just gradient variations
