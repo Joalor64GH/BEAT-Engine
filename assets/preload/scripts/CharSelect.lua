@@ -3,7 +3,6 @@
 
 local showSongBF = true -- Whether the chart's BF should be shown as an option, disabling might be useful if you manually registered them and the chart's BF shows wrong
 
-
 local allowStoryMode = false -- If this script can be used on storymode or not
 local song = 'offsetSong'; --If you want to have a song play while people are in this menu. Remove this line entirely if you don't want one.
 local characterList = { -- The list of characters
@@ -13,7 +12,7 @@ local characterList = { -- The list of characters
 	},
 	{ -- Clone this, only name and displayName are required. Make sure all commas are in place
 		name = "bf", -- The json filename
-		displayName = "Boyfriend w/GF and Dad", -- The name shown above the character
+		displayName = "Boyfriend", -- The name shown above the character
 		opponent = "dad", -- The opponent that will be used, will use Song opponent if not specified
 		gf = "gf",  -- The gf that will be used, will use Song gf if not specified
 		displayNameY = 10, -- How much higher the displayname should be
@@ -21,33 +20,33 @@ local characterList = { -- The list of characters
 		y = 0, -- Y offset
 	},
 	{
-		name = "bf-car",
-		displayName = "Windy Boyfriend",
-		gf = "gf-car"
-	},
-	{
-		name = "bf-christmas",
-		displayName = "Festive Boyfriend",
-		gf = "gf-christmas"
-	},
-	{
-		name = "bf-pixel",
-		displayName = "Pixel Boyfriend",
-		gf = "gf-pixel"
-	},
-	{
-		name = "bf-alt",
-		displayName = "Boyfriend Alt",
-	},
-	{
-		name = "pico-player",
-		displayName = "Pico",
-		gf = "speaker"
-	},
-	{
-		name = 'pico-car',
-		displayName = "Pico with a Scarf"
-		gf = "speaker"
+        name = "bf-car",
+        displayName = "Windy Boyfriend",
+        gf = "gf-car"
+    },
+    {
+        name = "bf-christmas",
+        displayName = "Festive Boyfriend",
+        gf = "gf-christmas"
+    },
+    {
+        name = "bf-pixel",
+        displayName = "Pixel Boyfriend",
+        gf = "gf-pixel"
+    },
+    {
+        name = "bf-alt",
+        displayName = "Boyfriend Alt",
+    },
+    {
+        name = "pico-player",
+        displayName = "Pico",
+        gf = "speaker"
+    },
+    {
+        name = 'pico-car',
+        displayName = "Pico with a Scarf",
+        gf = "speaker"
 	}
 }
 
@@ -110,7 +109,7 @@ function onStartCountdown()
 		origBF = getProperty("boyfriend.curCharacter")
 		if(showSongBF) then table.insert(characterList,1,{
 			name=origBF,
-			displayName="Skin from Song"}) 
+			displayName="Player skin from Song"}) 
 		end
 		setProperty('inCutscene', true);
 		setProperty('boyfriend.stunned', true);
@@ -223,7 +222,7 @@ end
 end
 
 function updateCharacter()
-	if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
+	if getPropertyFromClass('ClientPrefs', 'charMenu', true) then
 	triggerEvent('Change Character', 'bf', characterList[curCharacter].name);
 	setTextString('displayname', characterList[curCharacter].displayName);
 
