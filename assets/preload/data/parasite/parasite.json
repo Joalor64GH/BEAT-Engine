@@ -3748,13 +3748,13 @@
 			}
 		],
 		"player2": "mom-car",
-		"player3": "gf-car",
+		"player3": "speakers",
 		"offset": 0,
 		"song": "Parasite",
 		"validScore": true,
 		"speed": 2.7,
 		"sectionLengths": [],
-		"gfVersion": "gf-car",
+		"gfVersion": "speakers",
 		"chartVersion": "KE1",
 		"eventObjects": [
 			{
