@@ -109,7 +109,7 @@ function onStartCountdown()
 		origBF = getProperty("boyfriend.curCharacter")
 		if(showSongBF) then table.insert(characterList,1,{
 			name=origBF,
-			displayName="Player skin from Song"}) 
+			displayName="Skin from Chart"}) 
 		end
 		setProperty('inCutscene', true);
 		setProperty('boyfriend.stunned', true);
@@ -222,7 +222,7 @@ end
 end
 
 function updateCharacter()
-	if getPropertyFromClass('ClientPrefs', 'charMenu', true) then
+	if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
 	triggerEvent('Change Character', 'bf', characterList[curCharacter].name);
 	setTextString('displayname', characterList[curCharacter].displayName);
 
