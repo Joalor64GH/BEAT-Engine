@@ -4272,6 +4272,13 @@ class PlayState extends MusicBeatState
 	public var totalPlayed:Int = 0;
 	public var totalNotesHit:Float = 0.0;
 
+	public static function getUiSkin(?uiSkin:String = 'classic', ?file:String = '', ?alt:String = '', ?numSkin:Bool = false, ?num:Int = 0) {
+		var path:String = 'judgements/' + (numSkin ? 'numbers/' : '') + uiSkin + '/' + (numSkin ? 'num' : file) + (numSkin ? Std.string(num) : '') + alt;
+		if (!Paths.fileExists('images/' + path + '.png', IMAGE))
+			path = 'judgements/' + (numSkin ? 'numbers/' : '') + 'classic/' + (numSkin ? 'num' : file) + (numSkin ? Std.string(num) : '') + alt;
+		return path;
+	}
+
 	private function popUpScore(note:Note = null):Void
 	{
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
@@ -4362,69 +4369,22 @@ class PlayState extends MusicBeatState
 			daRating = 'bad';
 	 */
 
-	 var pixelShitPart1:String = "";
-		var pixelNumbersShit:String = '';
-		var pixelShitPart2:String = '';
-
-		// Judgement Skins (using preload for now)
+	 	var uiSkin:String = '';
+		var altPart:String = isPixelStage ? '-pixel' : '';
 
 		switch (ClientPrefs.uiSkin)
 		{
 			case 'Classic':
-				if (isPixelStage)
-				{
-					pixelShitPart1 = 'judgements/classic/pixelJuds/';
-					pixelNumbersShit = 'judgements/numbers/classic-pixelNums/';
-					pixelShitPart2 = '-pixel';
-				}
-				else
-				{
-					pixelShitPart1 = 'judgements/classic/';
-					pixelNumbersShit = 'judgements/numbers/classic-Nums/';
-					pixelShitPart2 = '';
-				}
+				uiSkin = 'classic';
 			case 'Bedrock':
-				if (isPixelStage)
-				{
-					pixelShitPart1 = 'judgements/bedrock/pixelJuds/';
-					pixelNumbersShit = 'judgements/numbers/classic-pixelNums/';
-					pixelShitPart2 = '-pixel';
-				}
-				else
-				{
-					pixelShitPart1 = 'judgements/bedrock/';
-					pixelNumbersShit = 'judgements/numbers/classic-Nums/';
-					pixelShitPart2 = '';
-				}
+				uiSkin = 'bedrock';
 			case 'BEAT!':
-				if (isPixelStage)
-				{
-					pixelShitPart1 = 'judgements/beat/pixelJuds/';
-					pixelNumbersShit = 'judgements/numbers/classic-pixelNums/';
-					pixelShitPart2 = '-pixel';
-				}
-				else
-				{
-					pixelShitPart1 = 'judgements/beat/';
-					pixelNumbersShit = 'judgements/numbers/classic-Nums/';
-					pixelShitPart2 = '';
-				}
+				uiSkin = 'beat';
 			case 'BEAT! Gradient':
-				if (isPixelStage)
-				{
-					pixelShitPart1 = 'judgements/beat-alt/pixelJuds/';
-					pixelNumbersShit = 'judgements/numbers/classic-pixelNums/';
-					pixelShitPart2 = '-pixel';
-				}
-				else
-				{
-					pixelShitPart1 = 'judgements/beat-alt/';
-					pixelNumbersShit = 'judgements/numbers/classic-Nums/';
-					pixelShitPart2 = '';
-				}
+				uiSkin = 'beat-alt';
 		}
-
-		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2));
+	
+		rating.loadGraphic(Paths.image(getUiSkin(uiSkin, daRating, altPart)));
 		rating.cameras = [camHUD];
 		rating.screenCenter();
 		rating.x = coolText.x - 40;
@@ -4436,7 +4396,7 @@ class PlayState extends MusicBeatState
 		rating.x += ClientPrefs.comboOffset[0];
 		rating.y -= ClientPrefs.comboOffset[1];
 
-		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
+		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(getUiSkin(uiSkin, 'combo', altPart)));
 		comboSpr.cameras = [camHUD];
 		comboSpr.screenCenter();
 		comboSpr.x = coolText.x;
@@ -4449,7 +4409,7 @@ class PlayState extends MusicBeatState
 		comboSpr.velocity.x += FlxG.random.int(1, 10);
 		insert(members.indexOf(strumLineNotes), rating);
 
-		if (!PlayState.isPixelStage)
+		if (!isPixelStage)
 		{
 			rating.setGraphicSize(Std.int(rating.width * 0.7));
 			rating.antialiasing = ClientPrefs.globalAntialiasing;
@@ -4478,7 +4438,8 @@ class PlayState extends MusicBeatState
 		var daLoop:Int = 0;
 		for (i in seperatedScore)
 		{
-			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelNumbersShit + 'num' + Std.int(i) + pixelShitPart2));
+			// Std.int(i)
+			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(getUiSkin(uiSkin, '', altPart, true, Std.int(i))));
 			numScore.cameras = [camHUD];
 			numScore.screenCenter();
 			numScore.x = coolText.x + (43 * daLoop) - 90;
@@ -4487,7 +4448,7 @@ class PlayState extends MusicBeatState
 			numScore.x += ClientPrefs.comboOffset[2];
 			numScore.y -= ClientPrefs.comboOffset[3];
 
-			if (!PlayState.isPixelStage)
+			if (!isPixelStage)
 			{
 				numScore.antialiasing = ClientPrefs.globalAntialiasing;
 				numScore.setGraphicSize(Std.int(numScore.width * 0.5));
@@ -4503,8 +4464,10 @@ class PlayState extends MusicBeatState
 			numScore.velocity.x = FlxG.random.float(-5, 5);
 			numScore.visible = !ClientPrefs.hideHud;
 
-			if (combo >= 10 || combo == 0)
+			if (combo >= 1 || combo == 0)
 				insert(members.indexOf(strumLineNotes), numScore);
+
+			//note to self: try to make ms sprites stuff -Gui iago
 
 			FlxTween.tween(numScore, {alpha: 0}, 0.2, {
 				onComplete: function(tween:FlxTween)
@@ -4515,6 +4478,7 @@ class PlayState extends MusicBeatState
 			});
 
 			daLoop++;
+
 		}
 		/* 
 		trace(combo);
