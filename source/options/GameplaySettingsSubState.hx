@@ -83,7 +83,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			"If checked, will play a sound when you hit a note",
 			'playHitSounds',
 			'bool',
-			true);
+			false);
 		addOption(option);
 
 		var option:Option = new Option('Marvelous Ratings',

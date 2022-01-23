@@ -9,15 +9,7 @@ local characterList = { -- The list of characters
 	{
 		name = "bf",
 		displayName = "Boyfriend",
-	},
-	{ -- Clone this, only name and displayName are required. Make sure all commas are in place
-		name = "bf", -- The json filename
-		displayName = "Boyfriend", -- The name shown above the character
-		opponent = "dad", -- The opponent that will be used, will use Song opponent if not specified
-		gf = "gf",  -- The gf that will be used, will use Song gf if not specified
-		displayNameY = 10, -- How much higher the displayname should be
-		x = 0, -- X offset
-		y = 0, -- Y offset
+		gf = "gf",
 	},
 	{
         name = "bf-car",
@@ -41,12 +33,12 @@ local characterList = { -- The list of characters
     {
         name = "pico-player",
         displayName = "Pico",
-        gf = "speaker"
+        gf = "speakers"
     },
     {
         name = 'pico-car',
         displayName = "Pico with a Scarf",
-        gf = "speaker"
+        gf = "speakers"
 	}
 }
 

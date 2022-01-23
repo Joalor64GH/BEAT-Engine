@@ -72,7 +72,7 @@ class ClientPrefs
 	// Added by Beat Engine
 	public static var showWatermarks:Bool = true;
 	public static var lowEndMode:Bool = false;
-	public static var playHitSounds:Bool = true;
+	public static var playHitSounds:Bool = false;
 	public static var marvelouses:Bool = true;
 	#if PSYCH_WATERMARKS
 	public static var uiSkin:String = 'BEAT!';
