@@ -4363,66 +4363,66 @@ class PlayState extends MusicBeatState
 	 */
 
 	 var pixelShitPart1:String = "";
-	 var pixelNumbersShit:String = '';
-	 var pixelShitPart2:String = '';
+		var pixelNumbersShit:String = '';
+		var pixelShitPart2:String = '';
 
-	 // Judgement Skins (using preload for now)
+		// Judgement Skins (using preload for now)
 
-	 switch (ClientPrefs.uiSkin)
-	 {
-		 case 'Classic':
-			 if (isPixelStage)
-			 {
-				 pixelShitPart1 = 'judgements/classic/pixelJuds/';
-				 pixelNumbersShit = 'judgements/numbers/pixelNums/';
-				 pixelShitPart2 = '-pixel';
-			 }
-			 else
-			 {
-				 pixelShitPart1 = 'judgements/classic/';
-				 pixelNumbersShit = 'judgements/numbers/';
-				 pixelShitPart2 = '';
-			 }
-		 case 'Bedrock':
-			 if (isPixelStage)
-			 {
-				 pixelShitPart1 = 'judgements/bedrock/pixelJuds/';
-				 pixelNumbersShit = 'judgements/numbers/pixelNums/';
-				 pixelShitPart2 = '-pixel';
-			 }
-			 else
-			 {
-				 pixelShitPart1 = 'judgements/bedrock/';
-				 pixelNumbersShit = 'judgements/numbers/';
-				 pixelShitPart2 = '';
-			 }
-		 case 'BEAT!':
-			 if (isPixelStage)
-			 {
-				 pixelShitPart1 = 'judgements/beat/pixelJuds/';
-				 pixelNumbersShit = 'judgements/numbers/pixelNums/';
-				 pixelShitPart2 = '-pixel';
-			 }
-			 else
-			 {
-				 pixelShitPart1 = 'judgements/beat/';
-				 pixelNumbersShit = 'judgements/numbers/';
-				 pixelShitPart2 = '';
-			 }
-		 case 'BEAT! Gradient':
-			 if (isPixelStage)
-			 {
-				 pixelShitPart1 = 'judgements/beat-alt/pixelJuds/';
-				 pixelNumbersShit = 'judgements/numbers/pixelNums/';
-				 pixelShitPart2 = '-pixel';
-			 }
-			 else
-			 {
-				 pixelShitPart1 = 'judgements/beat-alt/';
-				 pixelNumbersShit = 'judgements/numbers/';
-				 pixelShitPart2 = '';
-			 }
-	 }
+		switch (ClientPrefs.uiSkin)
+		{
+			case 'Classic':
+				if (isPixelStage)
+				{
+					pixelShitPart1 = 'judgements/classic/pixelJuds/';
+					pixelNumbersShit = 'judgements/numbers/classic-pixelNums/';
+					pixelShitPart2 = '-pixel';
+				}
+				else
+				{
+					pixelShitPart1 = 'judgements/classic/';
+					pixelNumbersShit = 'judgements/numbers/classic-Nums/';
+					pixelShitPart2 = '';
+				}
+			case 'Bedrock':
+				if (isPixelStage)
+				{
+					pixelShitPart1 = 'judgements/bedrock/pixelJuds/';
+					pixelNumbersShit = 'judgements/numbers/classic-pixelNums/';
+					pixelShitPart2 = '-pixel';
+				}
+				else
+				{
+					pixelShitPart1 = 'judgements/bedrock/';
+					pixelNumbersShit = 'judgements/numbers/classic-Nums/';
+					pixelShitPart2 = '';
+				}
+			case 'BEAT!':
+				if (isPixelStage)
+				{
+					pixelShitPart1 = 'judgements/beat/pixelJuds/';
+					pixelNumbersShit = 'judgements/numbers/classic-pixelNums/';
+					pixelShitPart2 = '-pixel';
+				}
+				else
+				{
+					pixelShitPart1 = 'judgements/beat/';
+					pixelNumbersShit = 'judgements/numbers/classic-Nums/';
+					pixelShitPart2 = '';
+				}
+			case 'BEAT! Gradient':
+				if (isPixelStage)
+				{
+					pixelShitPart1 = 'judgements/beat-alt/pixelJuds/';
+					pixelNumbersShit = 'judgements/numbers/classic-pixelNums/';
+					pixelShitPart2 = '-pixel';
+				}
+				else
+				{
+					pixelShitPart1 = 'judgements/beat-alt/';
+					pixelNumbersShit = 'judgements/numbers/classic-Nums/';
+					pixelShitPart2 = '';
+				}
+		}
 
 		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2));
 		rating.cameras = [camHUD];
