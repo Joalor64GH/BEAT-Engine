@@ -2994,7 +2994,7 @@
 			}
 		],
 		"sections": 0,
-		"stage": "void",
+		"stage": "limo",
 		"needsVoices": true,
 		"noteStyle": "normal",
 		"bpm": 160
