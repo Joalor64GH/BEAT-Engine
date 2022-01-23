@@ -4358,7 +4358,7 @@
 		"offset": 0,
 		"song": "Parasite",
 		"validScore": true,
-		"speed": 2.8,
+		"speed": 2.9,
 		"sectionLengths": [],
 		"gfVersion": "gfrock",
 		"chartVersion": "KE1",
@@ -4370,7 +4370,7 @@
 				"value": 160
 			}
 		],
-		"stage": "void",
+		"stage": "limo",
 		"needsVoices": true,
 		"sections": 0,
 		"bpm": 160,
