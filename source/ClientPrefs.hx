@@ -72,13 +72,14 @@ class ClientPrefs
 	// Added by Beat Engine
 	public static var showWatermarks:Bool = true;
 	public static var lowEndMode:Bool = false;
-	public static var playHitSounds:Bool = true;
+	public static var playHitSounds:Bool = false;
 	public static var marvelouses:Bool = true;
 	#if PSYCH_WATERMARKS
 	public static var uiSkin:String = 'BEAT!';
 	#else
 	public static var uiSkin:String = 'Classic';
 	#end
+	public static var charSelect:Bool = true;
 
 	// Every key has two binds, add your key bind down here and then add your control on options/ControlsSubState.hx and Controls.hx
 	public static var keyBinds:Map<String, Array<FlxKey>> = [
@@ -224,6 +225,7 @@ class ClientPrefs
 		FlxG.save.data.playHitSounds = playHitSounds;
 		FlxG.save.data.marvelouses = marvelouses;
 		FlxG.save.data.uiSkin = uiSkin;
+		FlxG.save.data.charSelect = charSelect;
 
 		FlxG.save.flush();
 
@@ -399,6 +401,9 @@ class ClientPrefs
 		}
 		if (FlxG.save.data.uiSkin != null) {
 			uiSkin = FlxG.save.data.uiSkin;
+		}
+		if (FlxG.save.data.charSelect != null) {
+			charSelect = FlxG.save.data.charSelect;
 		}
 
 		// flixel automatically saves your volume!
