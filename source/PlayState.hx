@@ -385,11 +385,11 @@ class PlayState extends MusicBeatState
 		persistentDraw = true;
 
 		mania = SONG.mania;
-		if (mania < Note.minMania || mania > Note.maxMania)
+		#if MODS_ALLOWED // .json of mods dont have mania xd
+		if (mania < 1 || mania > Note.maxMania)
 			mania = Note.defaultMania;
-
-		#if MODS_ALLOWED
-		if (mania == 0)
+		#else
+		if (mania < Note.minMania || mania > Note.maxMania)
 			mania = Note.defaultMania;
 		#end
 
@@ -1145,25 +1145,25 @@ class PlayState extends MusicBeatState
 		add(timeTxt);
 		timeBarBG.sprTracker = timeBar;
 
-		laneunderlayOpponent = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);//from kade engine
-		//laneunderlayOpponent.alpha = FlxG.save.data.laneTransparency;
-		laneunderlayOpponent.visible = false; 
+		laneunderlayOpponent = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2); // from kade engine
+		// laneunderlayOpponent.alpha = FlxG.save.data.laneTransparency;
+		laneunderlayOpponent.visible = false;
 		laneunderlayOpponent.color = FlxColor.BLACK;
 		laneunderlayOpponent.scrollFactor.set();
 
-		laneunderlay = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);//from kade engine
-		//laneunderlay.alpha = FlxG.save.data.laneTransparency;
+		laneunderlay = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2); // from kade engine
+		// laneunderlay.alpha = FlxG.save.data.laneTransparency;
 		laneunderlay.visible = false;
 		laneunderlay.color = FlxColor.BLACK;
 		laneunderlay.scrollFactor.set();
 
 		/*if (FlxG.save.data.laneUnderlay)
-		{
-			if (!ClientPrefs.middleScroll)
 			{
-				add(laneunderlayOpponent);
-			}
-			add(laneunderlay);
+				if (!ClientPrefs.middleScroll)
+				{
+					add(laneunderlayOpponent);
+				}
+				add(laneunderlay);
 		}*/
 
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
