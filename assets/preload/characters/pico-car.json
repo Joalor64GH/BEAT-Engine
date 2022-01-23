@@ -3,52 +3,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				12,
-				-6
-			],
-			"anim": "singLEFT",
-			"fps": 24,
-			"name": "Pico NOTE LEFT",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				-10,
-				-50
-			],
-			"anim": "singDOWN",
-			"fps": 24,
-			"name": "Pico Down Note",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				-29,
-				27
-			],
-			"anim": "singUP",
-			"fps": 24,
-			"name": "pico Up note",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				-38,
-				-7
-			],
-			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "Pico Note Right",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				12,
-				24
+				60,
+				87
 			],
 			"anim": "singLEFTmiss",
 			"fps": 24,
@@ -58,8 +14,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-11,
-				-19
+				59,
+				27
 			],
 			"anim": "singDOWNmiss",
 			"fps": 24,
@@ -69,8 +25,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-29,
-				27
+				-39,
+				127
 			],
 			"anim": "singUPmiss",
 			"fps": 24,
@@ -80,8 +36,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-30,
-				21
+				2,
+				111
 			],
 			"anim": "singRIGHTmiss",
 			"fps": 24,
@@ -90,14 +46,58 @@
 		},
 		{
 			"offsets": [
-				0,
-				0
+				10,
+				60
 			],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "idle",
-			"loop": false,
+			"indices": [],
 			"name": "Pico Idle Dance"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				61,
+				51
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Pico NOTE LEFT0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				58,
+				-14
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "Pico Down Note0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-41,
+				97
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "pico Up note0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				1,
+				66
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Pico Note Right 0",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
