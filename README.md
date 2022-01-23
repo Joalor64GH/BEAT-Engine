@@ -170,8 +170,8 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 
 # Features
 
- ## Week 7
-* Yeah, it's what you read, Week 7, lol
+ ## Week 7 (Github Exclusive)
+* Yeah, it's what you read, Week 7, lmao
 * Contains: UGH, Guns, Stress (ofc lol)
  ![unknown](https://user-images.githubusercontent.com/69995597/150059799-db3c2624-e47c-4af7-9819-31792011669d.png)
 
@@ -204,7 +204,10 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * Winning Icons
 * New Health Bar
 * New Grafix (Sick, Good, Bad, Shit)
+* Memory Counter
+* Opponent Mode (Yeah, you can play as the opponent, kinda dumb, ngl, but it's rlly funkin' cool, y'know?)
 * AND MORE!
+
 
  
  

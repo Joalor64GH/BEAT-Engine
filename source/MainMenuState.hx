@@ -25,7 +25,7 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-	public static var fridayVersion:String = '0.2.7.1';
+	public static var fridayVersion:String = '0.2.7-Git + 0.2.8-NG';
 	public static var psychEngineVersion:String = '0.5.1';
 	public static var beatEngineVersion:String = '0.0.1'; // this is used for Discord RPC
 	public static var curSelected:Int = 0;
@@ -39,7 +39,7 @@ class MainMenuState extends MusicBeatState
 
 	private var camAchievement:FlxCamera;
 
-	var optionShit:Array<String> = ['story_mode', 'freeplay', 'discord', 'twitter', 'credits', 'options'];
+	var optionShit:Array<String> = ['story_mode', 'freeplay', 'socials', 'credits', 'options'];
 
 	public var iconBG:FlxSprite;
 
@@ -350,14 +350,6 @@ class MainMenuState extends MusicBeatState
 				{
 					CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
 				}
-				if (optionShit[curSelected] == 'discord')
-				{
-					CoolUtil.browserLoad('https://discord.gg/yuUt7KeGS5');
-				}
-				if (optionShit[curSelected] == 'twitter')
-				{
-					CoolUtil.browserLoad('https://twitter.com/beat_engine');
-				}
 				else
 				{
 					selectedSomethin = true;
@@ -446,6 +438,8 @@ class MainMenuState extends MusicBeatState
 				MusicBeatState.switchState(new StoryMenuState());
 			case 'freeplay':
 				MusicBeatState.switchState(new FreeplayState());
+			case 'socials':
+				MusicBeatState.switchState(new SocialsState());
 			#if MODS_ALLOWED
 			case 'mods':
 				MusicBeatState.switchState(new ModsMenuState());

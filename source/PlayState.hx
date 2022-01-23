@@ -2936,15 +2936,10 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		if (ratingName == '?')
-			scoreTxt.text = 'Score: ' + songScore + ' - Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' [' + 'Unrated' + ']'
-				+ ' - Combo Breaks: ' + songMisses + ' - Rank: ?';
+		if (ratingFC == "")
+			scoreTxt.text = 'Score: ' + songScore + ' // Misses: ' + songMisses + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% // ' + '(?)';
 		else
-			scoreTxt.text = 'Score: ' + songScore + ' - Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' [' + ratingFC + ']'
-				+ ' - Combo Breaks: ' + songMisses + ' - Rank: ' + ratingName;
-		if (songMisses > 1)
-			scoreTxt.text = 'Score: ' + songScore + ' - Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ' - Combo Breaks: ' + songMisses
-				+ ' - Rank: ' + ratingName;
+			scoreTxt.text = 'Score: ' + songScore + ' // Misses: ' + songMisses + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% // ' + ratingName + ' ' + ratingFC;
 
 		if (botplayTxt.visible)
 		{
@@ -4277,6 +4272,13 @@ class PlayState extends MusicBeatState
 	public var totalPlayed:Int = 0;
 	public var totalNotesHit:Float = 0.0;
 
+	public static function getUiSkin(?uiSkin:String = 'classic', ?file:String = '', ?alt:String = '', ?numSkin:Bool = false, ?num:Int = 0) {
+		var path:String = 'judgements/' + (numSkin ? 'numbers/' : '') + uiSkin + '/' + (numSkin ? 'num' : file) + (numSkin ? Std.string(num) : '') + alt;
+		if (!Paths.fileExists('images/' + path + '.png', IMAGE))
+			path = 'judgements/' + (numSkin ? 'numbers/' : '') + 'classic/' + (numSkin ? 'num' : file) + (numSkin ? Std.string(num) : '') + alt;
+		return path;
+	}
+
 	private function popUpScore(note:Note = null):Void
 	{
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
@@ -4367,60 +4369,22 @@ class PlayState extends MusicBeatState
 			daRating = 'bad';
 	 */
 
-		var pixelShitPart1:String = "";
-		var pixelShitPart2:String = '';
-
-		// Judgement Skins (using preload for now)
+	 	var uiSkin:String = '';
+		var altPart:String = isPixelStage ? '-pixel' : '';
 
 		switch (ClientPrefs.uiSkin)
 		{
 			case 'Classic':
-				if (isPixelStage)
-				{
-					pixelShitPart1 = 'pixelUI/';
-					pixelShitPart2 = '-pixel';
-				}
-				else
-				{
-					pixelShitPart1 = 'judgements/classic/';
-					pixelShitPart2 = '';
-				}
-			case 'BEAT!':
-				if (isPixelStage)
-				{
-					pixelShitPart1 = 'judgements/beat/';
-					pixelShitPart2 = '-pixel';
-				}
-				else
-				{
-					pixelShitPart1 = 'judgements/beat/';
-					pixelShitPart2 = '';
-				}
-			case 'BEAT! Gradient':
-				if (isPixelStage)
-				{
-					pixelShitPart1 = 'judgements/beat-alt/';
-					pixelShitPart2 = '-pixel';
-				}
-				else
-				{
-					pixelShitPart1 = 'judgements/beat-alt/';
-					pixelShitPart2 = '';
-				}
+				uiSkin = 'classic';
 			case 'Bedrock':
-				if (isPixelStage)
-				{
-					pixelShitPart1 = 'judgements/bedrock/';
-					pixelShitPart2 = '-pixel';
-				}
-				else
-				{
-					pixelShitPart1 = 'judgements/bedrock/';
-					pixelShitPart2 = '';
-				}
+				uiSkin = 'bedrock';
+			case 'BEAT!':
+				uiSkin = 'beat';
+			case 'BEAT! Gradient':
+				uiSkin = 'beat-alt';
 		}
-
-		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2));
+	
+		rating.loadGraphic(Paths.image(getUiSkin(uiSkin, daRating, altPart)));
 		rating.cameras = [camHUD];
 		rating.screenCenter();
 		rating.x = coolText.x - 40;
@@ -4432,7 +4396,7 @@ class PlayState extends MusicBeatState
 		rating.x += ClientPrefs.comboOffset[0];
 		rating.y -= ClientPrefs.comboOffset[1];
 
-		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
+		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(getUiSkin(uiSkin, 'combo', altPart)));
 		comboSpr.cameras = [camHUD];
 		comboSpr.screenCenter();
 		comboSpr.x = coolText.x;
@@ -4445,7 +4409,7 @@ class PlayState extends MusicBeatState
 		comboSpr.velocity.x += FlxG.random.int(1, 10);
 		insert(members.indexOf(strumLineNotes), rating);
 
-		if (!PlayState.isPixelStage)
+		if (!isPixelStage)
 		{
 			rating.setGraphicSize(Std.int(rating.width * 0.7));
 			rating.antialiasing = ClientPrefs.globalAntialiasing;
@@ -4474,7 +4438,8 @@ class PlayState extends MusicBeatState
 		var daLoop:Int = 0;
 		for (i in seperatedScore)
 		{
-			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
+			// Std.int(i)
+			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(getUiSkin(uiSkin, '', altPart, true, Std.int(i))));
 			numScore.cameras = [camHUD];
 			numScore.screenCenter();
 			numScore.x = coolText.x + (43 * daLoop) - 90;
@@ -4483,7 +4448,7 @@ class PlayState extends MusicBeatState
 			numScore.x += ClientPrefs.comboOffset[2];
 			numScore.y -= ClientPrefs.comboOffset[3];
 
-			if (!PlayState.isPixelStage)
+			if (!isPixelStage)
 			{
 				numScore.antialiasing = ClientPrefs.globalAntialiasing;
 				numScore.setGraphicSize(Std.int(numScore.width * 0.5));
@@ -4499,8 +4464,10 @@ class PlayState extends MusicBeatState
 			numScore.velocity.x = FlxG.random.float(-5, 5);
 			numScore.visible = !ClientPrefs.hideHud;
 
-			if (combo >= 10 || combo == 0)
+			if (combo >= 1 || combo == 0)
 				insert(members.indexOf(strumLineNotes), numScore);
+
+			//note to self: try to make ms sprites stuff -Gui iago
 
 			FlxTween.tween(numScore, {alpha: 0}, 0.2, {
 				onComplete: function(tween:FlxTween)
@@ -4511,6 +4478,7 @@ class PlayState extends MusicBeatState
 			});
 
 			daLoop++;
+
 		}
 		/* 
 		trace(combo);
@@ -5769,17 +5737,17 @@ class PlayState extends MusicBeatState
 			// Rating FC
 			ratingFC = "";
 			if (marvelouses > 0)
-				ratingFC = "MFC";
+				ratingFC = "[MFC]";
 			if (sicks > 0)
-				ratingFC = "SFC";
+				ratingFC = "[SFC]";
 			if (goods > 0)
-				ratingFC = "GFC";
+				ratingFC = "[GFC]";
 			if (bads > 0 || shits > 0)
-				ratingFC = "FC";
+				ratingFC = "[FC]";
 			if (songMisses > 0 && songMisses < 10)
-				ratingFC = "SDCB";
+				ratingFC = "[SDCB]";
 			else if (songMisses >= 10)
-				ratingFC = "Clear";
+				ratingFC = "[Clear]";
 		}
 		setOnLuas('rating', ratingPercent);
 		setOnLuas('ratingName', ratingName);

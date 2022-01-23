@@ -2977,13 +2977,13 @@
 				"mustHitSection": true
 			}
 		],
-		"player3": "gf-car",
+		"player3": "speakers",
 		"offset": 0,
 		"song": "Parasite",
 		"validScore": true,
-		"speed": 2.4,
+		"speed": 2.5,
 		"sectionLengths": [],
-		"gfVersion": "gfrock",
+		"gfVersion": "speakers",
 		"chartVersion": "KE1",
 		"eventObjects": [
 			{
@@ -2994,7 +2994,7 @@
 			}
 		],
 		"sections": 0,
-		"stage": "void",
+		"stage": "limo",
 		"needsVoices": true,
 		"noteStyle": "normal",
 		"bpm": 160
