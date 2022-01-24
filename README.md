@@ -137,14 +137,13 @@ Linux (Arch based distros):
 
 In case you don't want your mod to be able to run .lua scripts, delete the "LUA_ALLOWED" line on Project.xml
 
-──────────────────────────────────────
-
- ### BEAT! Devs
-* [aquastrikr](https://twitter.com/aqua_strikr) - Art, Director
+───────────────────────────────────────────────────────────────────────────────────────
+ ## BEAT! Engine DEVs
+* [AquaStrikr](https://twitter.com/aqua_strikr) - Art, Director
 * [Luisinhi010](https://www.youtube.com/c/Luisinho%E3%83%84/) - Coding, Animation, Charting
 * [Gui-iago](https://twitter.com/Fan_de_RPG) - Additional Coding, Charting
 * [NooBZiiTo](https://twitter.com/NooBZiiTo1) - Animation
-* [a gorila guy/Renan KK](https://twitter.com/LaysEnjoyer) - Parasite Cover
+* [a gorila guy/Renan KK](https://twitter.com/LaysEnjoyer) - Parasite Cover (Composed by TheInnuendo)
 * [Shadow Bowser/Mr Robot](https://www.reddit.com/user/JulioHaHaHa) - Ideas
 
  ### Contributors/Special Thanks
@@ -153,12 +152,12 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * [El_Cyaan](https://twitter.com/El_Cyaan) - Guns Mania Chart
 * [LeNinethGames](https://twitter.com/LeNineth) - Menu Remix
 
- ### Psych Engine Credits
+───────────────────────────────────────────────────────────────────────────────────────
+
+## Psych Engine
 * [Shadow Mario](https://twitter.com/shadow_mario_) - Psych Engine
 * [tposejank](https://www.youtube.com/c/tpobuddy) - Extra Keys
-
-──────────────────────────────────────
-
+ 
 ### Special Thanks (Psych Engine)
 * shubs - New Input System
 * SqirraRNG - Chart Editor's Sound Waveform base code
@@ -169,7 +168,16 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * Cary - OG Resolution code
 * Nebula_Zorua - VCR Shader code
  
-──────────────────────────────────────
+───────────────────────────────────────────────────────────────────────────────────────
+ 
+### Skin Credits
+* [Uniianimates](https://twitter.com/uniianimates) - BF/GF (HIgh Effort Erect)
+* [CarKeys](https://gamebanana.com/members/1994795) - BF/GF (Just a Little Remake)
+* [Luisinhi010](https://www.youtube.com/c/Luisinho%E3%83%84/) - ALT BoyFriend (BEAT!Engine BF)
+* [NooBZiiTo](https://twitter.com/NooBZiiTo1) - Scarf Pico, X-Mas Mommy Mearest (Scarf Pico, based on Phantom Fear's Design and X-mas MM based on Week 5's outfit)
+* [theoriginalalex](https://twitter.com/theoogalex) - Only Speakers/No GF Skin
+ 
+───────────────────────────────────────────────────────────────────────────────────────
 
 # Features
 
@@ -186,7 +194,7 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
  ## Revamped Menu
 * Transitions Based on Mic'd Up Engine
 * Random Icon appearing on the screen (also changes the Icon BG Color)
-* Socials Button (Discord and Twitter, UPCOMING)
+* Socials Button (Discord and Twitter)
 
  ![kbjrew](https://user-images.githubusercontent.com/69995597/150060251-2c901806-db80-4818-aebd-5555a5fbdbff.png)
 
@@ -210,9 +218,3 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * Memory Counter
 * Opponent Mode (Yeah, you can play as the opponent, kinda dumb, ngl, but it's rlly funkin' cool, y'know?)
 * AND MORE!
-
-
- 
- 
- 
- sus
