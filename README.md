@@ -154,8 +154,8 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * [LeNinethGames](https://twitter.com/LeNineth) - Menu Remix
 
  ### Psych Engine Credits
-* Shadow Mario - Psych Engine
-* tposejank - Extra Keys
+* [Shadow Mario](https://twitter.com/shadow_mario_) - Psych Engine
+* [tposejank](https://www.youtube.com/c/tpobuddy) - Extra Keys
 
 ──────────────────────────────────────
 
@@ -206,7 +206,7 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
  ## Xtras
 * Winning Icons
 * New Health Bar
-* New Grafix (Sick, Good, Bad, Shit)
+* New Grafix (Marvelous, Sick, Good, Bad, Shit)
 * Memory Counter
 * Opponent Mode (Yeah, you can play as the opponent, kinda dumb, ngl, but it's rlly funkin' cool, y'know?)
 * AND MORE!
