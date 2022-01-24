@@ -33,7 +33,7 @@ Engine was made using a lot of different Source Codes.
 - Tabnine
 
 
-> ### optional VS Code Extensions
+> ### Optional VS Code Extensions
 - Haxe blocks
 - Haxe Checkstyle
 - Haxe JSX
@@ -57,7 +57,7 @@ Linux (Ubuntu and Debian based Distros):
 Linux (Arch based Distros): 
 * sudo pacman -Sy git --noconfirm
 
-### Haxel
+### Haxe
 Windows and Mac: https://haxe.org/download/ (Latest Version)
 
 Linux (Ubuntu and Debian based Distros):
