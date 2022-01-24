@@ -145,7 +145,7 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * [Gui-iago](https://twitter.com/Fan_de_RPG) - Additional Coding, Charting
 * [NooBZiiTo](https://twitter.com/NooBZiiTo1) - Animation
 * [a gorila guy/Renan KK](https://twitter.com/LaysEnjoyer) - Parasite Cover (Composed by TheInnuendo)
-* [Shadow Bowser/Mr Robot](https://www.reddit.com/user/JulioHaHaHa) - Ideas
+* [Re.Xuadoz.2.5](https://www.reddit.com/user/JulioHaHaHa) - Ideas
 
  ### Special Thanks
 * [AshoXD](https://twitter.com/ashomoment) - Rich Presence Header Design
@@ -158,7 +158,6 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * [Shadow Mario](https://twitter.com/shadow_mario_) - Engine Developer
 * [RiverOaken](https://twitter.com/RiverOaken) - Arts and Animations
 * [bbpanzu](https://twitter.com/bbpanzu) - Assistant Programmer
-* []() -
 * [tposejank](https://www.youtube.com/c/tpobuddy) - Psych Extra Keys
  
 ### Special Thanks
@@ -174,7 +173,7 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 
 
 ## Kade Engine
-* [KadeDev](https://www.youtube.com/c/KadeDev/) - Kade Engine and Kade/Etterna Input
+* [KadeDev](https://www.youtube.com/c/KadeDev/) - Kade Etterna/Quaver Input
  
  
 ### Skin Credits
