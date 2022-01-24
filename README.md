@@ -146,7 +146,7 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 
  ### Contributors/Special Thanks
 * Asho - Rich Presence Header Design
-* Salt for Some Reason - Logo
+* [Salt for Some Reason](https://twitter.com/7saltybro) - Logo, Mania Charts
 * El_Cyaan - Guns Mania Chart
 * LeNinethGames - Menu Remix
 
