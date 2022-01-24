@@ -139,7 +139,7 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 
 ───────────────────────────────────────────────────────────────────────────
  
- ## BEAT! Engine DEVs
+ ## BEAT! Engine
 * [AquaStrikr](https://twitter.com/aqua_strikr) - Art, Director
 * [Luisinhi010](https://www.youtube.com/c/Luisinho%E3%83%84/) - Coding, Animation, Charting
 * [Gui-iago](https://twitter.com/Fan_de_RPG) - Additional Coding, Charting
