@@ -138,6 +138,7 @@ Linux (Arch based distros):
 In case you don't want your mod to be able to run .lua scripts, delete the "LUA_ALLOWED" line on Project.xml
 
 ───────────────────────────────────────────────────────────────────────────
+ 
  ## BEAT! Engine DEVs
 * [AquaStrikr](https://twitter.com/aqua_strikr) - Art, Director
 * [Luisinhi010](https://www.youtube.com/c/Luisinho%E3%83%84/) - Coding, Animation, Charting
@@ -152,7 +153,6 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * [El_Cyaan](https://twitter.com/El_Cyaan) - Guns Mania Chart
 * [LeNinethGames](https://twitter.com/LeNineth) - Menu Remix
 
-───────────────────────────────────────────────────────────────────────────
 
 ## Psych Engine
 * [Shadow Mario](https://twitter.com/shadow_mario_) - Engine Developer
@@ -172,12 +172,10 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * Cary - OG Resolution code
 * [Nebula_Zorua](https://twitter.com/nebula_zorua) - VCR Shader code
 
-───────────────────────────────────────────────────────────────────────────
 
 ## Kade Engine
 * [KadeDev](https://www.youtube.com/c/KadeDev/) - Kade Engine and Kade/Etterna Input
  
-───────────────────────────────────────────────────────────────────────────
  
 ### Skin Credits
 * [Uniianimates](https://twitter.com/uniianimates) - BF/GF (High Effort Erect Remixes)
@@ -187,7 +185,6 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * [theoriginalalex](https://twitter.com/theoogalex) - Only Speakers/No GF Skin
 * [kazzyrus](https://gamebanana.com/members/1944760) - Mommy Mearest over GF Skin
  
-───────────────────────────────────────────────────────────────────────────
 
 # Features
 
