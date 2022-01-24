@@ -140,15 +140,18 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 ──────────────────────────────────────
 
  ### BEAT! Devs
-* Luisinhi010, Gui-iago - Coding/Mania Charts
-* aquastrikr, NooBZiiTo,  - Arts and Animations
-* a gorila guy - Secret Stuff
+* [aquastrikr](https://twitter.com/aqua_strikr) - Art, Director
+* [Luisinhi010](https://www.youtube.com/c/Luisinho%E3%83%84/) - Coding, Animation, Charting
+* [Gui-iago](https://twitter.com/Fan_de_RPG) - Additional Coding, Charting
+* [NooBZiiTo](https://twitter.com/NooBZiiTo1) - Animation
+* [a gorila guy/Renan KK](https://twitter.com/LaysEnjoyer) - Parasite Cover
+* [Shadow Bowser/Mr Robot](https://www.reddit.com/user/JulioHaHaHa) - Ideas
 
  ### Contributors/Special Thanks
-* Asho - Rich Presence Header Design
+* [AshoXD](https://twitter.com/ashomoment) - Rich Presence Header Design
 * [Salt for Some Reason](https://twitter.com/7saltybro) - Logo, Mania Charts
-* El_Cyaan - Guns Mania Chart
-* LeNinethGames - Menu Remix
+* [El_Cyaan](https://twitter.com/El_Cyaan) - Guns Mania Chart
+* [LeNinethGames](https://twitter.com/LeNineth) - Menu Remix
 
  ### Psych Engine Credits
 * Shadow Mario - Psych Engine
