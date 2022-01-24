@@ -176,7 +176,7 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * [KadeDev](https://www.youtube.com/c/KadeDev/) - Kade Etterna/Quaver Input
  
  
-### Skin Credits
+## Skin Credits
 * [Uniianimates](https://twitter.com/uniianimates) - BF/GF (High Effort Erect Remixes)
 * [CarKeys](https://gamebanana.com/members/1994795) - BF/GF (Just a Little BF/GF Remake)
 * [Luisinhi010](https://www.youtube.com/c/Luisinho%E3%83%84/) - ALT BoyFriend (BEAT!Engine BF)
