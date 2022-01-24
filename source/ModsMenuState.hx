@@ -361,6 +361,7 @@ class ModsMenuState extends MusicBeatState
 		updatePosition();
 
 		FlxG.mouse.visible = true;
+		FlxG.mouse.useSystemCursor = false;
 
 		super.create();
 	}

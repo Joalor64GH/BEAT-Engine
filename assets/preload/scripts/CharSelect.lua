@@ -24,7 +24,7 @@ local characterList = { -- The list of characters
     {
         name = "bf-pixel",
         displayName = "Pixel Boyfriend",
-        gf = "gf-pixel"
+        -- gf = "gf-pixel" -- this may or may not broke the gf in the stages
     },
     {
         name = "bf-alt",

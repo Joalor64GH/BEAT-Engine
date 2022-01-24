@@ -194,6 +194,7 @@ class CharacterEditorState extends MusicBeatState
 		UI_characterbox.selected_tab_id = 'Character';
 
 		FlxG.mouse.visible = true;
+		FlxG.mouse.useSystemCursor = true;
 		reloadCharacterOptions();
 
 		super.create();
@@ -839,11 +840,11 @@ class CharacterEditorState extends MusicBeatState
 				char.x = char.positionArray[0] + OFFSET_X + 100;
 				updatePointerPos();
 			}
-			else if(sender == singDurationStepper)
+			else if (sender == singDurationStepper)
 			{
-				char.singDuration = singDurationStepper.value;//ermm you forgot this??
+				char.singDuration = singDurationStepper.value; // ermm you forgot this??
 			}
-			else if(sender == positionYStepper)
+			else if (sender == positionYStepper)
 			{
 				char.positionArray[1] = positionYStepper.value;
 				char.y = char.positionArray[1];

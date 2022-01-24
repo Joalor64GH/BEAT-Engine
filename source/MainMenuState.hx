@@ -20,6 +20,21 @@ import Achievements;
 import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
 import flixel.addons.display.FlxBackdrop;
+import flash.display.Bitmap;
+import flash.display.BitmapData;
+import flash.display.Sprite;
+import flash.display.Stage;
+import flash.events.Event;
+import flash.events.MouseEvent;
+import flash.Lib;
+import flash.ui.Mouse;
+import flixel.FlxG;
+import flixel.input.IFlxInputManager;
+import flixel.input.FlxInput.FlxInputState;
+import flixel.input.mouse.FlxMouseButton.FlxMouseButtonID;
+import flixel.system.FlxAssets;
+import flixel.system.replay.MouseRecord;
+import flixel.util.FlxDestroyUtil;
 
 using StringTools;
 
@@ -86,6 +101,7 @@ class MainMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		FlxG.mouse.visible = true;
+		FlxG.mouse.useSystemCursor = true;
 
 		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
 		bg = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));

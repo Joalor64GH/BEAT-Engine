@@ -265,7 +265,7 @@ class PlayState extends MusicBeatState
 
 	var camYbf:Int = 0;
 
-	var cameramove:Bool = true;
+	var cameramove:Bool = false;
 
 	// week 7 related stuff
 	var tankRolling:FlxSprite;
@@ -277,7 +277,7 @@ class PlayState extends MusicBeatState
 	var smokeLeft:FlxSprite;
 	var smokeRight:FlxSprite;
 	var tanjcuk:FlxSprite;
-	var tankmouthh:FlxSprite;
+	var tankGround:FlxSprite;
 	var tankbop0:FlxSprite;
 	var tank1:FlxSprite;
 	var tank2:FlxSprite;
@@ -782,15 +782,15 @@ class PlayState extends MusicBeatState
 					tankClouds.active = true;
 					tankClouds.velocity.x = FlxG.random.float(5, 15);
 					add(tankClouds);
-				}
 
-				tankmout = new FlxSprite(-300, -20).loadGraphic(Paths.image('tankMountains', 'week7'));
-				tankmout.antialiasing = ClientPrefs.globalAntialiasing;
-				tankmout.scrollFactor.set(0.2, 0.2);
-				tankmout.setGraphicSize(Std.int(tankmout.width * 1.1));
-				tankmout.active = false;
-				tankmout.updateHitbox();
-				add(tankmout);
+					tankmout = new FlxSprite(-300, -20).loadGraphic(Paths.image('tankMountains', 'week7'));
+					tankmout.antialiasing = ClientPrefs.globalAntialiasing;
+					tankmout.scrollFactor.set(0.2, 0.2);
+					tankmout.setGraphicSize(Std.int(tankmout.width * 1.1));
+					tankmout.active = false;
+					tankmout.updateHitbox();
+					add(tankmout);
+				}
 
 				tankmouwt = new FlxSprite(-200, 0).loadGraphic(Paths.image('tankBuildings', 'week7'));
 				tankmouwt.antialiasing = ClientPrefs.globalAntialiasing;
@@ -846,12 +846,12 @@ class PlayState extends MusicBeatState
 				tankRolling.animation.play('idle');
 				add(tankRolling);
 
-				tankmouthh = new FlxSprite(-420, -150).loadGraphic(Paths.image('tankGround', 'week7'));
-				tankmouthh.antialiasing = ClientPrefs.globalAntialiasing;
-				tankmouthh.setGraphicSize(Std.int(tankmouthh.width * 1.15));
-				tankmouthh.active = false;
-				tankmouthh.updateHitbox();
-				add(tankmouthh);
+				tankGround = new FlxSprite(-420, -150).loadGraphic(Paths.image('tankGround', 'week7'));
+				tankGround.antialiasing = ClientPrefs.globalAntialiasing;
+				tankGround.setGraphicSize(Std.int(tankGround.width * 1.15));
+				tankGround.active = false;
+				tankGround.updateHitbox();
+				add(tankGround);
 
 				if (!ClientPrefs.lowQuality)
 				{
@@ -2778,6 +2778,35 @@ class PlayState extends MusicBeatState
 			alreadyChanged = false;
 		}
 
+		if (cameramove) // if you say this is bad, so, this is bad, but i will fix this.... --Luis
+		{
+			if (boyfriend.animation.curAnim.name.startsWith('idle') || boyfriend.animation.curAnim.name.startsWith('idle'))
+			{
+				camYbf = 0;
+				camXbf = 0;
+			}
+			if (boyfriend.animation.curAnim.name.startsWith('singLEFT'))
+			{
+				camYbf = 0;
+				camXbf = -15;
+			}
+			if (boyfriend.animation.curAnim.name.startsWith('singRIGHT'))
+			{
+				camYbf = 0;
+				camXbf = 15;
+			}
+			if (boyfriend.animation.curAnim.name.startsWith('singUP'))
+			{
+				camXbf = 0;
+				camYbf = -15;
+			}
+			if (boyfriend.animation.curAnim.name.startsWith('singDOWN'))
+			{
+				camXbf = 0;
+				camYbf = 15;
+			}
+		}
+
 		callOnLuas('onUpdate', [elapsed]);
 
 		switch (curStage)
@@ -2937,9 +2966,11 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		if (ratingFC == "")
-			scoreTxt.text = 'Score: ' + songScore + ' // Misses: ' + songMisses + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% // ' + '(?)';
+			scoreTxt.text = 'Score: ' + songScore + ' // Misses: ' + songMisses + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% // '
+				+ '(?)';
 		else
-			scoreTxt.text = 'Score: ' + songScore + ' // Misses: ' + songMisses + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% // ' + ratingName + ' ' + ratingFC;
+			scoreTxt.text = 'Score: ' + songScore + ' // Misses: ' + songMisses + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% // '
+				+ ratingName + ' ' + ratingFC;
 
 		if (botplayTxt.visible)
 		{
@@ -4272,10 +4303,22 @@ class PlayState extends MusicBeatState
 	public var totalPlayed:Int = 0;
 	public var totalNotesHit:Float = 0.0;
 
-	public static function getUiSkin(?uiSkin:String = 'classic', ?file:String = '', ?alt:String = '', ?numSkin:Bool = false, ?num:Int = 0) {
-		var path:String = 'judgements/' + (numSkin ? 'numbers/' : '') + uiSkin + '/' + (numSkin ? 'num' : file) + (numSkin ? Std.string(num) : '') + alt;
+	public static function getUiSkin(?uiSkin:String = 'classic', ?file:String = '', ?alt:String = '', ?numSkin:Bool = false, ?num:Int = 0)
+	{
+		var path:String = 'judgements/'
+			+ (numSkin ? 'numbers/' : '')
+			+ uiSkin
+			+ '/'
+			+ (numSkin ? 'num' : file)
+			+ (numSkin ? Std.string(num) : '')
+			+ alt;
 		if (!Paths.fileExists('images/' + path + '.png', IMAGE))
-			path = 'judgements/' + (numSkin ? 'numbers/' : '') + 'classic/' + (numSkin ? 'num' : file) + (numSkin ? Std.string(num) : '') + alt;
+			path = 'judgements/'
+				+ (numSkin ? 'numbers/' : '')
+				+ 'classic/'
+				+ (numSkin ? 'num' : file)
+				+ (numSkin ? Std.string(num) : '')
+				+ alt;
 		return path;
 	}
 
@@ -4369,7 +4412,7 @@ class PlayState extends MusicBeatState
 			daRating = 'bad';
 	 */
 
-	 	var uiSkin:String = '';
+		var uiSkin:String = '';
 		var altPart:String = isPixelStage ? '-pixel' : '';
 
 		switch (ClientPrefs.uiSkin)
@@ -4383,7 +4426,7 @@ class PlayState extends MusicBeatState
 			case 'BEAT! Gradient':
 				uiSkin = 'beat-alt';
 		}
-	
+
 		rating.loadGraphic(Paths.image(getUiSkin(uiSkin, daRating, altPart)));
 		rating.cameras = [camHUD];
 		rating.screenCenter();
@@ -4467,7 +4510,7 @@ class PlayState extends MusicBeatState
 			if (combo >= 1 || combo == 0)
 				insert(members.indexOf(strumLineNotes), numScore);
 
-			//note to self: try to make ms sprites stuff -Gui iago
+			// note to self: try to make ms sprites stuff -Gui iago
 
 			FlxTween.tween(numScore, {alpha: 0}, 0.2, {
 				onComplete: function(tween:FlxTween)
@@ -4478,7 +4521,6 @@ class PlayState extends MusicBeatState
 			});
 
 			daLoop++;
-
 		}
 		/* 
 		trace(combo);

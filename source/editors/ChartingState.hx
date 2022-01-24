@@ -279,6 +279,7 @@ class ChartingState extends MusicBeatState
 			curSection = _song.notes.length - 1;
 
 		FlxG.mouse.visible = true;
+		FlxG.mouse.useSystemCursor = true;
 		// FlxG.save.bind('funkin', 'ninjamuffin99');
 
 		tempBpm = _song.bpm;
@@ -1596,7 +1597,8 @@ class ChartingState extends MusicBeatState
 			strumLineNotes.members[i].y = strumLine.y;
 		}
 
-		FlxG.mouse.visible = true; // cause reasons. trust me
+		FlxG.mouse.visible = true;
+		FlxG.mouse.useSystemCursor = true; // cause reasons. trust me
 		camPos.y = strumLine.y;
 		if (!disableAutoScrolling.checked)
 		{
