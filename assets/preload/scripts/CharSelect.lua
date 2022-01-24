@@ -30,6 +30,11 @@ local characterList = { -- The list of characters
         name = "bf-alt",
         displayName = "Boyfriend Alt",
     },
+	{
+		name = "erect-bf",
+		displayName = "Erect Boyfriend",
+		gf = "erect-gf",
+	},
     {
         name = "pico-player",
         displayName = "Pico",
