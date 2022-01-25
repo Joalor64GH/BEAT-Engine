@@ -45,8 +45,6 @@ class MainMenuState extends MusicBeatState
 	public static var beatEngineVersion:String = '0.0.1'; // this is used for Discord RPC
 	public static var curSelected:Int = 0;
 
-	public static var correct:String = 'correct engine - pass';
-
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
 

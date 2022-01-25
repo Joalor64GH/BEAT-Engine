@@ -856,6 +856,7 @@ class ChartingState extends MusicBeatState
 			{
 				var strum = note[0] + Conductor.stepCrochet * (_song.notes[daSec].lengthInSteps * value);
 
+				
 				var copiedNote:Array<Dynamic> = [strum, note[1], note[2], note[3]];
 				_song.notes[daSec].sectionNotes.push(copiedNote);
 			}
@@ -885,24 +886,21 @@ class ChartingState extends MusicBeatState
 			for (note in _song.notes[curSection].sectionNotes)
 			{
 				var boob = note[1];
-				if (boob > 3)
-				{
+				if (boob>3){
 					boob -= 4;
-				}
-				else
-				{
+				}else{
 					boob += 4;
 				}
-
+				
 				var copiedNote:Array<Dynamic> = [note[0], boob, note[2], note[3]];
 				duetNotes.push(copiedNote);
 			}
-
-			for (i in duetNotes)
-			{
-				_song.notes[curSection].sectionNotes.push(i);
+			
+			for (i in duetNotes){
+			_song.notes[curSection].sectionNotes.push(i);
+				
 			}
-
+			
 			updateGrid();
 		});
 		var mirrorButton:FlxButton = new FlxButton(10, 350, "Mirror Notes", function()
@@ -910,21 +908,20 @@ class ChartingState extends MusicBeatState
 			var duetNotes:Array<Array<Dynamic>> = [];
 			for (note in _song.notes[curSection].sectionNotes)
 			{
-				var boob = note[1] % 4;
+				var boob = note[1]%4;
 				boob = 3 - boob;
-				if (note[1] > 3)
-					boob += 4;
-
+				if (note[1] > 3) boob += 4;
+				
 				note[1] = boob;
 				var copiedNote:Array<Dynamic> = [note[0], boob, note[2], note[3]];
-				// duetNotes.push(copiedNote);
+				//duetNotes.push(copiedNote);
 			}
-
-			for (i in duetNotes)
-			{
-				// _song.notes[curSection].sectionNotes.push(i);
+			
+			for (i in duetNotes){
+			//_song.notes[curSection].sectionNotes.push(i);
+				
 			}
-
+			
 			updateGrid();
 		});
 		copyLastButton.setGraphicSize(80, 30);
@@ -3082,14 +3079,12 @@ class ChartingState extends MusicBeatState
 
 	function loadJson(song:String):Void
 	{
-		// make it look sexier if possible
-		if (CoolUtil.difficulties[PlayState.storyDifficulty] != "Normal")
-		{
-			PlayState.SONG = Song.loadFromJson(song.toLowerCase() + "-" + CoolUtil.difficulties[PlayState.storyDifficulty], song.toLowerCase());
-		}
-		else
-		{
-			PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
+		//make it look sexier if possible
+		if (CoolUtil.difficulties[PlayState.storyDifficulty] != "Normal"){
+		PlayState.SONG = Song.loadFromJson(song.toLowerCase()+"-"+CoolUtil.difficulties[PlayState.storyDifficulty], song.toLowerCase());
+			
+		}else{
+		PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
 		}
 		MusicBeatState.resetState();
 	}

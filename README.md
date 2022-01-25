@@ -33,7 +33,7 @@ Engine was made using a lot of different Source Codes.
 - Tabnine
 
 
-> ### optional VS Code Extensions
+> ### Optional Visual S Code Extensions
 - Haxe blocks
 - Haxe Checkstyle
 - Haxe JSX
@@ -57,7 +57,7 @@ Linux (Ubuntu and Debian based Distros):
 Linux (Arch based Distros): 
 * sudo pacman -Sy git --noconfirm
 
-### Haxel
+### Haxe
 Windows and Mac: https://haxe.org/download/ (Latest Version)
 
 Linux (Ubuntu and Debian based Distros):
@@ -137,47 +137,53 @@ Linux (Arch based distros):
 
 In case you don't want your mod to be able to run .lua scripts, delete the "LUA_ALLOWED" line on Project.xml
 
-───────────────────────────────────────────────────────────────────────────────────────
- ## BEAT! Engine DEVs
+───────────────────────────────────────────────────────────────────────────
+ 
+ ## BEAT! Engine
 * [AquaStrikr](https://twitter.com/aqua_strikr) - Art, Director
 * [Luisinhi010](https://www.youtube.com/c/Luisinho%E3%83%84/) - Coding, Animation, Charting
 * [Gui-iago](https://twitter.com/Fan_de_RPG) - Additional Coding, Charting
 * [NooBZiiTo](https://twitter.com/NooBZiiTo1) - Animation
 * [a gorila guy/Renan KK](https://twitter.com/LaysEnjoyer) - Parasite Cover (Composed by TheInnuendo)
-* [Shadow Bowser/Mr Robot](https://www.reddit.com/user/JulioHaHaHa) - Ideas
+* [Re.Xuadoz.2.5](https://www.reddit.com/user/JulioHaHaHa) - Ideas
 
- ### Contributors/Special Thanks
+ ### Special Thanks
 * [AshoXD](https://twitter.com/ashomoment) - Rich Presence Header Design
 * [Salt for Some Reason](https://twitter.com/7saltybro) - Logo, Mania Charts
 * [El_Cyaan](https://twitter.com/El_Cyaan) - Guns Mania Chart
 * [LeNinethGames](https://twitter.com/LeNineth) - Menu Remix
 
-───────────────────────────────────────────────────────────────────────────────────────
 
 ## Psych Engine
-* [Shadow Mario](https://twitter.com/shadow_mario_) - Psych Engine
-* [tposejank](https://www.youtube.com/c/tpobuddy) - Extra Keys
+* [Shadow Mario](https://twitter.com/shadow_mario_) - Engine Developer
+* [RiverOaken](https://twitter.com/RiverOaken) - Arts and Animations
+* [bbpanzu](https://twitter.com/bbpanzu) - Assistant Programmer
+* [tposejank](https://www.youtube.com/c/tpobuddy) - Psych Extra Keys
  
-### Special Thanks (Psych Engine)
-* shubs - New Input System
-* SqirraRNG - Chart Editor's Sound Waveform base code
-* iFlicky - Delay/Combo Menu Song Composer + Dialogue Sounds
-* PolybiusProxy - .MP4 Loader Extension
-* Keoiki - Note Splash Animations
+### Special Thanks
+* [shubs](https://twitter.com/Yoshubs) - New Input System
+* [SqirraRNG](https://twitter.com/gedehari) - Chart Editor's Sound Waveform base code
+* [iFlicky](https://twitter.com/flicky_i) - Delay/Combo Menu Song Composer + Dialogue Sounds
+* [PolybiusProxy](https://gamebanana.com/members/1833635) - .MP4 Loader Extension
+* [Keoiki](https://twitter.com/Keoiki_) - Note Splash Animations
 * Smokey - Spritemap Texture Atlas support
+* [gedehari](https://twitter.com/gedehari) - Chart Editor's Sound Waveform base
 * Cary - OG Resolution code
-* Nebula_Zorua - VCR Shader code
+* [Nebula_Zorua](https://twitter.com/nebula_zorua) - VCR Shader code
+
+
+## Kade Engine
+* [KadeDev](https://www.youtube.com/c/KadeDev/) - Kade Etterna/Quaver Input
  
-───────────────────────────────────────────────────────────────────────────────────────
  
-### Skin Credits
-* [Uniianimates](https://twitter.com/uniianimates) - BF/GF (HIgh Effort Erect)
-* [CarKeys](https://gamebanana.com/members/1994795) - BF/GF (Just a Little Remake)
+## Skin Credits
+* [Uniianimates](https://twitter.com/uniianimates) - BF/GF (High Effort Erect Remixes)
+* [CarKeys](https://gamebanana.com/members/1994795) - BF/GF (Just a Little BF/GF Remake)
 * [Luisinhi010](https://www.youtube.com/c/Luisinho%E3%83%84/) - ALT BoyFriend (BEAT!Engine BF)
 * [NooBZiiTo](https://twitter.com/NooBZiiTo1) - Scarf Pico, X-Mas Mommy Mearest (Scarf Pico, based on Phantom Fear's Design and X-mas MM based on Week 5's outfit)
 * [theoriginalalex](https://twitter.com/theoogalex) - Only Speakers/No GF Skin
+* [kazzyrus](https://gamebanana.com/members/1944760) - Mommy Mearest over GF Skin
  
-───────────────────────────────────────────────────────────────────────────────────────
 
 # Features
 

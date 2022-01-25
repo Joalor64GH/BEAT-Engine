@@ -96,17 +96,17 @@ class CreditsState extends MusicBeatState
 			],
 			[
 				'Gui iago',
-				'guiiago',
+				'gui',
 				'Additional Programmer',
 				'https://github.com/Gui-iago',
-				'FFFF00'
+				'8344CC'
 			],
 			[
 				'AquaStrikr',
 				'aqua',
 				'Director / Artist',
 				'https://twitter.com/aqua_strikr',
-				'2596be'
+				'737BCB'
 			],
 			[
 				'NoobZiito',
