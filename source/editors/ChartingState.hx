@@ -908,23 +908,6 @@ class ChartingState extends MusicBeatState
 			var duetNotes:Array<Array<Dynamic>> = [];
 			for (note in _song.notes[curSection].sectionNotes)
 			{
-<<<<<<< HEAD
-				var boob = note[1] % 4;
-				boob = 3 - boob;
-				if (note[1] > 3)
-					boob += 4;
-
-				note[1] = boob;
-				var copiedNote:Array<Dynamic> = [note[0], boob, note[2], note[3]];
-				// duetNotes.push(copiedNote);
-			}
-
-			for (i in duetNotes)
-			{
-				// _song.notes[curSection].sectionNotes.push(i);
-			}
-
-=======
 				var boob = note[1]%4;
 				boob = 3 - boob;
 				if (note[1] > 3) boob += 4;
@@ -939,7 +922,6 @@ class ChartingState extends MusicBeatState
 				
 			}
 			
->>>>>>> upstream/main
 			updateGrid();
 		});
 		copyLastButton.setGraphicSize(80, 30);
