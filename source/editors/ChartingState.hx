@@ -295,7 +295,7 @@ class ChartingState extends MusicBeatState
 		Conductor.changeBPM(_song.bpm);
 		Conductor.mapBPMChanges(_song);
 
-		bpmTxt = new FlxText(1100, 50, 0, "", 16);
+		bpmTxt = new FlxText(1080, 50, 0, "", 16);
 		bpmTxt.scrollFactor.set();
 		add(bpmTxt);
 
@@ -1620,8 +1620,12 @@ class ChartingState extends MusicBeatState
 				changeSection(curSection - 1, false);
 			}
 		}
-		FlxG.watch.addQuick('daBeat', curBeat);
-		FlxG.watch.addQuick('daStep', curStep);
+		FlxG.watch.addQuick("Song", _song.song);
+		FlxG.watch.addQuick("Section", curSection);
+		FlxG.watch.addQuick("beathit", curBeat);
+		FlxG.watch.addQuick("stephit", curStep);
+		FlxG.watch.addQuick("character", _song.player2);
+		FlxG.watch.addQuick("bf-character", _song.player1);
 
 		if (FlxG.mouse.justPressed)
 		{
@@ -2123,12 +2127,18 @@ class ChartingState extends MusicBeatState
 		bpmTxt.text = Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2))
 			+ " / "
 			+ Std.string(FlxMath.roundDecimal(FlxG.sound.music.length / 1000, 2))
+			+ "\nSong: "
+			+ _song.song
 			+ "\nSection: "
 			+ curSection
-			+ "\n\nBeat: "
-			+ curBeat
-			+ "\n\nStep: "
+			+ "\nCurStep: "
 			+ curStep
+			+ "\nCurBeat: "
+			+ curBeat
+			+ "\nCharacter: "
+			+ _song.player2
+			+ "\nbf-Character: "
+			+ _song.player1
 			+ "\n\nKeys: "
 			+ Note.ammo[_song.mania];
 
