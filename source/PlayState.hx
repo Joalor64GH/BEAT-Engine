@@ -2952,7 +2952,7 @@ class PlayState extends MusicBeatState
 			if (!startingSong && !endingSong && boyfriend.animation.curAnim.name.startsWith('idle'))
 			{
 				boyfriendIdleTime += elapsed;
-				if (boyfriendIdleTime >= 0.15)
+				if (boyfriendIdleTime >= 0.20)
 				{ // Kind of a mercy thing for making the achievement easier to get as it's apparently frustrating to some playerss
 					boyfriendIdled = true;
 				}
