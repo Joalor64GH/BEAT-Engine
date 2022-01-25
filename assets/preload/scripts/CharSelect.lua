@@ -24,11 +24,17 @@ local characterList = { -- The list of characters
     {
         name = "bf-pixel",
         displayName = "Pixel Boyfriend",
-        -- gf = "gf-pixel" -- this may or may not broke the gf in the stages
+		-- don't add gf pixel here, this breaks stages
     },
     {
         name = "bf-alt",
-        displayName = "Boyfriend Alt",
+        displayName = "Alternative Boyfriend",
+		gf = "gf-alt"
+    },
+	{
+        name = "bfCar-alt",
+        displayName = "Windy Alt Boyfriend",
+		gf = "gfCar-alt"
     },
 	{
 		name = "erect-bf",
@@ -106,7 +112,7 @@ function onStartCountdown()
 		origBF = getProperty("boyfriend.curCharacter")
 		if(showSongBF) then table.insert(characterList,1,{
 			name=origBF,
-			displayName="Skin from Chart"}) 
+			displayName="Character from Chart"}) 
 		end
 		setProperty('inCutscene', true);
 		setProperty('boyfriend.stunned', true);
