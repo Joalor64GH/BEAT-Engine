@@ -102,6 +102,10 @@ class ChartingState extends MusicBeatState
 		// ['Set Game Cam X and Y', "Value 1: X \n Value 2: Y"],
 		// ['Set hud Cam X and Y', "Value 1: X \n Value 2: Y"],
 		[
+			'Camera Movement',
+			"kinda broken, sorry \n\nValue 1: if 0 No Camera Movement\nif 1 Camera Movement \nsimple right?"
+		],
+		[
 			'Alt Idle Animation',
 			"Sets a specified suffix after the idle animation name.\nYou can use this to trigger 'idle-alt' if you set\nValue 2 to -alt\n\nValue 1: Character to set (Dad, BF or GF)\nValue 2: New suffix (Leave it blank to disable)"
 		],

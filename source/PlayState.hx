@@ -3842,7 +3842,7 @@ class PlayState extends MusicBeatState
 
 			case 'Set Game Cam Zoom and angle':
 				var var1:Float = Std.parseFloat(value1);
-				var var2:Float = Std.parseFloat(value2); // unused
+				var var2:Float = Std.parseFloat(value2);
 				if (Math.isNaN(var1))
 					var1 = 0;
 				if (Math.isNaN(var2))
@@ -3864,7 +3864,7 @@ class PlayState extends MusicBeatState
 
 			case 'Set hud Cam Zoom and angle':
 				var var1:Float = Std.parseFloat(value1);
-				var var2:Float = Std.parseFloat(value2); // unused
+				var var2:Float = Std.parseFloat(value2);
 				if (Math.isNaN(var1))
 					var1 = 0;
 				if (Math.isNaN(var2))
@@ -3898,6 +3898,14 @@ class PlayState extends MusicBeatState
 			camHUD.x == var1;
 
 			camHUD.y == var2; */
+
+			case 'Camera Movement':
+				var val1:Float = Std.parseFloat(value1);
+
+				if (val1 > 1)
+					cameramove = true;
+				else
+					cameramove = false;
 
 			case 'Alt Idle Animation':
 				var char:Character = dad;
