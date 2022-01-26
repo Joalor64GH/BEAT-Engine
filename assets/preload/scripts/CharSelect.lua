@@ -65,7 +65,6 @@ local displayNameY = 0;
 local origBF = "";
 
 function onCreate()
-		if getPropertyFromClass('PlayState', 'opponentmode', false) then
 			if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
 	--Theres nothing special here just all the extra stuff. Add or edit whatever you want.
 	makeLuaSprite('charStage', 'charselectassets/charselectstage', 0, 0);
@@ -97,16 +96,13 @@ function onCreate()
 	addLuaText('displayname');
 	
 	addLuaSprite('charStage', false);
-	--addLuaSprite('leftarrow', true);
+	--addLuaSprite('leftarrow', true); --i will fix it just wait --Luis
 	--addLuaSprite('rightarrow', true);
-
 	
 	playMusic(song, 1, true);
-	end
 end
 
 function onStartCountdown()
-		if getPropertyFromClass('PlayState', 'opponentmode', false) then
 			if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
 	if(not allowStoryMode and isStoryMode)then close() end -- Close script if in story mode, remove this or n
 
@@ -149,8 +145,7 @@ function onStartCountdown()
 	
 	playMusic(song, 0, false); --I don't know how to stop music there's nothing in the wiki or source its all just for sounds.
 	return Function_Continue;
-end
-end
+	end
 end
 
 function onTimerCompleted(tag, loops, loopsLeft)
@@ -161,19 +156,16 @@ end
 end
 
 function onPause()
-		if getPropertyFromClass('PlayState', 'opponentmode', false) then
 			if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
 	if(isOnCharMenu) then
 		triggerEvent('Change Character', 'bf', origBF);
 		isOnCharMenu = false
 	end
 	return Function_Continue;
-end
-end
+	end
 end
 
 function onUpdate()
-		if getPropertyFromClass('PlayState', 'opponentmode', false) then
 			if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
 	if isOnCharMenu == true then
 		setProperty('boyfriend.stunned', true);
@@ -228,12 +220,10 @@ function onUpdate()
 			curCharacter = #characterList
 		end
 	end
-end
-end
+	end
 end
 
 function updateCharacter()
-		if getPropertyFromClass('PlayState', 'opponentmode', false) then
 			if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
 	triggerEvent('Change Character', 'bf', characterList[curCharacter].name);
 	setTextString('displayname', characterList[curCharacter].displayName);
@@ -249,8 +239,7 @@ function updateCharacter()
 	else
 		setProperty('displayname.y', displayNameY);
 	end
-end
-end
+	end
 end
 
 

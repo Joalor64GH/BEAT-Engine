@@ -341,6 +341,11 @@ class PlayState extends MusicBeatState
 		Paths.clearUnusedMemory();
 		opponentmode = ClientPrefs.getGameplaySetting('opponentplay', false);
 
+		if (opponentmode)
+			ClientPrefs.charSelect = false;
+		else
+			ClientPrefs.charSelect = true; // kill me -Luis
+
 		// for lua
 		instance = this;
 
