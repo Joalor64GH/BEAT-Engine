@@ -146,14 +146,14 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 * [Luisinhi010](https://www.youtube.com/c/Luisinho%E3%83%84/) - Coding, Animation, Charting
 * [Gui-iago](https://twitter.com/Fan_de_RPG) - Additional Coding, Charting
 * [NooBZiiTo](https://twitter.com/NooBZiiTo1) - Animation
-* [a gorila guy/Renan KK](https://twitter.com/LaysEnjoyer) - Parasite Cover (Composed by TheInnuendo)
 * [Re.Xuadoz.2.5](https://www.reddit.com/user/JulioHaHaHa) - Ideas
 
- ### Special Thanks
+ ### Special Thanks/Contributors
 * [AshoXD](https://twitter.com/ashomoment) - Rich Presence Header Design
 * [Salt for Some Reason](https://twitter.com/7saltybro) - Logo, Mania Charts
 * [El_Cyaan](https://twitter.com/El_Cyaan) - Guns Mania Chart
 * [LeNinethGames](https://twitter.com/LeNineth) - Menu Remix
+* [a gorila guy/Renan KK](https://twitter.com/LaysEnjoyer) - Parasite Cover (Composed by TheInnuendo)
 
 
 ## Psych Engine
