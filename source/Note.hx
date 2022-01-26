@@ -70,7 +70,7 @@ class Note extends FlxSprite
 		],
 		7 => [
 			                         "letters" => ["A", "B", "C", "D", "F", "G", "H", "I"], "anims" =>
-			["LEFT", "UP", "DOWN", "RIGHT", "LEFT", "DOWN", "UP", "RIGHT"],
+			["LEFT", "DOWN", "UP", "RIGHT", "LEFT", "DOWN", "UP", "RIGHT"],
 			"strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT", "LEFT", "DOWN", "UP", "RIGHT"],                              "pixelAnimIndex" =>
 			[0, 1, 2, 3, 5, 6, 7, 8]
 		],
