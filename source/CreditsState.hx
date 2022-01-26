@@ -108,13 +108,7 @@ class CreditsState extends MusicBeatState
 				'https://twitter.com/aqua_strikr',
 				'737BCB'
 			],
-			[
-				'NoobZiito',
-				'noobziito',
-				"Artist",
-				'https://twitter.com/NooBZiiTo1',
-				'013220'
-			],
+			['NoobZiito', 'noobziito', "Artist", 'https://twitter.com/NooBZiiTo1', '013220'],
 			[
 				'Cranile',
 				'saltforsomereason',
@@ -122,13 +116,7 @@ class CreditsState extends MusicBeatState
 				'https://twitter.com/7saltybro',
 				'FFFFFF'
 			],
-			[
-				'Cyaan',
-				'cyaan',
-				"Guns Mania Chart",
-				'https://twitter.com/El_Cyaan',
-				'2596be'
-			],
+			['Cyaan', 'cyaan', "Guns Mania Chart", 'https://twitter.com/El_Cyaan', '2596be'],
 			[
 				'asho',
 				'asho',
@@ -136,22 +124,10 @@ class CreditsState extends MusicBeatState
 				'https://twitter.com/ashomoment',
 				'FFCCCB'
 			],
-			[
-				'Lenineth',
-				'lenineth',
-				'Menu Remix',
-				'https://twitter.com/LeNineth',
-				'00FF00'
-			],
+			['Lenineth', 'lenineth', 'Menu Remix', 'https://twitter.com/LeNineth', '00FF00'],
 			[''],
 			['Psych Engine Extra Keys'],
-			[
-				'tposejank',
-				'tposejank',
-				'Extra Keys',
-				'https://github.com/tposejank',
-				'013220'
-			],
+			['tposejank', 'tposejank', 'Extra Keys', 'https://github.com/tposejank', '013220'],
 			[''],
 			['Psych Engine Team'],
 			[
@@ -335,11 +311,10 @@ class CreditsState extends MusicBeatState
 				colorTween.cancel();
 			}
 			FlxG.sound.play(Paths.sound('cancelMenu'));
-			MusicBeatState.switchState(new MainMenuState());
 			if (ClientPrefs.lowEndMode)
-			{
 				MusicBeatState.switchState(new SimpleMenuState());
-			}
+			else
+				MusicBeatState.switchState(new MainMenuState());
 		}
 		if (controls.ACCEPT)
 		{

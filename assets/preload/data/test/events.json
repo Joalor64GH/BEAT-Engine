@@ -1,0 +1,200 @@
+{
+	"song": {
+		"speed": 2.2,
+		"stage": "stage",
+		"player1": "bf",
+		"player2": "bf-pixel-opponent",
+		"player3": null,
+		"events": [
+			[
+				0,
+				[
+					[
+						"Set hud Cam Zoom and angle",
+						"1.76",
+						""
+					]
+				]
+			],
+			[
+				12800,
+				[
+					[
+						"Set hud Cam Zoom and angle",
+						"",
+						"5"
+					],
+					[
+						"Set Game Cam Zoom and angle",
+						"",
+						"5"
+					]
+				]
+			],
+			[
+				14400,
+				[
+					[
+						"Set hud Cam Zoom and angle",
+						"",
+						"-5"
+					],
+					[
+						"Set Game Cam Zoom and angle",
+						"",
+						"-5"
+					]
+				]
+			],
+			[
+				16000,
+				[
+					[
+						"Set hud Cam Zoom and angle",
+						"",
+						"5"
+					],
+					[
+						"Set Game Cam Zoom and angle",
+						"",
+						"5"
+					]
+				]
+			],
+			[
+				17600,
+				[
+					[
+						"Set hud Cam Zoom and angle",
+						"",
+						"-5"
+					],
+					[
+						"Set Game Cam Zoom and angle",
+						"",
+						"-5"
+					]
+				]
+			],
+			[
+				19200,
+				[
+					[
+						"Camera Movement",
+						"1",
+						""
+					],
+					[
+						"Set Game Cam Zoom and angle",
+						"",
+						"5"
+					],
+					[
+						"Set hud Cam Zoom and angle",
+						"",
+						"5"
+					]
+				]
+			],
+			[
+				20800,
+				[
+					[
+						"Set hud Cam Zoom and angle",
+						"",
+						"5"
+					],
+					[
+						"Set hud Cam Zoom and angle",
+						"",
+						"-5"
+					]
+				]
+			],
+			[
+				22400,
+				[
+					[
+						"Set hud Cam Zoom and angle",
+						"",
+						"0"
+					],
+					[
+						"Set Game Cam Zoom and angle",
+						"",
+						"0"
+					]
+				]
+			],
+			[
+				64000,
+				[
+					[
+						"Camera Movement",
+						"0",
+						""
+					]
+				]
+			],
+			[
+				89600,
+				[
+					[
+						"Set hud Cam Zoom and angle",
+						"",
+						"5"
+					]
+				]
+			],
+			[
+				92800,
+				[
+					[
+						"Set hud Cam Zoom and angle",
+						"",
+						"-5"
+					]
+				]
+			],
+			[
+				96000,
+				[
+					[
+						"Set hud Cam Zoom and angle",
+						"",
+						"5"
+					]
+				]
+			],
+			[
+				99200,
+				[
+					[
+						"Set hud Cam Zoom and angle",
+						"",
+						"-4"
+					]
+				]
+			],
+			[
+				102400,
+				[
+					[
+						"Set hud Cam Zoom and angle",
+						"",
+						"0"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": "noteSplashes",
+		"validScore": false,
+		"gfVersion": "speakers",
+		"bpm": 150,
+		"mania": 3,
+		"arrowSkin": "",
+		"needsVoices": true,
+		"song": "Test"
+	}
+}

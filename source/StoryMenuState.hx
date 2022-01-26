@@ -64,7 +64,7 @@ class StoryMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		FlxG.mouse.visible = true;
-		FlxG.mouse.useSystemCursor = true;
+		FlxG.mouse.useSystemCursor = false; // use haxe cursor here because is cool -Luis
 
 		scoreText = new FlxText(10, 10, 0, "SCORE: 49324858", 36);
 		scoreText.setFormat("VCR OSD Mono", 32);
@@ -264,11 +264,10 @@ class StoryMenuState extends MusicBeatState
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			movedBack = true;
-			MusicBeatState.switchState(new MainMenuState());
 			if (ClientPrefs.lowEndMode)
-			{
 				MusicBeatState.switchState(new SimpleMenuState());
-			}
+			else
+				MusicBeatState.switchState(new MainMenuState());
 		}
 
 		super.update(elapsed);

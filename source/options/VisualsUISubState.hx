@@ -44,9 +44,6 @@ class VisualsUISubState extends BaseOptionsMenu
 			['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']);
 		addOption(option);
 
-		var option:Option = new Option('Allow Character Selection Screen', 'If checked, enables the Character Selection Screen before starting a Song, Uncheck to Disable it', 'charSelect', 'bool', true);
-		addOption(option);
-
 		var option:Option = new Option('Time Bar Style:', "What should the Time Bar look like?", 'timeBarUi', 'string', 'Psych Engine',
 			['Psych Engine', 'Kade Engine']);
 		addOption(option);
@@ -78,7 +75,7 @@ class VisualsUISubState extends BaseOptionsMenu
 		addOption(option);
 
 		var option:Option = new Option('Judgement Skin:', "What should your judgements look like?", 'uiSkin', 'string', 'Bedrock',
-		['Classic', 'BEAT!', 'BEAT! Gradient', 'Bedrock']);
+			['Classic', 'BEAT!', 'BEAT! Gradient', 'Bedrock']);
 		addOption(option);
 
 		var option:Option = new Option('Show Watermarks', "If unchecked, hides engine watermarks from the top left corner.", 'showWatermarks', 'bool', true);

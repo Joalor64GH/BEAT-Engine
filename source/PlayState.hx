@@ -341,7 +341,7 @@ class PlayState extends MusicBeatState
 		Paths.clearUnusedMemory();
 		opponentmode = ClientPrefs.getGameplaySetting('opponentplay', false);
 
-		if (opponentmode)
+		if (opponentmode || isStoryMode)
 			ClientPrefs.charSelect = false;
 		else
 			ClientPrefs.charSelect = true; // kill me -Luis
@@ -3855,7 +3855,8 @@ class PlayState extends MusicBeatState
 
 				if (!Math.isNaN(Std.parseFloat(value1)))
 				{
-					camGame.zoom = var1;
+					FlxTween.tween(camGame, {zoom: var1}, 0.5, {ease: FlxEase.expoIn});
+					// camGame.zoom = var1;
 					if (var2 != 0)
 						Customcamerazoom = true;
 					else
@@ -3864,7 +3865,8 @@ class PlayState extends MusicBeatState
 
 				if (!Math.isNaN(Std.parseFloat(value2)))
 				{
-					camGame.angle = var2;
+					FlxTween.tween(camGame, {angle: var2}, 0.5, {ease: FlxEase.expoIn});
+					// camGame.angle = var2;
 				}
 
 			case 'Set hud Cam Zoom and angle':
@@ -3877,7 +3879,8 @@ class PlayState extends MusicBeatState
 
 				if (!Math.isNaN(Std.parseFloat(value1)))
 				{
-					camHUD.zoom = var1;
+					FlxTween.tween(camHUD, {zoom: var1}, 0.5, {ease: FlxEase.expoIn});
+					// camHUD.zoom = var1;
 					if (var2 != 0)
 						CustomcamHUDzoom = true;
 					else
@@ -3886,7 +3889,8 @@ class PlayState extends MusicBeatState
 
 				if (!Math.isNaN(Std.parseFloat(value2)))
 				{
-					camHUD.angle = var2;
+					FlxTween.tween(camHUD, {angle: var2}, 0.5, {ease: FlxEase.expoIn});
+					// camHUD.angle = var2;
 				}
 
 			/*case 'Set Game Cam X and Y':
@@ -3907,10 +3911,10 @@ class PlayState extends MusicBeatState
 			case 'Camera Movement':
 				var val1:Float = Std.parseFloat(value1);
 
-				if (val1 > 1)
-					cameramove = true;
-				else
+				if (val1 < 1)
 					cameramove = false;
+				else
+					cameramove = true;
 
 			case 'Alt Idle Animation':
 				var char:Character = dad;
