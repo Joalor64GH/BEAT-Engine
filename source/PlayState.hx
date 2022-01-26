@@ -87,6 +87,8 @@ class PlayState extends MusicBeatState
 
 	// event variables
 	private var isCameraOnForcedPos:Bool = false;
+	private var Customcamerazoom:Bool = false;
+	private var CustomcamHUDzoom:Bool = false;
 
 	#if (haxe >= "4.0.0")
 	public var boyfriendMap:Map<String, Boyfriend> = new Map();
@@ -327,6 +329,9 @@ class PlayState extends MusicBeatState
 	private var debugKeysChart:Array<FlxKey>;
 	private var debugKeysCharacter:Array<FlxKey>;
 
+	// impostor
+	public var opponentmode:Bool = ClientPrefs.getGameplaySetting('opponentplay', false);
+
 	// Less laggy controls
 	private var keysArray:Array<Array<Dynamic>>;
 
@@ -334,6 +339,7 @@ class PlayState extends MusicBeatState
 	{
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
+		opponentmode = ClientPrefs.getGameplaySetting('opponentplay', false);
 
 		// for lua
 		instance = this;
@@ -359,6 +365,8 @@ class PlayState extends MusicBeatState
 		practiceMode = ClientPrefs.getGameplaySetting('practice', false);
 		cpuControlled = ClientPrefs.getGameplaySetting('botplay', false);
 		opponentChart = ClientPrefs.getGameplaySetting('opponentplay', false);
+
+		callOnLuas('onCreatePosVars', []);
 
 		shader_chromatic_abberation = new ChromaticAberrationEffect();
 
@@ -1525,6 +1533,7 @@ class PlayState extends MusicBeatState
 		FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
 
 		Conductor.safeZoneOffset = (ClientPrefs.safeFrames / 60) * 1000;
+
 		callOnLuas('onCreatePost', []);
 
 		super.create();
@@ -2781,7 +2790,7 @@ class PlayState extends MusicBeatState
 
 		if (cameramove) // if you say this is bad, so, this is bad, but i will fix this.... --Luis
 		{
-			if (boyfriend.animation.curAnim.name.startsWith('idle') || boyfriend.animation.curAnim.name.startsWith('idle'))
+			if (boyfriend.animation.curAnim.name.startsWith('idle') || boyfriend.animation.curAnim.name.startsWith('dance'))
 			{
 				camYbf = 0;
 				camXbf = 0;
@@ -2805,6 +2814,31 @@ class PlayState extends MusicBeatState
 			{
 				camXbf = 0;
 				camYbf = 15;
+			}
+			if (dad.animation.curAnim.name.startsWith('idle') || dad.animation.curAnim.name.startsWith('dance'))
+			{
+				camYdad = 0;
+				camXdad = 0;
+			}
+			if (dad.animation.curAnim.name.startsWith('singLEFT'))
+			{
+				camYdad = 0;
+				camXdad = -15;
+			}
+			if (dad.animation.curAnim.name.startsWith('singRIGHT'))
+			{
+				camYdad = 0;
+				camXdad = 15;
+			}
+			if (dad.animation.curAnim.name.startsWith('singUP'))
+			{
+				camXdad = 0;
+				camYdad = -15;
+			}
+			if (dad.animation.curAnim.name.startsWith('singDOWN'))
+			{
+				camXdad = 0;
+				camYdad = 15;
 			}
 		}
 
@@ -3126,8 +3160,10 @@ class PlayState extends MusicBeatState
 
 		if (camZooming)
 		{
-			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125), 0, 1));
-			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125), 0, 1));
+			if (!Customcamerazoom)
+				FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125), 0, 1));
+			if (!CustomcamHUDzoom)
+				camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125), 0, 1));
 		}
 
 		FlxG.watch.addQuick("beatShit", curBeat);
@@ -3745,7 +3781,7 @@ class PlayState extends MusicBeatState
 				killHenchmen();
 
 			case 'Add Camera Zoom':
-				if (ClientPrefs.camZooms && FlxG.camera.zoom < 1.35)
+				if (ClientPrefs.camZooms && !Customcamerazoom && !CustomcamHUDzoom && FlxG.camera.zoom < 1.35)
 				{
 					var camZoom:Float = Std.parseFloat(value1);
 					var hudZoom:Float = Std.parseFloat(value2);
@@ -3803,6 +3839,65 @@ class PlayState extends MusicBeatState
 					camFollow.y = val2;
 					isCameraOnForcedPos = true;
 				}
+
+			case 'Set Game Cam Zoom and angle':
+				var var1:Float = Std.parseFloat(value1);
+				var var2:Float = Std.parseFloat(value2); // unused
+				if (Math.isNaN(var1))
+					var1 = 0;
+				if (Math.isNaN(var2))
+					var2 = 0;
+
+				if (!Math.isNaN(Std.parseFloat(value1)))
+				{
+					camGame.zoom = var1;
+					if (var2 != 0)
+						Customcamerazoom = true;
+					else
+						Customcamerazoom = false;
+				}
+
+				if (!Math.isNaN(Std.parseFloat(value2)))
+				{
+					camGame.angle = var2;
+				}
+
+			case 'Set hud Cam Zoom and angle':
+				var var1:Float = Std.parseFloat(value1);
+				var var2:Float = Std.parseFloat(value2); // unused
+				if (Math.isNaN(var1))
+					var1 = 0;
+				if (Math.isNaN(var2))
+					var2 = 0;
+
+				if (!Math.isNaN(Std.parseFloat(value1)))
+				{
+					camHUD.zoom = var1;
+					if (var2 != 0)
+						CustomcamHUDzoom = true;
+					else
+						CustomcamHUDzoom = false;
+				}
+
+				if (!Math.isNaN(Std.parseFloat(value2)))
+				{
+					camHUD.angle = var2;
+				}
+
+			/*case 'Set Game Cam X and Y':
+			var var1:Float = Std.parseFloat(value1);
+			var var2:Float = Std.parseFloat(value2);
+
+			camGame.x == var1;
+
+			camGame.y == var2; */
+			/*case 'Set hud Cam X and Y ':
+			var var1:Float = Std.parseFloat(value1);
+			var var2:Float = Std.parseFloat(value2);
+
+			camHUD.x == var1;
+
+			camHUD.y == var2; */
 
 			case 'Alt Idle Animation':
 				var char:Character = dad;
@@ -5568,8 +5663,10 @@ class PlayState extends MusicBeatState
 		}
 		if (camZooming && FlxG.camera.zoom < 1.35 && ClientPrefs.camZooms && curBeat % 4 == 0)
 		{
-			FlxG.camera.zoom += 0.015;
-			camHUD.zoom += 0.03;
+			if (!Customcamerazoom)
+				FlxG.camera.zoom += 0.015;
+			if (!CustomcamHUDzoom)
+				camHUD.zoom += 0.03;
 		}
 		iconP1.scale.set(1.2, 1.2);
 		iconP2.scale.set(1.2, 1.2);

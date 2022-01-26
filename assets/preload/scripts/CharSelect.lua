@@ -65,21 +65,22 @@ local displayNameY = 0;
 local origBF = "";
 
 function onCreate()
-	if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
+		if getPropertyFromClass('PlayState', 'opponentmode', false) then
+			if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
 	--Theres nothing special here just all the extra stuff. Add or edit whatever you want.
 	makeLuaSprite('charStage', 'charselectassets/charselectstage', 0, 0);
 	setObjectCamera('charStage', 'camOther');
 	scaleObject('charStage', 0.55, 0.55);
 	screenCenter('charStage', 'xy');
 	
-	makeAnimatedLuaSprite('leftarrow', 'charselectassets/arrows_assets', 400, 0);
+	makeAnimatedLuaSprite('leftarrow', 'NOTE_assets', 400, 0);
 	addAnimationByPrefix('leftarrow', 'leftpressed', 'arrow left0', 24, false);
 	addAnimationByPrefix('leftarrow', 'leftunpressed', 'arrow push left0', 24, false);
 	objectPlayAnimation('leftarrow', 'leftunpressed', true);
 	screenCenter('leftarrow', 'y');
 	setObjectCamera('leftarrow', 'camOther');
 	
-	makeAnimatedLuaSprite('rightarrow', 'charselectassets/arrows_assets', 800, 0);
+	makeAnimatedLuaSprite('rightarrow', 'NOTE_assets', 800, 0);
 	addAnimationByPrefix('rightarrow', 'rightpressed', 'arrow right0', 24, false);
 	addAnimationByPrefix('rightarrow', 'rightunpressed', 'arrow push right0', 24, false);
 	objectPlayAnimation('rightarrow', 'rightunpressed', true);
@@ -96,8 +97,8 @@ function onCreate()
 	addLuaText('displayname');
 	
 	addLuaSprite('charStage', false);
-	addLuaSprite('leftarrow', true);
-	addLuaSprite('rightarrow', true);
+	--addLuaSprite('leftarrow', true);
+	--addLuaSprite('rightarrow', true);
 
 	
 	playMusic(song, 1, true);
@@ -105,7 +106,8 @@ function onCreate()
 end
 
 function onStartCountdown()
-	if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
+		if getPropertyFromClass('PlayState', 'opponentmode', false) then
+			if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
 	if(not allowStoryMode and isStoryMode)then close() end -- Close script if in story mode, remove this or n
 
 	if not hasSelectedCharacter then
@@ -149,15 +151,18 @@ function onStartCountdown()
 	return Function_Continue;
 end
 end
+end
 
 function onTimerCompleted(tag, loops, loopsLeft)
 	if tag == 'wait' then
 		startCountdown()
 	end
 end
+end
 
 function onPause()
-	if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
+		if getPropertyFromClass('PlayState', 'opponentmode', false) then
+			if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
 	if(isOnCharMenu) then
 		triggerEvent('Change Character', 'bf', origBF);
 		isOnCharMenu = false
@@ -165,9 +170,11 @@ function onPause()
 	return Function_Continue;
 end
 end
+end
 
 function onUpdate()
-	if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
+		if getPropertyFromClass('PlayState', 'opponentmode', false) then
+			if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
 	if isOnCharMenu == true then
 		setProperty('boyfriend.stunned', true);
 		screenCenter('displayname', 'x');
@@ -223,9 +230,11 @@ function onUpdate()
 	end
 end
 end
+end
 
 function updateCharacter()
-	if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
+		if getPropertyFromClass('PlayState', 'opponentmode', false) then
+			if getPropertyFromClass('ClientPrefs', 'charSelect', true) then
 	triggerEvent('Change Character', 'bf', characterList[curCharacter].name);
 	setTextString('displayname', characterList[curCharacter].displayName);
 
@@ -240,6 +249,7 @@ function updateCharacter()
 	else
 		setProperty('displayname.y', displayNameY);
 	end
+end
 end
 end
 

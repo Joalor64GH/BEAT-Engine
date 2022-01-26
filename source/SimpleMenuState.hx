@@ -44,7 +44,7 @@ class SimpleMenuState extends MusicBeatState
 			#if !switch 'Donate',
 			#end
 		]; */ // todo, fix somethings with this menus
-	var options:Array<String> = ['Story Mode', 'Freeplay', 'Discord', 'Twitter', 'Credits', 'Options'];
+	var options:Array<String> = ['Story Mode', 'Freeplay', 'Mods', 'Discord', 'Twitter', 'Credits', 'Options'];
 
 	// gui, you dont need to made a var with the versions again, use the MainMenuState.hx ones
 	private var grpOptions:FlxTypedGroup<Alphabet>;
@@ -67,8 +67,8 @@ class SimpleMenuState extends MusicBeatState
 				MusicBeatState.switchState(new FreeplayState());
 			case 'Socials':
 				MusicBeatState.switchState(new SocialsState());
-			/*case 'Mods':
-				MusicBeatState.switchState(new ModsMenuState()); */
+			case 'Mods':
+				MusicBeatState.switchState(new ModsMenuState());
 			case 'Awards':
 				MusicBeatState.switchState(new AchievementsMenuState());
 			case 'Credits':

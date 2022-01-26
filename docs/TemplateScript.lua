@@ -4,6 +4,10 @@ function onCreate()
 	-- triggered when the lua file is started, some variables weren't created yet
 end
 
+function onCreatePosVars()
+	-- triggered when the lua file is started, some variables is created
+end
+
 function onCreatePost()
 	-- end of "create"
 end
@@ -167,15 +171,15 @@ function onCheckForAchievement(name)
 	
 	--EX:
 --[[
-  if name == 'sick-full-combo' and getProperty('bads') == 0 and getProperty('goods') == 0 and getProperty('shits') == 0 and getProperty('endingSong') then
+if name == 'sick-full-combo' and getProperty('bads') == 0 and getProperty('goods') == 0 and getProperty('shits') == 0 and getProperty('endingSong') then
     return Function_Continue
-  end
-  if name == 'bad-health-finish' and getProperty('health') < 0.01 and getProperty('endingSong') then
+end
+if name == 'bad-health-finish' and getProperty('health') < 0.01 and getProperty('endingSong') then
     return Function_Continue
-  end
-  if name == 'halfway' and getSongPosition >  getPropertyFromClass('flixel.FlxG','sound.music.length')/2 then
+end
+if name == 'halfway' and getSongPosition >  getPropertyFromClass('flixel.FlxG','sound.music.length')/2 then
     return Function_Continue
-  end
+end
 	
 	
 	]]--

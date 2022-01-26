@@ -52,7 +52,7 @@ class MainMenuState extends MusicBeatState
 
 	private var camAchievement:FlxCamera;
 
-	var optionShit:Array<String> = ['story_mode', 'freeplay', 'socials', 'credits', 'options'];
+	var optionShit:Array<String> = ['story_mode', 'freeplay', 'mods', 'socials', 'credits', 'options'];
 
 	public var iconBG:FlxSprite;
 
@@ -85,6 +85,13 @@ class MainMenuState extends MusicBeatState
 		DiscordClient.changePresence("In the Menus", null);
 		#end
 		debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
+
+		#if desktop
+		trace(Sys.environment()["COMPUTERNAME"]); // sussy test for a next menu x1
+		trace(Sys.environment()["USERNAME"]); // sussy test for a next menu x2
+		#else
+		trace(Sys.environment()["USER"]); // sussy test for a next menu x3
+		#end
 
 		camGame = new FlxCamera();
 		camAchievement = new FlxCamera();
