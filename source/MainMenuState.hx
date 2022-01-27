@@ -40,9 +40,9 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-	public static var fridayVersion:String = '0.2.7-Git + 0.2.8-NG';
+	public static var fridayVersion:String = '0.2.7-Git';
 	public static var psychEngineVersion:String = '0.5.1';
-	public static var beatEngineVersion:String = '0.0.2'; // this is used for Discord RPC
+	public static var beatEngineVersion:String = '0.0.3'; // this is used for Discord RPC
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -350,6 +350,24 @@ class MainMenuState extends MusicBeatState
 				changeItem(1);
 			}
 
+			if (-1 * Math.floor(FlxG.mouse.wheel) != 0)
+			{
+				changeItem(-1 * Math.floor(FlxG.mouse.wheel));
+				FlxG.sound.play(Paths.sound('scrollMenu'));
+				trace('lol ' + curSelected);
+			}
+
+			/*if (FlxG.mouse.overlaps(menuItems))
+				{
+					menuItems.forEach(function(spr:FlxSprite)
+					{
+						if (FlxG.mouse.overlaps(spr))
+						{
+							changeItem(-1 * curSelected);
+						}
+					});
+			}*/ // cursed coding
+
 			if (controls.BACK)
 			{
 				selectedSomethin = true;
@@ -373,7 +391,7 @@ class MainMenuState extends MusicBeatState
 				}
 			}
 
-			if (controls.ACCEPT)
+			if (controls.ACCEPT || FlxG.mouse.justPressed)
 			{
 				if (optionShit[curSelected] == 'donate')
 				{

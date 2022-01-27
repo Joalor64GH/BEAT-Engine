@@ -332,6 +332,8 @@ class PlayState extends MusicBeatState
 	// impostor
 	public var opponentmode:Bool = ClientPrefs.getGameplaySetting('opponentplay', false);
 
+	public var opponentdiscordtxt:String = "";
+
 	// Less laggy controls
 	private var keysArray:Array<Array<Dynamic>>;
 
@@ -384,6 +386,8 @@ class PlayState extends MusicBeatState
 		camOther.bgColor.alpha = 0;
 		camCustom = new FlxCamera();
 		camCustom.bgColor.alpha = 0;
+		camGame.angle = 0; // this may need
+		camHUD.angle = 0;
 
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
@@ -1325,17 +1329,19 @@ class PlayState extends MusicBeatState
 		add(iconP1);
 
 		// Watermarks at the upper left corner, this is for BEAT! Engine
-		beWatermark = new FlxText(0, FlxG.height - 44, 0, "", 16);
+		beWatermark = new FlxText(5, FlxG.height - 49, 0, "", 16);
 		beWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		beWatermark.scrollFactor.set();
 		beWatermark.visible = ClientPrefs.showWatermarks;
+		beWatermark.cameras = [camCustom];
 		add(beWatermark);
 
 		// And this is for Psych Engine
-		peWatermark = new FlxText(0, FlxG.height - 24, 0, "", 16);
+		peWatermark = new FlxText(5, FlxG.height - 29, 0, "", 16);
 		peWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		peWatermark.scrollFactor.set();
 		peWatermark.visible = ClientPrefs.showWatermarks;
+		peWatermark.cameras = [camCustom];
 		add(peWatermark);
 
 		#if !debug
@@ -1405,8 +1411,6 @@ class PlayState extends MusicBeatState
 		scoreTxt.cameras = [camHUD];
 		laneunderlay.cameras = [camHUD];
 		laneunderlayOpponent.cameras = [camHUD];
-		beWatermark.cameras = [camHUD];
-		peWatermark.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];

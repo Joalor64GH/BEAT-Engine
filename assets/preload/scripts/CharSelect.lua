@@ -62,6 +62,7 @@ local curCharacter = 1
 local shownID = -10000
 local befPaused = false
 local displayNameY = 0;
+local sustxtY = -100;
 local origBF = "";
 
 function onCreate()
@@ -94,6 +95,15 @@ function onCreate()
 	screenCenter('displayname', 'x');
 	displayNameY = getProperty("displayname.y")
 	addLuaText('displayname');
+
+	makeLuaText('sustxt', 'choose your character', 0, 0, 100);
+	setProperty('sustxt.borderColor', getColorFromHex('000000'));
+	setProperty('sustxt.borderSize', 1.2);
+	setObjectCamera('sustxt', 'camOther');
+	setTextSize('sustxt', 25);
+	screenCenter('sustxt', 'x');
+	setProperty('sustxt.y', 1);
+	addLuaText('sustxt');
 	
 	addLuaSprite('charStage', false);
 	--addLuaSprite('leftarrow', true); --i will fix it just wait --Luis
@@ -140,6 +150,7 @@ function onStartCountdown()
 	removeLuaSprite('leftarrow', true);
 	removeLuaSprite('rightarrow', true);
 	removeLuaText('displayname', true);
+	removeLuaText('sustxt', true);
 	setProperty('misses', 0);
 	pauseSound("music")
 	
