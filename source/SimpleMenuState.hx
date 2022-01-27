@@ -44,7 +44,16 @@ class SimpleMenuState extends MusicBeatState
 			#if !switch 'Donate',
 			#end
 		]; */ // todo, fix somethings with this menus
-	var options:Array<String> = ['Story Mode', 'Freeplay', 'Mods', 'Discord', 'Twitter', 'Credits', 'Options'];
+	var options:Array<String> = [
+		'Story Mode',
+		'Freeplay',
+		#if MODS_ALLOWED 'Mods',
+		#end
+		'Discord',
+		'Twitter',
+		'Credits',
+		'Options'
+	];
 
 	// gui, you dont need to made a var with the versions again, use the MainMenuState.hx ones
 	private var grpOptions:FlxTypedGroup<Alphabet>;
