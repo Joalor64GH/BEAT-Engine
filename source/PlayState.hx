@@ -344,7 +344,7 @@ class PlayState extends MusicBeatState
 		if (opponentmode || isStoryMode)
 			ClientPrefs.charSelect = false;
 		else
-			ClientPrefs.charSelect = true; // kill me -Luis
+			ClientPrefs.charSelect = FlxG.save.data.charSelect; // kill me -Luis
 
 		// for lua
 		instance = this;
