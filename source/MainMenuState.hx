@@ -86,6 +86,14 @@ class MainMenuState extends MusicBeatState
 
 	var noname:Bool = false;
 
+	var shit:FlxText;
+
+	#if desktop
+	var name:String = Sys.environment()["USERNAME"];
+	#else
+	var name:String = Sys.environment()["USER"];
+	#end
+
 	override function create()
 	{
 		#if desktop
@@ -96,10 +104,9 @@ class MainMenuState extends MusicBeatState
 
 		#if desktop
 		trace(Sys.environment()["COMPUTERNAME"]); // sussy test for a next menu x1
-		trace(Sys.environment()["USERNAME"]); // sussy test for a next menu x2
-		#else
-		trace(Sys.environment()["USER"]); // sussy test for a next menu x3
 		#end
+
+		trace(name);
 
 		camGame = new FlxCamera();
 		camAchievement = new FlxCamera();
@@ -213,6 +220,13 @@ class MainMenuState extends MusicBeatState
 				alpha: 1
 			}, 1.4, {ease: FlxEase.expoInOut});
 		}
+
+		shit = new FlxText(24, 48, 0, 'Hello ' + name + '!', 48);
+		shit.scrollFactor.set();
+		shit.setFormat("VCR OSD Mono", 16, FlxColor.RED, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		shit.screenCenter(X);
+		/*if (FlxG.random.bool(0.4))
+			add(shit); */
 
 		FlxG.camera.follow(camFollowPos, null, 1); // todo: fix this mf camera
 
