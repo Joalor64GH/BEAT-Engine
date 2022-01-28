@@ -1,4 +1,4 @@
-this is a folk from Tposejank / [FNF-PsychEngine-ExtraKeys](https://github.com/tposejank/FNF-PsychEngine-ExtraKeys)
+this is a folk from [Tposejank](https://github.com/tposejank) / [FNF-PsychEngine-ExtraKeys](https://github.com/tposejank/FNF-PsychEngine-ExtraKeys)
 
 # Friday Night Funkin' - BEAT! Engine
 
