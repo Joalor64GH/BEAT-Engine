@@ -3859,12 +3859,15 @@ class PlayState extends MusicBeatState
 
 				if (!Math.isNaN(Std.parseFloat(value1)))
 				{
-					FlxTween.tween(camGame, {zoom: var1}, 0.5, {ease: FlxEase.expoIn});
-					// camGame.zoom = var1;
-					if (var2 != 0)
-						Customcamerazoom = true;
+					if (var1 == 0 || value1 == '' || value1 == '0')
+						FlxTween.tween(camGame, {zoom: defaultCamZoom}, 0.5, {ease: FlxEase.expoIn});
 					else
+						FlxTween.tween(camGame, {zoom: var1}, 0.5, {ease: FlxEase.expoIn});
+					// camGame.zoom = var1;
+					if (var1 == 0 || var1 == 1 || value1 == '' || value1 == '0')
 						Customcamerazoom = false;
+					else
+						Customcamerazoom = true;
 				}
 
 				if (!Math.isNaN(Std.parseFloat(value2)))
@@ -3885,10 +3888,10 @@ class PlayState extends MusicBeatState
 				{
 					FlxTween.tween(camHUD, {zoom: var1}, 0.5, {ease: FlxEase.expoIn});
 					// camHUD.zoom = var1;
-					if (var2 != 0)
-						CustomcamHUDzoom = true;
-					else
+					if (var1 == 0 || var1 == 1 || value1 == '' || value1 == '0')
 						CustomcamHUDzoom = false;
+					else
+						CustomcamHUDzoom = true;
 				}
 
 				if (!Math.isNaN(Std.parseFloat(value2)))

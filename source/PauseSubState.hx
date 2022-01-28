@@ -125,6 +125,7 @@ class PauseSubState extends MusicBeatSubstate
 				icon = new HealthIcon(PlayState.instance.dad.healthIcon);
 			else
 				icon = new HealthIcon(PlayState.instance.boyfriend.healthIcon);
+			iconanimation();
 			icon.setGraphicSize(Std.int(icon.width * 1.7));
 			icon.antialiasing = ClientPrefs.globalAntialiasing;
 			icon.x = FlxG.width - 230;
@@ -219,6 +220,16 @@ class PauseSubState extends MusicBeatSubstate
 		changeSelection();
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+	}
+
+	function iconanimation()
+	{
+		if (PlayState.instance.healthBar.percent > 85)
+			icon.animation.curAnim.curFrame = 1;
+		else if (PlayState.instance.healthBar.percent < 20)
+			icon.animation.curAnim.curFrame = 2;
+		else
+			icon.animation.curAnim.curFrame = 0;
 	}
 
 	override function update(elapsed:Float)

@@ -13,6 +13,11 @@
 						"Set hud Cam Zoom and angle",
 						"1.8",
 						""
+					],
+					[
+						"Set Game Cam Zoom and angle",
+						"1",
+						""
 					]
 				]
 			],
@@ -21,12 +26,12 @@
 				[
 					[
 						"Set hud Cam Zoom and angle",
-						"",
+						"0",
 						"5"
 					],
 					[
 						"Set Game Cam Zoom and angle",
-						"",
+						"1",
 						"5"
 					]
 				]
@@ -100,9 +105,9 @@
 				20800,
 				[
 					[
-						"Set hud Cam Zoom and angle",
+						"Set Game Cam Zoom and angle",
 						"",
-						"5"
+						"-5"
 					],
 					[
 						"Set hud Cam Zoom and angle",
