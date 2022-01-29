@@ -153,19 +153,11 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 
 ## BEAT! Engine
 
-- [AquaStrikr](https://twitter.com/aqua_strikr) - Art, Director
+- [AquaStrikr](https://twitter.com/aqua_strikr) - Art, Director, Charting
 - [Luisinhi010](https://www.youtube.com/c/Luisinho%E3%83%84/) - Coding, Animation, Charting
 - [Gui-iago](https://twitter.com/Fan_de_RPG) - Additional Coding, Charting
 - [NooBZiiTo](https://twitter.com/NooBZiiTo1) - Animation
 - [Re.Xuadoz.2.5](https://www.reddit.com/user/JulioHaHaHa) - Ideas
-
-### Special Thanks/Contributors
-
-- [AshoXD](https://twitter.com/ashomoment) - Rich Presence Header Design
-- [Salt for Some Reason](https://twitter.com/7saltybro) - Logo, Mania Charts
-- [El_Cyaan](https://twitter.com/El_Cyaan) - Guns Mania Chart
-- [LeNinethGames](https://twitter.com/LeNineth) - Menu Remix
-- [a gorila guy/Renan KK](https://twitter.com/LaysEnjoyer) - Parasite Cover (Composed by TheInnuendo)
 
 ## Psych Engine
 
@@ -175,7 +167,13 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 - [tposejank](https://www.youtube.com/c/tpobuddy) - Psych Extra Keys
 
 ### Special Thanks
-
+ 
+- [Salt for Some Reason](https://twitter.com/7saltybro) - Logo
+- [AshoXD](https://twitter.com/ashomoment) - Rich Presence Header Design
+- [El_Cyaan](https://twitter.com/El_Cyaan) - Guns Mania Chart, GF ALT, BanduFrein
+- [LeNinethGames](https://twitter.com/LeNineth) - Menu Remix
+- [a gorila guy/Renan](https://twitter.com/LaysEnjoyer) - Parasite Cover (Composed by TheInnuendo)
+- [superpowers04](https://github.com/superpowers04) - Character Selection Script
 - [shubs](https://twitter.com/Yoshubs) - New Input System
 - [SqirraRNG](https://twitter.com/gedehari) - Chart Editor's Sound Waveform base code
 - [iFlicky](https://twitter.com/flicky_i) - Delay/Combo Menu Song Composer + Dialogue Sounds
@@ -188,7 +186,11 @@ In case you don't want your mod to be able to run .lua scripts, delete the "LUA_
 
 ## Kade Engine
 
-- [KadeDev](https://www.youtube.com/c/KadeDev/) - Kade Etterna/Quaver Input
+- [KadeDev](https://www.youtube.com/c/KadeDev/) - Input and Time Bar
+  
+## TheZoroForce240
+  
+- [TheZoroForce240](https://gamebanana.com/members/1708748) - Input
 
 ## Skin Credits
 
