@@ -1,5 +1,5 @@
 name: Feature Request
-description: No, i won't add 5K/etc to the engine, or a Stage Editor
+description: No, i won't add a Stage Editor to the Engine
 labels: [enhancement]
 body:
   - type: textarea
@@ -17,7 +17,7 @@ body:
         - Useful feature
         - Actual feedback
         - A good idea
-        - Extra Keys support
+        - Stage Editor
         - Better LUA mod support idea
         - Code optimization that would make the game faster. (You should make a PR if this is your request, by the way.)
     validations:
