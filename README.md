@@ -32,7 +32,7 @@ Engine was made using a lot of different Source Codes.
 - HXCPP Debugger
 - Tabnine
 
-> ### Optional Visual S Code Extensions
+> ### Optional Visual Studio Code Extensions
 
 - Haxe blocks
 - Haxe Checkstyle
