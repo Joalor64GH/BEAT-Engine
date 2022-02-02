@@ -1,4 +1,4 @@
-This is a fork from [tposejank/](https://github.com/tposejank)[FNF-PsychEngine-ExtraKeys](https://github.com/tposejank/FNF-PsychEngine-ExtraKeys)
+This is a fork from [tposejank](https://github.com/tposejank) / [FNF-PsychEngine-ExtraKeys](https://github.com/tposejank/FNF-PsychEngine-ExtraKeys)
 
 # Friday Night Funkin' - BEAT! Engine
 
