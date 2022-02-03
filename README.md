@@ -1,4 +1,4 @@
-this is a fork from [Tposejank](https://github.com/tposejank) / [FNF-PsychEngine-ExtraKeys](https://github.com/tposejank/FNF-PsychEngine-ExtraKeys)
+This is a fork from [tposejank](https://github.com/tposejank) / [FNF-PsychEngine-ExtraKeys](https://github.com/tposejank/FNF-PsychEngine-ExtraKeys)
 
 # Friday Night Funkin' - BEAT! Engine
 
@@ -32,7 +32,7 @@ Engine was made using a lot of different Source Codes.
 - HXCPP Debugger
 - Tabnine
 
-> ### Optional Visual S Code Extensions
+> ### Optional Visual Studio Code Extensions
 
 - Haxe blocks
 - Haxe Checkstyle
@@ -224,9 +224,9 @@ https://user-images.githubusercontent.com/69995597/150059551-02c76ed2-bee4-4537-
 
 ![FIzLMsBX0AI4ans](https://user-images.githubusercontent.com/69995597/150060301-6e288d57-d610-48b9-bc9a-74a9ff9ea6da.jpeg)
 
-> ### Osu! Style Menu (Alt Menu, UPCOMING)
+> ### Osu! Lazer Style Menu (Alt Menu, UPCOMING)
 
-- Osu! Menu, if you like Osu! (lmao)
+- Osu! Menu, if you like Osu! Lazer
 
 ![concep-menu](https://user-images.githubusercontent.com/69995597/150062868-1177f151-2327-445f-9c41-99c583c9986d.jpg)
 
@@ -234,7 +234,7 @@ https://user-images.githubusercontent.com/69995597/150059551-02c76ed2-bee4-4537-
 
 - Winning Icons
 - New Health Bar
+- Multiple Inputs
 - New Grafix (Marvelous, Sick, Good, Bad, Shit)
-- Memory Counter
-- Opponent Mode (Yeah, you can play as the opponent, kinda dumb, ngl, but it's rlly funkin' cool, y'know?)
+- Opponent Mode (Yeah, you can play as the opponent, but it's rlly funkin' cool, y'know?)
 - AND MORE!
