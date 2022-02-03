@@ -42,7 +42,8 @@ class MainMenuState extends MusicBeatState
 {
 	public static var fridayVersion:String = '0.2.7-Git';
 	public static var psychEngineVersion:String = '0.5.1';
-	public static var beatEngineVersion:String = '0.0.3'; // this is used for Discord RPC
+	public static var beatEngineVersion:String = '0.0.2'; // this is used for Discord RPC
+	public static var beatEngineGit:String = '0.0.3-Git';
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -88,7 +89,7 @@ class MainMenuState extends MusicBeatState
 
 	var shit:FlxText;
 
-	#if desktop
+	#if !mac
 	var name:String = Sys.environment()["USERNAME"];
 	#else
 	var name:String = Sys.environment()["USER"];
@@ -239,7 +240,7 @@ class MainMenuState extends MusicBeatState
 		versionShitpsych.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShitpsych);
 		#if !debug
-		versionShit.text = "BEAT! Engine v" + beatEngineVersion;
+		versionShit.text = "BEAT! Engine v" + beatEngineGit;
 		#end
 		#if debug
 		versionShit.text = "BEAT! Engine v" + beatEngineVersion + ' (debug)';
@@ -258,7 +259,6 @@ class MainMenuState extends MusicBeatState
 			iconBG = new FlxSprite().loadGraphic(Paths.image('iconbackground'));
 			iconBG.scrollFactor.set();
 			iconBG.updateHitbox();
-			iconBG.screenCenter();
 			iconBG.antialiasing = ClientPrefs.globalAntialiasing;
 			add(iconBG);
 
@@ -300,6 +300,8 @@ class MainMenuState extends MusicBeatState
 			icon.scrollFactor.set();
 			icon.updateHitbox();
 			add(icon);
+			trace(iconBG.color);
+			trace(icon);
 		}
 
 		// NG.core.calls.event.logEvent('swag').send();
@@ -377,7 +379,11 @@ class MainMenuState extends MusicBeatState
 					{
 						if (FlxG.mouse.overlaps(spr))
 						{
-							changeItem(-1 * curSelected);
+							var selected:FlxSprite;
+							var selectedInt:Int;
+							selected = spr;
+							selectedInt = curSelected;
+							changeItem(-selectedInt);
 						}
 					});
 			}*/ // cursed coding
@@ -554,8 +560,15 @@ class MainMenuState extends MusicBeatState
 				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y - add);
 				spr.centerOffsets();
 
-				// if (curSelected == 4)
-				//	spr.x -= 30;
+				if (curSelected == 3)
+				{
+					if (spr.y != 30)
+					{
+						spr.y == 30;
+					}
+				}
+				else
+					spr.y == 0;
 			}
 		});
 	}

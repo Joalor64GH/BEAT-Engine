@@ -5091,9 +5091,9 @@ class PlayState extends MusicBeatState
 
 	function opponentNoteHit(note:Note):Void
 	{
-		if (!opponentChart)
+		if (!opponentChart){
 			if (Paths.formatToSongPath(SONG.song) != 'tutorial')
-				camZooming = true;
+				camZooming = true;}
 
 		if (note.noteType == 'Hey!')
 		{
