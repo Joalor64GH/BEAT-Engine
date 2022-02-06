@@ -42,38 +42,57 @@ Engine was made using a lot of different Source Codes.
 - indent-rainbow
 - Lua Extension by keyring
 
-# Downloads
+# Dependencies
 
-### Git
+### Git & Haxe
 
-for Windows and Mac: https://git-scm.com/downloads
+Windows and macOS: 
 
-- **after installing, open a Command Prompt or Terminal, and type in:**
-  haxelib setup
+- https://git-scm.com/downloads
+- https://haxe.org/download
 
-Linux (Ubuntu and Debian based Distros):
+macOS with homebrew:
+```
+brew install git
+brew install haxe
+```
 
-- sudo apt-get update
-- sudo apt-get install git -y
+Ubuntu based Linux distros:
+```
+sudo add-apt-repository ppa:haxe/releases -y
+sudo apt update
+sudo apt install git haxe -y
+mkdir ~/haxelib && haxelib setup ~/haxelib
+```
 
-Linux (Arch based Distros):
+Debian based Linux distros:
+```
+sudo apt-get install git haxe -y
+mkdir ~/haxelib && haxelib setup ~/haxelib
+```
 
-- sudo pacman -Sy git --noconfirm
+Arch based Linux distros:
+```
+sudo pacman -S git haxe
+mkdir ~/haxelib && haxelib setup ~/haxelib
+```
 
-### Haxe
+Redhat based Linux distros:
+```
+sudo dnf install git haxe -y
+mkdir ~/haxelib && haxelib setup ~/haxelib
+```
 
-Windows and Mac: https://haxe.org/download/ (Latest Version)
+openSuse based Linux distros: 
+```
+sudo zypper install git haxe
+mkdir ~/haxelib && haxelib setup ~/haxelib
+```
 
-Linux (Ubuntu and Debian based Distros):
-
-- sudo add-apt-repository ppa:haxe/releases -y
-- sudo apt-get update
-- sudo apt-get install haxe -y
-- mkdir ~/haxelib && haxelib setup ~/haxelib
-
-Linux (Arch based Distros)
-
-- sudo pacman -Sy haxe --noconfirm
+### Post installation on all platforms, run
+```
+haxelib setup
+```
 
 ### Visual Studio Community
 
@@ -94,60 +113,45 @@ Linux: press "CTRL + ALT + T" and a Terminal window should open -- although, if 
 
 ### Type in these commands:
 
-- haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
-- haxelib git linc_luajit https://github.com/nebulazorua/linc_luajit.git
-- haxelib git hxvm-luajit https://github.com/nebulazorua/hxvm-luajit
-- haxelib git faxe https://github.com/uhrobots/faxe
-- haxelib git polymod https://github.com/MasterEric/polymod.git
-- haxelib git extension-webm https://github.com/KadeDev/extension-webm
-- haxelib install lime 7.9.0
-- haxelib install openfl
-- haxelib install flixel
-- haxelib install flixel-tools
-- haxelib install flixel-ui
-- haxelib install hscript
-- haxelib install flixel-addons
-- haxelib install actuate
-- haxelib run lime setup
-- haxelib run lime setup flixel
-- haxelib run flixel-tools setup
+```bash
+haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
+haxelib git linc_luajit https://github.com/nebulazorua/linc_luajit.git
+haxelib git hxvm-luajit https://github.com/nebulazorua/hxvm-luajit
+haxelib git faxe https://github.com/uhrobots/faxe
+haxelib git polymod https://github.com/MasterEric/polymod.git
+haxelib git extension-webm https://github.com/KadeDev/extension-webm
+haxelib install lime 7.9.0
+haxelib install openfl
+haxelib install flixel
+haxelib install flixel-tools
+haxelib install flixel-ui
+haxelib install hscript
+haxelib install flixel-addons
+haxelib install actuate
+haxelib run lime setup
+haxelib run lime setup flixel
+haxelib run flixel-tools setup
+```
 
 **_Read Carefully:_** When it prompts for you to do anything (like: setup the lime command, setup flixel tools, etc)
 
-Once it's done, do this command to compile the game
+Compiling test version:
 
-### Windows
-
-lime test windows
-
-### Linux
-
-lime test linux
-
-### Mac
-
-lime test mac
+```
+lime test PLATFORM # linux, windows, mac
+```
 
 ### for Debug Builds
 
-add a "-debug" flag at the end of "lime test <platform>"
+Append `-debug` at the end of `lime test PLATFORM`
 
 ### Visual Studio Code Installation
 
 Windows and Mac: https://code.visualstudio.com/Download
 
-Linux (Ubuntu and Debian based Distros):
+Linux: https://code.visualstudio.com/docs/setup/linux
 
-- sudo apt install software-properties-common apt-transport-https wget
-- wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-- sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-- sudo apt install code
-
-Linux (Arch based distros):
-
-- sudo pacman -Sy code
-
-In case you don't want your mod to be able to run .lua scripts, delete the "LUA_ALLOWED" line on Project.xml
+In case you don't want your mod to be able to run .lua scripts, delete the `LUA_ALLOWED` line on `Project.xml`
 
 ───────────────────────────────────────────────────────────────────────────
 
