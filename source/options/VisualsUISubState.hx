@@ -34,6 +34,14 @@ class VisualsUISubState extends BaseOptionsMenu
 		title = 'Visuals and UI';
 		rpcTitle = 'Tweaking the Visuals and UI'; // for Discord Rich Presence
 
+		var option:Option = new Option('Auto Pause',
+			'If checked, pauses the game when unfocused.',
+			'autoPause',
+			'bool',
+			true);
+		option.onChange = onChangeAutoPause;
+		addOption(option);
+
 		var option:Option = new Option('Note Splashes', "If unchecked, hitting \"Sick!\" notes won't show particles.", 'noteSplashes', 'bool', true);
 		addOption(option);
 
@@ -78,7 +86,13 @@ class VisualsUISubState extends BaseOptionsMenu
 			['Classic', 'BEAT!', 'BEAT! Gradient', 'Bedrock']);
 		addOption(option);
 
-		var option:Option = new Option('Show Watermarks', "If unchecked, hides engine watermarks from the top left corner.", 'showWatermarks', 'bool', true);
+		var option:Option = new Option('Show Watermarks', "If unchecked, hides engine watermarks from the bottom right corner.", 'showWatermarks', 'bool', true);
+		addOption(option);
+
+		var option:Option = new Option('Show Song Name', "If unchecked, hides the Song Name from the bottom left corner.", 'showSongName', 'bool', true);
+		addOption(option);
+		
+		var option:Option = new Option('Show Judgement Counter', "If checked, will show Judgement Counters at the left side of the screen.", 'judgCounter', 'bool', true);
 		addOption(option);
 
 		#if !mobile
@@ -88,6 +102,11 @@ class VisualsUISubState extends BaseOptionsMenu
 		#end
 
 		super();
+	}
+
+	function onChangeAutoPause()
+	{
+		FlxG.autoPause = ClientPrefs.autoPause;
 	}
 
 	#if !mobile

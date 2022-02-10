@@ -127,7 +127,7 @@ class Achievements
 		],
 		[
 			"Debugger",
-			"Beat the \"Test\" Stage from the Chart Editor.",
+			"Beat the \"Test\" Stage.",
 			'debugger',
 			null,
 			true

@@ -80,6 +80,9 @@ class ClientPrefs
 	public static var uiSkin:String = 'Classic';
 	#end
 	public static var charSelect:Bool = true;
+	public static var judgCounter:Bool = true;
+	public static var showSongName:Bool = true;
+	public static var autoPause:Bool = true;
 
 	// Every key has two binds, add your key bind down here and then add your control on options/ControlsSubState.hx and Controls.hx
 	public static var keyBinds:Map<String, Array<FlxKey>> = [
@@ -226,6 +229,9 @@ class ClientPrefs
 		FlxG.save.data.marvelouses = marvelouses;
 		FlxG.save.data.uiSkin = uiSkin;
 		FlxG.save.data.charSelect = charSelect;
+		FlxG.save.data.showSongName = showSongName;
+		FlxG.save.data.judgCounter = judgCounter;
+		FlxG.save.data.autoPause = autoPause;
 
 		FlxG.save.flush();
 
@@ -404,6 +410,16 @@ class ClientPrefs
 		}
 		if (FlxG.save.data.charSelect != null) {
 			charSelect = FlxG.save.data.charSelect;
+		}
+		if (FlxG.save.data.showSongName != null) {
+			showSongName = FlxG.save.data.showSongName;
+		}
+		if (FlxG.save.data.judgCounter != null) {
+			judgCounter = FlxG.save.data.judgCounter;
+		}
+		if(FlxG.save.data.autoPause != null) {
+			autoPause = FlxG.save.data.autoPause;
+			FlxG.autoPause = autoPause;
 		}
 
 		// flixel automatically saves your volume!

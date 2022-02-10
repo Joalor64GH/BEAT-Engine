@@ -196,6 +196,7 @@ class PlayState extends MusicBeatState
 	public var cpuControlled:Bool = false;
 	public var practiceMode:Bool = false;
 	public var opponentChart:Bool = false;
+	public var noteHitFix:Bool = true;
 
 	public var botplaySine:Float = 0;
 	public var botplayTxt:FlxText;
@@ -247,10 +248,12 @@ class PlayState extends MusicBeatState
 	public var songMisses:Int = 0;
 	public var scoreTxt:FlxText;
 
+	var judgementCounter:FlxText;
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
 	var beWatermark:FlxText;
 	var peWatermark:FlxText;
+	var songDisplay:FlxText;
 	var debugWatermark:FlxText;
 	var debugWatermark2:FlxText;
 	var opponentText:FlxText;
@@ -372,6 +375,7 @@ class PlayState extends MusicBeatState
 		practiceMode = ClientPrefs.getGameplaySetting('practice', false);
 		cpuControlled = ClientPrefs.getGameplaySetting('botplay', false);
 		opponentChart = ClientPrefs.getGameplaySetting('opponentplay', false);
+		noteHitFix = opponentChart;
 
 		callOnLuas('onCreatePosVars', []);
 
@@ -1278,16 +1282,17 @@ class PlayState extends MusicBeatState
 		moveCameraSection(0);
 
 		healthBarBG = new AttachedSprite('healthBar');
-		healthBarBG.y = FlxG.height * 0.89;
+		healthBarBG.y = FlxG.height * 0.875;
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
 		healthBarBG.visible = !ClientPrefs.hideHud;
 		healthBarBG.xAdd = -4;
 		healthBarBG.yAdd = -4;
 		add(healthBarBG);
+
+
 		if (ClientPrefs.downScroll)
 			healthBarBG.y = 0.11 * FlxG.height;
-
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, (opponentChart ? LEFT_TO_RIGHT : RIGHT_TO_LEFT), Std.int(healthBarBG.width - 8),
 			Std.int(healthBarBG.height - 8), this, 'health', 0, 2);
 		healthBar.scrollFactor.set();
@@ -1297,66 +1302,85 @@ class PlayState extends MusicBeatState
 		add(healthBar);
 		healthBarBG.sprTracker = healthBar;
 
-		/*healthBarFG = new AttachedSprite('healthBarFG');
-			healthBarFG.y = FlxG.height * 0.89;
-			healthBarFG.screenCenter(X);
-			healthBarFG.scrollFactor.set();
-			healthBarFG.visible = !ClientPrefs.hideHud;
-			healthBarFG.xAdd = -4;
-			healthBarFG.yAdd = -4;
-			add(healthBarFG);
-			if (ClientPrefs.downScroll)
-				healthBarFG.y = 0.11 * FlxG.height; */
-
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
 		iconP1.y = healthBar.y - 75;
 		iconP1.visible = !ClientPrefs.hideHud;
 		iconP1.alpha = ClientPrefs.healthBarAlpha;
+		iconP1.canBounce = true;
 
 		iconP2 = new HealthIcon(dad.healthIcon, false);
 		iconP2.y = healthBar.y - 75;
 		iconP2.visible = !ClientPrefs.hideHud;
 		iconP2.alpha = ClientPrefs.healthBarAlpha;
+		iconP2.canBounce = true;
+		add(iconP1);
+		add(iconP2);
 		reloadHealthBarColors();
 
-		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
+		scoreTxt = new FlxText(0, healthBarBG.y + 40, FlxG.width, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
-		add(iconP2);
-		add(iconP1);
 
-		// Watermarks at the upper left corner, this is for BEAT! Engine
-		beWatermark = new FlxText(5, FlxG.height - 49, 0, "", 16);
+		beWatermark = new FlxText(0, FlxG.height - 50, 0, "", 16);
 		beWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		beWatermark.scrollFactor.set();
+		beWatermark.updateHitbox();
+		beWatermark.x = FlxG.width - beWatermark.width - 5;
 		beWatermark.visible = ClientPrefs.showWatermarks;
-		beWatermark.cameras = [camCustom];
-		add(beWatermark);
 
-		// And this is for Psych Engine
-		peWatermark = new FlxText(5, FlxG.height - 29, 0, "", 16);
+		peWatermark = new FlxText(0, FlxG.height - 30, 0, "", 16);
 		peWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		peWatermark.scrollFactor.set();
+		peWatermark.updateHitbox();
+		peWatermark.x = FlxG.width - peWatermark.width - 5;
 		peWatermark.visible = ClientPrefs.showWatermarks;
-		peWatermark.cameras = [camCustom];
+
+		songDisplay = new FlxText(0, FlxG.height - 30, 0, SONG.song + " - " + CoolUtil.difficultyString(), 16);
+		songDisplay.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		songDisplay.scrollFactor.set();
+		songDisplay.visible = ClientPrefs.showSongName;
+
+		add(beWatermark);
 		add(peWatermark);
+		add(songDisplay);
 
 		#if !debug
 		if (FlxG.random.bool(0.1))
-			beWatermark.text = "SUS Engine: v" + MainMenuState.beatEngineVersion;
+			beWatermark.text = "SUS Engine: v" + MainMenuState.beatEngineGit;
 		else
-			beWatermark.text = "BEAT! Engine: v" + MainMenuState.beatEngineVersion;
+			beWatermark.text = "BEAT! Engine: v" + MainMenuState.beatEngineGit;
 		peWatermark.text = "Psych Engine: v" + MainMenuState.psychEngineVersion;
 		#end
 
 		#if debug
-		beWatermark.text = "Debug Build - B!E v" + MainMenuState.beatEngineVersion;
+		beWatermark.text = "Debug Build - B!E v" + MainMenuState.beatEngineGit;
 		peWatermark.text = "Press F2 to Open Logs - PE v" + MainMenuState.psychEngineVersion;
 		#end
 		// i mean, i do a little coding?
+
+
+		judgementCounter = new FlxText(20, 0, 0, "", 20);
+		judgementCounter.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		judgementCounter.borderSize = 2;
+		judgementCounter.borderQuality = 2;
+		judgementCounter.scrollFactor.set();
+		judgementCounter.screenCenter(Y);
+
+		// Just in case.
+		if (ClientPrefs.marvelouses)
+			judgementCounter.text = 'Marvs: ${marvelouses}\nSicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\n';
+		else
+			judgementCounter.text = 'Sicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\n';
+
+		// then we add them
+		add(judgementCounter);
+
+		// or Disable them in case the option is turned off
+		if (!ClientPrefs.judgCounter || cpuControlled)
+			remove(judgementCounter);
 
 		botplayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (ClientPrefs.downScroll ? 100 : -100), "", 32);
 
@@ -1372,43 +1396,33 @@ class PlayState extends MusicBeatState
 				botplayTxt.text = "CHEATING...";
 		}
 
+		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
+		if(ClientPrefs.downScroll)
+			botplayTxt.y = timeBarBG.y - 78;
+		if(ClientPrefs.middleScroll) {
+			if(ClientPrefs.downScroll)
+				botplayTxt.y = botplayTxt.y - 78;
+			else
+				botplayTxt.y = botplayTxt.y + 78;
+		}
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
-		botplayTxt.borderSize = 1.25;
+		botplayTxt.borderSize = 2;
 		botplayTxt.visible = cpuControlled;
-		botplayTxt.cameras = [camCustom];
 		add(botplayTxt);
-		if (ClientPrefs.downScroll)
-		{
-			botplayTxt.y = timeBarBG.y - 200;
-		}
-
-		opponentText = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 90, healthBarBG.y + (ClientPrefs.downScroll ? 150 : -150), "Opponent Mode", 32);
-		opponentText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		opponentText.scrollFactor.set();
-		opponentText.borderSize = 1.25;
-		opponentText.alpha = 0;
-		opponentText.cameras = [camCustom];
-		add(opponentText);
-		if (ClientPrefs.downScroll)
-		{
-			opponentText.y = timeBarBG.y - 250;
-		}
-
-		if (opponentChart)
-			FlxTween.tween(opponentText, {alpha: 1}, 2, {ease: FlxEase.expoInOut});
-		else
-			opponentText.kill();
 
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];
-		// healthBarFG.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
+		judgementCounter.cameras = [camHUD];
+		beWatermark.cameras = [camHUD];
+		peWatermark.cameras = [camHUD];
+		songDisplay.cameras = [camHUD];
 		laneunderlay.cameras = [camHUD];
 		laneunderlayOpponent.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
@@ -2745,6 +2759,11 @@ class PlayState extends MusicBeatState
 		}
 		#end
 
+		if (!FlxG.autoPause && !paused && canPause && startedCountdown && !cpuControlled)
+		{
+			pauseState();
+		}
+
 		super.onFocusLost();
 	}
 
@@ -3009,10 +3028,22 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
+		var divider:String = " // ";
+
+		scoreTxt.text = 'Score: ' + songScore;
+		scoreTxt.text += divider + 'Accuracy:' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%';
+
+		if (ratingFC == "" || songMisses > 0)
+		scoreTxt.text += '';
+	else
+		scoreTxt.text += ' [' + ratingFC + ']';
+
+		scoreTxt.text += divider + 'Misses:' + songMisses;
+
 		if (ratingFC == "")
-			scoreTxt.text = 'Score: ' + songScore + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% ' + ' // Combo Breaks: ' + songMisses + ' // Rank: (?)';
-		else
-			scoreTxt.text = 'Score: ' + songScore + ' // Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '% ' + '[' + ratingFC + '] ' + ' // Combo Breaks: ' + songMisses + ' // Rank: ' + ratingName;
+		scoreTxt.text += divider + 'Rank: ?';
+	else
+		scoreTxt.text += divider + 'Rank: ' + ratingName;
 
 		if (botplayTxt.visible)
 		{
@@ -3022,34 +3053,7 @@ class PlayState extends MusicBeatState
 
 		if (controls.PAUSE && startedCountdown && canPause)
 		{
-			var ret:Dynamic = callOnLuas('onPause', []);
-			if (ret != FunkinLua.Function_Stop)
-			{
-				persistentUpdate = false;
-				persistentDraw = true;
-				paused = true;
-
-				// 1 / 1000 chance for Gitaroo Man easter egg
-				/*if (FlxG.random.bool(0.1))
-				{
-					// gitaroo man easter egg
-					cancelMusicFadeTween();
-					CustomFadeTransition.nextCamera = camOther;
-					MusicBeatState.switchState(new GitarooPause());
-				}
-				else { */
-				if (FlxG.sound.music != null)
-				{
-					FlxG.sound.music.pause();
-					vocals.pause();
-				}
-				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-				// }
-
-				#if desktop
-				DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
-				#end
-			}
+			pauseState();
 		}
 
 		if (FlxG.keys.anyJustPressed(debugKeysChart) && !endingSong && !inCutscene)
@@ -3484,6 +3488,36 @@ class PlayState extends MusicBeatState
 		for (i in shaderUpdates)
 		{
 			i(elapsed);
+		}
+	}
+
+	function pauseState()
+	{
+		var ret:Dynamic = callOnLuas('onPause', []);
+		if(ret != FunkinLua.Function_Stop) {
+			persistentUpdate = false;
+			persistentDraw = true;
+			paused = true;
+
+			// 1 / 1000 chance for Gitaroo Man easter egg
+			/*if (FlxG.random.bool(0.1))
+			{
+				// gitaroo man easter egg
+				cancelMusicFadeTween();
+				CustomFadeTransition.nextCamera = camOther;
+				MusicBeatState.switchState(new GitarooPause());
+			}
+			else {*/
+			if(FlxG.sound.music != null) {
+				FlxG.sound.music.pause();
+				vocals.pause();
+			}
+			openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			//}
+
+			#if desktop
+			DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+			#end
 		}
 	}
 
@@ -4476,7 +4510,10 @@ class PlayState extends MusicBeatState
 				totalNotesHit += 0.75;
 				goods++;
 			case "sick": // sick
-				totalNotesHit += 1;
+				if (!ClientPrefs.marvelouses)
+					totalNotesHit += 1;
+				else
+					totalNotesHit += 0.95;
 				sicks++;
 			case "marvelous": // marvelous
 				totalNotesHit += 1;
@@ -4990,6 +5027,7 @@ class PlayState extends MusicBeatState
 				note.destroy();
 			}
 		});
+
 		combo = 0;
 
 		health -= daNote.missHealth * healthLoss;
@@ -5001,7 +5039,9 @@ class PlayState extends MusicBeatState
 
 		// For testing purposes
 		// trace(daNote.missHealth);
+
 		songMisses++;
+
 		vocals.volume = 0;
 		if (!practiceMode)
 			songScore -= 10;
@@ -5172,12 +5212,7 @@ class PlayState extends MusicBeatState
 		StrumPlayAnim(true, Std.int(Math.abs(note.noteData)) % Note.ammo[mania], time);
 		note.hitByOpponent = true;
 
-		callOnLuas('opponentNoteHit', [
-			notes.members.indexOf(note),
-			Math.abs(note.noteData),
-			note.noteType,
-			note.isSustainNote
-		]);
+		callOnLuas((noteHitFix ? 'goodNoteHit' : 'opponentNoteHit'), [notes.members.indexOf(note), Math.abs(note.noteData), note.noteType, note.isSustainNote]);
 
 		if (!note.isSustainNote)
 		{
@@ -5334,7 +5369,7 @@ class PlayState extends MusicBeatState
 		var isSus:Bool = note.isSustainNote; // GET OUT OF MY HEAD, GET OUT OF MY HEAD, GET OUT OF MY HEAD
 		var leData:Int = Math.round(Math.abs(note.noteData));
 		var leType:String = note.noteType;
-		callOnLuas('goodNoteHit', [notes.members.indexOf(note), leData, leType, isSus]);
+		callOnLuas((noteHitFix ? 'opponentNoteHit' : 'goodNoteHit'), [notes.members.indexOf(note), leData, leType, isSus]);
 
 		if (!note.isSustainNote)
 		{
@@ -5899,23 +5934,21 @@ class PlayState extends MusicBeatState
 			// Rating FC
 			ratingFC = "";
 			if (marvelouses > 0)
-				ratingFC = "[MFC]";
+				ratingFC = "MFC";
 			if (sicks > 0)
-				ratingFC = "[SFC]";
+				ratingFC = "SFC";
 			if (goods > 0)
-				ratingFC = "[GFC]";
-			if (bads > 0)
-				ratingFC = "[FC]";
-			if (shits > 0)
-				ratingFC = "[SDS]";
-			if (songMisses > 0 && songMisses < 10)
-				ratingFC = "[SDCB]";
-			else if (songMisses >= 10)
-				ratingFC = "[Clear]";
+				ratingFC = "GFC";
+			if (bads > 0 || shits > 0)
+				ratingFC = "FC";
 		}
 		setOnLuas('rating', ratingPercent);
 		setOnLuas('ratingName', ratingName);
 		setOnLuas('ratingFC', ratingFC);
+		if (ClientPrefs.marvelouses)
+			judgementCounter.text = 'Marvs: ${marvelouses}\nSicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\n';
+		else
+			judgementCounter.text = 'Sicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\n';
 	}
 
 	public static var othersCodeName:String = 'otherAchievements';
