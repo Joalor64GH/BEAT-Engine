@@ -86,7 +86,7 @@ class VisualsUISubState extends BaseOptionsMenu
 			['Classic', 'BEAT!', 'BEAT! Gradient', 'Bedrock']);
 		addOption(option);
 
-		var option:Option = new Option('Show Watermarks', "If unchecked, hides engine watermarks from the bottom right corner.", 'showWatermarks', 'bool', true);
+		var option:Option = new Option('Show Watermarks', "If unchecked, hides engine watermarks from the bottom left corner.", 'showWatermarks', 'bool', true);
 		addOption(option);
 
 		var option:Option = new Option('Show Song Name', "If unchecked, hides the Song Name from the bottom left corner.", 'showSongName', 'bool', true);

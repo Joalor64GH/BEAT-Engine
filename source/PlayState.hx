@@ -1324,18 +1324,20 @@ class PlayState extends MusicBeatState
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
 
-		beWatermark = new FlxText(0, FlxG.height - 50, 0, "", 16);
+		beWatermark = new FlxText(0, FlxG.height - 70, 0, "", 16);
+		if (!ClientPrefs.showSongName)
+			beWatermark = new FlxText(0, FlxG.height - 50, 0, "", 16);
 		beWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		beWatermark.scrollFactor.set();
 		beWatermark.updateHitbox();
-		beWatermark.x = FlxG.width - beWatermark.width - 5;
 		beWatermark.visible = ClientPrefs.showWatermarks;
 
-		peWatermark = new FlxText(0, FlxG.height - 30, 0, "", 16);
+		peWatermark = new FlxText(0, FlxG.height - 50, 0, "", 16);
+		if (!ClientPrefs.showSongName)
+			peWatermark = new FlxText(0, FlxG.height - 30, 0, "", 16);
 		peWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		peWatermark.scrollFactor.set();
 		peWatermark.updateHitbox();
-		peWatermark.x = FlxG.width - peWatermark.width - 5;
 		peWatermark.visible = ClientPrefs.showWatermarks;
 
 		songDisplay = new FlxText(0, FlxG.height - 30, 0, SONG.song + " - " + CoolUtil.difficultyString(), 16);
