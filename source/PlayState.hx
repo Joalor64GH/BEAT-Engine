@@ -67,7 +67,7 @@ class PlayState extends MusicBeatState
 		['Bad', 0.5], // From 40% to 49%
 		['Bruh', 0.6], // From 50% to 59%
 		['Meh', 0.69], // From 60% to 68%
-		['Nice', 0.7], // 69%
+		['Cock', 0.7], // 69%
 		['Good', 0.8], // From 70% to 79%
 		['Great', 0.9], // From 80% to 89%
 		['Sick!', 1], // From 90% to 99%
@@ -1290,7 +1290,6 @@ class PlayState extends MusicBeatState
 		healthBarBG.yAdd = -4;
 		add(healthBarBG);
 
-
 		if (ClientPrefs.downScroll)
 			healthBarBG.y = 0.11 * FlxG.height;
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, (opponentChart ? LEFT_TO_RIGHT : RIGHT_TO_LEFT), Std.int(healthBarBG.width - 8),
@@ -1363,7 +1362,6 @@ class PlayState extends MusicBeatState
 		#end
 		// i mean, i do a little coding?
 
-
 		judgementCounter = new FlxText(20, 0, 0, "", 20);
 		judgementCounter.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		judgementCounter.borderSize = 2;
@@ -1399,10 +1397,11 @@ class PlayState extends MusicBeatState
 		}
 
 		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
-		if(ClientPrefs.downScroll)
+		if (ClientPrefs.downScroll)
 			botplayTxt.y = timeBarBG.y - 78;
-		if(ClientPrefs.middleScroll) {
-			if(ClientPrefs.downScroll)
+		if (ClientPrefs.middleScroll)
+		{
+			if (ClientPrefs.downScroll)
 				botplayTxt.y = botplayTxt.y - 78;
 			else
 				botplayTxt.y = botplayTxt.y + 78;
@@ -1411,7 +1410,30 @@ class PlayState extends MusicBeatState
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 2;
 		botplayTxt.visible = cpuControlled;
+		botplayTxt.cameras = [camCustom];
 		add(botplayTxt);
+		if (ClientPrefs.downScroll)
+		{
+			botplayTxt.y = timeBarBG.y - 200;
+		}
+
+		opponentText = new FlxText(0, healthBarBG.y + (ClientPrefs.downScroll ? 150 : -150), "Opponent Mode", 32);
+		opponentText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		opponentText.scrollFactor.set();
+		opponentText.screenCenter(X);
+		opponentText.borderSize = 1.25;
+		opponentText.alpha = 0;
+		opponentText.cameras = [camCustom];
+		add(opponentText);
+		if (ClientPrefs.downScroll)
+		{
+			opponentText.y = timeBarBG.y - 250;
+		}
+
+		if (opponentChart)
+			FlxTween.tween(opponentText, {alpha: 1}, 2, {ease: FlxEase.expoInOut});
+		else
+			opponentText.kill();
 
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
@@ -3036,16 +3058,16 @@ class PlayState extends MusicBeatState
 		scoreTxt.text += divider + 'Accuracy:' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%';
 
 		if (ratingFC == "" || songMisses > 0)
-		scoreTxt.text += '';
-	else
-		scoreTxt.text += ' [' + ratingFC + ']';
+			scoreTxt.text += '';
+		else
+			scoreTxt.text += ' [' + ratingFC + ']';
 
 		scoreTxt.text += divider + 'Misses:' + songMisses;
 
 		if (ratingFC == "")
-		scoreTxt.text += divider + 'Rank: ?';
-	else
-		scoreTxt.text += divider + 'Rank: ' + ratingName;
+			scoreTxt.text += divider + 'Rank: ?';
+		else
+			scoreTxt.text += divider + 'Rank: ' + ratingName;
 
 		if (botplayTxt.visible)
 		{
@@ -3496,7 +3518,8 @@ class PlayState extends MusicBeatState
 	function pauseState()
 	{
 		var ret:Dynamic = callOnLuas('onPause', []);
-		if(ret != FunkinLua.Function_Stop) {
+		if (ret != FunkinLua.Function_Stop)
+		{
 			persistentUpdate = false;
 			persistentDraw = true;
 			paused = true;
@@ -3509,13 +3532,14 @@ class PlayState extends MusicBeatState
 				CustomFadeTransition.nextCamera = camOther;
 				MusicBeatState.switchState(new GitarooPause());
 			}
-			else {*/
-			if(FlxG.sound.music != null) {
+			else { */
+			if (FlxG.sound.music != null)
+			{
 				FlxG.sound.music.pause();
 				vocals.pause();
 			}
 			openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-			//}
+			// }
 
 			#if desktop
 			DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
@@ -5133,9 +5157,11 @@ class PlayState extends MusicBeatState
 
 	function opponentNoteHit(note:Note):Void
 	{
-		if (!opponentChart){
+		if (!opponentChart)
+		{
 			if (Paths.formatToSongPath(SONG.song) != 'tutorial')
-				camZooming = true;}
+				camZooming = true;
+		}
 
 		if (note.noteType == 'Hey!')
 		{
@@ -5214,7 +5240,12 @@ class PlayState extends MusicBeatState
 		StrumPlayAnim(true, Std.int(Math.abs(note.noteData)) % Note.ammo[mania], time);
 		note.hitByOpponent = true;
 
-		callOnLuas((noteHitFix ? 'goodNoteHit' : 'opponentNoteHit'), [notes.members.indexOf(note), Math.abs(note.noteData), note.noteType, note.isSustainNote]);
+		callOnLuas((noteHitFix ? 'goodNoteHit' : 'opponentNoteHit'), [
+			notes.members.indexOf(note),
+			Math.abs(note.noteData),
+			note.noteType,
+			note.isSustainNote
+		]);
 
 		if (!note.isSustainNote)
 		{
