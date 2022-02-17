@@ -1,5 +1,7 @@
 This is a fork from [tposejank](https://github.com/tposejank) / [FNF-PsychEngine-ExtraKeys](https://github.com/tposejank/FNF-PsychEngine-ExtraKeys)
 
+IF YOU MADE PULL REQUEST I WILL UPDATE THE ENGINE WITH THE PULL
+
 # Friday Night Funkin' - BEAT! Engine
 
 Engine was made using a lot of different Source Codes.
@@ -227,12 +229,6 @@ https://user-images.githubusercontent.com/69995597/150059551-02c76ed2-bee4-4537-
 - May not decrease the loading so much, because still use one of the large file of the main menu (the bg)
 
 ![FIzLMsBX0AI4ans](https://user-images.githubusercontent.com/69995597/150060301-6e288d57-d610-48b9-bc9a-74a9ff9ea6da.jpeg)
-
-> ### Osu! Lazer Style Menu (Alt Menu, UPCOMING)
-
-- Osu! Menu, if you like Osu! Lazer
-
-![concep-menu](https://user-images.githubusercontent.com/69995597/150062868-1177f151-2327-445f-9c41-99c583c9986d.jpg)
 
 ## Xtras
 
