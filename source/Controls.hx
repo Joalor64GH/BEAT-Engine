@@ -936,8 +936,6 @@ class Controls extends FlxActionSet
 	 * Sets all actions that pertain to the binder to trigger when the supplied keys are used.
 	 * If binder is a literal you can inline this
 	 */
-	public function bindButtons(control:Control, id, buttons)
-	{
         #if !android
 	public function bindKeys(control:Control, keys:Array<FlxKey>)
 	{
