@@ -415,8 +415,7 @@ class Controls extends FlxActionSet
 	 * @param func
 	 * @return ->Void)
 	 */
-	function forEachBound(control:Control, func:FlxActionDigital->FlxInputState->Void)
-	{
+	
 		switch (control)
 		{
 			case UI_UP:
@@ -552,8 +551,7 @@ class Controls extends FlxActionSet
 	 * Sets all actions that pertain to the binder to trigger when the supplied keys are used.
 	 * If binder is a literal you can inline this
 	 */
-	public function bindKeys(control:Control, keys:Array<FlxKey>)
-	{
+	
 		var copyKeys:Array<FlxKey> = keys.copy();
 		for (i in 0...copyKeys.length) {
 			if(i == NONE) copyKeys.remove(i);
