@@ -1,7 +1,5 @@
 This is a fork from [tposejank](https://github.com/tposejank) / [FNF-PsychEngine-ExtraKeys](https://github.com/tposejank/FNF-PsychEngine-ExtraKeys)
 
-# IF YOU MADE PULL REQUEST I WILL UPDATE THE ENGINE WITH THE PULL REQUEST
-
 # Friday Night Funkin' - BEAT! Engine
 
 Engine was made using a lot of different Source Codes.
