@@ -415,7 +415,8 @@ class Controls extends FlxActionSet
 	 * @param func
 	 * @return ->Void)
 	 */
-	
+	function forEachBound(control:Control, func:FlxActionDigital->FlxInputState->Void)
+	{
 		switch (control)
 		{
 			case UI_UP:
