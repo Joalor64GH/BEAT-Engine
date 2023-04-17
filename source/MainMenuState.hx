@@ -40,7 +40,7 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-	public static var fridayVersion:String = '0.2.7.1';
+	public static var fridayVersion:String = '0.2.7-Git';
 	public static var psychEngineVersion:String = '0.5.1';
 	public static var beatEngineVersion:String = '0.0.4 Custom'; // this is used for Discord RPC
 	public static var beatEngineGit:String = 'Git-Custom-Build';
@@ -56,9 +56,11 @@ class MainMenuState extends MusicBeatState
 	var optionShit:Array<String> = [
 		'story_mode',
 		'freeplay',
-		#if MODS_ALLOWED 'mods', #end
+		#if MODS_ALLOWED 'mods', 
+		#end
 		'socials',
-		#if !switch 'donate', #end
+		#if !switch 'donate', 
+		#end
 		'credits',
 		'options'
 	];

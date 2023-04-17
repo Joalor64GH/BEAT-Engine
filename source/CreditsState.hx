@@ -131,37 +131,37 @@ class CreditsState extends MusicBeatState
 			[''],
 			['Psych Engine Team'],
 			[
-				'ShadowMario',
+				'Shadow Mario',
 				'shadowmario',
-				'Main Programmer',
+				'Main Programmer of Psych Engine',
 				'https://twitter.com/Shadow_Mario_',
 				'444444'
 			],
 			[
 				'RiverOaken',
 				'riveroaken',
-				'Main Artist/Animator',
+				'Main Artist/Animator of Psych Engine',
 				'https://twitter.com/river_oaken',
 				'C30085'
 			],
 			[
-				'bbpanzu',
 				'bb-panzu',
-				'Ex-Programmer',
+				'bb-panzu',
+				'Additional Programmer of Psych Engine',
 				'https://twitter.com/bbsub3',
 				'389A58'
-			],
-			[
-				'Yoshubs',
-				'shubs',
-				'Additional Programmer',
-				'https://twitter.com/yoshubs',
-				'4494E6'
 			],
 			[''],
 			['Psych Engine Contributors'],
 			[
-				'gedehari',
+				'shubs',
+				'shubs',
+				'New Input System Programmer',
+				'https://twitter.com/yoshubs',
+				'4494E6'
+			],
+			[
+				'SqirraRNG',
 				'gedehari',
 				'Chart Editor\'s Sound Waveform base',
 				'https://twitter.com/gedehari',
